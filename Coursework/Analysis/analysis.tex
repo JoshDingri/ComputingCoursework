@@ -35,7 +35,7 @@ A spreadsheet in Excel makes it easy to enter and read information however there
 
 \subsubsection{Data sources and destinations}
 
-In the current system there are three data sources used, the colleague, the line manager and the IT staff. Colleagues will fill out a physical form with information about which hardware device they would like to be assigned to them along with their name. The form will then be given to their specific line manager who will sign the form to say whether they authorize the hardware request or not. The line manager will give this form to a member of the IT staff who will enter the data onto the Excel spreadsheet along with the hardware details (such as price and serial number). The spreadsheet now contains all the information about which colleague has which hardware device assigned to them.
+In the current system there are three data sources used, the colleague, the line manager and the IT staff. Colleagues will fill out a physical form with information about which hardware device they would like to be assigned to them along with their name. The form will then be given to their specific line manager who will sign the form to say whether they authorize the hardware request or not. The line manager will give this form to a member of the IT staff who will enter the data onto the Excel spreadsheet along with the hardware details (such as cost and serial number). The spreadsheet now contains all the information about which colleague has which hardware device assigned to them.
 
 \begin{table}[H]
 \scalebox{0.65}{
@@ -53,7 +53,7 @@ Line Manager                          & Signature                          & Tim
 Form                                  & Form Details Including Signature   & John, Smith, Phone, iPhone,Financing,Orwell, Tim Richardson & IT Staff Member                           \\ \hline
 IT Staff Manager                      & Form Details Including Signature   & John, Smith, Phone, iPhone,Financing ,Orwell, Tim Richardson & Excel Spreadsheet                                   \\ \hline
 IT Staff Member                             & Model                              & 6 Plus                                             & Excel Spreadsheet                                       \\ \hline
-IT Staff Member                       & Price                              & Â£400                                               & Excel Spreadsheet        \\ \hline
+IT Staff Member                       & Cost                              & Â£400                                               & Excel Spreadsheet        \\ \hline
 IT Staff Member                       & Serial Number                      & 71624                                          &  Excel Spreadsheet           \\ \hline
 IT Staff Member                       & Purchase Date                      & 11/02/2015                                         &  Excel Spreadsheet           \\ \hline
 \end{tabular}
@@ -98,7 +98,7 @@ IT Staff Member                       & Purchase Date                      & 11/
 	\Else
 		\State Purchase hardware device
 		\State Input hardware request form details
-		\State Input receipt details including warranty, price, serial and purchase date
+		\State Input receipt details including warranty, cost, serial and purchase date
 		\State $Entry_Added \leftarrow True$
 	\EndIf
 \EndWhile
@@ -158,7 +158,7 @@ Line Manager                          & Signature                          & Tim
 Form                                  & Form Details Including Signature   & John, Smith, Phone, iPhone, Financing , Orwell, Tim Richardson & IT Staff Member                           \\ \hline
 IT Staff Manager                      & Form Details Including Signature   & John, Smith, Phone, iPhone, Financing , Orwell, Tim Richardson & Database                                  \\ \hline
 IT Staff Member                             & Model                              & 6 Plus                                             & Database (linked with colleague)                                      \\ \hline
-IT Staff Member                       & Price                              & Â£300                                               & Database (linked with colleague)          \\ \hline
+IT Staff Member                       & Cost                              & Â£300                                               & Database (linked with colleague)          \\ \hline
 IT Staff Member                       & Warranty                           & 3 Years                                            & Database (linked with colleague)          \\ \hline
 IT Staff Member                       & Serial Number                      & 832327                                             & Database (linked with colleague)          \\ \hline
 IT Staff Member                       & Purchase Date                      & 11/05/2015                                         & Database (linked with colleague)          \\ \hline
@@ -185,7 +185,7 @@ HardwareID                          & Integer                                 & 
 HardwareDevice                      & String                                  & 1-25                                 & Length                                   & Phone                 &                       \\ \hline
 HardwareMake                        & String                                  & 1-25                                 & Length                                   & iPhone                &                       \\ \hline
 HardwareModel                       & String                                  & 1-25                                 & Length                                   & 5S                    &                       \\ \hline
-HardwarePrice                       & Integer                                 & 1-2000                               & Range                                    & £500                  &                       \\ \hline
+HardwareCost                       & Integer                                 & 1-2000                               & Range                                    & £500                  &                       \\ \hline
 HardwareWarranty                    & Boolean                                 &                                      & Presence Check                           & True                  &                       \\ \hline
 HardwareWarrantyPeriod              & String                                  & 1-10                                 & Length                                   & 3 Years               &                       \\ \hline
 HardwareSerialNumber                & String                                  & 1-50                                 & Length                                   & 12307321              &                       \\ \hline
@@ -246,7 +246,19 @@ The system itself may then add on a few MB. So I would say a minimum of 8.85MB w
 
 \subsection{ER Diagram}
 
+\begin{figure}[H]
+\hspace*{-2cm}
+\vspace*{5cm}
+\setlength{\abovecaptionskip}{-320pt plus 3pt minus 2pt}
+\includegraphics[width=1.2\textwidth]{ERDiagram.png}
+\caption{The ER Diagram is basic. Since the IT Staff and Line Managers also need their own hardware devices they are classified under the Staff table. All staff have many to many relationships with hardware as they can have a number of phones, printers, monitors etc. at one time.} \label{ER Diagram}
+\end{figure}
+
 \subsection{Entity Descriptions}
+
+Staff(\underline{StaffID},\textit{HardwareID}, FirstName, LastName, Department, Location)
+
+Hardware(\underline{HardwareID}, HardwareDevice, Make, Model, Cost, Warranty, \\WarrantyPeriod, SerialNumber, PurchaseDate)
 
 \section{Object Analysis}
 
