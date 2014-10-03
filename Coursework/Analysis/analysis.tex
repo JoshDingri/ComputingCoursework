@@ -21,7 +21,7 @@ A spreadsheet in Excel makes it easy to enter and read information however there
 
 \begin{figure}[H]
 \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{Page1Interview.jpg}
-\caption{Interview Questions: Page 2} \label{Page1Interview}
+\caption{Interview Questions: Page 1} \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
@@ -37,11 +37,10 @@ A spreadsheet in Excel makes it easy to enter and read information however there
 
 In the current system there are three data sources used, the colleague, the line manager and the IT staff. Colleagues will fill out a physical form with information about which hardware device they would like to be assigned to them along with their name. The form will then be given to their specific line manager who will sign the form to say whether they authorize the hardware request or not. The line manager will give this form to a member of the IT staff who will enter the data onto the Excel spreadsheet along with the hardware details (such as cost and serial number). The spreadsheet now contains all the information about which colleague has which hardware device assigned to them.
 
-\begin{table}[H]
-\scalebox{0.65}{
-\begin{tabular}{|p{4cm}|p{5.3cm}|p{8cm}|p{3cm}|}
+\begin{center}
+\begin{tabular}{|p{3cm}|p{3cm}|p{4cm}|p{3cm}|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Source}} & \multicolumn{1}{c|}{\textbf{Data}} & \multicolumn{1}{c|}{\textbf{Example Data}}         & \multicolumn{1}{c|}{\textbf{Destination}} \\ \hline
+\textbf{Source} & \textbf{Data} & \textbf{Example Data}      & \textbf{Destination} \\ \hline
 Colleague                             & First Name                         & John                                               & Form                                      \\ \hline
 Colleague                             & Last Name                          & Smith                                              & Form                                      \\ \hline
 Colleague                             & Department                              & Financing                                            & Form                                      \\ \hline
@@ -57,8 +56,7 @@ IT Staff Member                       & Cost                              & Â£
 IT Staff Member                       & Serial Number                      & 71624                                          &  Excel Spreadsheet           \\ \hline
 IT Staff Member                       & Purchase Date                      & 11/02/2015                                         &  Excel Spreadsheet           \\ \hline
 \end{tabular}
-}
-\end{table}
+\end{center}
 
 \subsubsection{Algorithms}
 
@@ -196,11 +194,11 @@ IT Staff Member		&IMEI Number (if phone)            & EH37000781                
 
 \subsubsection{Data dictionary}
 
-\fontsize{8}{7}\selectfont
 
-\begin{longtable}{|p{3cm}|p{1cm}|p{1cm}|p{3cm}|p{2cm}|p{3cm}|}
+\begin{center}
+\begin{tabular}{|p{4cm}|p{1.3cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Data Type}} & \multicolumn{1}{c|}{\textbf{Length}} & \multicolumn{1}{c|}{\textbf{Validation}} & \textbf{Example Data} & \textbf{Comment}      \\ \hline
+\textbf{Name} & \textbf{Data Type}& \textbf{Length} & \textbf{Validation} & \textbf{Example Data} & \textbf{Comment}      \\ \hline
 StaffID                             & Integer                                 & 1-200                                & Range                                    & 132                   & Unique to the staff   \\ \hline
 StaffFirstName                      & String                                  & 1-25                                 & Presence Check                           & John                  &                       \\ \hline
 StaffLastName                       & String                                  & 1-25                                 & Presence Check                           & Smith                 &                       \\ \hline
@@ -218,8 +216,9 @@ HardwareSerialNumber                & String                                  & 
 HardwarePurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              &                       \\ \hline
 HardwareIMEI                & String                                  &          1-50                        & Length                                   & EH37000781               & Only required for phones                      \\ \hline
 HardwarePhoneNumber                & String                                  &1-11                                  & Length                                   & 07927551125              &   Only required for phones                      \\ \hline
-\end{longtable}
-\normalsize
+\end{tabular}
+\end{center}
+
 \subsubsection{Volumetrics}
 
 Initially my system will store 350 different client records, I chose this amount because Chranj said he has around 300 staff in his company he has to store as soon as the system is available (Interview question 5). Since he said "around 300" it shows he is fairly unsure exactly how many, so 350 means that the system will provide room for anymore staff that were not counted in the interview. The company does not hire people everyday and since this database will only be storing staff members, 350 records gives a fair bit of room to enable Chranj (and other IT staff members) to get used to the system.
@@ -315,6 +314,11 @@ Hardware(\underline{HardwareID}, HardwareDevice, Make, Model, Cost, Warranty, \\
 
 \section{Other Abstractions and Graphs}
 
+\begin{figure}[H]
+\includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{HardwareGraph.jpg}
+\caption{The graph provides a clear representation of how all types of staff get hardware devices, no matter if they are IT Staff, Managers or their colleagues.} \label{Page1Interview}
+\end{figure}
+
 \section{Constraints}
 
 \subsection{Hardware}
@@ -360,11 +364,10 @@ The hardware request forms may be computerised if there is enough time, the bene
 \section{Solutions}
 
 \subsection{Alternative solutions}
-
 \begin{center}
-\begin{tabular}{|p{2.5cm}|p{3cm}|p{3cm}|p{3cm}|}
-    \hline
-    \textbf{Solution} & \textbf{Explanation} & \textbf{Advantages} & \textbf{Disadvanages} \\ \hline
+\begin{tabular}{|p{2.5cm}|p{3cm}|p{3.2cm}|p{3.2cm}|}
+\hline
+\textbf{Solution} & \textbf{Explanation} & \textbf{Advantages} & \textbf{Disadvanages} \\ \hline
 Excel Spreadsheet & Improving and adding new fields to the existing excel spreadsheet. & \begin{itemize} \item Company already knows how to use it. \item Already on computer systems in workplace \end{itemize} & \begin{itemize} \item Linking data together is hard \item Data is unnecessarily repeated \end{itemize}  \\ \hline
 Microsoft Access & Using Access to produce a database & \begin{itemize} \item Fairly easy to use as there is a user friendly GUI \item A great way to link tables/data together\end{itemize} &  \begin{itemize} \item Programming is not used \item The company has not been trained how to use it \end{itemize}  \\ \hline
 Command-Line Application &		 Using a command line in python to provide a text display & 		\begin{itemize} \item Command line is very fast when handling data \item Easier to design \end{itemize} & 		\begin{itemize} \item Not user friendly as there is no GUI \item Hard to learn commands \item Not an upgrade from spreadsheet \end{itemize} \\ \hline
@@ -372,7 +375,6 @@ Web Based Application &		 Using online services  & 		\begin{itemize} \item Acces
 PyQt GUI Application &		 Providing a GUI interface for the database using PyQt & 		\begin{itemize} \item GUI interface means it is easy to use for staff \item I will be learning PyQt in class to help with this solution \end{itemize} & 		 \begin{itemize} \item Cannot be logged on from anywhere \item Not ideal as it does not fully reach the 		     clients needs \end{itemize} \\
  \hline
 \end{tabular}
-\label{tab:range_examples}
 \end{center}
 
 
