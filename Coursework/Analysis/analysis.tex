@@ -142,7 +142,6 @@ IT Staff Member                       & Purchase Date                      & 11/
 
 In the proposed system collegue details and hardware requests will still be received via physical form and entered manually onto the system. The new system will store the same information from the colleagues however the IT staff will store more infomation on products such as IMEI numbers (for phones) (see question 3 in interview)
 
-\fontsize{9}{7}\selectfont
 \begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 \hline
 \multicolumn{1}{|c|}{\textbf{Source}} & \multicolumn{1}{c|}{\textbf{Data}} & \multicolumn{1}{c|}{\textbf{Example Data}}         & \multicolumn{1}{c|}{\textbf{Destination}} \\ \hline
@@ -166,7 +165,6 @@ IT Staff Member                       & Purchase Date                      & 11/
 IT Staff Member                       & Phone Number (if phone)            & 07xxxxxxxxx                                        & Database (linked with colleague)          \\ \hline
 IT Staff Member		&IMEI Number (if phone)            & EH37000781                                      & Database (linked with colleague)          \\ \hline	
 \end{longtable}
-\normalsize
 \
 
 \subsubsection{Data flow diagram}
@@ -182,17 +180,17 @@ IT Staff Member		&IMEI Number (if phone)            & EH37000781                
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{DFDLogin.jpg}
+\includegraphics[width=\textwidth]{CurrentDFD.jpg}
 \caption{This shows hardware information being entered onto the system. The IT Staff have their own login credentials to provide them with full access and they can then enter new data. After data has been added it will be necessary to log out again. } \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{DFDLoginColleague.jpg}
+\includegraphics[width=\textwidth]{CurrentDFD.jpg}
 \caption{This shows a colleague logging into the system to read their own data with read-only access. } \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{DFDLoginManager.jpg}
+\includegraphics[width=\textwidth]{CurrentDFD.jpg}
 \caption{This shows how managers also have read only access to check their own information just like their colleagues.} \label{Page1Interview}
 \end{figure}
 
@@ -276,7 +274,7 @@ The system itself may then add on a few MB. So I would say a minimum of 8.85MB w
 \hspace*{-2cm}
 \vspace*{5cm}
 \setlength{\abovecaptionskip}{-320pt plus 3pt minus 2pt}
-\includegraphics[width=1.2\textwidth]{ERDiagram.png}
+\includegraphics[width=1.2\textwidth]{CurrentDFD.jpg}
 \caption{The ER Diagram is basic. Since the IT Staff and Line Managers also need their own hardware devices they are classified under the Staff table. All staff have many to many relationships with hardware as they can have a number of phones, printers, monitors etc. at one time.} \label{ER Diagram}
 \end{figure}
 
@@ -302,7 +300,7 @@ Hardware(\underline{HardwareID}, HardwareDevice, Make, Model, Cost, Warranty, \\
 \begin{figure}[H]
 \hspace*{-1.3cm}
 \vspace*{-1cm}
-\includegraphics[width=1\textwidth]{RelationshipDiagram.jpg}
+\includegraphics[width=1\textwidth]{CurrentDFD.jpg}
 \caption{The class definitions show all the attributes for the class staff and the class Hardware. All staff (no matter if they are a manager or IT staff) will enter their data the same. Under the line shows all the methods for this class. Which currently are all edit and add methods.} \label{Relationship Diagrams}
 \end{figure}
 
@@ -311,7 +309,7 @@ Hardware(\underline{HardwareID}, HardwareDevice, Make, Model, Cost, Warranty, \\
 \begin{figure}[H]
 \hspace*{-1.3cm}
 \vspace*{-1cm}
-\includegraphics[width=1\textwidth]{ClassDefinitions.jpg}
+\includegraphics[width=1\textwidth]{CurrentDFD.jpg}
 \caption{The relationship table shows the different staff related to my proposed system. They all get assigned hardware devices in the system and the IT staff will help all staff. The line managers are in charge of the colleagues in their department.} \label{Class Definitions}
 \end{figure}
 
@@ -362,23 +360,20 @@ The hardware request forms may be computerised if there is enough time, the bene
 \section{Solutions}
 
 \subsection{Alternative solutions}
-{\renewcommand{\arraystretch}{5}
-\begin{table}[H]
-\Large
-\scalebox{0.36}{
-\hspace*{-8cm}\begin{tabular}{|p{4cm}|p{2m}|p{3cm}|p{3cm}|}
-\hline
-\multicolumn{1}{|c|}{\textbf{Solution}}        & \multicolumn{1}{c|}{\textbf{Explanation}}                                               & \multicolumn{1}{c|}{\textbf{Advantages}}                                                                                                                     & \multicolumn{1}{c|}{\textbf{Disadvantages}}                                                                                                                  \\ \hline
-\multicolumn{1}{|c|}{Excel Spreadsheet}        & \multicolumn{1}{c|}{Improving and adding new fields to the existing excel spreadsheet.} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Company already knows how to use it.\\ Already on computer systems in workplace\end{tabular}}                 & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Linking data together is hard\\ Data is unnecessarily repeated\end{tabular}}                                  \\ \hline
-\multicolumn{1}{|c|}{Microsoft Access}         & \multicolumn{1}{c|}{Using Access to produce a database}                                 & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Fairly easy to use as there is a user friendly GUI\\ A great way to link tables/data together\end{tabular}}   & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Programming is not used\\ The company has not been trained how to use it\end{tabular}}                        \\ \hline
-\multicolumn{1}{|c|}{Command-Line Application} & \multicolumn{1}{c|}{Using a command line in python to provide a text display}           & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Command line is very fast when handling data\\ Easier to design\end{tabular}}                                 & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Not user friendly as there is no GUI\\ Hard to learn commands\\ Not an upgrade from spreadsheet\end{tabular}} \\ \hline
-\multicolumn{1}{|c|}{Web Based Application}    & \multicolumn{1}{c|}{Using online services}          & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Access from anywhere (meets client needs)\\ Available to use by multiple people\\ User friendly\end{tabular}} & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Company will have to learn how to use it\\ Extra security needed (log-ins)\\Will be hard to program.\end{tabular}}                      \\ \hline
-\multicolumn{1}{|c|}{PyQt GUI Application}         & \multicolumn{1}{c|}{Providing a GUI interface for the database using PyQt}                                 & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}GUI interface means it is easy to use for staff\\ I will be learning PyQt in class to help with this solution\end{tabular}}   & \multicolumn{1}{c|}{\begin{tabular}[c]{@{}c@{}}Cannot be logged on from anywhere\\ Not ideal as it does not fully reach the clients needs\end{tabular}}                        \\ \hline
-\multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                                                                    & \multicolumn{1}{l}{}                                                                                                                                         & \multicolumn{1}{l}{}                                                                                                                                         \\
-\multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                                                                    & \multicolumn{1}{l}{}                                                                                                                                         & \multicolumn{1}{l}{}                                                                                                                                        
-\end{tabular}\hspace*{-4cm}
-}
-\end{table}
+
+\begin{center}
+\begin{tabular}{|p{2.5cm}|p{3cm}|p{3cm}|p{3cm}|}
+    \hline
+    \textbf{Solution} & \textbf{Explanation} & \textbf{Advantages} & \textbf{Disadvanages} \\ \hline
+Excel Spreadsheet & Improving and adding new fields to the existing excel spreadsheet. & \begin{itemize} \item Company already knows how to use it. \item Already on computer systems in workplace \end{itemize} & \begin{itemize} \item Linking data together is hard \item Data is unnecessarily repeated \end{itemize}  \\ \hline
+Microsoft Access & Using Access to produce a database & \begin{itemize} \item Fairly easy to use as there is a user friendly GUI \item A great way to link tables/data together\end{itemize} &  \begin{itemize} \item Programming is not used \item The company has not been trained how to use it \end{itemize}  \\ \hline
+Command-Line Application &		 Using a command line in python to provide a text display & 		\begin{itemize} \item Command line is very fast when handling data \item Easier to design \end{itemize} & 		\begin{itemize} \item Not user friendly as there is no GUI \item Hard to learn commands \item Not an upgrade from spreadsheet \end{itemize} \\ \hline
+Web Based Application &		 Using online services  & 		\begin{itemize} \item Access from anywhere (meets client needs) \item Available to use by multiple people \item User friendly \end{itemize} & 		 \begin{itemize} \item Company will have to learn how to use it \item  Extra security needed (log-ins) \item Will be hard to program.\end{itemize} \\ \hline
+PyQt GUI Application &		 Providing a GUI interface for the database using PyQt & 		\begin{itemize} \item GUI interface means it is easy to use for staff \item I will be learning PyQt in class to help with this solution \end{itemize} & 		 \begin{itemize} \item Cannot be logged on from anywhere \item Not ideal as it does not fully reach the 		     clients needs \end{itemize} \\
+ \hline
+\end{tabular}
+\label{tab:range_examples}
+\end{center}
 
 
 \subsection{Justification of chosen solution}
