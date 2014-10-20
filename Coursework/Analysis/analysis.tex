@@ -11,7 +11,7 @@ Chranj helps to allocate hardware devices to all co-workers in the business, it 
 
 \subsection{Define the current system}
 
-Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will add an entry on the spreadsheet.  The spreadsheet stores the names of staff as well as which hardware device they have been allocated.
+Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will add an entry on the spreadsheet.  The spreadsheet stores the names of staff as well as which hardware device they have been allocated. The only people currently using this spreadsheet are 3 members of the IT staff (including my client) as it has not been setup for different access rights. When wanting to search for information the built-in excel search function is used. The current system does have some fairly good ways to query and sort information (such as ascending order), drop down boxes on the form title allows the user to select which records they want to show and which they want to hide. For example ticking the "Acer" box in Make/Model will show only the records with Acer as their Make/Model. 
 
 \subsection{Describe the problems}
 
@@ -225,6 +225,12 @@ Initially my system will store 350 different client records, I chose this amount
 
 If each colleague on the new proposed system has 11 fields of data stored about them (see Data Sources and Destination table) and each field took up 1KB of storage space, that would mean to store 350 client records (the initial amount) the minimum storage space required would be:
 
+The database consists of mainly letters, ASCII is used for the conversions below:
+1 Byte = 1 Letter
+The name John is 4 Bytes.
+
+12 fields per staff member will be strings, on average that would be about 7 bytes per field. 7 x 12 = 84.
+
 1KB x 11 fields = 11Kb (per person)\\
 11Kb x 350 = 3850Kb\\
 3850Kb/8 = 3.85 MB\\
@@ -339,11 +345,11 @@ The system will be stored onto a server stored in the workplace which is perfect
 \item Quad Core Processor - 2.5 GHZ
 \end{itemize}
 
-The server is stored in a server room with high ventilation and fans operated 24/7. This is a huge benefit because the system can be running at all times so people can access the database.
+The server is stored in a server room with high ventilation and fans operated 24/7. This is a huge benefit because the system can be running at all times so people can access the database. Preferably the overall model will be client-server and each user will hav their own login for security. All users should connect using clients on local computers and will not directly access the server.
 
 \subsection{Software}
 
-There is no real problem here, in the interview Chranj mentioned there are "no contraints" and I can install any programs if needed (question 13). There is a lot of hard disk space so the size of installations should not be a problem, the company runs on a fibre optic network with 100mb/s download speed so any downloads should be completed quickly.
+There is no real problem here, in the interview Chranj mentioned there are "no contraints" and I can install any programs if needed (question 13). There is a lot of hard disk space so the size of installations should not be a problem, the company runs on a fibre optic network with 100mb/s download speed so any downloads should be completed quickly. Security on the network will be set by an administrator at the company, but all client's computers already have access to the server on the network.
 
 \subsection{Time}
 
