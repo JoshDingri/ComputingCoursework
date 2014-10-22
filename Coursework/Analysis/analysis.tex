@@ -11,9 +11,11 @@ Chranj helps to allocate hardware devices to all co-workers in the business, it 
 
 \subsection{Define the current system}
 
-Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will add an entry on the spreadsheet.  The spreadsheet stores the names of staff as well as which hardware device they have been allocated. 
+Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will add an entry on the spreadsheet.  The spreadsheet stores the names of staff as well as which hardware device they have been allocated. Line managers have to also fill out these request forms and provide their own signature, IT staff however do not need to as they will store the information they want in their heads. If someone leaves the workplace the hardware device is handed back to their manager and allocated to someone else, their record will also be removed off the database. 
 
 The only people currently using this spreadsheet are 3 members of the IT staff (including my client) as it has not been setup for different access rights. When wanting to search for information the built-in excel search function is used. The current system does have some fairly good ways to query and sort information (such as ascending order), drop down boxes on the form title allows the user to select which records they want to show and which they want to hide. For example ticking the "Acer" box in Make/Model will show only the records with Acer as their Make/Model. 
+
+
 
 \subsection{Describe the problems}
 
@@ -54,12 +56,12 @@ Colleague                             & Make                               & iPh
 Form                                  & Form Details                       & John, Smith, Phone, iPhone                 & Line Manager                              \\ \hline
 Line Manager                          & Signature                          & Tim Richardson                                     & Form                                      \\ \hline
 Form                                  & Form Details Including Signature   & John, Smith, Phone, iPhone,Financing,Orwell, Tim Richardson & IT Staff Member                           \\ \hline
-IT Staff Member                      & Form Details Including Signature   & John, Smith, Phone, iPhone,Financing ,Orwell, Tim Richardson & Excel Spreadsheet                                   \\ \hline
 IT Staff Member 	&Hardware Device Request & iPhone & Supplier 												\\ \hline
 Supplier & Devices Available & iPhone 6 Plus & IT Staff Member \\ \hline
 Supplier & Cost & £400 &IT Staff Member \\ \hline
 Supplier & Estimated Delivery Time & 10 Working Days & IT Staff Member \\ \hline
 IT Staff Member & Estimated Delivery Time & 10 Working Days & Notes (on computer or diary) \\ \hline
+IT Staff Member                      & Form Details Including Signature   & John, Smith, Phone, iPhone,Financing ,Orwell, Tim Richardson & Excel Spreadsheet                                   \\ \hline
 IT Staff Member                             & Model                              & 6 Plus                                             & Excel Spreadsheet                                       \\ \hline
 IT Staff Member                       & Cost                              & £400                                               & Excel Spreadsheet        \\ \hline
 IT Staff Member                       & Serial Number                      & 71624                                          &  Excel Spreadsheet           \\ \hline
@@ -67,7 +69,12 @@ IT Staff Member                       & Purchase Date                      & 11/
 \end{tabular}
 \end{center}
 
+\newpage
 \subsubsection{Algorithms}
+
+There are a range of real life algoritms that take place in the current system.
+
+This algorithm is a staff member completing a hardware request form and giving it to their line manager for checking.
 
 \begin{algorithm}[H]
 \begin{algorithmic}
@@ -80,6 +87,8 @@ IT Staff Member                       & Purchase Date                      & 11/
 \EndIf
 \end{algorithmic}
 \end{algorithm}
+
+This algorithm is the line manager authorising the request or not, if the request is rejected he will talk to the colleague and discuss any other devices that may be chosen instead, or if a section on the form was missed out he will give it back to be corrected.
 
 \begin{algorithm}[H]
 \begin{algorithmic}
@@ -94,21 +103,90 @@ IT Staff Member                       & Purchase Date                      & 11/
 \end{algorithmic}
 \end{algorithm}
 
+This is the line manager giving the request form to an IT staff member, the IT staff will check for a signature (but nothing else as this is the managers job). If there is no signature, they will simply hand it back to the manager until they sign it.
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\State $Signature  \leftarrow True$
+\While{$Signature \leftarrow True$}
+	\State Check for line managers signature
+	\If {Signature not present}
+		\State Give back to line manager of their department
+		\State $Signature  \leftarrow False$
+	\Else
+		\State Keep request form for entering details into spreadsheet
+\EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+This algorithm is the process of the IT staff calling up their hardware distributers and discussing the requested device, at this point they will ask if the model the company currently uses is available, if it isn't they will discuss this with the line manager and most probably wait a few days until the device is in stock again. If it is in stock a receipt will be emailed with all details on, however it would be a good idea to note down when the order will arrive incase someone asks. The receipt details are then put on to the spreadsheet along with the details from the hardware request form.
 
 \begin{algorithm}[H]
 \begin{algorithmic}
 \State $Entry_Added \leftarrow False$
+\State $PhoneCall \leftarrow True$
 \While{$Entry_Added \leftarrow False$}
-	\State Check if hardware device is in stock
-	\If {Hardware device is not in stock}
-		\State Discuss the situation with line manager
-	\Else
-		\State Purchase hardware device
-		\State Input hardware request form details
-		\State Input receipt details including warranty, cost, serial and purchase date
-		\State $Entry_Added \leftarrow True$
-	\EndIf
+	\While{$PhoneCall \leftarrow True$}
+		\State Call up distributers
+		\State Check if hardware device is in stock with the newest available model
+		\If {Hardware device is not in stock}
+			\State Discuss the situation with line manager
+			\State  $PhoneCall \leftarrow False$
+		\Else
+			\State Note down delivery date
+			\State  $PhoneCall \leftarrow False$
+		\EndIf
+	\EndWhile
+	\State Purchase hardware device
+	\State Input hardware request form details
+	\State Input receipt details including warranty, cost, serial and purchase date
+	\State $Entry_Added \leftarrow True$
 \EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+This algorithm is disposing of a request form after the details have been thoroughly checked over. It is not necessary to keep lots of paper if it is already matched on the speedsheet.
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\State $DisposedOfForm  \leftarrow False$
+\While{$DisposedOfForm \leftarrow False$}
+	\State Ensure spreadsheet matches request form
+	\If {Data on form matches spreadsheet}
+		\State Dispose of request form
+	\Else
+		\State Change data so it matches 
+\State $DisposedOfForm \leftarrow True$
+\EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+This algorithm is using the built in search function to find a field in the spreadsheet on Microsoft Excel. On Excel everytime you press 'Find' the program will jump to the next field matching the search, if a full cycle is made and the data is not found then there may be a spelling mistake or the data is not present.
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\State$BeginSearch \leftarrow True$
+\State$NotFound \leftarrow True$
+\While{$BeginSearch \leftarrow True$}
+	\State Use the shortcut CTRL F or locate 'Find' in 'Edit' Menu
+	\State Enter field name and press find
+	\While{$NotFound \leftarrow True$}
+		\State Press find to cycle through data
+		\If {Item is not located and cycle is at its end}
+			\State Check for spelling mistakes
+			\State Search again
+			\State $BeginSearch \leftarrow False$
+			\State $NotFound \leftarrow False$
+		\Else
+			\State $NotFound \leftarrow False$
+		\EndIf
+	\EndWhile
+	\State Update or Check field
+	$BeginSearch \leftarrow False$
+\EndWhile
+
 \end{algorithmic}
 \end{algorithm}
 		
@@ -170,9 +248,14 @@ Colleague                             & Job Title                              &
 Colleague                             & Location                              & Orwell                                            & Form                                      \\ \hline
 Colleague                             & Make                              & iPhone                                             & Form                                      \\ \hline
 Colleague                             & Hardware Device Wanted             & Phone                                              & Form                                      \\ \hline
-Form                                  & Form Details                       & John, Smith, Phone, iPhone                & Line Manager                              \\ \hline
+Form                                  & Form Details                       & John, Smith, Phone, iPhone, Financing , Financing Manager, Orwell, Tim Richardson             & Line Manager                              \\ \hline
 Line Manager                          & Signature                          & Tim Richardson                                     & Form                                      \\ \hline
 Form                                  & Form Details Including Signature   & John, Smith, Phone, iPhone, Financing , Financing Manager, Orwell, Tim Richardson & IT Staff Member                           \\ \hline
+IT Staff Member 	&Hardware Device Request & iPhone & Supplier 												\\ \hline
+Supplier & Devices Available & iPhone 6 Plus & IT Staff Member \\ \hline
+Supplier & Cost & £400 &IT Staff Member \\ \hline
+Supplier & Estimated Delivery Time & 10 Working Days & IT Staff Member \\ \hline
+IT Staff Member & Estimated Delivery Time & 10 Working Days & Notes (on computer or diary) \\ \hline
 IT Staff Manager                      & Form Details Including Signature   & John, Smith, Phone, iPhone, Financing , Financing Manager, Orwell, Tim Richardson & Database                                  \\ \hline
 IT Staff Member                             & Model                              & 6 Plus                                             & Database (linked with colleague)                                      \\ \hline
 IT Staff Member                       & Cost                              & Â£300                                               & Database (linked with colleague)          \\ \hline
