@@ -310,10 +310,9 @@ IT Staff Member & IMEI Number (if phone)           &EH37000781        & Database
 \includegraphics[width=\textwidth]{ManagerReadOnly.jpg}
 \caption{This shows how managers also have read only access to check their department.} \label{Page1Interview}
 \end{figure}
-
+\newpage
 
 \subsubsection{Data dictionary}
-
 
 \begin{center}
 \begin{tabular}{|p{4cm}|p{1.3cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
@@ -325,23 +324,28 @@ StaffLastName                       & String                                  & 
 StaffDepartment                     & String                                  & 1-30                                 & Length                                   & Financing             &                       \\ \hline
 StaffJobTitle			& String				& 1-30			& Length			& Finance Manager		&		\\ \hline
 StaffLocation                       & String                                  & 1-20                                 & Length                                   & Orwell                &                       \\ \hline
+StaffHardware	& String				&1-50				& Length				& iPhone 5S         & Shows the allocation          \\ \hline 
 HardwareID                          & Integer                                 & 1-200                                & Range Validation \textgreater0 and  \textless=300                      & 121                   & Unique to each device \\ \hline
 HardwareDevice                      & String                                  & 1-25                                 & Length                                   & Phone                 &                       \\ \hline
 HardwareMake                        & String                                  & 1-25                                 & Length                                   & iPhone                &                       \\ \hline
 HardwareModel                       & String                                  & 1-25                                 & Length                                   & 5S                    &                       \\ \hline
-HardwareCost                       & Float                                 & 1-4                              & Range Validation \textgreater0 and \textless=2000                                    & £500                  &                       \\ \hline
+HardwareCost                       & Float                                 & 1-2000                             & Range Validation \textgreater0 and \textless=2000                                    & £500                  &                       \\ \hline
 HardwareWarranty                    & Boolean                                 &                                      & Presence Check                           & True                  &                       \\ \hline
 HardwareWarrantyPeriod              & String                                  & 1-10                                 & Length                                   & 3 Years               &                       \\ \hline
 HardwareSerialNumber                & String                                  & 1-50                                 & Length                                   & 12307321              &                       \\ \hline
 HardwarePurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              &                       \\ \hline
 HardwareIMEI                & String                                  &          1-50                        & Length                                   & EH37000781               & Only required for phones                      \\ \hline
 HardwarePhoneNumber                & String                                  &1-11                                  & Length                                   & 07927551125              &   Only required for phones                      \\ \hline
+DepartmentID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=75		& 24		&	\\ \hline
+DepartmentName & String				& 1-30				& Length		& Financing		&	\\ \hline
+LocationID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=20		& 	24	&		\\ \hline
+LocationName & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
 \end{tabular}
 \end{center}
 
 \subsubsection{Volumetrics}
 
-Initially my system will store 350 different staff records, I chose this amount because Chranj said he has around 300 staff in his company he has to store as soon as the system is available (Interview question 5). Since he said "around 300" it shows he is fairly unsure exactly how many, so 350 means that the system will provide room for anymore staff that were not counted in the interview. The company does not hire people everyday and since this database will only be storing staff members, 350 records gives a fair bit of room to enable Chranj (and other IT staff members) to get used to the system. 300 hardware devices will be able to be stored, which is definately more than enough but provides a lot of room for new devices that get released (as hardware is released fairly often) the company wish to use.
+Initially my system will store 350 different staff records, I chose this amount because Chranj said he has around 300 staff in his company he has to store as soon as the system is available (Interview question 5). Since he said "around 300" it shows he is fairly unsure exactly how many, so 350 means that the system will provide room for anymore staff that were not counted in the interview. The company does not hire people everyday and since this database will only be storing staff members, 350 records gives a fair bit of room to enable Chranj (and other IT staff members) to get used to the system. 200 hardware devices will be able to be stored, which is definately more than enough but provides a lot of room for new devices that get released (as hardware is released fairly often) the company wish to use. Lastly the link table will be added which stores the foreign keys from hardware and staff as well as its own primary key meaning 3 integers are stored.
 
 If each colleague on the new proposed system has 6 fields of data stored about them (see Data Dictionary) the calculations would be:
 
@@ -359,10 +363,9 @@ There are 130 bytes per record.
 There are 350 records so:
 130 x 350 = 45,500 bytes (45.5 KB)
 
-The Integer field will go up to 350. Each number up to 255 is one byte and each number over 255 is 2 bytes. There are 95 numbers over 255 in this database so: 
+The Integer field will go up to 350. Because each number over 255 is 2 bytes you can change it between each field, therefore all will be stored as 2 bytes.
 
-95 x 2 = 190 bytes
-190 bytes + 255 bytes = 445 bytes
+350 x 2 = 700 bytes
 
 445 bytes + 45.5KB =  45.945 KB (45.9 KB) 
 
@@ -374,14 +377,41 @@ The Hardware device table has the following fields:
 
 2 fields are integer (1 has a max of 2000 (2 bytes), the other has goes up to 200 (1 byte))
 
-1 field is Date (3 bytes per date)
+1 field is Date (ISO format string is yyyy-mm-dd (14 bytes per date))
 
 1 field is Boolean (1 byte per value)
 
 One record has 196 + 2 + 1 + 3 + 1 = 203 bytes
 200 x 203 = 40600 bytes or 40.6 KB
 
-Therefore the whole database needs a minimum of (45.945 KB + 40.6 KB = 86.54500 KB) a rounded value of 86.5 KB.
+The location table has the following fields:
+
+1 string field (length = 30bytes)
+1 integer (up to 20 (1 byte)
+
+One record has 30 + 1 = 31 bytes
+20 records are stored so:
+31 x 20 = 620 bytes
+
+The department table has the following fields:
+
+1 string field (length = 30bytes)
+2 integer (up to 75 (1 byte) and 20 (1 byte)
+
+One record has 30 + 1 + 1 = 32 bytes
+75 records are stored so:
+32 x 75 = 2400 bytes (2.4kb)
+
+The link table (StaffHardware)
+
+3 Integers (max of 200 (1 byte), 350 (2 bytes) and 350 (2 bytes)):
+1 + 1 + 2 = 3 bytes per record:
+350 records stored:
+3 x 350 = 1050 bytes (1.05 KB)
+
+\
+
+\textbf{Therefore the whole database needs a minimum of (45,945 + 40,600 + 620 + 2400 + 1050 = 90615 Bytes - 90.615 KB) a rounded value of 90.6 KB.}
 
 
 \section{Objectives}
@@ -431,25 +461,52 @@ Therefore the whole database needs a minimum of (45.945 KB + 40.6 KB = 86.54500 
 \hspace*{-2cm}
 \vspace*{5cm}
 \setlength{\abovecaptionskip}{-320pt plus 3pt minus 2pt}
-\includegraphics[width=1.2\textwidth]{ERDiagram.png}
+\includegraphics[width=1.2\textwidth]{ERDiagram.jpg}
 \caption{The ER Diagram is basic. Since the IT Staff and Line Managers also need their own hardware devices they are classified under the Staff table. All staff have many to many relationships with hardware as they can have a number of phones, printers, monitors etc. at one time.} \label{ER Diagram}
 \end{figure}
 
 \subsection{Entity Descriptions}
 
-Staff(\underline{StaffID},\textit{HardwareID}, FirstName, LastName, Department, Location)
+\begin{center}
+Staff  (\underline{StaffID}, StaffFirstName, StaffLastName, StaffJobTitle, \textit{DepartmentID},\\ \textit{ LocationID})
+\end{center}
 
-Hardware(\underline{HardwareID}, HardwareDevice, Make, Model, Cost, Warranty, \\WarrantyPeriod, SerialNumber, PurchaseDate)
+\
+
+\begin{center}
+Hardware  (\underline{HardwareID}, HardwareDevice, HardwareMake, HardwareModel,\\ HardwareCost, HardwareWarranty, HardwareWarrantyPeriod,\\ HardwareSerialNumber, HardwarePurchaseDate, HardwareIMEINumber, \\HardwarePhoneNumber)
+\end{center}
+
+\
+
+\begin{center}
+StaffHardware  (\underline{StaffHardwareID}, \textit{ StaffID}, \textit{ HardwareID})
+\end{center}
+
+\
+
+\begin{center}
+Department  (\underline{DepartmentID}, DepartmentName, \textit{ LocationID})
+\end{center}
+
+\
+
+\begin{center}
+Location  (\underline{LocationID}, LocationName)
+\end{center}
+
+
 
 \section{Object Analysis}
 
 \subsection{Object Listing}
 
 \begin{itemize}
-\item Colleagues
+\item Staff
 \item Hardware
-\item Line Mangager
-\item IT Staff
+\item StaffHardware
+\item Department
+\item Location
 \end{itemize}
 
 \subsection{Relationship diagrams}
