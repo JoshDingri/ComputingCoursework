@@ -319,17 +319,17 @@ IT Staff Member & IMEI Number (if phone)           &EH37000781        & Database
 \begin{tabular}{|p{4cm}|p{1.3cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
 \hline
 \textbf{Name} & \textbf{Data Type}& \textbf{Length} & \textbf{Validation} & \textbf{Example Data} & \textbf{Comment}      \\ \hline
-StaffID                             & Integer                                 & 1-200                                & Range                                    & 132                   & Unique to the staff   \\ \hline
+StaffID                             & Integer                                 & 1-200                     & Range Validation \textgreater0 and \textless=350                                 & 132                   & Unique to the staff   \\ \hline
 StaffFirstName                      & String                                  & 1-25                                 & Presence Check                           & John                  &                       \\ \hline
 StaffLastName                       & String                                  & 1-25                                 & Presence Check                           & Smith                 &                       \\ \hline
 StaffDepartment                     & String                                  & 1-30                                 & Length                                   & Financing             &                       \\ \hline
 StaffJobTitle			& String				& 1-30			& Length			& Finance Manager		&		\\ \hline
 StaffLocation                       & String                                  & 1-20                                 & Length                                   & Orwell                &                       \\ \hline
-HardwareID                          & Integer                                 & 1-200                                & Range                                    & 121                   & Unique to each device \\ \hline
+HardwareID                          & Integer                                 & 1-200                                & Range Validation \textgreater0 and  \textless=300                      & 121                   & Unique to each device \\ \hline
 HardwareDevice                      & String                                  & 1-25                                 & Length                                   & Phone                 &                       \\ \hline
 HardwareMake                        & String                                  & 1-25                                 & Length                                   & iPhone                &                       \\ \hline
 HardwareModel                       & String                                  & 1-25                                 & Length                                   & 5S                    &                       \\ \hline
-HardwareCost                       & Integer                                 & 1-2000                               & Range                                    & £500                  &                       \\ \hline
+HardwareCost                       & Float                                 & 1-4                              & Range Validation \textgreater0 and \textless=2000                                    & £500                  &                       \\ \hline
 HardwareWarranty                    & Boolean                                 &                                      & Presence Check                           & True                  &                       \\ \hline
 HardwareWarrantyPeriod              & String                                  & 1-10                                 & Length                                   & 3 Years               &                       \\ \hline
 HardwareSerialNumber                & String                                  & 1-50                                 & Length                                   & 12307321              &                       \\ \hline
