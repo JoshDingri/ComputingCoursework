@@ -11,7 +11,7 @@ Chranj helps to allocate hardware devices to all co-workers in the business, it 
 
 \subsection{Define the current system}
 
-Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will add an entry on the spreadsheet.  The spreadsheet stores the names of staff as well as which hardware device they have been allocated. Line managers have to also fill out these request forms and provide their own signature, IT staff however do not need to as they will store the information they want in their heads. If someone leaves the workplace the hardware device is handed back to their manager and allocated to someone else, their record will also be removed off the database. 
+Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will sign the document and give it to the IT staff who will copy the data onto the spreadsheet.  The spreadsheet stores the names of staff (with details such as job title and department) as well as which hardware device they have been allocated. Line managers have to also fill out these request forms and provide their own signature, IT staff however do not need to as they will store the information they want in their heads. If someone leaves the workplace the hardware device is handed back to their manager and allocated to someone else, their record will also be removed off the spreadsheet. 
 
 The only people currently using this spreadsheet are 3 members of the IT staff (including my client) as it has not been setup for different access rights. When wanting to search for information the built-in excel search function is used. The current system does have some fairly good ways to query and sort information (such as ascending order), drop down boxes on the form title allows the user to select which records they want to show and which they want to hide. For example ticking the "Acer" box in Make/Model will show only the records with Acer as their Make/Model. 
 
@@ -50,12 +50,13 @@ In the current system there are three data sources used, the colleague, the line
 Colleague                             & First Name                         & John                                               & Form                                      \\ \hline
 Colleague                             & Last Name                          & Smith                                              & Form                                      \\ \hline
 Colleague                             & Department                              & Financing                                            & Form                                      \\ \hline
+Colleagye 			& Job Title				& Finance Accountant				& Form			\\ \hline
 Colleague                             & Location                              & Orwell                                            & Form                                      \\ \hline
 Colleague                             & Hardware Device Wanted             & Phone                                              & Form                                      \\ \hline
 Colleague                             & Make                               & iPhone                                             & Form                                      \\ \hline
-Form                                  & Form Details                       & John, Smith, Phone, iPhone,Financing,Orwell                 & Line Manager                              \\ \hline
+Form                                  & Form Details                       & John, Smith, Phone, iPhone,Financing,Orwell, Finance Accountant                & Line Manager                              \\ \hline
 Line Manager                          & Signature                          & Tim Richardson                                     & Form                                      \\ \hline
-Form                                  & Form Details Including Signature   & John, Smith, Phone, iPhone,Financing,Orwell, Tim Richardson & IT Staff Member                           \\ \hline
+Form                                  & Form Details Including Signature   & John, Smith, Phone, iPhone,Financing,Orwel,  Finance Accountant, Tim Richardson & IT Staff Member                           \\ \hline
 IT Staff Member 	&Hardware Device Request & iPhone & Supplier 												\\ \hline
 Supplier & Devices Available & iPhone 6 Plus & IT Staff Member \\ \hline
 Supplier & Cost & £400 &IT Staff Member \\ \hline
@@ -63,7 +64,7 @@ Supplier & Estimated Delivery Time & 10 Working Days & IT Staff Member \\ \hline
 Supplier & Device Ordered, Cost, Warranty, Warranty Period, Estimated Delivery Time, Serial Number & iPhone 6 Plus, £400, 3 year warranty, 10 working days, 832327 & Electronic Receipt \\ \hline
 Electronic Receipt  & Device Ordered, Cost, Warranty, Warranty Period, Estimated Delivery Time, Serial Number & iPhone 6 Plus, £400, 3 year warranty, 10 working days, 832327 & IT member's email \\ \hline
 IT Staff Member & Estimated Delivery Time & 10 Working Days & Notes (on computer or diary) \\ \hline
-IT Staff Member                      & Form Details   & John, Smith, Phone, iPhone 6 Plus,Financing ,Orwell, & Excel Spreadsheet                                   \\ \hline
+IT Staff Member                      & Form Details   & John, Smith, Phone, iPhone 6 Plus,Financing,  Finance Accountant ,Orwell, & Excel Spreadsheet                                   \\ \hline
 IT Staff Member                             & Model                              & 6 Plus                                             & Excel Spreadsheet                                       \\ \hline
 IT Staff Member                       & Serial Number                      & 71624                                          &  Excel Spreadsheet           \\ \hline
 \end{tabular}
@@ -195,39 +196,39 @@ This algorithm is using the built in search function to find a field in the spre
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{CurrentDFD.jpg}
-\caption{A colleague filling in a hardware request form, this is then passed to the line manager for checking} \label{Page1Interview}
+\caption{A colleague filling in a hardware request form with all necessary details, this is then passed to the line manager for checking. The manager will verify and validate the information and either hand it back to the colleague in person or sign it and keep hold of it.} \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dtd1.jpg}
-\caption{line manager for checking} \label{Page1Interview}
+\caption{This data flow diagram shows how a line manger would complete a hardware request form. Since they are the highest in their department they will need to thoroughly verify and validate the information (since no one else checks it) before signing it themselves.} \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dataflowdiagram2.jpg}
-\caption{The form is given to the IT staff who will check if the request form has a manager's signature } \label{Page1Interview}
+\caption{The filled out form is given to an IT staff member who will check for a valid signature. If there is no signature or the signature looks fraudulant they will hand it back (in person) to the line manager who will sign it. If it is valid, the form can be stored in their physical desk draw.} \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dataflowdiagram3.jpg}
-\caption{The IT staff check with the company's distributer to check if the item is in stock, if it is not the manager is told. If the item is in stock, the information about the product is entered into the spreadsheet along with the details off the request form} \label{Page1Interview}
+\caption{This is the process of the hardware requests being purchased. The IT staff check with the company's distributer via phone to check if the item is in stock, if it is not in stock the manager is told and options are discussed to either wait for it to be back in stock or cancel the request. If the item is in stock, the information about the product is entered into the spreadsheet along with the details off the request form} \label{Page1Interview}
 \end{figure}
 
 \subsubsection{Input Forms, Output Forms, Report Formats}
 
 \begin{figure}[H]
 \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{HardwareRequestForm.jpg}
-\caption{\textbf{The Hardware Request Form}:This document has only been filled in with the required details to be stored on the system. The rest of the details are not necessary to be stored in the hardware allocation system. Att the bottom of the form the signature from the line manager is shown, this is therefore an authorised form.} \label{HardwareRequestForm}
+\caption{\textbf{The Hardware Request Form}:This document has only been filled in with the required details to be stored on the system. The rest of the details are not necessary to be stored in the hardware allocation system. At the bottom of the form the signature from the line manager is shown, this is therefore an authorised form.} \label{HardwareRequestForm}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{Spreadsheet2.jpg}
-\caption{\textbf{The Hardware Allocation Spreadsheet}: As shown above the spreadsheet is not properly used by staff. Wrong data has been entered in the name box (see cell 172) and altogether the spreadsheet is messy. The comments section on the spreadsheet displays a basic statement of what the hardware device is, for instance "HP ZR22w" (cell F 145) is classed as a "Monitor". A good feature of this spreadsheet is the dropdown arrows next to the column headings, from here you can sort data into ascending or decending order (alphabetical order) and choose to hide or show certain fields. Overall the spreadsheet does store the necessary data for each person with their hardware devices but needs to be a lot clearer.} \label{Spreadsheet}
+\caption{\textbf{The Hardware Allocation Spreadsheet}: As shown above the spreadsheet is not properly used by staff. Wrong data has been entered in the name box (see cell 172) and altogether the spreadsheet is messy. The description section on the spreadsheet displays a basic statement of what the hardware device is, for instance "HP ZR22w" (cell F 145) is classed as a "Monitor". A good feature of this spreadsheet is the dropdown arrows next to the column headings, from here you can sort data into ascending or decending order (alphabetical order) and choose to hide or show certain fields. Overall the spreadsheet does store the necessary data for each person with their hardware devices but needs to be a lot clearer.} \label{Spreadsheet}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{LeaveOfWork.jpg}
-\caption{When someone leaves the company they are required to give back all hardware devices. There is no official form or signature required for this so in most cases their line manager will simply write it down as shown above. After they have left they can be removed from the spreadsheet and their hardware device will be reallocated to someone else getting hired.} \label{LeaveOfWork}
+\caption{When someone leaves the company they are required to give back all hardware devices. I spoke to my client after the interview to check of there are any official forms for returning devices to the company, Chranj says there is no official form or signature required for this, so in most cases their line manager will simply write it down as shown above. After they have left they can be removed from the spreadsheet and their hardware device will be allocated to someone else getting hired (or put into storage).} \label{LeaveOfWork}
 \end{figure}
 
 \begin{figure}[H]
@@ -235,13 +236,15 @@ This algorithm is using the built in search function to find a field in the spre
 \caption{When the IT staff have ordered new hardware devices from the company's distributer it may be handy to write down when the delivery will be coming. Colleagues may become impatient so it is good to have a date. They may also choose to write down how many items are being delivered incase the wrong amount arrive.} \label{OrdersPlaced}
 \end{figure}
 
-There is no signature or form when the staff member is given the actual hardware device, all staff members of the same status will get similar hardware devices and they can either accept it or use their own. If rejected, the device is allocated to somebody else.
+Whilst talking to Chranj after the interview I asked if there were any forms to sign when actually given the hardware device to show you accepted it. There is no signature or form when the staff member is given the actual hardware device, all staff members of the same status will get similar hardware devices and they can either accept it or use their own. If rejected, the device is allocated to somebody else and the spreadsheet can be edited so the individual is no longer allocated that device (as they are added to the spreadsheet beforehand). The whole company will use the same buisness phone (normally iPhone's or Nokia's). 
 
 \subsection{The proposed system}
 
 \subsubsection{Data sources and destinations}
 
 In the proposed system collegue details and hardware requests will still be received via physical form and entered manually onto the system. The new system will store the same information from the colleagues however the IT staff will store more infomation on products such as IMEI numbers (for phones) (see question 3 in interview). The phone number will be added to the database after the phone has arrive so the colleague can insert their sim card. The IMEI number is printed on the box and will only be known when delivered this will be recorded before giving to the colleague.
+
+\newpage
 
 \begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
 \hline
@@ -283,17 +286,17 @@ IT Staff Member & IMEI Number (if phone)           &EH37000781        & Database
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{CurrentDFD.jpg}
-\caption{This is the same process as with the last system. The colleague will fill in all necessary form details and give it to their line manager. The line manager will sign it and give it to the IT Staff.} \label{Page1Interview}
+\caption{This is the same process as with the last system. The colleague will fill in all necessary form details and give it to their line manager. The line manager wil verify and validate the information andl sign it.} \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{dataflowdiagram2.jpg}
-\caption{This part of the system is also the same as the current system. The form is given to the IT staff who will check if the request form has a manager's signature } \label{Page1Interview}
+\caption{This part of the system is also the same as the current system. The form is given to the IT staff who will check if the request form has a manager's signature. } \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{DFDLogin.jpg}
-\caption{This shows hardware information being entered onto the system. The IT Staff have their own login credentials to provide them with full access and they can then enter new data. After data has been added it will be necessary to log out again. } \label{Page1Interview}
+\caption{This shows hardware information being entered onto the new system. The IT Staff have their own login credentials to provide them with full access and they can then enter new data. After data has been added it will be necessary to log out again. If the item is not in stock options are discussed with the line manager (Just as figure 1.6)  } \label{Page1Interview}
 \end{figure}
 
 \begin{figure}[H]
@@ -308,14 +311,15 @@ IT Staff Member & IMEI Number (if phone)           &EH37000781        & Database
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{ManagerReadOnly.jpg}
-\caption{This shows how managers also have read only access to check their department.} \label{Page1Interview}
+\caption{This shows how managers also have read only access to check all staff in their department.} \label{Page1Interview}
 \end{figure}
-\newpage
+
+
 
 \subsubsection{Data dictionary}
 
 \begin{center}
-\begin{tabular}{|p{4cm}|p{1.3cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
+\begin{longtable}{|p{4cm}|p{1.3cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
 \hline
 \textbf{Name} & \textbf{Data Type}& \textbf{Length} & \textbf{Validation} & \textbf{Example Data} & \textbf{Comment}      \\ \hline
 StaffID                             & Integer                                 & 1-200                     & Range Validation \textgreater0 and \textless=350                                 & 132                   & Unique to the staff   \\ \hline
@@ -336,14 +340,14 @@ HardwareSerialNumber                & String                                  & 
 HardwarePurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              &                       \\ \hline
 HardwareIMEI                & String                                  &          1-50                        & Length                                   & EH37000781               & Only required for phones                      \\ \hline
 HardwarePhoneNumber                & String                                  &1-11                                  & Length                                   & 07927551125              &   Only required for phones                      \\ \hline
-DepartmentID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=75		& 24		&	\\ \hline
+DepartmentID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=75		& 24		& Unique for each department	\\ \hline
 DepartmentName & String				& 1-30				& Length		& Financing		&	\\ \hline
-LocationID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=20		& 	24	&		\\ \hline
+LocationID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=20		& 	24	& Unique for each work location		\\ \hline
 LocationName & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
 LocationAddrLine1 & String				& 1-30				& Length		&	50 Fisher's Ln	 &  \\ \hline
 LocationAddrLine2 & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
 LocationAddrLine3  & String				& 1-30				& Length		&	Royston 	 &  \\ \hline
-\end{tabular}
+\end{longtable}
 \end{center}
 
 \subsubsection{Volumetrics}
@@ -422,19 +426,21 @@ The link table (StaffHardware)
 \subsection{General Objectives}
 
 \begin{itemize}
-\item A database to show all current staff and the hardware devices they are assigned to.
+\item A database to show all current staff (with details such as their job title) and the hardware devices they are assigned to.
 \item The database will replace the current spreadsheet and be easy to read as information will be clear and organised.
-\item An easy to use database for IT staff to enter colleague data with toolbar buttons and keyboard shortcuts.
-\item The layout for colleagues to see their hardware allocations will be clear and to the point missing out any unnecessary buttons and menus.
+\item An easy to use database for IT staff to enter colleague data with toolbar buttons and keyboard shortcuts as they are advanced computer users and will want an quicker way of doing things.
+\item The layout for colleagues to see their hardware allocations will be clear and to the point, missing out any unnecessary buttons and menus.
 \item A search function will be in place to make searching for a field (such as staff member or hardware device) easy.
 \end{itemize}
 
 \subsection{Specific Objectives}
 
 \begin{itemize}
-\item The database will have one table with staff and a relationship to the table with their hardware device. This will show which hardware devices the staff are allocated and all the details of that hardware device.
+\item The database will have one table with staff and a relationship to the table with their hardware device. This will show which hardware devices the staff are allocated and all the details of that hardware device. Staff details including department and location will be linked to the Department and Location tables.
 \item The search function will allow a user to enter text and will highlight where on the page that text is.
-\item Read-Only access for colleagues viewing their own information (with a log-in system to allow this).
+\item Read-Only access for staff viewing their own information (with a log-in system to allow this).
+\item Read-Only access for line managers wanting to see all data about staff in their department.
+\item Admin rights for IT staff so they are able to view and edit all data on the database.
 \item  An automatic email will be sent to IT staff members reminding them that a warranty is running out on a particular device, this email will be sent about 3 months before the end of the warranty period.
 \item Users will be able to query information, for example if they wanted to show only mobile phones or if they wanted to show only specific departments.
 \item A method of sending hardware request forms electronically may be introduced to elimate the need for physical copies.
@@ -443,7 +449,7 @@ The link table (StaffHardware)
 
 \subsection{Core Objectives}
 \begin{itemize}
-\item The system will provide a login system where IT staff can assign usernames to all staff. The database will have read-only access for colleagues viewing their own information. Managers will be able to view their departments hardware devices.
+\item The system will provide a login system where IT staff can assign usernames to all staff and have admin rights to view all data. The database will have read-only access for colleagues viewing their own information. Managers will be able to view their departments hardware devices.
 \item The system will also have an automatic email sent to IT staff members reminding them that a warranty is running out on a particular device, this email will be sent about 3 months before the end of the warranty period.
 \item The system must have a search function to allow a user to find a specific field.
 \item The system must have a way to query information so that a user can filter or catergorise information (such as by department or location)
@@ -526,7 +532,7 @@ Location  (\underline{LocationID}, LocationName, LocationAddrLine1, LocationAddr
 \hspace*{-1.3cm}
 \vspace*{-1cm}
 \includegraphics[width=1\textwidth]{ClassDefinitions.jpg}
-\caption{The class definitions show the attributes and methods for each class. The staff class will hold unique IDs from the other classes to make the relationship} \label{Class Definitions}
+\caption{The class definitions show the attributes and methods for each class. The staff class will hold unique IDs from the other classes to make the relationship.} \label{Class Definitions}
 \end{figure}
 
 \section{Other Abstractions and Graphs}
@@ -598,4 +604,4 @@ PyQt GUI Application &		 Providing a GUI interface for the database using PyQt w
 
 \subsection{Justification of chosen solution}
 
-The ideal solution is to use a web based application since the client orginally asked for a online database to be made. However due to the fact it will take a long time to learn and implement this solution is placed in the "other objectives" section. The solution I will be using is a PyQt application, I will be using PyQt in class and already have a clear understanding of how to use it which will make implementation much faster. PyQt will be better than the current spreadsheet as the multiple tables can be made with relationships between them (hardware devices and staff). With the chosen method a log-in system can be implemented and staff can be assigned different restrictions which the client requested in the interview (question 12).
+The ideal solution is to use a web based application since the client orginally asked for a online database to be made. However due to the fact it will take a long time to learn and implement this solution is placed in the "other objectives" section. The solution I will be using is a PyQt application, I will be using PyQt in class and already have a clear understanding of how to use it which will make implementation much faster. I spoke to my client after the interview to check if PyQt without online features would suffice and he says it should be fine but if there is time it would be a bonus to allow online connections. PyQt will be better than the current spreadsheet as the multiple tables can be made with relationships between them (hardware devices, staff, department and location). With the chosen method a log-in system can be implemented and staff can be assigned different restrictions which the client requested in the interview (question 12). Shortcuts in PyQt provide a great advantage for my client, since they are advanced computer users, after they have got used to the system they will always be finding quicker ways of doing things so the use of shortcut keys are important.
