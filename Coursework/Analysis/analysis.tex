@@ -11,7 +11,7 @@ Chranj helps to allocate hardware devices to all co-workers in the business, it 
 
 \subsection{Define the current system}
 
-Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will sign the document and give it to the IT staff who will copy the data onto the spreadsheet.  The spreadsheet stores the names of staff (with details such as job title and department) as well as which hardware device they have been allocated. Line managers have to also fill out these request forms and provide their own signature, IT staff however do not need to as they will store the information they want in their heads. If someone leaves the workplace the hardware device is handed back to their manager and allocated to someone else, their record will also be removed off the spreadsheet. 
+Currently the system used is a spreadsheet on Excel. A customer will fill out a form manually on paper including their name and hardware devices they require, they then give it to their manager who will sign the document and give it to the IT staff who will copy the data onto the spreadsheet. The IT staff will also order the hardware device by calling up the company's distributer, after which they will use the receipt they get emailed and enter in the remaining hardware details. The spreadsheet stores the names of staff (with details such as job title and department) as well as which hardware device they have been allocated. Line managers have to also fill out these request forms and provide their own signature, IT staff however do not need to as they will store the information they want in their heads. If someone leaves the workplace the hardware device is handed back to their manager and allocated to someone else, their record will also be removed off the spreadsheet. 
 
 The only people currently using this spreadsheet are 3 members of the IT staff (including my client) as it has not been setup for different access rights. When wanting to search for information the built-in excel search function is used. The current system does have some fairly good ways to query and sort information (such as ascending order), drop down boxes on the form title allows the user to select which records they want to show and which they want to hide. For example ticking the "Acer" box in Make/Model will show only the records with Acer as their Make/Model. 
 
@@ -19,7 +19,7 @@ The only people currently using this spreadsheet are 3 members of the IT staff (
 
 \subsection{Describe the problems}
 
-A spreadsheet in Excel makes it easy to enter and read information however there are quite a few downsides to the current way of doing things. The first  big issue is that multiple people cannot access the same database to update or add data, currently each IT staff member has their own spreadsheet on the system that they have to keep transferring to eachother when an update is made, this is a major issue as it causes staff to disregard the spreadsheet as it is more hassle than it is worth. The spreadsheet is not maintained well, some fields are placed in the wrong columns as there are not enough to handle all the data (see figure 1.7), this makes it very confusing to read and becomes cluttered with data that does not make sense such as "First Name" having "Design Studio" instead of a person's name. The spreadsheet has got to the point where it is so unorganised Chranj says "it is seen as a chore to try to update". 
+A spreadsheet in Excel makes it easy to enter and read information however there are quite a few downsides with the current way of doing things. The first  big issue is that multiple people cannot access the same database to update or add data, currently each IT staff member has their own spreadsheet on the system that they have to keep transferring to each other when an update is made, this is a major issue as it causes one IT staff member to work on the spreadsheet and the others to disregard it as it is more hassle than it is worth. The spreadsheet is not maintained well, some fields are placed in the wrong columns as there are not enough to handle all the data (see figure 1.7), this makes it very confusing to read and becomes cluttered with data that does not make sense such as "First Name" having "Design Studio" instead of a person's name. The spreadsheet has got to the point where it is so unorganised Chranj says "it is seen as a chore to try to update". 
 
 Another downside to the current system is that it is not available online to be able to login from a computer that does not have the spreadsheet already. The spreadsheet also does not have restricted access for particular people, if someone wants to view their hardware device information, they would also have full access to the spreadsheet which is not ideal as there is a security risk, my client wants read-only access for other staff and managers to be able to view their department's staff information. With an Excel spreadsheet it is not very easy to search for a particular field (for example if someone wanted to search for a specific mobile phone) especially if there is a lot of data and it is not in the correct places, if a new user wanted to find "Design Studio" they would not expect to find it in the "First Name" column.
 
@@ -41,10 +41,10 @@ Another downside to the current system is that it is not available online to be 
 
 \subsubsection{Data sources and destinations}
 
-In the current system there are three data sources used, the colleague, the line manager and the IT staff. Colleagues will fill out a physical form with information about which hardware device they would like to be assigned to them along with their name. The form will then be given to their specific line manager who will sign the form to say whether they authorize the hardware request or not. The line manager will give this form to a member of the IT staff who will enter the data onto the Excel spreadsheet. A member of the IT staff will then phone the company's supplier and find out if the item is in stock, how much it will cost, the newest device they have available and the estimated delivery time. The company will say which hardware devices they are currently giving employees as everyone will have the same phone (for example iPhone 5's) it is not for the IT staff to decide. The IT staff member may choose to write the estimated delivery time down somewhere incase the colleague who requested it asks how long it will take. The final step is for the IT staff to add all the new information from the supplier into the database, currently some of the information on the receipt isnt stored on the database (seen below). The spreadsheet now contains all the information about which colleague has which hardware device assigned to them.
+In the current system there are three main data sources used, the colleague, the line manager and the IT staff. Colleagues will fill out a physical form with information about which hardware device they would like to be assigned to them along with their name. The form will then be given to their specific line manager who will sign the form to say whether they authorize the hardware request or not. The line manager will give this form to a member of the IT staff who will enter the data onto the Excel spreadsheet. A member of the IT staff will then phone the company's supplier and find out if the item is in stock, how much it will cost, the newest device they have available and the estimated delivery time. The company will say which hardware devices they are currently giving employees and everyone will have the same business phone (for example iPhone 5's) it is not for the IT staff to decide. The IT staff member may choose to write the estimated delivery time down somewhere incase the colleague who requested it asks how long it will take. The final step is for the IT staff to add all the new information from the supplier into the database, currently some of the information on the receipt isn't stored on the database (seen below). The spreadsheet now contains all the information about which colleague has which hardware device assigned to them.
 
 \begin{center}
-\begin{tabular}{|p{3cm}|p{3cm}|p{4cm}|p{3cm}|}
+\begin{tabular}{|p{2cm}|p{3cm}|p{3.5cm}|p{2cm}|}
 \hline
 \textbf{Source} & \textbf{Data} & \textbf{Example Data}      & \textbf{Destination} \\ \hline
 Colleague                             & First Name                         & John                                               & Form                                      \\ \hline
@@ -246,7 +246,7 @@ In the proposed system collegue details and hardware requests will still be rece
 
 \newpage
 
-\begin{longtable}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+\begin{longtable}{|p{2cm}|p{3cm}|p{3cm}|p{2cm}|}
 \hline
 \multicolumn{1}{|c|}{\textbf{Source}} & \multicolumn{1}{c|}{\textbf{Data}} & \multicolumn{1}{c|}{\textbf{Example Data}}         & \multicolumn{1}{c|}{\textbf{Destination}} \\ \hline
 Colleague                             & First Name                         & John                                               & Form                                      \\ \hline
@@ -319,34 +319,34 @@ IT Staff Member & IMEI Number (if phone)           &EH37000781        & Database
 \subsubsection{Data dictionary}
 
 \begin{center}
-\begin{longtable}{|p{4cm}|p{1.3cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
+\begin{longtable}{|p{2cm}|p{1.14cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
 \hline
 \textbf{Name} & \textbf{Data Type}& \textbf{Length} & \textbf{Validation} & \textbf{Example Data} & \textbf{Comment}      \\ \hline
 StaffID                             & Integer                                 & 1-200                     & Range Validation \textgreater0 and \textless=350                                 & 132                   & Unique to the staff   \\ \hline
-StaffFirstName                      & String                                  & 1-25                                 & Presence Check                           & John                  &                       \\ \hline
-StaffLastName                       & String                                  & 1-25                                 & Presence Check                           & Smith                 &                       \\ \hline
-StaffDepartment                     & String                                  & 1-30                                 & Length                                   & Financing             &                       \\ \hline
+Staff-FirstName                      & String                                  & 1-25                                 & Presence Check                           & John                  &                       \\ \hline
+Staff-LastName                       & String                                  & 1-25                                 & Presence Check                           & Smith                 &                       \\ \hline
+Staff-Department                     & String                                  & 1-30                                 & Length                                   & Financing             &                       \\ \hline
 StaffJobTitle			& String				& 1-30			& Length			& Finance Manager		&		\\ \hline
 StaffLocation                       & String                                  & 1-20                                 & Length                                   & Orwell                &                       \\ \hline
 StaffHardware	& String				&1-50				& Length				& iPhone 5S         & Shows the allocation          \\ \hline 
 HardwareID                          & Integer                                 & 1-200                                & Range Validation \textgreater0 and  \textless=300                      & 121                   & Unique to each device \\ \hline
-HardwareDevice                      & String                                  & 1-25                                 & Length                                   & Phone                 &                       \\ \hline
-HardwareMake                        & String                                  & 1-25                                 & Length                                   & iPhone                &                       \\ \hline
-HardwareModel                       & String                                  & 1-25                                 & Length                                   & 5S                    &                       \\ \hline
-HardwareCost                       & Float                                 & 1-2000                             & Range Validation \textgreater0 and \textless=2000                                    & £500                  &                       \\ \hline
-HardwareWarranty                    & Boolean                                 &                                      & Presence Check                           & True                  &                       \\ \hline
-HardwareWarrantyPeriod              & String                                  & 1-10                                 & Length                                   & 3 Years               &                       \\ \hline
-HardwareSerialNumber                & String                                  & 1-50                                 & Length                                   & 12307321              &                       \\ \hline
-HardwarePurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              &                       \\ \hline
-HardwareIMEI                & String                                  &          1-50                        & Length                                   & EH37000781               & Only required for phones                      \\ \hline
-HardwarePhoneNumber                & String                                  &1-11                                  & Length                                   & 07927551125              &   Only required for phones                      \\ \hline
+Hardware Device                      & String                                  & 1-25                                 & Length                                   & Phone                 &                       \\ \hline
+Hardware Make                        & String                                  & 1-25                                 & Length                                   & iPhone                &                       \\ \hline
+Hardware Model                       & String                                  & 1-25                                 & Length                                   & 5S                    &                       \\ \hline
+Hardware Cost                       & Float                                 & 1-2000                             & Range Validation \textgreater0 and \textless=2000                                    & £500                  &                       \\ \hline
+Hardware Warranty                    & Boolean                                 &                                      & Presence Check                           & True                  &                       \\ \hline
+Hardware WarrantyPeriod              & String                                  & 1-10                                 & Length                                   & 3 Years               &                       \\ \hline
+Hardware SerialNumber                & String                                  & 1-50                                 & Length                                   & 12307321              &                       \\ \hline
+Hardware PurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              &                       \\ \hline
+Hardware-IMEI                & String                                  &          1-50                        & Length                                   & EH37000781               & Only required for phones                      \\ \hline
+Hardware PhoneNumber                & String                                  &1-11                                  & Length                                   & 07927551125              &   Only required for phones                      \\ \hline
 DepartmentID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=75		& 24		& Unique for each department	\\ \hline
-DepartmentName & String				& 1-30				& Length		& Financing		&	\\ \hline
+Department Name & String				& 1-30				& Length		& Financing		&	\\ \hline
 LocationID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=20		& 	24	& Unique for each work location		\\ \hline
-LocationName & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
-LocationAddrLine1 & String				& 1-30				& Length		&	50 Fisher's Ln	 &  \\ \hline
-LocationAddrLine2 & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
-LocationAddrLine3  & String				& 1-30				& Length		&	Royston 	 &  \\ \hline
+Location Name & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
+Location AddrLine1 & String				& 1-30				& Length		&	50 Fisher's Ln	 &  \\ \hline
+Location AddrLine2 & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
+Location AddrLine3  & String				& 1-30				& Length		&	Royston 	 &  \\ \hline
 \end{longtable}
 \end{center}
 
@@ -572,13 +572,13 @@ Chranj works as an IT systems manager (see client identification) so he is perfe
 
 \subsection{Access restrictions}
 
-One of the objectives for this program is to provide IT staff with full access rights to add, delete and edit entries of other staff members in the company. Line managers will have rights to view all staff department (including their own) and which hardware they currently own but these will only be read-only rights. Read-only rights will be given to colleagues wanting to view their own current hardware allocations and details about them such as Serial, Model and Warranty Period, they will also be able to view their personal details such as Names and E-mail addresses this is because staff can then check for any errors and report any faults with personal data to managers (in accordance with the Data Protection Act). The program will be made like this because it reduces any security issues and means that if a certain staff member was given a better piece of hardware (such as a iPhone) other colleagues (apart from line managers and IT staff) will not know and conflicts can be avoided.
+One of the objectives for this program is to provide IT staff with full access rights to add, delete and edit entries of other staff members in the company. Line managers will have rights to view all staff department (including their own) and which hardware they currently own but these will only be read-only rights. Read-only rights will be given to colleagues wanting to view their own current hardware allocations and details about them such as Serial, Model and Warranty Period, they will also be able to view their personal details such as First Name and Surname this is because staff can then check for any errors and report any faults with personal data to managers (in accordance with the Data Protection Act). The program will be made like this because it reduces any security issues and means that if a certain staff member was given a better piece of hardware (such as a iPhone) other colleagues (apart from line managers and IT staff) will not know and conflicts can be avoided.
 
 \section{Limitations}
 
 \subsection{Areas which will not be included in computerisation}
 
-The physical form that colleagues will fill in to say which hardware device they would like, which the line manager then signs, will stay the same. I spoke to my client after the interview to clarify that signing a paper document is easier than signing on a computer, the client does not think a computerised version of this would make things any easier. The current form does not need to be redesigned as it includes all the information needed for line managers to check, also the fact that staff have used these forms for long time means they will not have to get used to another version.
+The physical form that colleagues will fill in to say which hardware device they would like, which the line manager then signs, will stay the same. I spoke to my client after the interview to clarify that signing a paper document is easier than signing on a computer, Chranj does not think a computerised version of this would make things any easier. The current form does not need to be redesigned as it includes all the information needed for line managers to check, also the fact that staff have used these forms for long time means they will not have to get used to another version.
 
 \subsection{Areas considered for future computerisation}
 
@@ -589,7 +589,7 @@ The hardware request forms may be computerised if there is enough time, the bene
 
 \subsection{Alternative solutions}
 \begin{center}
-\begin{longtable}{|p{2.5cm}|p{3cm}|p{3.2cm}|p{3.2cm}|}
+\begin{longtable}{|p{1.7cm}|p{2.5cm}|p{3cm}|p{3cm}|}
 \hline
 \textbf{Solution} & \textbf{Explanation} & \textbf{Advantages} & \textbf{Disadvanages} \\ \hline
 Excel Spreadsheet & Improving the existing spreadsheet by adding new field names such as Warranty and Serial Numbers. The spreadsheet would be clearer and all data would be entered into the correct columns as there are a sufficient amount of fields. & \begin{itemize} \item Company already knows how to use it. \item Already on computer systems in workplace \item Would not require a new system as it is just an update. \end{itemize} & \begin{itemize} \item Making relationships between data  is hard \item Data is unnecessarily repeated \item This is not ideal since it would not require much work and therefore would not be a good project. \end{itemize}  \\ \hline
@@ -601,7 +601,7 @@ PyQt GUI Application &		 Providing a GUI interface for the database using PyQt w
 \end{longtable}
 \end{center}
 
-
+\newpage
 \subsection{Justification of chosen solution}
 
 The ideal solution is to use a web based application since the client orginally asked for a online database to be made. However due to the fact it will take a long time to learn and implement this solution is placed in the "other objectives" section. The solution I will be using is a PyQt application, I will be using PyQt in class and already have a clear understanding of how to use it which will make implementation much faster. I spoke to my client after the interview to check if PyQt without online features would suffice and he says it should be fine but if there is time it would be a bonus to allow online connections. PyQt will be better than the current spreadsheet as the multiple tables can be made with relationships between them (hardware devices, staff, department and location). With the chosen method a log-in system can be implemented and staff can be assigned different restrictions which the client requested in the interview (question 12). Shortcuts in PyQt provide a great advantage for my client, since they are advanced computer users, after they have got used to the system they will always be finding quicker ways of doing things so the use of shortcut keys are important.
