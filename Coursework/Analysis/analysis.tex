@@ -340,6 +340,9 @@ DepartmentID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=
 DepartmentName & String				& 1-30				& Length		& Financing		&	\\ \hline
 LocationID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=20		& 	24	&		\\ \hline
 LocationName & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
+LocationAddrLine1 & String				& 1-30				& Length		&	50 Fisher's Ln	 &  \\ \hline
+LocationAddrLine2 & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
+LocationAddrLine3  & String				& 1-30				& Length		&	Royston 	 &  \\ \hline
 \end{tabular}
 \end{center}
 
@@ -386,12 +389,12 @@ One record has 196 + 2 + 1 + 3 + 1 = 203 bytes
 
 The location table has the following fields:
 
-1 string field (length = 30bytes)
+4 string fields (length = 30bytes)
 1 integer (up to 20 (1 byte)
 
-One record has 30 + 1 = 31 bytes
+One record has 120 + 1 = 121 bytes
 20 records are stored so:
-31 x 20 = 620 bytes
+121 x 20 = 2420 bytes
 
 The department table has the following fields:
 
@@ -411,7 +414,7 @@ The link table (StaffHardware)
 
 \
 
-\textbf{Therefore the whole database needs a minimum of (45,945 + 40,600 + 620 + 2400 + 1050 = 90615 Bytes - 90.615 KB) a rounded value of 90.6 KB.}
+\textbf{Therefore the whole database needs a minimum of (45,945 + 40,600 + 2420 + 2400 + 1050 = 92415 Bytes - 92.415) a rounded value of 92.4 KB.}
 
 
 \section{Objectives}
@@ -492,7 +495,7 @@ Department  (\underline{DepartmentID}, DepartmentName, \textit{ LocationID})
 \
 
 \begin{center}
-Location  (\underline{LocationID}, LocationName)
+Location  (\underline{LocationID}, LocationName, LocationAddrLine1, LocationAddrLine2, LocationAddrLine3)
 \end{center}
 
 
@@ -504,7 +507,6 @@ Location  (\underline{LocationID}, LocationName)
 \begin{itemize}
 \item Staff
 \item Hardware
-\item StaffHardware
 \item Department
 \item Location
 \end{itemize}
@@ -515,7 +517,7 @@ Location  (\underline{LocationID}, LocationName)
 \hspace*{-1.3cm}
 \vspace*{-1cm}
 \includegraphics[width=1\textwidth]{RelationshipDiagram.jpg}
-\caption{The class definitions show all the attributes for the class staff and the class Hardware. All staff (no matter if they are a manager or IT staff) will enter their data the same. Under the line shows all the methods for this class. Which currently are all edit and add methods.} \label{Relationship Diagrams}
+\caption{The relationship diagram shows how staff own many hardware devices. The staff work at one work location and that location has many different departments. Many staff are part of one department. } \label{Relationship Diagrams}
 \end{figure}
 
 \subsection{Class definitions}
@@ -524,7 +526,7 @@ Location  (\underline{LocationID}, LocationName)
 \hspace*{-1.3cm}
 \vspace*{-1cm}
 \includegraphics[width=1\textwidth]{ClassDefinitions.jpg}
-\caption{The relationship table shows the different staff related to my proposed system. They all get assigned hardware devices in the system and the IT staff will help all staff. The line managers are in charge of the colleagues in their department.} \label{Class Definitions}
+\caption{The class definitions show the attributes and methods for each class. The staff class will hold unique IDs from the other classes to make the relationship} \label{Class Definitions}
 \end{figure}
 
 \section{Other Abstractions and Graphs}
