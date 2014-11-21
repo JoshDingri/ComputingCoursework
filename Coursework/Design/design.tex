@@ -4,6 +4,15 @@
 
 \subsection{Short description of the main parts of the system}
 
+Hardware Allocation Database
+
+/begin{itemize}
+/item IT staff user interface
+/item Line manager user inferface
+/item Staff user interface
+/item Login screen
+
+
 \subsection{System flowcharts showing an overview of the complete system}
 
 \section{User Interface Designs}
@@ -47,39 +56,37 @@
 
 \subsubsection{Entity Descriptions}
 
-\begin{center}
-Staff  (\underline{StaffID}, FirstName, LastName, JobTitle, \textit{DepartmentID},\\ \textit{ LocationID})
-\end{center}
+
+\textbf{Staff}  (\underline{StaffID}, FirstName, LastName, JobTitle, \textit{DepartmentID},\\ \textit{ LocationID})
+
 
 \
 
-\begin{center}
-Hardware  (\underline{HardwareID}, \textit{Device}, HardwareMake, HardwareModel,\\ HardwareCost, HardwareWarranty, HardwareWarrantyPeriod,\\ HardwareSerialNumber, HardwareIMEINumber, \\HardwarePhoneNumber)
-\end{center}
+\textbf{Hardware}  (\underline{HardwareID}, \textit{Device}, HardwareMake, HardwareModel,\\ HardwareCost, HardwareWarranty, HardwareWarrantyPeriod,\\ HardwareSerialNumber, 		HardwareIMEINumber, \\HardwarePhoneNumber)
 
 \
 
-\begin{center}
-Device  (\underline{Device})
-\end{center}
+
+\textbf{DeviceType}  (\underline{DeviceID}, DeviceName)
+
 
 \
 
-\begin{center}
-StaffHardware  (\underline{ StaffID}, \underline{ HardwareID},PurchaseDate)
-\end{center}
+
+\textbf{StaffHardware}  (\underline{ StaffID}, \underline{ HardwareID},PurchaseDate)
+
 
 \
 
-\begin{center}
-Department  (\underline{DepartmentID}, DepartmentName)
-\end{center}
+
+\textbf{Department}  (\underline{DepartmentID}, DepartmentName)
+
 
 \
 
-\begin{center}
-Location  (\underline{LocationID}, LocationName, LocationAddrLine1, LocationAddrLine2, LocationAddrLine3)
-\end{center}
+
+\textbf{Location}  (\underline{LocationID}, LocationName, LocationAddrLine1, LocationAddrLine2, LocationAddrLine3)
+
 
 
 
