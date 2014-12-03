@@ -305,14 +305,126 @@ Another prototype I made was a calender. This will be used when inputting dates.
 
 \subsection{Identification of all data input items}
 
+\begin{itemize}
+\item Username
+\item Password
+\item Email Address
+\item First Name
+\item Surname
+\item Job Title
+\item Date (On Bug Report)
+\item Details of Bug Reports
+\item Details of Information Errors
+\item Department
+\item Location
+\item Hardware Cost
+\item Hardware Warranty
+\item Hardware Serial Number
+\item Hardware IMEI Number
+\item Phone Number
+\item Hardware Make
+\item Hardware Model
+\item Device Name
+\item Purchase Date
+\item Location Name 
+\item Location Address Line 1
+\item Location Address Line 2
+\item Location Address Line 3
+\end{itemize}
+
 \subsection{Identification of all data output items}
+
+\underline {\textbf{Information that outputs to database}:}
+
+\begin{itemize}
+\item Staff First Name
+\item Staff Surname
+\item Staff Job Title
+\item Department
+\item Location
+\item Hardware Cost
+\item Hardware Warranty
+\item Hardware Serial Number
+\item Hardware IMEI Number
+\item Phone Number
+\item Hardware Make
+\item Hardware Model
+\item Device Name
+\item Purchase Date
+\item Location Name 
+\item Location Address Line 1
+\item Location Address Line 2
+\item Location Address Line 3
+\end{itemize}
 
 \subsection{Explanation of how data output items are generated}
 
+\begin{center}
+    \begin{tabular}{|p{5cm}|p{5cm}|}
+        \hline
+        \textbf{Output} & \textbf{How Output is Generated}\\ \hline
+	Purchase Date & When the calender date is clicked for data inputs the date will automatically enter.\\ \hline
+	Staff First Name & IT Staff Input Information \\ \hline
+	Staff Last Name & IT Staff Input Information \\ \hline
+	Staff Job Title & IT Staff Input Information \\ \hline
+	Department & IT Staff Input Information \\ \hline
+	Location & IT Staff Input Information \\ \hline
+	Hardware Cost & IT Staff Input Information \\ \hline
+	Hardware Warranty & IT Staff Input Information \\ \hline
+	Hardware Serial Number & IT Staff Input Information \\ \hline
+	Hardware IMEI Number & IT Staff Input Information \\ \hline
+	Phone Number & IT Staff Input Information \\ \hline
+	Hardware Make & IT Staff Input Information \\ \hline
+	Hardware Model & IT Staff Input Information \\ \hline
+	Device Name & IT Staff Input Information \\ \hline
+	Purchase Date & IT Staff Input Information \\ \hline
+	Location Name & IT Staff Input Information \\ \hline
+	Location Address Line 1 & IT Staff Input Information \\ \hline
+	Location Address Line 2 & IT Staff Input Information \\ \hline
+	Location Address Line 3 & IT Staff Input Information \\ \hline
+    \end{tabular}
+\end{center}
+
+\newpage
+
 \subsection{Data Dictionary}
 
+\begin{center}
+\begin{longtable}{|p{2cm}|p{1.14cm}|p{1.1cm}|p{1.7cm}|p{1.7cm}|p{2cm}|}
+\hline
+\textbf{Name} & \textbf{Data Type}& \textbf{Length} & \textbf{Validation} & \textbf{Example Data} & \textbf{Comment}      \\ \hline
+StaffID                             & Integer                                 & 1-200                     & Range Validation \textgreater0 and \textless=350                                 & 132                   & Unique to the staff   \\ \hline
+Staff-FirstName                      & String                                  & 1-25                                 & Presence Check                           & John                  &                       \\ \hline
+Staff-LastName                       & String                                  & 1-25                                 & Presence Check                           & Smith                 &                       \\ \hline
+StaffJobTitle			& String				& 1-30			& Length			& Finance Manager		&		\\ \hline
+HardwareID                          & Integer                                 & 1-200                                & Range Validation \textgreater0 and  \textless=300                      & 121                   & Unique to each device \\ \hline
+Hardware Cost                       & Float                                 & 1-2000                             & Range Validation \textgreater0 and \textless=2000                                    & £500                  &                       \\ \hline
+Hardware Warranty                    & Boolean                                 &                                      & Presence Check                           & True                  &                       \\ \hline
+Hardware WarrantyPeriod              & String                                  & 1-10                                 & Length                                   & 3 Years               &                       \\ \hline
+Hardware SerialNumber                & String                                  & 1-50                                 & Length                                   & 12307321              &                       \\ \hline
+Hardware PurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              &                       \\ \hline
+Hardware-IMEI                & String                                  &          1-50                        & Length                                   & EH37000781               & Only required for phones                      \\ \hline
+Hardware PhoneNumber                & String                                  &1-11                                  & Length                                   & 07927551125              &   Only required for phones                      \\ \hline
+DeviceID                      & Integer                                  & 1-200                                & Range Validation \textgreater0 and \textless=100                                   & 24                 & Unique to each device                       \\ \hline
+DeviceName                        & String                                  & 1-25                                 & Length                                   & Phone, Laptop, Tablet                &                       \\ \hline
+Hardware MakeID                      & Integer                                  & 1-200                                & Range Validation \textgreater0 and \textless=100                                   & 24                 & Unique to each make                       \\ \hline
+Hardware Make                        & String                                  & 1-25                                 & Length                                   & iPhone                &                       \\ \hline
+Hardware ModelID		& Integer                                  & 1-200                                & Range Validation \textgreater0 and \textless=100                                   & 24                 & Unique to each model                       \\ \hline
+Hardware Model                       & String                                  & 1-25                                 & Length                                   & 5S                    &                       \\ \hline
+DepartmentID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=75		& 24		& Unique for each department	\\ \hline
+Department Name & String				& 1-30				& Length		& Financing		&	\\ \hline
+LocationID &Integer				& 1-4				&Range Validation \textgreater0 and \textless=20		& 	24	& Unique for each work location		\\ \hline
+Location Name & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
+Location AddrLine1 & String				& 1-30				& Length		&	50 Fisher's Ln	 &  \\ \hline
+Location AddrLine2 & String				& 1-30				& Length		&	Orwell	 &  \\ \hline
+Location AddrLine3  & String				& 1-30				& Length		&	Royston 	 &  \\ \hline
+\end{longtable}
+\end{center}
+
+\newpage
 \subsection{Identification of appropriate storage media}
 
+This database will be accessed by a large amount of computers at once and it will need to be updated everytime someone changes it. This would be impossible to do if it was stored locally on one machine since the changes will only be made on that one machine. Therefore the best way to do this would be to store the system on the company's server. The company already have a large number of servers in their ventilated server room and using one to store the system on is not a problem. Every computer in the company has access to the server so making changes can be done on any machine and viewed from any other computer. The data will be stored on a 4TB hard drive inside the server and backups can be made on backup drives the company hold which are 2-4TB in size. The company mainly uses online backups through cloud storage which can be used as well, the file size plays little impact as their download speed is over 100mb/s with an upload speed of about 70mb/s so the system can be backed up quickly.
 \section{Database Design}
 
 \subsection{Normalisation}
