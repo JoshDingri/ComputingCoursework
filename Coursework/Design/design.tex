@@ -115,72 +115,73 @@ Hardware Allocation Database
 \section{User Interface Designs}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design1.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design1.jpg}
+\caption{}
+\end{figure}
+
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth,angle=90]{GUI_Design2.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design2.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design3.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design3.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design4.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design4.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design5.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design5.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design6.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design6.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design7.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design7.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design8.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design8.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design9.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design9.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design10.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design10.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design11.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design11.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design12.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design12.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design13.jpg}
 \caption{}
 \end{figure}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design13.jpg}
-\caption{}
-\end{figure}
-
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{GUI_Design14.jpg}
+\includegraphics[width=\textwidth,angle=90]{GUI_Design14.jpg}
 \caption{}
 \end{figure}
 
@@ -202,6 +203,7 @@ Users will connect to the system using their own computers at the workplace. The
 \section{Program Structure}
 
 \subsection{Top-down design structure charts}
+
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{PS.jpg}
@@ -545,11 +547,32 @@ where StaffID = ‘{3}’\
 \end{tabular}
 \end{center}
 
+\newpage
+
 \section{Security and Integrity of the System and Data}
 
 \subsection{Security and Integrity of Data}
 
+This system will store somewhat personal information about staff members such as first name, last name, place of work and phone numbers. This information will fall under the data protection act so the company will have to follow the legislation. The program has an edit information function which will allow the data to be kept up to date in accordance with the data protection act. The data will also need to be encrypted to follow the legislation, my program has a login system which means the data will be stored behind a password. To make the data even more secure, ordinary staff (not managers or admin) can only see their own information as they have no need to view anyone else's. Since staff can see their own information it means they can check for incorrect personal information and using the "report incorrect information" feature they can easily notify the IT staff. This system provides a great way to deal with any incorrectly entered information. To try and avoid this validation methods will be used upon entering information. Drop down boxes will be used where possible, and boolean true or false tick boxes will be used where applicable. I will also add required fields to my database which means records will never have missing data. Lastly the login screen will have a censored password that can be changed whenever the user would like it to be.
+
 \subsection{System Security}
+
+The system stores a lot of data that the company will want to keep protected. It is important that the company keeps data secure and follows by the data protection act. Each member of the company has a username and password to login with which will limit the number of people being able to access the system (since only company staff can). The only way to access this data is to have a correct password and username. The database will be encrypted so the only way to access the databases is through the system. All data being entered will go through validation such as range, length checks, presence checks and drop down boxes. If the information is incorrect after the validation then it can also be edited using the edit database feature. If the information is still found to be wrong and colleague finds incorrect data about themselves they can use the "report incorrect information" (see Security and Integrity of Data above).
+
+Because the data being stored falls under the data protection act I will need to follow the legislation principles which are as following:
+
+
+\begin{center}
+    \begin{tabular}{|p{5cm}|p{6cm}|}
+        \hline
+        \textbf{Principle} & \textbf{How To Ensure It Is Followed}\\ \hline
+Personal data shall be obtained only for one or more specified and lawful purposes, and shall not be further processed in any manner incompatible with that purpose or those purposes. & The data is only held on the database for the company's use, the data will not be used anywhere else. \\ \hline
+Personal data shall be adequate, relevant and not excessive in relation to the purpose or purposes for which they are processed. & Only relevant data is stored there is no need to store extra information (such as someones home address or credit card number) \\ \hline
+Personal data shall be accurate and, where necessary, kept up to date. & The system includes an edit feature to allow outdated information to be changed. Validation will be in place to avoid inaccurate information \\ \hline
+Personal data processed for any purpose or purposes shall not be kept for longer than is necessary for that purpose or those purposes. & If someone is to leave the company their records will be deleted as they are no longer needed \\ \hline
+Appropriate technical and organisational measures shall be taken against unauthorised or unlawful processing of personal data and against accidental loss or destruction of, or damage to, personal data. & Backups will be stored with cloud storage or backup drives. Cloud storage means it cannot be accidentally destroyed \\ \hline
+    \end{tabular}
+\end{center}
 
 \section{Validation}
 
