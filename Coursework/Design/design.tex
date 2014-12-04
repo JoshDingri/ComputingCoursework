@@ -246,6 +246,79 @@ Users will connect to the system using their own computers at the workplace. The
 
 \subsection{Algorithms in pseudo-code for each data transformation process}
 
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Function {SearchStaff}{FirstName,LastName,Department}
+\State$Count \leftarrow 0$
+\State ARRAY StaffList: Integer[$\infty$]
+\State CONNECT to staff database
+\State {StaffMembers $\leftarrow$ SEARCH staff database for staff}
+\For {staff}  {StaffMembers}
+	\If{staff.FirstName = FirstName AND staff.LastName = LastName AND staff.Department = Department}
+		\State$StaffList[Count] \leftarrow staff$
+		\EndIf
+	\State$Count \leftarrow Count + 1$
+	\EndFor
+\State RETURN StaffList
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Function {ValidateOldPassword}{OldPassword, CheckOldPassword}
+\State$ValidPassword \leftarrow FALSE$
+\If{OldPassword = CheckOldPassword}
+	\State$ValidPassword \leftarrow TRUE$
+	\EndIf
+\State RETURN ValidPassword
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Function {ValidateNewPassword}{NewPassword}
+\State$ValidPassword \leftarrow FALSE$
+\If{length of NewPassword $\geq$ 6}
+	\State $ValidPassword \leftarrow TRUE$
+\EndIf
+\State RETURN ValidPassword
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Function {AddStaff}{FirstName, LastName, JobTitle, LocationID, DepartmentID}
+\State CONNECT to staff database
+\State CONNECT to location database
+\State CONNECT to department database
+\State ARRAY LocationList: Integer [$\infty$]
+\State ARRAY DepartmentList: Integer [$\infty$]
+\State DepartmentList $\leftarrow$ SEARCH department database for DepartmentID
+\For {department} {DepartmentList}
+	\If {DepartmentID = department}
+		\State DepartmentIDFound $\leftarrow$ TRUE
+	\EndIf
+\EndFor
+\State LocationList $\leftarrow$ SEARCH location database for LocationID
+\For {Location} {LocationList}
+	\If {LocationID = location}
+		\State LocationIDFound $\leftarrow$ TRUE
+	\EndIf
+\EndFor
+
+\If {DepartmentID AND LocationID}
+	\State ADD staff database FirstName = FirstName, LastName = LastName, DepartmentID = DepartmentID, LocationID = LocationID
+\EndIf
+
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+
 \subsection{Object Diagrams}
 
 \begin{figure}[H]
@@ -402,9 +475,9 @@ StaffJobTitle			& String				& 1-30			& Length			& Finance Manager		&		\\ \hline
 HardwareID                          & Integer                                 & 1-200                                & Range Validation \textgreater0 and  \textless=300                      & 121                   & Unique to each device \\ \hline
 Hardware Cost                       & Float                                 & 1-2000                             & Range Validation \textgreater0 and \textless=2000                                    & £500                  &                       \\ \hline
 Hardware Warranty                    & Boolean                                 &                                      & Presence Check                           & True                  &                       \\ \hline
-Hardware WarrantyPeriod              & String                                  & 1-10                                 & Length                                   & 3 Years               &                       \\ \hline
+Hardware Warranty ExpirationDate              & Date                                  &                                & Format                                   & 11/03/2015               &                       \\ \hline
 Hardware SerialNumber                & String                                  & 1-50                                 & Length                                   & 12307321              &                       \\ \hline
-Hardware PurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              &                       \\ \hline
+Hardware PurchaseDate                & Date                                  &                                  & Format                                   & 11/03/2015              & If the item is going to be purchased in a few days but data is added before then no input is required (no presence check)                       \\ \hline
 Hardware-IMEI                & String                                  &          1-50                        & Length                                   & EH37000781               & Only required for phones                      \\ \hline
 Hardware PhoneNumber                & String                                  &1-11                                  & Length                                   & 07927551125              &   Only required for phones                      \\ \hline
 DeviceID                      & Integer                                  & 1-200                                & Range Validation \textgreater0 and \textless=100                                   & 24                 & Unique to each device                       \\ \hline
@@ -576,6 +649,38 @@ Appropriate technical and organisational measures shall be taken against unautho
 
 \section{Validation}
 
+\begin{center}
+    \begin{longtable}{|p{2.5cm}|p{2cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \hline
+        \textbf{Data Item} & \textbf{Validation} & \textbf{Presence Check?} & \textbf{Example} & \textbf{Comments} \\ \hline
+StaffID                              & Range Validation \textgreater0 and \textless=350        &  Yes & 5        & This will make sure that 350 staff members can be added to the database   \\ \hline
+Staff-FirstName                      & Presence Check                   & Yes        & John                  &  Ensures a name is entered                      \\ \hline
+Staff-LastName                       & Presence Check               & Yes            & Smith                 &   Ensures a name is entered                     \\ \hline
+StaffJobTitle			&   Length Check 			&Yes & Finance Manager		&Ensures a job title is entered and that the title is no more than 30 characters		\\ \hline
+HardwareID                         &   Range Validation \textgreater0 and  \textless=300      &Yes                & 121                   & Enables up to 300 hardware devices to be added to the database \\ \hline
+Hardware Cost                     &   Range Validation \textgreater0 and \textless=2000            &Yes                        & £500                  &  The cost of a hardware item will not be more than 2000                     \\ \hline
+Hardware Warranty                    & Presence Check            &Yes               & True                  & Ensures a True/False statement is entered                      \\ \hline
+Hardware Warranty ExpirationDate           & Format                      &No             & 11/03/2017               &   Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                    \\ \hline
+Hardware SerialNumber              & Length                 &Yes                  & 12307321              &      Ensures no more than 40 characters are entered                 \\ \hline
+Hardware PurchaseDate               & Format                 &No                  & 11/03/2015              & Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                       \\ \hline
+Hardware-IMEI               & Length              &Yes                     & EH37000781               & Ensures a length of up to 30 characters                      \\ \hline
+Hardware PhoneNumber                  & Length            &Yes                      & 07927551125              &   Ensures only 11 chracters are entered                      \\ \hline
+DeviceID                     & Range Validation \textgreater0 and \textless=100            &Yes                       & 24                 & This allows 100 different devices to be added to the database                    \\ \hline
+DeviceName                         & Length                       &Yes            & Phone, Laptop, Tablet                &  Ensures a length of a device is not more than 15 characters                     \\ \hline
+Hardware MakeID                    & Range Validation \textgreater0 and \textless=200      &Yes                             & 24                 & 200 different models can be entered into the database                       \\ \hline
+Hardware Make                        & Length               &Yes                    & iPhone                & Ensures the length of a make is not more than 15 characters                      \\ \hline
+Hardware ModelID		& Range Validation \textgreater0 and \textless=300                      &Yes             & 24                 & Allows for 300 models to be entered into the database                        \\ \hline
+Hardware Model                      & Length            &Yes                       & 5S                    & Ensures no more than 15 characters will be entered                       \\ \hline
+DepartmentID 	&Range Validation \textgreater0 and \textless=75	&Yes	& 24		& Allows for 75 departments to be added to the database	\\ \hline
+Department Name	& Length	&Yes	& Financing		& Allows for 25 characters to be entered for the department	\\ \hline
+LocationID 		&Range Validation \textgreater0 and \textless=20	&Yes	& 	24	& 20 work locations can be entered		\\ \hline
+Location Name	& Length	&Yes	&	Orwell	 & No more than 25 characters can be entered for the location  \\ \hline
+Location AddrLine1 & Length	&Yes	&	50 Fisher's Ln	 & Up to 50 characters may be entered for address line 1  \\ \hline
+Location AddrLine2 & Length	&No	&	Orwell	 & Up to 15 characters may be entered for address line 2 \\ \hline
+Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered for address line 3  \\ \hline
+    \end{longtable}
+\end{center}
+
 \section{Testing}
 
 \begin{landscape}
@@ -595,7 +700,27 @@ Appropriate technical and organisational measures shall be taken against unautho
     \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test} & \textbf{Test Description} & \textbf{Test Data} & \textbf{Test Data Type (Normal/ Erroneous/ Boundary)} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Evidence}\\ \hline
-        Example & Example & Example & Example & Example & Example & Example & Example \\ \hline
+1.01 & Test the manager login button on the select login page to ensure it works correctly  & This takes the user to the appropriate login screen & Click the Manager Login button & Normal & The manager login screen should be displayed && \\ \hline
+1.02 & Test the staff login button on the select login page to ensure it works corrently & This takes the user to the appropriate login screen & Click the Staff Login button & Normal & The staff login screen should be displayed && \\ \hline
+1.03 & Test the staff admin button on the select login page to ensure it works corrently & This takes the user to the appropriate login screen & Click the Admin Login button & Normal & The admin login screen should be displayed && \\ \hline
+1.04 & Test the log in button on the manager login screen  & This takes the user to the appropriate main menu & Click the Log In button on the manager login screen & Normal & The manager main menu screen displayed && \\ \hline
+1.05 & Test the log in button on the staff login screen  & This takes the user to the appropriate main menu & Click the Log In button on the staff login screen & Normal & The staff main menu screen displayed && \\ \hline
+1.05 & Test the log in button on the admin login screen  & This takes the user to the appropriate main menu & Click the Log In button on the admin login screen & Normal & The admin main menu screen displayed && \\ \hline
+1.06 & Test the forgot password button on the login screens & Takes the user to password recovery & Click the forgot password button & Normal & The password recovery form will be displayed && \\ \hline
+1.07 & Test the submit button on the password recovery form & After the user enters form details they will click this to send it to IT staff & Click the submit button & Normal & An email will be sent to the IT staff (or the email specified) && \\ \hline
+1.08 & Test the view department  button on the manager homepage & Will take the user to view their department information & Click the view department button & Normal & The layout will be switched to the staff database showing only people in their department && \\ \hline
+1.09 & Test the view my information button on the manager homepage & Will take the user to view their own information & Click the view own information button& Normal  & The layout will be switched to the staff database showing only their own information && \\ \hline
+1.10 & Test the cancel button on the change password screen & No changes will be saved & Click the cancel button & Normal & The window will close && \\ \hline
+1.11 & Test the change button on the change password screen & Changes will be saved & Click the change button & Normal & The window will close and changes will be saved&& \\ \hline
+1.12 & Test the cancel button on the report bug screen & Changes will not be saved & Click the cancel button & Normal & The window will close&& \\ \hline
+1.13 & Test the submit button on the report bug screen & Changes will be saved and the form will be sent to IT staff & Click the submit button& Normal  & The window will close and an email will be sent to IT staff with all details (or the email specified) && \\ \hline
+1.14 & Test the cancel button on the report errors screen & Changes will not be saved & Click the cancel button & Normal & The window will close&& \\ \hline
+1.15 & Test the submit button on the report errors screen & Changes will be saved and the form will be sent to IT staff & Click the submit button& Normal  & The window will close and an email will be sent to IT staff with all details (or the email specified) && \\ \hline
+1.16 & Test the open database button on the admin home screen & The open database screen should open & Click the open database button& Normal  & The window should switch layouts to the open database screen && \\ \hline
+1.17 & Test the search for staff button on the admin home screen & The search staff screen should open & Click the search staff button& Normal  & The window should switch layouts to the search staff screen && \\ \hline
+1.18 & Test the close button on the staff information (search staff screen) & The window will close  & Click the close button& Normal  & The window should close and return to the search screen && \\ \hline
+
+%##################### GOT TO FIGURE 2.9 on buttons
     \end{longtable}
 \end{center}
 \end{landscape}
