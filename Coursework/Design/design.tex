@@ -12,7 +12,7 @@ Hardware Allocation Database
 \item Staff user interface
 \item Login screen
 \item Viewing Databases
-\item Editing Databases
+\item Editing Databases \& Adding and Deleting data
 \end{itemize}
 
 \
@@ -24,8 +24,10 @@ Hardware Allocation Database
 \item Once logged in they will be presented with a user interface with buttons allowing them to open a database or search for staff.
 \item All IT staff will share a username and password.
 \item The search function will take the user to an interface which will allow them to search for a staff member and be shown which hardware devices they own. This search could also be performed by going to the staff database and using the search function there, but this may be used frequently and so is placed here for convience.
-\item The open database button will take them to a user interface that will have a dropdown box allowing them to pick which database to view. There will also be a "Continue" button to click when the database is selected and the database will be presented to them. There will also be a "Edit Database" button to edit, add or remove entries. A search button will also be on this screen to allow the user to search for a specific field.
+\item The open database button will take them to a user interface that will have a dropdown box allowing them to pick which database to view. There will be Edit, Add and Remove options available when a database is shown. A search button will also be on this screen to allow the user to search for a specific field.
 \item The edit database will allow the user to change information on the database.
+\item The add data will allow the user to add new records
+\item The remove data will allow the user to delete records
 \end{itemize}
 
 \
@@ -34,7 +36,7 @@ Hardware Allocation Database
 
 \begin{itemize}
 \item Line manager's have more rights than normal staff but unlike IT staff they cannot edit any information.
-\item Line manager's share the same username if they are part of the same department (for example someone from Liverpool Financing will use the same username as someone from Orwell Financing) and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
+\item Line manager's share the same username if they are part of the same department and the same location (liverpool and orwell cannot use the same department login) and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username at the moment will be a 5 digit number allocated to them by IT staff, however this username may change depending on the users needs. (the best way to do this will be via email). 
 \item Line manager's can view information of members from their own department.
 \item Once logged in, the user interface will show a "View Department" button and a "View My Information" button.
 \item The "View Department" button will show the staff database but only show records from staff at their own department. There will be a search function to find a specific field.
@@ -46,8 +48,8 @@ Hardware Allocation Database
 \textbf{Staff User Interface}
 \begin{itemize}
 \item Ordinary staff members will all have unique usernames and be able to create their own password.
-\item After logging on they will be taken to a user interface with a button called "View My Information".
-\item The "View My Information" button will allow the user to view their own hardware devices and personal information. It may be used often to check the warranty period of an item and to check correct information is being displayed.
+\item After logging on they will be taken immediatly to the table showing their own information. The system does not allow staff to do much so it is best to keep things very simple.
+\item  They may use the search bar to query information
 \end{itemize}
 
 \
@@ -57,9 +59,9 @@ Hardware Allocation Database
 \item The login screen will have a username field and a password field. There will also be two buttons, one to login and the other will be "Forgot Your Password?".
 \item The "Forgot Your Password?" button will take the user to another interface which will ask for their Volac (company) email address, Forename and Surname. This information will be sent to the IT staff who can review it and email the user another password to use or tell them what their password was. It is important to note that all Volac staff have the same buisness email (for example XXX.Volac.com), this means SMTP settings can be set up easily in Python. This process will be easier than asking IT Staff directly.
 \item Normal staff all have their own username and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
-\item Line manager's share the same username if they are part of the same department (for example someone from Liverpool Financing will use the same username as someone from Orwell Financing) and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
+\item Line manager's share the same username if they are part of the same department and location, the password they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
 \item All IT staff will share a username and password to have admin rights.
-\item There are 100,000 combinations on a 5 digit number (10$^5$) which will be more than enough for the company, it will be best to start from the left and issue 10000 to IT staff and start with 20000 for other staff (and proceed with 20001, 20002, ... 20010...)
+\item There are 100,000 combinations on a 5 digit number (10$^5$) which will be more than enough for the company (if I was to use this mehtod), it will be best to start from the left and issue 10000 to IT staff and start with 20000 for other staff (and proceed with 20001, 20002, ... 20010...)
 \end{itemize}
 
 \
@@ -76,8 +78,9 @@ Hardware Allocation Database
 
 \textbf{Editing Databases}
 \begin{itemize}
-\item To add entries the user will click the "Edit Database" button (found on the IT staff interface).
-\item This button will then allow the user to either edit existing data or take the user to a form which allows data to be input into fields for such things as First Name, Surname, Warranty or Hardware Device.
+\item To edit existing entries the user will click the "Edit Database" button (found on the IT staff/admin interface).
+\item To add new data they will click "Add Data"take the user to a form which allows data to be input into fields for such things as First Name, Surname, Warranty or Hardware Device.
+\item To remove data they will click "Remove Data" and then can choose the record to remove.
 \item Validation will be required for various fields such as telephone numbers (string of length 11) and dropdown boxes will be used for boolean values for fields such as Warranty.
 \end{itemize}
 
@@ -250,6 +253,7 @@ Users will connect to the system using their own computers at the workplace. The
 \begin{algorithm}[H]
 \begin{algorithmic}
 \Function {SearchStaff}{FirstName,LastName,Department}
+\State Count: Integer
 \State$Count \leftarrow 0$
 \State ARRAY StaffList: Integer[$\infty$]
 \State CONNECT to staff database
@@ -268,6 +272,7 @@ Users will connect to the system using their own computers at the workplace. The
 \begin{algorithm}[H]
 \begin{algorithmic}
 \Function {ValidateOldPassword}{OldPassword, CheckOldPassword}
+\State ValidPassword: Boolean
 \State$ValidPassword \leftarrow FALSE$
 \If{OldPassword = CheckOldPassword}
 	\State$ValidPassword \leftarrow TRUE$
@@ -280,8 +285,9 @@ Users will connect to the system using their own computers at the workplace. The
 \begin{algorithm}[H]
 \begin{algorithmic}
 \Function {ValidateNewPassword}{NewPassword}
+\State ValidPassword: Boolean
 \State$ValidPassword \leftarrow FALSE$
-\If{length of NewPassword $\geq$ 6}
+\If{length of 20 $\geq $NewPassword $\geq$ 6}
 	\State $ValidPassword \leftarrow TRUE$
 \EndIf
 \State RETURN ValidPassword
@@ -291,7 +297,22 @@ Users will connect to the system using their own computers at the workplace. The
 
 \begin{algorithm}[H]
 \begin{algorithmic}
+\Function {UsernameValid}{UsernameInput}
+\State ValidUsername: Boolean
+\State$ValidUsername \leftarrow FALSE$
+\If{length of 12 $\geq $UsernameInput $\geq$ 3}
+	\State $ValidUsername \leftarrow TRUE$
+\EndIf
+\State RETURN ValidUsername
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\begin{algorithmic}
 \Function {AddStaff}{FirstName, LastName, JobTitle, LocationID, DepartmentID}
+\State DepartmenIDFound: Boolean
+\State LocationIDFound: Boolean
 \State CONNECT to staff database
 \State CONNECT to location database
 \State CONNECT to department database
@@ -318,6 +339,25 @@ Users will connect to the system using their own computers at the workplace. The
 \end{algorithmic}
 \end{algorithm}
 
+\begin{algorithm}[H]
+\begin{algorithmic}
+\Function {RemoveData}{StaffID}
+\State StaffIDFound: Boolean
+\State CONNECT to staff database
+\State ARRAY StaffList: Integer [$\infty$]
+\State StaffList $\leftarrow$ SEARCH staff database for StaffID
+\For {staff} {StaffList}
+	\If {StaffID = staff}
+		\State StaffIDFound $\leftarrow$ TRUE
+	\EndIf
+\EndFor
+\If {StaffIDFound}
+	\State REMOVE staff database FirstName = FirstName, LastName = LastName, DepartmentID = DepartmentID, LocationID = LocationID
+\EndIf
+
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
 
 \subsection{Object Diagrams}
 
@@ -521,7 +561,7 @@ This database will be accessed by a large amount of computers at once and it wil
 
 \
 
-\textbf{Hardware}  (\underline{HardwareID}, \textit{DeviceID},  \textit{HardwareModelID},\\ HardwareCost, HardwareWarranty, HardwareWarrantyPeriod,\\ HardwareSerialNumber, 		HardwareIMEINumber, \\HardwarePhoneNumber)
+\textbf{Hardware}  (\underline{HardwareID}, \textit{DeviceID},  \textit{HardwareModelID},\\ HardwareCost, HardwareWarranty, HardwareWarrantyExpirationDate,\\ HardwareSerialNumber, 		HardwareIMEINumber, \\HardwarePhoneNumber)
 
 \
 
@@ -608,14 +648,22 @@ This database will be accessed by a large amount of computers at once and it wil
 """insert into\
 
 Staff(FirstName,LastName, JobTitle, DepartmentID) values
-(‘{0}’,’{1}’,’{2}’,'{3}')
-""".format(FirstName, LastName, JobTitle, DepartmentID) & This SQL statement will add 3 new records to the database. In this example it is eneterng a new staff record with attributes: FirstName, LastName, JobTitle and DepartmentID \\ \hline
+(‘{'John'}’,’{'Smith'}’,’{'Data Scientist'}’,'{'5'}')
+"""					 & This SQL statement will add 3 new records to the database. In this example it is entering a new staff record with attributes: FirstName, LastName, JobTitle and DepartmentID \\ \hline
 
 """delete from Staff\
 
 where StaffID = ‘{3}’\
 
 """.format(StaffID) & This statement will delete the staff member from the Staff table with the StaffID of {3} \\ \hline
+
+"""SELECT HardwareMakeName,
+From Hardware, Staff
+Where HardwareID = '{0}' and StaffID = '{1}',""".format(HardwareID,StaffID) & This will fetch the HardwareMakeName the Staff with the ID of 'StaffID' has of the HardwareID of "HardwareID" \\ \hline
+
+"""UPDATE Staff
+	SET JobTitle = "Finance Manager"
+	WHERE StaffID IN ("Jack",John")""" & In this example lets assume two people are being promoted at work. Both of their job titles will need changing. Here I take the job title of "Finance Manager" and apply it to both Jack and John.\\ \hline
 
 \end{tabular}
 \end{center}
@@ -690,7 +738,13 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
     \begin{tabular}{|p{2cm}|p{5cm}|p{5cm}|p{4cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test Series} & \textbf{Testing Strategy} & \textbf{Strategy Rationale}\\ \hline
-        Example & Example & Example & Example \\ \hline
+1 & Test flow of control between the user interfaces & Top-down testing & A outline of the GUI will be developed and once working more modules will be added \\ \hline
+       2 & To test validation of input data is performed correctly & Bottom-up testing & Components will be tested as they become available \\ \hline
+3 & To test if the data is stored in its correct location & Black box testing & An output that the program produces will be examined for correctness and then the next output can be examined.\\ \hline
+4 & To check information can be read from the database and read through the system & Bottom-up testing &  Components will be tested as they become available\\ \hline
+5 & Check that the system cannot have unauthorised access & Unit testing & To test individual software components \\ \hline
+6 & To check the finished system will fulfil the specifications &  Acceptance Testing & Performed by the client to check the system meets their requirements\\ \hline
+
     \end{tabular}
 \end{center}
 
@@ -719,6 +773,61 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 1.16 & Test the open database button on the admin home screen & The open database screen should open & Click the open database button& Normal  & The window should switch layouts to the open database screen && \\ \hline
 1.17 & Test the search for staff button on the admin home screen & The search staff screen should open & Click the search staff button& Normal  & The window should switch layouts to the search staff screen && \\ \hline
 1.18 & Test the close button on the staff information (search staff screen) & The window will close  & Click the close button& Normal  & The window should close and return to the search screen && \\ \hline
+1.19 & Test the edit database button on the open database screen & To test whether the edit buttons will shown up  & Click the edit database button& Normal  & Buttons to edit the data should show up && \\ \hline
+1.20 & Test the edit button on the edit database screen & To test whether the edit buttons will open up a edit screen  & Click a edit button& Normal  & A new screen will appear allowing the user to enter information && \\ \hline
+1.21 & Test the save changes button on the edit database input screen & To test whether the save changes button will save the changes made  & Click a save changes button& Normal  & The screen will close but changes will have applied && \\ \hline
+1.22 & Test the add data button on the open database screen & To test whether screen to input data will show up  & Click the add data button& Normal  & The window to add data to the database will show up && \\ \hline
+1.23 & Test the add data button on the data input screen & To test whether data will be added to the database  & Click the add data button& Normal  & The window will close and the data entered will have been added to the database && \\ \hline
+1.24 & Test the remove data button on the open database screen & To test whether delete buttons will show up next to the records in the database  & Click the remove data button& Normal  & The delete buttons will show up next to each record && \\ \hline
+1.25 & Test the delete buttons on the delete data screen & To test whether delete buttons will display a message  & Click a delete data button & Normal  & A warning sign should show up to confirm the user would like to remove the selected data && \\ \hline
+1.26 & Test the no button on the delete data warning window & To test whether the no button will keep the data from being deleted  & Click the no data button & Normal  & The warning window will close and return to the previous screen. && \\ \hline
+1.27 & Test the yes button on the delete data warning window & To test whether the yes button will delete the data selected  & Click the yes data button & Normal  & The warning window will close and return to the previous screen with the specified data deleted . && \\ \hline
+
+1.28 & Test the Help menu (on Staff and Manager GUI) & To test whether a dropdown list of buttons will show up  & Click the help menu & Normal  & The menu should function correctly and display the "report bug" and "report incorrect information" buttons . && \\ \hline
+1.29 & Test the Help menu buttons (on Staff and Manager GUI) & To test whether the buttons will work on the help menu  & Click the report bug and report incorrect information buttons & Normal  & The "report bug" should take the user to the report bug screen and "report incorrect information" should take the user to the report incorrect information screen . && \\ \hline
+
+1.30 & Test the Account menu & To test whether a dropdown list of buttons will show up  & Click the account menu & Normal  & The menu should function correctly and display the "log out" and "change password" buttons . && \\ \hline
+1.31 & Test the Account menu buttons & To test whether the buttons will work on the account menu  & Click the log out and change password buttons & Normal  & The "log out" should take the user back to the intitial login screen and "change password" should take the user to the change password screen . && \\ \hline
+
+1.32 & Test the View menu (on Manager GUI)  & To test whether a dropdown list of buttons will show up  & Click the view menu & Normal  & The menu should function correctly and display the "department database" and "your information" buttons . && \\ \hline
+1.33 & Test the View menu buttons (on Manager GUI) & To test whether the buttons will work on the view menu  & Click the department database and your information buttons & Normal  & The "department database" should take the user to the department database screen "your information" should take the staff database showing only your information . && \\ \hline
+
+1.34 & Test the Database menu (on Admin GUI)  & To test whether a dropdown list of buttons will show up  & Click the Database menu & Normal  & The menu should function correctly and display "Staff", "Hardware", "Location" and "Department"  which all have secondary buttons to view, edit, add and remove data&& \\ \hline
+1.35 & Test the Database menu buttons (on Admin GUI) & To test whether the buttons will work on the database menu coming off of  "Staff", "Hardware", "Location" and "Department"  & Click each button & Normal  & Each button will take the user to the specified database and either the normal view screen, edit screen, add data screen or remove data screen && \\ \hline
+
+1.36 & Test the arrow buttons on the seach staff screen & To test whether the buttons next to each record will open a new window to view more information  & Click each button & Normal  & Any button should open up a screen to display more information about a staff member && \\ \hline
+
+1.37 & Test the return to database view button on the open database screen & After Edit, Add or Remove is clicked the user may click this button to return to the viewing mode & Click return to database view button & Normal  & The layout will change to the normal view. && \\ \hline
+
+1.38 & Test the back button on the admin interfaces & These buttons will take the user back to the home page & Click the return button & Normal  & The layout will change to the admin home page. && \\ \hline
+
+2.1 & Test the dropdown boxes for department selection & To test whether the drop down boxes will function corrently on the open database and the search staff page. The options must actually open that database  & Click each button on the dropdown box & Normal  & Each button should open the database wanted && \\ \hline
+2.2 & Test the dropdown boxes for data input windows (e.g. location and department) & To test whether the drop down boxes will function corrently when inputting data. The options must actually fill in the boxes once clicked  & Click each button on the dropdown box & Normal  & Each button should fill the box with the selection chosen && \\ \hline
+
+2.3 & Test the calender works for date inputs & To test whether the calender will open when the icon is clicked. Once a date is selected it should automatically fill the box. & Click a date on the calender & Normal  & The date should be entered once a date on the calender is clicked in the following format DD/MM/YYYY && \\ \hline
+2.4 & Verify that the username field has between 3 - 12 characters in it & The field cannot be blank, it has to have more than 3 characters but no more than 12. & Nothing \ 30597 \ JSmith21 \ JordanSumerfield &Erroneous \ Normal \ Normal \ Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
+2.5 & Verify that the password field has between 6 - 20 characters in it & The field cannot be blank, it has to have more than 6 characters but no more than 20. & Nothing \par\ password \par pA33WoRD \par cat  &Erroneous \par Normal \par Normal \par Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
+2.6 & Verify Email, Forename, Surname is entered in recover password fields & The fields cannot be blank and must have a '@' symbol in the email address. & John, Smith, J.com \par John, Smith, J@gmail.com \par JJ, D, JJD@hotmail.com \par & Erroneous \par Valid \par Valid \\ \hline
+2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par All details filled out & Erroneous \par Normal & Error \par Valid && \\ \hline
+2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par All details filled out & Erroneous \par Normal & Error \par Valid && \\ \hline
+
+3.1 & Verify the Staff details are entered correctly into the Staff database & All information should be added to the required fields  & Staff information & Normal& Data is added to Staff table && \\ \hline
+3.2 & Verify the Hardware details are entered correctly into the Hardware database & All information should be added to the required fields  &Hardware information & Normal& Data is added to Hardware table && \\ \hline
+3.3 & Verify the Location details are entered correctly into the Location database & All information should be added to the required fields  &Location information & Normal& Data is added to Location table && \\ \hline
+3.4 & Verify the Department details are entered correctly into the Department database & All information should be added to the required fields  &Department information & Normal& Data is added to Department table && \\ \hline
+3.5 & Verify the DeviceType details are entered correctly into the DeviceType database & All information should be added to the required fields  &DeviceType information & Normal& Data is added to DeviceType table && \\ \hline
+3.6 & Verify the HardwareMake details are entered correctly into the HardwareMake database & All information should be added to the required fields  &HardwareMake information & Normal& Data is added to HardwareMake table && \\ \hline
+3.7 & Verify the HardwareModel details are entered correctly into the HardwareModel database & All information should be added to the required fields  &HardwareModel information & Normal& Data is added to HardwareModel table && \\ \hline
+3.8 & Verify the Staff's Hardware details with purchase date are entered correctly into the StaffHardware database & All information should be added to the required fields  &StaffHardware information & Normal& Data is added to StaffHardware table && \\ \hline
+3.9 & Verify the DepartmentLocation details with purchase date are entered correctly into the DepartmentLocation database & All information should be added to the required fields  &DepartmentLocation information & Normal& Data is added to DepartmentLocation table && \\ \hline
+
+4 & Verify each table can be read by clicking the dropdown box and selecting the database wanted & Each table should be able to be clicked and be viewed in a table format&Data from the following tables: \par Staff \par Hardware \par Location \par Department \par DeviceType \par HardwareMake \par HardwareModel \par StaffHardware \par DepartmentLocation & Normal& The table will be shown and will match information in the database && \\ \hline
+
+5.1 & Check that staff members cannot log in to managers or admins interfaces & Staff should not be able to use their login to access the admin interface or the manager interface, only their own. & Staff login details & Erroneous & The system will say incorrect login details && \\ \hline
+5.2 & Check that managers cannot log in to staff or admins interfaces & managers should not be able to use their login to access the admin interface or the staff interface, only their own. & managers login details & Erroneous & The system will say incorrect login details && \\ \hline
+5.2 & Check that admins cannot log in to staff or managers interfaces & admins should not be able to use their login to access the manager interface or the staff interface, only their own. & admins login details & Erroneous & The system will say incorrect login details && \\ \hline
+
+6 & Verify the program fulfils all the specifications & Run through the program testing every aspect with correct and incorrect data to insure all the objectives are met & Normal &The program should fulfil all specifications and objectives && \\ \hline
 
 %##################### GOT TO FIGURE 2.9 on buttons
     \end{longtable}
