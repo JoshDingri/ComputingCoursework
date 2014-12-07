@@ -3,6 +3,7 @@ import sqlite3
 def create_table(db_name,table_name,sql):
     with sqlite3.connect(db_name) as db:
         cursor = db.cursor()
+        cursor.execute("PRAGMA foreign_keys = ON")
         cursor.execute("Select name from sqlite_master where name=?",(table_name,))
         result = cursor.fetchall()
         keep_table = True
@@ -28,12 +29,12 @@ def StaffTable():
           FirstName text,
           Surname text,
           JobTitle text,
+          DepartmentID integer,
+          LocationID integer,
           primary key(StaffID),
           foreign key(DepartmentID) references Department(DepartmentID),
-          foreign key(LocationID) references Location(LocationID)
-                      
-          
-          """
+          foreign key(LocationID) references Location(LocationID))"""
+    
     create_table(db_name,"Staff",sql)
 
 def HardwareTable():
@@ -45,60 +46,85 @@ def HardwareTable():
           SerialNumber text,
           IMEINumber text,
           PhoneNumber text,
-          primary key(HardwareID))"""
+          DeviceID integer,
+          HardwareModelID integer,
+          primary key(HardwareID),
+          foreign key(DeviceID) references DeviceType(DeviceID),
+          foreign key(HardwareModelID) references HardwareModel(HardwareModelID))"""
+    
     create_table(db_name,"Hardware",sql)
 
 def HardwareMake():
     sql = """create table HardwareMake
           (HardwareMakeID integer,
-          HardwareMakeName text
+          HardwareMakeName text,
           primary key(HardwareMakeID))"""
     create_table(db_name,"HardwareMake",sql)
 
 def HardwareModel():
     sql = """create table HardwareModel
           (HardwareModelID integer,
-          HardwareModelName text
-          primary key(HardwareModelID))"""
+          HardwareModelName text,
+          HardwareMakeID integer,
+          primary key(HardwareModelID),
+          foreign key(HardwareMakeID) references HardwareMake(HardwareMakeID))"""
+    
     create_table(db_name,"HardwareModel",sql)
 
 def DeviceType():
     sql = """create table DeviceType
           (DeviceID integer,
-          DeviceName text
+          DeviceName text,
           primary key(DeviceID))"""
     create_table(db_name,"DeviceType",sql)
 
 def StaffHardware():
     sql = """create table StaffHardware
           (StaffHardwareID integer,
-          PurchaseDate date
-          primary key(StaffHardwareID))"""
+          PurchaseDate date,
+          StaffID integer,
+          HardwareID integer,
+          primary key(StaffHardwareID),
+          foreign key(StaffID) references Staff(StaffID),
+          foreign key(HardwareID) references Hardware(HardwareID))"""
     create_table(db_name,"StaffHardware",sql)
 
 def Department():
     sql = """create table Department
           (DepartmentID integer,
-          DepartmentName text
+          DepartmentName text,
           primary key(DepartmentID))"""
     create_table(db_name,"Department",sql)
 
 def Location():
     sql = """create table Location
           (LocationID integer,
-          AddressLine1 text
-          AddressLine2 text
-          AddressLine3 text
+          AddressLine1 text,
+          AddressLine2 text,
+          AddressLine3 text,
           primary key(LocationID))"""
     create_table(db_name,"Location",sql)
 
 def DepartmentLocation():
     sql = """create table DepartmentLocation
           (DepartmentLocationID integer,
-          primary key(DepartmentLocationID))"""
+          LocationID integer,
+          DepartmentID integer,
+          primary key(DepartmentLocationID),
+          foreign key(LocationID) references Location(LocationID),
+          foreign key(DepartmentID) references Department(DepartmentID))"""
     create_table(db_name,"DepartmentLocation",sql)
 
 
 
 if __name__ == "__main__":
     db_name = "Volac.db"
+    StaffTable()
+    HardwareTable()
+    HardwareMake()
+    HardwareModel()
+    DeviceType()
+    StaffHardware()
+    Department()
+    Location()
+    DepartmentLocation()
