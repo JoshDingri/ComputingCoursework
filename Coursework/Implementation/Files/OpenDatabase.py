@@ -17,46 +17,48 @@ class OpenDatabase(QMainWindow):
     def MainLayout(self):
         
         self.grid = QGridLayout()
+        self.horizontal = QHBoxLayout()
         self.verticle = QVBoxLayout()
-        self.verticle2 = QVBoxLayout()
         
         
         DatabaseLbl = QLabel("Database")
-        DatabaseLbl.setFont(QFont("Calibri",15))
+        DatabaseLbl.setFont(QFont("Calibri",20))
         Database_CB = QComboBox()
+        Database_CB.setFixedHeight(30)
         Database_CB.setFixedWidth(150)
 
         SearchLbl = QLabel("Search Fields")
         Search_LE = QLineEdit()
         Search_LE.setFixedWidth(150)
-        SearchLbl.setFont(QFont("Calibri",15))
+        Search_LE.setFixedHeight(25)
+        SearchLbl.setFont(QFont("Calibri",20))
 
         EditDatabase_btn = QPushButton("Edit Database")
         Add_btn = QPushButton("Add Data")
         Remove_btn = QPushButton("Remove Data")
 
-        self.setLayout(self.grid)
+        space = QLabel('')
 
-        self.horizontal.addStretch(1)
-        self.horizontal.addWidget(DatabaseLbl)
-        self.horizontal.addStretch(1)
-        self.horizontal.addWidget(Database_CB)
-        self.horizontal.addStretch(1)
+        self.grid.addWidget(space,1,0)
+        self.grid.addWidget(DatabaseLbl,1,1)
+        self.grid.addWidget(Database_CB,1,2)
+        self.grid.addWidget(space,1,3)
 
-        self.horizontal2.addStretch(1)
-        self.horizontal2.addWidget(SearchLbl)
-        self.horizontal2.addStretch(1)
-        self.horizontal2.addWidget(Search_LE)
-        self.horizontal2.addStretch(1)
-        
-        self.horizontal3.addWidget(EditDatabase_btn)
-        self.horizontal3.addWidget(Add_btn)
-        self.horizontal3.addWidget(Remove_btn)
+        self.grid.addWidget(SearchLbl,2,1)
+        self.grid.addWidget(Search_LE,2,2)
 
+        self.grid.setVerticalSpacing(20)
+
+        self.horizontal.addWidget(EditDatabase_btn)
+        self.horizontal.addWidget(Add_btn)
+        self.horizontal.addWidget(Remove_btn)
+
+        self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
-        self.verticle.addLayout(self.horizontal2)
-        self.verticle.addLayout(self.horizontal3)
+        self.setLayout(self.verticle)
 
+
+        
         self.LayoutWidget = QWidget()
 
         self.LayoutWidget.setLayout(self.verticle)
@@ -69,4 +71,5 @@ if __name__ == "__main__":
     launcher = OpenDatabase()
     launcher.show()
     launcher.raise_()
+    launcher.resize(550,350)
     app.exec_()
