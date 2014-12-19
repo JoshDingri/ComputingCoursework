@@ -44,12 +44,4 @@ class SearchStaff(QMainWindow):
         self.grid.setVerticalSpacing(20)
 
         self.verticle.addLayout(self.grid)
-        self.setLayout(self.verticle)
 
-
-        
-        self.LayoutWidget = QWidget()
-
-        self.LayoutWidget.setLayout(self.verticle)
-
-        self.setCentralWidget(self.LayoutWidget)

@@ -38,10 +38,10 @@ class OpenDatabase(QMainWindow):
         Remove_btn = QPushButton("Remove Data")
 
         space = QLabel('')
-        AddDatabase = QPushButton('Add Database')
-        AddDatabase.setFont(QFont("Calibri",10))
-        AddDatabase.setFixedWidth(80)
-        AddDatabase.setFixedHeight(20)
+        self.AddDatabase = QPushButton('Add Database')
+        self.AddDatabase.setFont(QFont("Calibri",8))
+        self.AddDatabase.setFixedWidth(80)
+        self.AddDatabase.setFixedHeight(20)
 
 
 
@@ -49,7 +49,7 @@ class OpenDatabase(QMainWindow):
         self.grid.addWidget(space,1,0)
         self.grid.addWidget(DatabaseLbl,1,1)
         self.grid.addWidget(Database_CB,1,2)
-        self.grid.addWidget(AddDatabase,1,3)
+        self.grid.addWidget(self.AddDatabase,1,3)
         
 
         self.grid.addWidget(SearchLbl,2,1)
@@ -63,15 +63,9 @@ class OpenDatabase(QMainWindow):
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
-        self.setLayout(self.verticle)
 
+                                                            
 
-        
-        self.LayoutWidget = QWidget()
-
-        self.LayoutWidget.setLayout(self.verticle)
-
-        self.setCentralWidget(self.LayoutWidget)
 
 
 if __name__ == "__main__":
