@@ -8,13 +8,6 @@ class OpenDatabase(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.MenuBar()
-        self.MainLayout()
-
-    def MenuBar(self):
-        MenuBarAdmin.MenuBar(self)
-
-    def MainLayout(self):
         
         self.grid = QGridLayout()
         self.horizontal = QHBoxLayout()
@@ -26,6 +19,10 @@ class OpenDatabase(QMainWindow):
         Database_CB = QComboBox()
         Database_CB.setFixedHeight(30)
         Database_CB.setFixedWidth(150)
+        Items = ['Staff','Hardware','Department']
+        Database_CB.addItems(Items)
+
+
 
         SearchLbl = QLabel("Search Fields")
         Search_LE = QLineEdit()
@@ -33,16 +30,27 @@ class OpenDatabase(QMainWindow):
         Search_LE.setFixedHeight(25)
         SearchLbl.setFont(QFont("Calibri",20))
 
+        self.Back_btn = QPushButton("Back")
+        self.Back_btn.setFixedWidth(50)
+
         EditDatabase_btn = QPushButton("Edit Database")
         Add_btn = QPushButton("Add Data")
         Remove_btn = QPushButton("Remove Data")
 
         space = QLabel('')
+        AddDatabase = QPushButton('Add Database')
+        AddDatabase.setFont(QFont("Calibri",10))
+        AddDatabase.setFixedWidth(80)
+        AddDatabase.setFixedHeight(20)
 
+
+
+        self.grid.addWidget(self.Back_btn,0,0)
         self.grid.addWidget(space,1,0)
         self.grid.addWidget(DatabaseLbl,1,1)
         self.grid.addWidget(Database_CB,1,2)
-        self.grid.addWidget(space,1,3)
+        self.grid.addWidget(AddDatabase,1,3)
+        
 
         self.grid.addWidget(SearchLbl,2,1)
         self.grid.addWidget(Search_LE,2,2)
