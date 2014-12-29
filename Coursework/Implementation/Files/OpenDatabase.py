@@ -3,6 +3,7 @@ from PyQt4.QtGui import *
 import sys
 from MenuBarAdmin import *
 
+
 class OpenDatabase(QMainWindow):
     """Opening database to add, edit and remove"""
 
@@ -14,13 +15,12 @@ class OpenDatabase(QMainWindow):
         self.verticle = QVBoxLayout()
         
         
-        DatabaseLbl = QLabel("Database")
+        DatabaseLbl = QLabel("Table")
         DatabaseLbl.setFont(QFont("Calibri",20))
-        Database_CB = QComboBox()
-        Database_CB.setFixedHeight(30)
-        Database_CB.setFixedWidth(150)
-        Items = ['Staff','Hardware','Department']
-        Database_CB.addItems(Items)
+        self.Database_CB = QComboBox()
+        self.Database_CB.setFixedHeight(30)
+        self.Database_CB.setFixedWidth(150)
+        self.Database_CB.addItems(self.Items)
 
 
 
@@ -38,7 +38,7 @@ class OpenDatabase(QMainWindow):
         Remove_btn = QPushButton("Remove Data")
 
         space = QLabel('')
-        self.AddDatabase = QPushButton('Add Database')
+        self.AddDatabase = QPushButton('Open Database')
         self.AddDatabase.setFont(QFont("Calibri",8))
         self.AddDatabase.setFixedWidth(80)
         self.AddDatabase.setFixedHeight(20)
@@ -48,7 +48,7 @@ class OpenDatabase(QMainWindow):
         self.grid.addWidget(self.Back_btn,0,0)
         self.grid.addWidget(space,1,0)
         self.grid.addWidget(DatabaseLbl,1,1)
-        self.grid.addWidget(Database_CB,1,2)
+        self.grid.addWidget(self.Database_CB,1,2)
         self.grid.addWidget(self.AddDatabase,1,3)
         
 
@@ -63,6 +63,7 @@ class OpenDatabase(QMainWindow):
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
+
 
                                                             
 
