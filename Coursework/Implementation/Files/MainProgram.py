@@ -48,7 +48,7 @@ class CurrentLayoutAdmin(QMainWindow):
         
 
     def OpenDatabaseWidget(self):
-        self.resize(550,350)
+        self.resize(635,420)
         self.OpenDatabaseWindow = OpenDatabase()
         self.OpenDatabaseWidget = QWidget()
         self.OpenDatabaseWidget.setLayout(self.OpenDatabaseWindow.verticle)
@@ -81,7 +81,6 @@ class CurrentLayoutAdmin(QMainWindow):
 
         except FileNotFoundError:
             pass
-
 
 
     def SearchStaff(self):
