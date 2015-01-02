@@ -2,9 +2,10 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
 from AdminMainMenu import *
-from OpenDatabase import *
+from OpenDatabaseWindow import *
 from MenuBarAdmin import *
 from SearchStaffAdmin import *
+from AddDataGUI import *
 import sqlite3
 
 
@@ -60,11 +61,11 @@ class CurrentLayoutAdmin(QMainWindow):
             self.OpenFirst = True
             self.stacked_layout.setCurrentIndex(1)
 
-
             
         
         self.OpenDatabaseWindow.Back_btn.clicked.connect(self.MainMenu)
         self.OpenDatabaseWindow.AddDatabase.clicked.connect(self.BrowseDatabase)
+        self.OpenDatabaseWindow.Add_btn.clicked.connect(self.AddDataGUI)
 
     def BrowseDatabase(self):
         try:
@@ -101,9 +102,14 @@ class CurrentLayoutAdmin(QMainWindow):
         
         SearchStaffWindow.Back_btn.clicked.connect(self.MainMenu)
         
+    def AddDataGUI(self):
+        CurrentCBValue = self.OpenDatabaseWindow.Database_CB.currentText()
+        AddDataGUI = AddDataWindow(CurrentCBValue)
+        AddDataGUI.exec_()
         
         
-
+       
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

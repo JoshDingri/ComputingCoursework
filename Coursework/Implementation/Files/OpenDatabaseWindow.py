@@ -11,6 +11,7 @@ class OpenDatabase(QMainWindow):
     def __init__(self):
         super().__init__()
         self.exists = None
+        self.currentcbvalue = None
         self.grid = QGridLayout()
         self.horizontal = QHBoxLayout()
         self.verticle = QVBoxLayout()
@@ -64,36 +65,35 @@ class OpenDatabase(QMainWindow):
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
-        self.Database_CB.activated[str].connect(self.ChosenTable)
+        self.Database_CB.activated.connect(self.ChosenTableMethod)
 
-    def ChosenTable(self,text):
-        self.CurrentTable = (text)
+    def ChosenTableMethod(self):
+        self.CurrentTable = (self.Database_CB.currentText())
         if self.exists == True:
             self.verticle.removeWidget(self.table)
-
         try:
+
             with sqlite3.connect("Volac.db") as db:
-                cursor = db.cursor()
-                sql = "SELECT * FROM {0}".format(self.CurrentTable)
-                cursor.execute(sql)
-                    
+                    cursor = db.cursor()
+                    sql = "SELECT * FROM {0}".format(self.CurrentTable)
+                    cursor.execute(sql)
+
             col = [tuple[0] for tuple in cursor.description]
             self.table = QTableWidget(2,len(col))
-                    
+                        
             self.table.setHorizontalHeaderLabels(col)
             self.table.setRowCount(0)
-                    
+                        
             for row, form in enumerate(cursor):
                 self.table.insertRow(row)
                 for column, item in enumerate(form):
                     self.table.setItem(row, column, QTableWidgetItem(str(item)))
-                            
+                                
             self.verticle.addWidget(self.table)
             self.exists = True
         except sqlite3.OperationalError:
             print('Table Could Not Be Made')
-        
-           
+        self.currentcbvalue = self.CurrentTable
             
 
 
