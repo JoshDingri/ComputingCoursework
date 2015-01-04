@@ -10,6 +10,7 @@ class OpenDatabase(QMainWindow):
 
     def __init__(self):
         super().__init__()
+        self.EditDB = False
         self.exists = None
         self.currentcbvalue = None
         self.grid = QGridLayout()
@@ -35,7 +36,7 @@ class OpenDatabase(QMainWindow):
         self.Back_btn = QPushButton("Back")
         self.Back_btn.setFixedWidth(50)
 
-        EditDatabase_btn = QPushButton("Edit Database")
+        self.EditDatabase_btn = QPushButton("Edit Database")
         self.Add_btn = QPushButton("Add Data")
         Remove_btn = QPushButton("Remove Data")
 
@@ -59,13 +60,14 @@ class OpenDatabase(QMainWindow):
 
         self.grid.setVerticalSpacing(20)
 
-        self.horizontal.addWidget(EditDatabase_btn)
+        self.horizontal.addWidget(self.EditDatabase_btn)
         self.horizontal.addWidget(self.Add_btn)
         self.horizontal.addWidget(Remove_btn)
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
         self.Database_CB.activated.connect(self.ChosenTableMethod)
+        self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
 
     def ChosenTableMethod(self):
         self.CurrentTable = (self.Database_CB.currentText())
@@ -74,27 +76,46 @@ class OpenDatabase(QMainWindow):
         try:
 
             with sqlite3.connect("Volac.db") as db:
-                    cursor = db.cursor()
+                    self.cursor = db.cursor()
                     sql = "SELECT * FROM {0}".format(self.CurrentTable)
-                    cursor.execute(sql)
+                    self.cursor.execute(sql)
 
-            col = [tuple[0] for tuple in cursor.description]
+            col = [tuple[0] for tuple in self.cursor.description]
             self.table = QTableWidget(2,len(col))
                         
             self.table.setHorizontalHeaderLabels(col)
             self.table.setRowCount(0)
-                        
-            for row, form in enumerate(cursor):
-                self.table.insertRow(row)
-                for column, item in enumerate(form):
-                    self.table.setItem(row, column, QTableWidgetItem(str(item)))
-                                
+
+            if self.EditDB == True:
+                for self.row, form in enumerate(self.cursor):
+                    self.table.insertRow(self.row)
+                    for self.column, item in enumerate(form):
+                        self.item = QTableWidgetItem(str(item))
+                        self.table.setItem(self.row, self.column,self.item)
+
+            else:            
+                for self.row, form in enumerate(self.cursor):
+                    self.table.insertRow(self.row)
+                    for self.column, item in enumerate(form):
+                        self.item = QTableWidgetItem(str(item))
+                        self.item.setFlags(Qt.ItemIsEnabled)
+                        self.table.setItem(self.row, self.column,self.item)
+                            
             self.verticle.addWidget(self.table)
             self.exists = True
         except sqlite3.OperationalError:
             print('Table Could Not Be Made')
         self.currentcbvalue = self.CurrentTable
-            
+
+    def EditDatabaseClicked(self):
+        if self.EditDB == True:
+            self.EditDB = False
+        else:
+            self.EditDB = True
+        self.ChosenTableMethod()
+ 
+
+        
 
 
 
