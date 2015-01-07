@@ -10,7 +10,8 @@ import sqlite3
 
 
 class CurrentLayoutAdmin(QMainWindow):
-    """This will set the current layout"""
+    """The purpose of the main program is to import all other python documents
+       and run them from the different methods."""
     
     def __init__(self):
         super().__init__()

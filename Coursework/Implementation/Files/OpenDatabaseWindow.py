@@ -11,6 +11,7 @@ class OpenDatabase(QMainWindow):
     def __init__(self):
         super().__init__()
         self.EditDB = False
+        self.DeleteRC = False
         self.exists = None
         self.currentcbvalue = None
         self.grid = QGridLayout()
@@ -37,7 +38,7 @@ class OpenDatabase(QMainWindow):
 
         self.EditDatabase_btn = QPushButton("Edit Database")
         self.Add_btn = QPushButton("Add Data")
-        Remove_btn = QPushButton("Remove Data")
+        self.Remove_btn = QPushButton("Remove Data")
 
         space = QLabel('')
         self.AddDatabase = QPushButton('Open Database')
@@ -61,12 +62,13 @@ class OpenDatabase(QMainWindow):
 
         self.horizontal.addWidget(self.EditDatabase_btn)
         self.horizontal.addWidget(self.Add_btn)
-        self.horizontal.addWidget(Remove_btn)
+        self.horizontal.addWidget(self.Remove_btn)
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
         self.Database_CB.activated.connect(self.ChosenTableMethod)
         self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
+        self.Remove_btn.clicked.connect(self.DeleteRecordsClicked)
         
 
     def ChosenTableMethod(self):
@@ -93,7 +95,13 @@ class OpenDatabase(QMainWindow):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form): ##Inserts amount of columns needed
                         self.item = QTableWidgetItem(str(item)) 
-                        self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table 
+                        self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
+
+            elif self.DeleteRC == True:
+                self.table.insertColumn(self.column+1)
+                for self.row, form in enumerate(self.cursor): 
+                    for self.column, item in enumerate(form): 
+                        self.table.setCellWidget(self.row,7,QWidget(self.delete_btn))
 
             ##If the editdb is not active
                         
@@ -119,7 +127,17 @@ class OpenDatabase(QMainWindow):
         else:
             self.EditDB = True
         self.ChosenTableMethod()
- 
+
+    def DeleteRecordsClicked(self):
+        """Allows deletion of records in QTableWidget and Database"""
+        self.DeleteRC = True
+        
+        self.delete_btn = QPushButton("Delete")
+        self.ChosenTableMethod()
+        
+        
+        
+        
 
         
 
