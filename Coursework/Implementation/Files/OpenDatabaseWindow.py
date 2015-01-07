@@ -23,7 +23,6 @@ class OpenDatabase(QMainWindow):
         self.Database_CB = QComboBox()
         self.Database_CB.setFixedHeight(30)
         self.Database_CB.setFixedWidth(150)
-        self.Database_CB.addItems(self.Items)
 
 
 
@@ -68,6 +67,7 @@ class OpenDatabase(QMainWindow):
         self.verticle.addLayout(self.horizontal)
         self.Database_CB.activated.connect(self.ChosenTableMethod)
         self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
+        
 
     def ChosenTableMethod(self):
         self.CurrentTable = (self.Database_CB.currentText())
@@ -86,28 +86,34 @@ class OpenDatabase(QMainWindow):
             self.table.setHorizontalHeaderLabels(col)
             self.table.setRowCount(0)
 
-            if self.EditDB == True:
-                for self.row, form in enumerate(self.cursor):
-                    self.table.insertRow(self.row)
-                    for self.column, item in enumerate(form):
-                        self.item = QTableWidgetItem(str(item))
-                        self.table.setItem(self.row, self.column,self.item)
+            ##If the editdb button is active
 
-            else:            
+            if self.EditDB == True:             
+                for self.row, form in enumerate(self.cursor): ##Inserts amount of rows needed, gets from database
+                    self.table.insertRow(self.row)
+                    for self.column, item in enumerate(form): ##Inserts amount of columns needed
+                        self.item = QTableWidgetItem(str(item)) 
+                        self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table 
+
+            ##If the editdb is not active
+                        
+            else:                      
                 for self.row, form in enumerate(self.cursor):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form):
                         self.item = QTableWidgetItem(str(item))
-                        self.item.setFlags(Qt.ItemIsEnabled)
+                        self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                         self.table.setItem(self.row, self.column,self.item)
                             
             self.verticle.addWidget(self.table)
-            self.exists = True
+            
+            self.exists = True          ##This is important so table views do not keep being added, they get replaced
+            
         except sqlite3.OperationalError:
             print('Table Could Not Be Made')
         self.currentcbvalue = self.CurrentTable
 
-    def EditDatabaseClicked(self):
+    def EditDatabaseClicked(self): ## Boolean statements to say whether the button has been clicked
         if self.EditDB == True:
             self.EditDB = False
         else:

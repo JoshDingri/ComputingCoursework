@@ -14,11 +14,11 @@ class CurrentLayoutAdmin(QMainWindow):
     
     def __init__(self):
         super().__init__()
-        OpenDatabase.Items = []
-        self.SearchFirst = False
+        OpenDatabase.Items = [] ##For later use, holds dropdown box values
+        self.SearchFirst = False ##Temporary method for choosing which qstackindex comes first
         self.OpenFirst = False
         self.MainMenu()
-        self.MenuBar()
+        self.MenuBar() ## Calls menubar definition
         self.stacked_layout = QStackedLayout()
         self.stacked_layout.addWidget(self.MainMenuWidget)
         self.central_widget = QWidget()
@@ -29,12 +29,12 @@ class CurrentLayoutAdmin(QMainWindow):
 
 
     def MenuBar(self):       
-        MenuBarAdmin.MenuBar(self)
+        MenuBarAdmin.MenuBar(self) ##Calls menubar from another python file
         
         
     def MainMenu(self):
         try:
-            self.stacked_layout.setCurrentIndex(0)
+            self.stacked_layout.setCurrentIndex(0) ##Temporary check to see if qstackindex is being used already
             
         except AttributeError:
             
@@ -56,7 +56,7 @@ class CurrentLayoutAdmin(QMainWindow):
         self.stacked_layout.addWidget(self.OpenDatabaseWidget)
         
         if self.SearchFirst:
-            self.stacked_layout.setCurrentIndex(2)
+            self.stacked_layout.setCurrentIndex(2) ##Temporary check to see if qstackindex is being used already
         else:
             self.OpenFirst = True
             self.stacked_layout.setCurrentIndex(1)
@@ -67,18 +67,18 @@ class CurrentLayoutAdmin(QMainWindow):
         self.OpenDatabaseWindow.AddDatabase.clicked.connect(self.BrowseDatabase)
         self.OpenDatabaseWindow.Add_btn.clicked.connect(self.AddDataGUI)
 
-    def BrowseDatabase(self):
+    def BrowseDatabase(self): ###### This opens the file finder to choose the database
         try:
             filename = QFileDialog.getOpenFileName(self,'Open File')
             f = open(filename,'r')
             with sqlite3.connect(filename) as db:
                 cursor = db.cursor()
                 cursor.execute("SELECT name FROM sqlite_master WHERE type = 'table';")
-                items = cursor.fetchall()
+                items = cursor.fetchall() ### Gets all the table names
                 for count in range(len(items)):
                     items[count] = str(items[count])
                     items[count] = items[count].strip("()'',")
-                    self.OpenDatabaseWindow.Database_CB.addItem(items[count])
+                    self.OpenDatabaseWindow.Database_CB.addItem(items[count]) ## Adds all the tables to the dropdown box
 
         except FileNotFoundError:
             pass
@@ -97,7 +97,7 @@ class CurrentLayoutAdmin(QMainWindow):
             self.stacked_layout.setCurrentIndex(2)
         else:
             self.stacked_layout.setCurrentIndex(1)
-            self.SearchFirst = True
+            self.SearchFirst = True ##Temporary check to see if qstackindex is being used already
 
         
         SearchStaffWindow.Back_btn.clicked.connect(self.MainMenu)
@@ -105,7 +105,7 @@ class CurrentLayoutAdmin(QMainWindow):
     def AddDataGUI(self):
         CurrentCBValue = self.OpenDatabaseWindow.Database_CB.currentText()
         AddDataGUI = AddDataWindow(CurrentCBValue)
-        AddDataGUI.exec_()
+        AddDataGUI.exec_() ## executes dialog box
         
         
        
