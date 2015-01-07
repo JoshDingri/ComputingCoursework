@@ -98,10 +98,16 @@ class OpenDatabase(QMainWindow):
                         self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
 
             elif self.DeleteRC == True:
+                self.delete_btn = QPushButton('hi')
+                for self.row, form in enumerate(self.cursor):
+                    self.table.insertRow(self.row)
+                    for self.column, item in enumerate(form):
+                        self.item = QTableWidgetItem(str(item))
+                        self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                        self.table.setItem(self.row, self.column,self.item)
                 self.table.insertColumn(self.column+1)
-                for self.row, form in enumerate(self.cursor): 
-                    for self.column, item in enumerate(form): 
-                        self.table.setCellWidget(self.row,7,QWidget(self.delete_btn))
+                for count in range(self.table.rowCount()):
+                        self.table.setCellWidget(count,6,self.delete_btn)
 
             ##If the editdb is not active
                         
@@ -132,7 +138,6 @@ class OpenDatabase(QMainWindow):
         """Allows deletion of records in QTableWidget and Database"""
         self.DeleteRC = True
         
-        self.delete_btn = QPushButton("Delete")
         self.ChosenTableMethod()
         
         
