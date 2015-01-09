@@ -61,19 +61,26 @@ class OpenDatabase(QMainWindow):
 
         self.grid.setVerticalSpacing(20)
 
+        self.iconbutton = QPushButton()
+        pixmap = QPixmap('search.png')
+        ButtonIcon = QIcon(pixmap)
+        self.iconbutton.setIcon(ButtonIcon)
+        self.iconbutton.setIconSize(QSize(25,25))
+
         self.horizontal.addWidget(self.EditDatabase_btn)
         self.horizontal.addWidget(self.Add_btn)
         self.horizontal.addWidget(self.Remove_btn)
+        self.grid.addWidget(self.iconbutton,2,3)
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
         self.Database_CB.activated.connect(self.ChosenTableMethod)
         self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
         self.Remove_btn.clicked.connect(self.DeleteRecordsClicked)
+        self.iconbutton.clicked.connect(self.SearchMethod)
         
 
     def ChosenTableMethod(self):
-        self.Search_LE.textChanged[str].connect(self.SearchMethod)
         self.CurrentTable = (self.Database_CB.currentText())
         if self.exists == True:
             self.verticle.removeWidget(self.table)
@@ -133,7 +140,8 @@ class OpenDatabase(QMainWindow):
             print('Table Could Not Be Made')
         self.currentcbvalue = self.CurrentTable
 
-    def SearchMethod(self,text):
+    def SearchMethod(self):
+        text = self.Search_LE.text()
         if text == '':
             itemlist = self.table.findItems(text,Qt.MatchStartsWith)
             for count in range(len(itemlist)):
