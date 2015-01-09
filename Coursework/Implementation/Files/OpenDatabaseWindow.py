@@ -79,6 +79,7 @@ class OpenDatabase(QMainWindow):
         self.Remove_btn.clicked.connect(self.DeleteRecordsClicked)
         self.iconbutton.clicked.connect(self.SearchMethod)
         
+        
 
     def ChosenTableMethod(self):
         self.CurrentTable = (self.Database_CB.currentText())
