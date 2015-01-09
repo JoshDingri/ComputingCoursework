@@ -3,7 +3,7 @@ from PyQt4.QtGui import *
 import sys
 from MenuBarAdmin import *
 import sqlite3
-
+from MainProgram import *
 
 class OpenDatabase(QMainWindow):
     """Opening database to add, edit and remove"""
@@ -22,15 +22,16 @@ class OpenDatabase(QMainWindow):
         DatabaseLbl = QLabel("Table")
         DatabaseLbl.setFont(QFont("Calibri",20))
         self.Database_CB = QComboBox()
+        self.Database_CB.addItem('-')
         self.Database_CB.setFixedHeight(30)
         self.Database_CB.setFixedWidth(150)
 
 
 
         SearchLbl = QLabel("Search Fields")
-        Search_LE = QLineEdit()
-        Search_LE.setFixedWidth(150)
-        Search_LE.setFixedHeight(25)
+        self.Search_LE = QLineEdit()
+        self.Search_LE.setFixedWidth(150)
+        self.Search_LE.setFixedHeight(25)
         SearchLbl.setFont(QFont("Calibri",20))
 
         self.Back_btn = QPushButton("Back")
@@ -56,7 +57,7 @@ class OpenDatabase(QMainWindow):
         
 
         self.grid.addWidget(SearchLbl,2,1)
-        self.grid.addWidget(Search_LE,2,2)
+        self.grid.addWidget(self.Search_LE,2,2)
 
         self.grid.setVerticalSpacing(20)
 
@@ -72,6 +73,7 @@ class OpenDatabase(QMainWindow):
         
 
     def ChosenTableMethod(self):
+        self.Search_LE.textChanged[str].connect(self.SearchMethod)
         self.CurrentTable = (self.Database_CB.currentText())
         if self.exists == True:
             self.verticle.removeWidget(self.table)
@@ -98,7 +100,6 @@ class OpenDatabase(QMainWindow):
                         self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
 
             elif self.DeleteRC == True:
-                self.delete_btn = QPushButton('hi')
                 for self.row, form in enumerate(self.cursor):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form):
@@ -106,18 +107,23 @@ class OpenDatabase(QMainWindow):
                         self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                         self.table.setItem(self.row, self.column,self.item)
                 self.table.insertColumn(self.column+1)
+                last_column = self.table.columnCount()
                 for count in range(self.table.rowCount()):
-                        self.table.setCellWidget(count,6,self.delete_btn)
+                        self.delete_btn = QPushButton('Delete')
+                        self.table.setCellWidget(count,last_column-1,self.delete_btn)   ##Adds a button to every row (count) and to the last column
+
 
             ##If the editdb is not active
+
                         
-            else:                      
+            else:
                 for self.row, form in enumerate(self.cursor):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form):
                         self.item = QTableWidgetItem(str(item))
                         self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                         self.table.setItem(self.row, self.column,self.item)
+
                             
             self.verticle.addWidget(self.table)
             
@@ -127,16 +133,34 @@ class OpenDatabase(QMainWindow):
             print('Table Could Not Be Made')
         self.currentcbvalue = self.CurrentTable
 
+    def SearchMethod(self,text):
+        if text == '':
+            itemlist = self.table.findItems(text,Qt.MatchStartsWith)
+            for count in range(len(itemlist)):
+                itemlist[count].setBackgroundColor(QColor('White'))
+        else:
+            itemlist = self.table.findItems(text,Qt.MatchStartsWith)
+            for count in range(len(itemlist)):
+                itemlist[count].setBackgroundColor(QColor('Yellow'))
+
     def EditDatabaseClicked(self): ## Boolean statements to say whether the button has been clicked
         if self.EditDB == True:
             self.EditDB = False
         else:
             self.EditDB = True
+            self.savechanges = QAction("Save Changes",self)
+            self.tool_bar = QToolBar("Complete Changes")
+            self.tool_bar.addAction(self.savechanges)
+            self.addToolBar(self.tool_bar)
+            
         self.ChosenTableMethod()
 
     def DeleteRecordsClicked(self):
         """Allows deletion of records in QTableWidget and Database"""
-        self.DeleteRC = True
+        if self.DeleteRC == True:
+            self.DeleteRC = False
+        else:
+            self.DeleteRC = True
         
         self.ChosenTableMethod()
         

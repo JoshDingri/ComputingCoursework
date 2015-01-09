@@ -15,6 +15,9 @@ class AdminMainMenu(QWidget):
         self.OpenDatabaseBtn = QPushButton("Open Database")
         self.SearchStaffBtn = QPushButton("Search for Staff")
 
+        self.OpenDatabaseBtn.setFixedHeight(70)
+        self.SearchStaffBtn.setFixedHeight(70)
+
         self.horizontal_layout.addWidget(self.OpenDatabaseBtn)
         self.horizontal_layout.addWidget(self.SearchStaffBtn)
 

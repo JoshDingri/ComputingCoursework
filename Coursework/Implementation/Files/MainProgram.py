@@ -34,23 +34,24 @@ class CurrentLayoutAdmin(QMainWindow):
         
         
     def MainMenu(self):
+        self.resize(650,320)
         try:
             self.stacked_layout.setCurrentIndex(0) ##Temporary check to see if qstackindex is being used already
             
         except AttributeError:
             
-            self.resize(550,270)
             MainMenuWindow = AdminMainMenu()
             self.MainMenuWidget = QWidget()
 
             self.MainMenuWidget.setLayout(MainMenuWindow.horizontal_layout)
             
-            MainMenuWindow.OpenDatabaseBtn.clicked.connect(self.OpenDatabaseWidget)
+            MainMenuWindow.OpenDatabaseBtn.clicked.connect(self.OpenDatabaseWidget_Method)
             MainMenuWindow.SearchStaffBtn.clicked.connect(self.SearchStaff)
         
 
-    def OpenDatabaseWidget(self):
-        self.resize(635,420)
+    def OpenDatabaseWidget_Method(self):
+        self.resize(770,500)
+        self.move (230,100)
         self.OpenDatabaseWindow = OpenDatabase()
         self.OpenDatabaseWidget = QWidget()
         self.OpenDatabaseWidget.setLayout(self.OpenDatabaseWindow.verticle)
@@ -67,6 +68,16 @@ class CurrentLayoutAdmin(QMainWindow):
         self.OpenDatabaseWindow.Back_btn.clicked.connect(self.MainMenu)
         self.OpenDatabaseWindow.AddDatabase.clicked.connect(self.BrowseDatabase)
         self.OpenDatabaseWindow.Add_btn.clicked.connect(self.AddDataGUI)
+ #       self.OpenDatabaseWindow.Remove_btn.clicked.connect(self.RemoveData_btnClick)
+
+
+    def RemoveData_btnClick(self):
+        if self.OpenDatabaseWindow.DeleteRC == True:
+            self.resize(765,420)
+        else:
+            self.resize(635,420)
+
+            
 
     def BrowseDatabase(self): ###### This opens the file finder to choose the database
         try:
@@ -83,6 +94,8 @@ class CurrentLayoutAdmin(QMainWindow):
 
         except FileNotFoundError:
             pass
+
+    
 
 
     def SearchStaff(self):
@@ -109,7 +122,7 @@ class CurrentLayoutAdmin(QMainWindow):
         AddDataGUI.exec_() ## executes dialog box
         
         
-       
+
         
 
 if __name__ == "__main__":
