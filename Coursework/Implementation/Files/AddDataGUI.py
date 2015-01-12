@@ -39,14 +39,15 @@ class AddDataWindow(QDialog):
                     if PurchaseDateExist == True:
                         if name == '':   ##This replaces all the spaces with line edits
                             self.LE = QLineEdit()
-                            self.LE.setText('hi')
+                            self.LE.setText('')
                             pixmap = QPixmap('calendar-icon.png')
-                            CalendarIcon = QIcon(pixmap)
-                            self.LE.setIcon(CalendarIcon)
-                            self.LE.setIconSize(QSize(25,25))
+                            pixmap = pixmap.scaled(QSize(15,15), Qt.KeepAspectRatio)
+                            self.calander = QLabel()
+                            self.calander.setPixmap(pixmap)
                             
                             self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
                             self.grid.addWidget(self.linelist[count],*position)
+                            self.grid.addWidget(self.calander,*position)
                             count+=1
                             PurchaseDateExist = False
                     

@@ -80,9 +80,9 @@ class OpenDatabase(QMainWindow):
         self.setCentralWidget(window_widget)
         
         self.Database_CB.activated.connect(self.ChosenTableMethod) 
-        self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
         self.Remove_btn.clicked.connect(self.DeleteRecordsClicked)
         self.iconbutton.clicked.connect(self.SearchMethod)
+        self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
 
         rspacer = QWidget()
         rspacer.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
@@ -101,14 +101,14 @@ class OpenDatabase(QMainWindow):
         self.addToolBar(Qt.BottomToolBarArea,self.EditDB_ToolBar)
         self.EditDB_ToolBar.setFont(QFont('',11))
         self.EditDB_ToolBar.setVisible(False)
+        self.savechanges.triggered.connect(self.EditDB_SaveChanges)
+        self.cancel.triggered.connect(self.EditDB_Cancel)
         
 
         
         
 
     def ChosenTableMethod(self):
-        self.savechanges.triggered.connect(self.EditDB_SaveChanges)
-        self.cancel.triggered.connect(self.EditDB_Cancel)
             
         self.CurrentTable = (self.Database_CB.currentText())
         if self.exists == True:
@@ -168,6 +168,9 @@ class OpenDatabase(QMainWindow):
         except sqlite3.OperationalError:
             print('Table Could Not Be Made')
         self.currentcbvalue = self.CurrentTable
+        self.table.cellChanged.connect(self.cellchanged)
+
+
 
     def SearchMethod(self):
         text = self.Search_LE.text()
@@ -180,21 +183,22 @@ class OpenDatabase(QMainWindow):
             for count in range(len(itemlist)):
                 itemlist[count].setBackgroundColor(QColor('Yellow'))
 
+    def cellchanged(self):
+        print(self.table.currentItem().text())
+
     def EditDatabaseClicked(self): ## Boolean statements to say whether the button has been clicked
         self.EditDB = True
-        self.ChosenTableMethod()
         self.EditDB_ToolBar.setVisible(True)
+        self.ChosenTableMethod()
 
     def EditDB_SaveChanges(self):
         self.EditDB = False
         self.EditDB_ToolBar.setVisible(False)
-        print('saved')
         self.ChosenTableMethod()
         
     def EditDB_Cancel(self):
         self.EditDB = False
         self.EditDB_ToolBar.setVisible(False)
-        print('Cancel')
         self.ChosenTableMethod()
 
     def DeleteRecordsClicked(self):
