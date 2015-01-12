@@ -23,7 +23,7 @@ Hardware Allocation Database
 \item IT staff have admin rights to the system. They will be able to view everyones information and are the only people who may edit information on the system.
 \item Once logged in they will be presented with a user interface with buttons allowing them to open a database or search for staff.
 \item All IT staff will share a username and password.
-\item The search function will take the user to an interface which will allow them to search for a staff member and be shown which hardware devices they own. This search could also be performed by going to the staff database and using the search function there, but this may be used frequently and so is placed here for convience.
+\item The search function will take the user to an interface which will allow them to search for a staff member and be shown which hardware devices they own. This search could also be performed by going to the staff database and using the search function there, but this may be used frequently and so is placed here for convenience.
 \item The open database button will take them to a user interface that will have a dropdown box allowing them to pick which database to view. There will be Edit, Add and Remove options available when a database is shown. A search button will also be on this screen to allow the user to search for a specific field.
 \item The edit database will allow the user to change information on the database.
 \item The add data will allow the user to add new records
@@ -59,9 +59,9 @@ Hardware Allocation Database
 \item The login screen will have a username field and a password field. There will also be two buttons, one to login and the other will be "Forgot Your Password?".
 \item The "Forgot Your Password?" button will take the user to another interface which will ask for their Volac (company) email address, Forename and Surname. This information will be sent to the IT staff who can review it and email the user another password to use or tell them what their password was. It is important to note that all Volac staff have the same buisness email (for example XXX.Volac.com), this means SMTP settings can be set up easily in Python. This process will be easier than asking IT Staff directly.
 \item Normal staff all have their own username and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
-\item Line manager's share the same username if they are part of the same department and location, the password they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
-\item All IT staff will share a username and password to have admin rights.
-\item There are 100,000 combinations on a 5 digit number (10$^5$) which will be more than enough for the company (if I was to use this mehtod), it will be best to start from the left and issue 10000 to IT staff and start with 20000 for other staff (and proceed with 20001, 20002, ... 20010...)
+\item Line manager's all have their own username and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
+\item All IT staff (in the same location) will share a username and password to have admin rights. Although sharing passwords/usernames is a security risk, the IT staff will have access to changing and giving staff usernames and passwords, therefore there is no purpose of using different logins for IT staff. However this can be discussed with my client if it is an issue.
+\item There are 100,000 combinations on a 5 digit number (10$^5$) which will be more than enough for the company (if I was to use this method), it will be best to start from the left and issue 10000 to IT staff and start with 20000 for other staff (and proceed with 20001, 20002, ... 20010...)
 \end{itemize}
 
 \
@@ -191,7 +191,7 @@ Hardware Allocation Database
 
 \section {Hardware Specification}
 
-The system will be stored onto a server stored in the workplace which is perfectly capable to handle the system, the specs are as followed:
+The system will be designed to be stored onto a server which will be stored in the workplace which should be perfectly capable to handle the system, the specs are as followed:
 \begin{itemize}
 \item HP DL360
 \item Windows 2003 (can run any operating system required)
@@ -201,8 +201,7 @@ The system will be stored onto a server stored in the workplace which is perfect
 \end{itemize}
 The server is stored in a server room with high ventilation and fans operated 24/7. This is a huge benefit because the system can be running at all times so people can access the database. Preferably the overall model will be client-server and each user will have their own login for security. All users should connect using clients on local computers and will not directly access the server.
 
-Users will connect to the system using their own computers at the workplace. These computers all have Windows 7 installed and run at the resolution of 1920x1080. The monitor sizes range from different locations, but the smallest would be 21" LCD monitors and the largest would be 27". These sizes will not be a problem since the application can fit on these monitors. All computers have a 
-mouse, which is required for clicking the interface buttons, and a keyboard which is required for entering information. This system will not be developed for touch screen devices. The data for the program will be held on a hard drive inside the server that can be accessed by everyone who is connected to it. The company will not need any additional hardware to run the proposed system.
+Users will connect to the system using their own computers at the workplace. These computers all have Windows 7 installed and run at the resolution of 1920x1080. The monitor sizes range from different locations, but the smallest would be 21" LCD monitors and the largest would be 27". These sizes will not be a problem since the application will be designed to fit on these monitors. All computers have a mouse, which is required for clicking the interface buttons, and a keyboard which is required for entering information. This system will not be developed for touch screen devices. The data for the program will be held on a hard drive inside the server that can be accessed by everyone who is connected to it. The company will not need any additional hardware to run the proposed system.
 
 \section{Program Structure}
 \subsection{Top-down design structure charts}
