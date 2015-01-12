@@ -20,11 +20,11 @@ class CurrentLayoutAdmin(QMainWindow):
         self.OpenFirst = False
         self.MainMenu()
         self.MenuBar() ## Calls menubar definition
-        self.stacked_layout = QStackedLayout()
-        self.stacked_layout.addWidget(self.MainMenuWidget)
-        self.central_widget = QWidget()
-        self.central_widget.setLayout(self.stacked_layout)
-        self.setCentralWidget(self.central_widget)
+##        self.stacked_layout = QStackedLayout()
+##        self.stacked_layout.addWidget(self.MainMenuWidget)
+##        self.central_widget = QWidget()
+##        self.central_widget.setLayout(self.stacked_layout)
+##        self.setCentralWidget(self.central_widget)
     
 
 
@@ -35,34 +35,19 @@ class CurrentLayoutAdmin(QMainWindow):
         
     def MainMenu(self):
         self.resize(650,320)
-        try:
-            self.stacked_layout.setCurrentIndex(0) ##Temporary check to see if qstackindex is being used already
-            
-        except AttributeError:
-            
-            MainMenuWindow = AdminMainMenu()
-            self.MainMenuWidget = QWidget()
+        MainMenuWindow = AdminMainMenu()
+        self.setCentralWidget(MainMenuWindow)
 
-            self.MainMenuWidget.setLayout(MainMenuWindow.horizontal_layout)
             
-            MainMenuWindow.OpenDatabaseBtn.clicked.connect(self.OpenDatabaseWidget_Method)
-            MainMenuWindow.SearchStaffBtn.clicked.connect(self.SearchStaff)
+        MainMenuWindow.OpenDatabaseBtn.clicked.connect(self.OpenDatabaseWidget_Method)
+        MainMenuWindow.SearchStaffBtn.clicked.connect(self.SearchStaff)
         
 
     def OpenDatabaseWidget_Method(self):
-        self.resize(770,500)
-        self.move (230,100)
         self.OpenDatabaseWindow = OpenDatabase()
-        self.OpenDatabaseWidget = QWidget()
-        self.OpenDatabaseWidget.setLayout(self.OpenDatabaseWindow.verticle)
-        self.stacked_layout.addWidget(self.OpenDatabaseWidget)
-        
-        if self.SearchFirst:
-            self.stacked_layout.setCurrentIndex(2) ##Temporary check to see if qstackindex is being used already
-        else:
-            self.OpenFirst = True
-            self.stacked_layout.setCurrentIndex(1)
-
+        self.setCentralWidget(self.OpenDatabaseWindow)
+        self.resize(770,500)
+        self.move (500,180)
             
         
         self.OpenDatabaseWindow.Back_btn.clicked.connect(self.MainMenu)
@@ -102,16 +87,7 @@ class CurrentLayoutAdmin(QMainWindow):
         
         self.resize(550,100)
         SearchStaffWindow = SearchStaff()
-        
-        self.SearchStaffWidget = QWidget()
-        self.SearchStaffWidget.setLayout(SearchStaffWindow.verticle)
-        self.stacked_layout.addWidget(self.SearchStaffWidget)
-        
-        if self.OpenFirst:
-            self.stacked_layout.setCurrentIndex(2)
-        else:
-            self.stacked_layout.setCurrentIndex(1)
-            self.SearchFirst = True ##Temporary check to see if qstackindex is being used already
+        self.setCentralWidget(SearchStaffWindow)
 
         
         SearchStaffWindow.Back_btn.clicked.connect(self.MainMenu)

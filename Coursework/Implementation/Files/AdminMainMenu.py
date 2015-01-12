@@ -4,7 +4,7 @@ import sys
 from MenuBarAdmin import *
 
 
-class AdminMainMenu(QWidget):
+class AdminMainMenu(QMainWindow):
     """The admin's main menu screen"""
 
     def __init__(self):
@@ -20,6 +20,11 @@ class AdminMainMenu(QWidget):
 
         self.horizontal_layout.addWidget(self.OpenDatabaseBtn)
         self.horizontal_layout.addWidget(self.SearchStaffBtn)
+
+        
+        window_widget = QWidget()
+        window_widget.setLayout(self.horizontal_layout)
+        self.setCentralWidget(window_widget)
 
 
         

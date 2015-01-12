@@ -19,30 +19,30 @@ class OpenDatabase(QMainWindow):
         self.verticle = QVBoxLayout()
         
         
-        DatabaseLbl = QLabel("Table")
+        DatabaseLbl = QLabel("Table",self)
         DatabaseLbl.setFont(QFont("Calibri",20))
-        self.Database_CB = QComboBox()
+        self.Database_CB = QComboBox(self)
         self.Database_CB.addItem('-')
         self.Database_CB.setFixedHeight(30)
         self.Database_CB.setFixedWidth(150)
 
 
 
-        SearchLbl = QLabel("Search Fields")
-        self.Search_LE = QLineEdit()
+        SearchLbl = QLabel("Search Fields",self)
+        self.Search_LE = QLineEdit(self)
         self.Search_LE.setFixedWidth(150)
         self.Search_LE.setFixedHeight(25)
         SearchLbl.setFont(QFont("Calibri",20))
 
-        self.Back_btn = QPushButton("Back")
+        self.Back_btn = QPushButton("Back",self)
         self.Back_btn.setFixedWidth(50)
 
-        self.EditDatabase_btn = QPushButton("Edit Database")
-        self.Add_btn = QPushButton("Add Data")
-        self.Remove_btn = QPushButton("Remove Data")
+        self.EditDatabase_btn = QPushButton("Edit Database",self)
+        self.Add_btn = QPushButton("Add Data",self)
+        self.Remove_btn = QPushButton("Remove Data",self)
 
-        space = QLabel('')
-        self.AddDatabase = QPushButton('Open Database')
+        space = QLabel('',self)
+        self.AddDatabase = QPushButton('Open Database',self)
         self.AddDatabase.setFont(QFont("Calibri",8))
         self.AddDatabase.setFixedWidth(80)
         self.AddDatabase.setFixedHeight(20)
@@ -61,7 +61,7 @@ class OpenDatabase(QMainWindow):
 
         self.grid.setVerticalSpacing(20)
 
-        self.iconbutton = QPushButton()
+        self.iconbutton = QPushButton(self)
         pixmap = QPixmap('search.png')
         ButtonIcon = QIcon(pixmap)
         self.iconbutton.setIcon(ButtonIcon)
@@ -74,14 +74,42 @@ class OpenDatabase(QMainWindow):
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
-        self.Database_CB.activated.connect(self.ChosenTableMethod)
+
+        window_widget = QWidget()
+        window_widget.setLayout(self.verticle)
+        self.setCentralWidget(window_widget)
+        
+        self.Database_CB.activated.connect(self.ChosenTableMethod) 
         self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
         self.Remove_btn.clicked.connect(self.DeleteRecordsClicked)
         self.iconbutton.clicked.connect(self.SearchMethod)
+
+        rspacer = QWidget()
+        rspacer.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
+
+        lspacer = QWidget()
+        lspacer.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
+        
+        self.savechanges = QAction("Save Changes",self)
+        self.cancel = QAction("Cancel",self)
+        self.EditDB_ToolBar = QToolBar("Complete Changes")
+        self.EditDB_ToolBar.addWidget(lspacer)
+        self.EditDB_ToolBar.addAction(self.savechanges)
+        self.EditDB_ToolBar.addAction(self.cancel)
+        self.EditDB_ToolBar.addWidget(rspacer)
+        self.EditDB_ToolBar.setIconSize(QSize(50,50))
+        self.addToolBar(Qt.BottomToolBarArea,self.EditDB_ToolBar)
+        self.EditDB_ToolBar.setFont(QFont('',11))
+        self.EditDB_ToolBar.setVisible(False)
+        
+
         
         
 
     def ChosenTableMethod(self):
+        self.savechanges.triggered.connect(self.EditDB_SaveChanges)
+        self.cancel.triggered.connect(self.EditDB_Cancel)
+            
         self.CurrentTable = (self.Database_CB.currentText())
         if self.exists == True:
             self.verticle.removeWidget(self.table)
@@ -153,15 +181,20 @@ class OpenDatabase(QMainWindow):
                 itemlist[count].setBackgroundColor(QColor('Yellow'))
 
     def EditDatabaseClicked(self): ## Boolean statements to say whether the button has been clicked
-        if self.EditDB == True:
-            self.EditDB = False
-        else:
-            self.EditDB = True
-            self.savechanges = QAction("Save Changes",self)
-            self.tool_bar = QToolBar("Complete Changes")
-            self.tool_bar.addAction(self.savechanges)
-            self.addToolBar(self.tool_bar)
-            
+        self.EditDB = True
+        self.ChosenTableMethod()
+        self.EditDB_ToolBar.setVisible(True)
+
+    def EditDB_SaveChanges(self):
+        self.EditDB = False
+        self.EditDB_ToolBar.setVisible(False)
+        print('saved')
+        self.ChosenTableMethod()
+        
+    def EditDB_Cancel(self):
+        self.EditDB = False
+        self.EditDB_ToolBar.setVisible(False)
+        print('Cancel')
         self.ChosenTableMethod()
 
     def DeleteRecordsClicked(self):
