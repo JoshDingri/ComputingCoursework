@@ -3,12 +3,14 @@ from PyQt4.QtGui import *
 import sys
 import sqlite3
 from MainProgram import *
+from Calender import *
 
 class AddDataWindow(QDialog):
     """The new window for entering data"""
 
     def __init__(self,CurrentCBValue):  ##CurrentCBValue is the table selected from dropdown box. Passed in from main program
             self.linelist = []
+            self.dateclicked = False
             
             super().__init__()
         
@@ -40,16 +42,21 @@ class AddDataWindow(QDialog):
                         if name == '':   ##This replaces all the spaces with line edits
                             self.LE = QLineEdit()
                             self.LE.setText('')
+                            self.calander_btn = QPushButton()
+                            self.calander_btn.setFixedWidth(50)
+
                             pixmap = QPixmap('calendar-icon.png')
-                            pixmap = pixmap.scaled(QSize(15,15), Qt.KeepAspectRatio)
-                            self.calander = QLabel()
-                            self.calander.setPixmap(pixmap)
+                            ButtonIcon = QIcon(pixmap)
+                            self.calander_btn.setIcon(ButtonIcon)
+                            self.calander_btn.setIconSize(QSize(13,13))
+
                             
                             self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
                             self.grid.addWidget(self.linelist[count],*position)
-                            self.grid.addWidget(self.calander,*position)
+                            self.grid.addWidget(self.calander_btn,*position)
                             count+=1
                             PurchaseDateExist = False
+                            self.calander_btn.clicked.connect(self.OpenCalander)
                     
                 elif name == 'PurchaseDate':
                     label = QLabel(name)
@@ -108,7 +115,12 @@ class AddDataWindow(QDialog):
 
 
             self.AddData_Choice.clicked.connect(self.Commit_Changes) ## Button click will run chosen method
-                
+
+    def OpenCalander(self):
+            CalenderWidget = Calendar()
+            CalenderWidget.show()
+        
+        
 
     def Commit_Changes(self):
         data = []
@@ -147,7 +159,7 @@ class AddDataWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    launcher = AddDataWindow(None)
+    launcher = AddDataWindow('StaffHardware')
     launcher.show()
     launcher.raise_()
     app.exec_()
