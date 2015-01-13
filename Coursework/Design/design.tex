@@ -408,6 +408,11 @@ The login window will have a system that tells the user a correct format has bee
 
 Another prototype I made was a calender. This will be used when inputting dates. I chose to design this to see how difficult it would be to track when someone clicks a date on the calender and display the date that was clicked. For example below shows a label at the bottom displaying what date has been selected.
 
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{Calender.jpg}
+\caption{Login Window}
+\end{figure}
+
 \
 
 As well as the above I will be prototyping the following:
@@ -416,13 +421,6 @@ As well as the above I will be prototyping the following:
 \item Adding data using GUI and connecting it to the database. The data will be viewed using SQLite Inspector
 \item Sending emails from Python. I do not know how to do this therefore it is important I work it out before I start implementing to save time.
 \end{itemize}
-
-
-
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{Calender.jpg}
-\caption{Login Window}
-\end{figure}
 
 
 \section{Definition of Data Requirements}
@@ -442,18 +440,19 @@ As well as the above I will be prototyping the following:
 \item Department
 \item Location
 \item Hardware Cost
-\item Hardware Warranty
+\item Hardware Warranty Expiration Date
 \item Hardware Serial Number
 \item Hardware IMEI Number
 \item Phone Number
 \item Hardware Make
-\item Hardware Model
+\item Hardware Model Name
 \item Device Name
 \item Purchase Date
-\item Location Name 
 \item Location Address Line 1
 \item Location Address Line 2
 \item Location Address Line 3
+\item Search Data
+\item Search Department Name
 \end{itemize}
 
 \subsection{Identification of all data output items}
@@ -479,6 +478,8 @@ As well as the above I will be prototyping the following:
 \item Location Address Line 1
 \item Location Address Line 2
 \item Location Address Line 3
+\item Emails from bug reports
+\item Emails from data errors
 \end{itemize}
 
 \subsection{Explanation of how data output items are generated}
@@ -683,11 +684,11 @@ Where HardwareID = '{0}' and StaffID = '{1}',""".format(HardwareID,StaffID) & Th
 
 \subsection{Security and Integrity of Data}
 
-This system will store somewhat personal information about staff members such as first name, last name, place of work and phone numbers. This information will fall under the data protection act so the company will have to follow the legislation. The program has an edit information function which will allow the data to be kept up to date in accordance with the data protection act. The data will also need to be encrypted to follow the legislation, my program has a login system which means the data will be stored behind a password. To make the data even more secure, ordinary staff (not managers or admin) can only see their own information as they have no need to view anyone else's. Since staff can see their own information it means they can check for incorrect personal information and using the "report incorrect information" feature they can easily notify the IT staff. This system provides a great way to deal with any incorrectly entered information. To try and avoid this validation methods will be used upon entering information. Drop down boxes will be used where possible, and boolean true or false tick boxes will be used where applicable. I will also add required fields to my database which means records will never have missing data. Lastly the login screen will have a censored password that can be changed whenever the user would like it to be.
+This system will store somewhat personal information about staff members such as first name, last name, place of work and phone numbers. This information will fall under the data protection act so the company will have to follow the legislation. The program has an edit information function which will allow the data to be kept up to date in accordance with the data protection act. The sqlite database file will be encyrpted so it cannot be read without going through the system, my program has a login system which means the data will be stored behind a password. To make the data even more secure, ordinary staff (not managers or admin) can only see their own information as they have no need to view anyone else's. Since staff can see their own information it means they can check for incorrect personal information and using the "report incorrect information" feature they can easily notify the IT staff. This system provides a great way to deal with any incorrectly entered information. To try and avoid this validation methods will be used upon entering information. Drop down boxes will be used where possible which will only allow certain options to be chosen, and boolean true or false tick boxes will be used where applicable which will allow the user to click instead of risking the user entering incorrectly spelt data. I will also add required fields to my database which means records will never have missing data. Lastly the login screen will have a censored password, which will make sure no one can read what is being enter if they are in the same room, this password can be changed whenever the user would like it to be. 
 
 \subsection{System Security}
 
-The system stores a lot of data that the company will want to keep protected. It is important that the company keeps data secure and follows by the data protection act. Each member of the company has a username and password to login with which will limit the number of people being able to access the system (since only company staff can). The only way to access this data is to have a correct password and username. The database will be encrypted so the only way to access the databases is through the system. All data being entered will go through validation such as range, length checks, presence checks and drop down boxes. If the information is incorrect after the validation then it can also be edited using the edit database feature. If the information is still found to be wrong and colleague finds incorrect data about themselves they can use the "report incorrect information" (see Security and Integrity of Data above).
+The system stores a lot of data that the company will want to keep protected. It is important that the company keeps data secure and follows by the data protection act. Each member of the company has a username and password to login with which will limit the number of people being able to access the system (since only company staff can). The only way to access this data is to have a correct password and username. The database will be encrypted so the only way to access the databases is through the system. All data being entered will go through validation such as range, length checks, presence checks and drop down boxes. If the information is incorrect after the validation then it can also be edited using the edit database feature. If the information is still found to be wrong and colleague finds incorrect data about themselves they can use the "report incorrect information" (see Security and Integrity of Data above). Most of their current systems are kept secure with usernames and passwords and the same will go for my system. The system files will be encrypted (see Security and Integrity of Data above).
 
 Because the data being stored falls under the data protection act I will need to follow the legislation principles which are as following:
 
@@ -700,7 +701,7 @@ Personal data shall be obtained only for one or more specified and lawful purpos
 Personal data shall be adequate, relevant and not excessive in relation to the purpose or purposes for which they are processed. & Only relevant data is stored there is no need to store extra information (such as someones home address or credit card number) \\ \hline
 Personal data shall be accurate and, where necessary, kept up to date. & The system includes an edit feature to allow outdated information to be changed. Validation will be in place to avoid inaccurate information \\ \hline
 Personal data processed for any purpose or purposes shall not be kept for longer than is necessary for that purpose or those purposes. & If someone is to leave the company their records will be deleted as they are no longer needed \\ \hline
-Appropriate technical and organisational measures shall be taken against unauthorised or unlawful processing of personal data and against accidental loss or destruction of, or damage to, personal data. & Backups will be stored with cloud storage or backup drives. Cloud storage means it cannot be accidentally destroyed \\ \hline
+Appropriate technical and organisational measures shall be taken against unauthorised or unlawful processing of personal data and against accidental loss or destruction of, or damage to, personal data. & Backups will be stored with cloud storage or backup drives. Cloud storage means it cannot be accidentally destroyed. These backups are secured with a password and username combination \\ \hline
     \end{tabular}
 \end{center}
 
