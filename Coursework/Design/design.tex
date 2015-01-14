@@ -485,29 +485,30 @@ As well as the above I will be prototyping the following:
 \subsection{Explanation of how data output items are generated}
 
 \begin{center}
-    \begin{tabular}{|p{5cm}|p{5cm}|}
+    \begin{longtable}{|p{5cm}|p{5cm}|}
         \hline
         \textbf{Output} & \textbf{How Output is Generated}\\ \hline
 	Purchase Date & When the calender date is clicked for data inputs the date will automatically enter.\\ \hline
-	Staff First Name & IT Staff Input Information \\ \hline
-	Staff Last Name & IT Staff Input Information \\ \hline
-	Staff Job Title & IT Staff Input Information \\ \hline
-	Department & IT Staff Input Information \\ \hline
-	Location & IT Staff Input Information \\ \hline
-	Hardware Cost & IT Staff Input Information \\ \hline
-	Hardware Warranty & IT Staff Input Information \\ \hline
-	Hardware Serial Number & IT Staff Input Information \\ \hline
-	Hardware IMEI Number & IT Staff Input Information \\ \hline
-	Phone Number & IT Staff Input Information \\ \hline
-	Hardware Make & IT Staff Input Information \\ \hline
-	Hardware Model & IT Staff Input Information \\ \hline
-	Device Name & IT Staff Input Information \\ \hline
-	Purchase Date & IT Staff Input Information \\ \hline
-	Location Name & IT Staff Input Information \\ \hline
-	Location Address Line 1 & IT Staff Input Information \\ \hline
-	Location Address Line 2 & IT Staff Input Information \\ \hline
-	Location Address Line 3 & IT Staff Input Information \\ \hline
-    \end{tabular}
+	Staff First Name & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Staff Last Name & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Staff Job Title & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Department & IT Staff Input Information. The program will have a dropdown list of locations to choose and then display the chosen option in a table. \\ \hline
+	Location & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware Cost & IT Staff Input Information. The program will validate it to make sure it is a currency and display it in a table. \\ \hline
+	Hardware Warranty & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware Serial Number & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware IMEI Number & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Phone Number & IT Staff Input Information. The program will validate it to make sure only 11 characters are entered and display it in a table. \\ \hline
+	Hardware Make & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware Model & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Device Name & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Location Name & IT Staff Input Information. The program will have a dropdown list of locations to choose and then display the chosen option in a table.\\ \hline
+	Location Address Line 1 & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Location Address Line 2 & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Location Address Line 3 & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Emails from bug reports & This will output as an email to the IT Staff after the user has filled out the bug report form on the program. \\ \hline
+	Emails from data errors & This will output as an email to the IT Staff after the user has filled out the data error form on the program. \\ \hline
+    \end{longtable}
 \end{center}
 
 \newpage
@@ -657,23 +658,27 @@ This database will be accessed by a large amount of computers at once and it wil
 
 """insert into\
 
-Staff(FirstName,LastName, JobTitle, DepartmentID) values
-(‘{'John'}’,’{'Smith'}’,’{'Data Scientist'}’,'{'5'}')
-"""					 & This SQL statement will add 3 new records to the database. In this example it is entering a new staff record with attributes: FirstName, LastName, JobTitle and DepartmentID \\ \hline
+Staff(FirstName,LastName, JobTitle, DepartmentID) values\
+
+(‘\{0\},’\{1\}’,’\{2\}’,\{3\}')"""
+
+.format(FirstName, LastName, JobTitle, DepartmentID)					 & This is an SQL statement to add records to the database. In this example it is entering a new staff record with attributes: FirstName, LastName, JobTitle and DepartmentID \\ \hline
 
 """delete from Staff\
 
-where StaffID = ‘{3}’\
+where StaffID = ‘\{0\}’\
 
-""".format(StaffID) & This statement will delete the staff member from the Staff table with the StaffID of {3} \\ \hline
+""".format(StaffID) & This statement will delete the staff member from the Staff table with the ID of StaffID \\ \hline
 
 """SELECT HardwareMakeName,
 From Hardware, Staff
-Where HardwareID = '{0}' and StaffID = '{1}',""".format(HardwareID,StaffID) & This will fetch the HardwareMakeName the Staff with the ID of 'StaffID' has of the HardwareID of "HardwareID" \\ \hline
+Where HardwareID = '\{0\}' and StaffID = '\{1\}',""".format(HardwareID,StaffID) & This will fetch the HardwareMakeName the Staff with the ID of 'StaffID' has, of the HardwareID of "HardwareID" \\ \hline
 
 """UPDATE Staff
-	SET JobTitle = "Finance Manager"
-	WHERE StaffID IN ("Jack",John")""" & In this example lets assume two people are being promoted at work. Both of their job titles will need changing. Here I take the job title of "Finance Manager" and apply it to both Jack and John.\\ \hline
+	SET JobTitle = "\{0\}"
+	WHERE StaffID IN ("\{1\}",\{2\}")"""
+
+.format(Jobtitle,StaffID,StaffID) & In this example lets assume two people are being promoted at work. Both of their job titles will need changing. Here I take the job title of Jobtitle and apply it to two IDs.\\ \hline
 
 \end{tabular}
 \end{center}
@@ -711,11 +716,11 @@ Appropriate technical and organisational measures shall be taken against unautho
     \begin{longtable}{|p{2.5cm}|p{2cm}|p{3cm}|p{3cm}|p{3cm}|}
         \hline
         \textbf{Data Item} & \textbf{Validation} & \textbf{Presence Check?} & \textbf{Example} & \textbf{Comments} \\ \hline
-StaffID                              & Range Validation \textgreater0 and \textless=350        &  Yes & 5        & This will make sure that 350 staff members can be added to the database   \\ \hline
+StaffID                              & NOT NULL - UNIQUE        &  Yes & 5        & The ID is autogenerated and is unique  \\ \hline
 Staff-FirstName                      & Presence Check                   & Yes        & John                  &  Ensures a name is entered                      \\ \hline
 Staff-LastName                       & Presence Check               & Yes            & Smith                 &   Ensures a name is entered                     \\ \hline
 StaffJobTitle			&   Length Check 			&Yes & Finance Manager		&Ensures a job title is entered and that the title is no more than 30 characters		\\ \hline
-HardwareID                         &   Range Validation \textgreater0 and  \textless=300      &Yes                & 121                   & Enables up to 300 hardware devices to be added to the database \\ \hline
+HardwareID                         &   NOT NULL - UNIQUE       &Yes                & 121                   &The ID is autogenerated and is unique \\ \hline
 Hardware Cost                     &   Range Validation \textgreater0 and \textless=2000            &Yes                        & £500                  &  The cost of a hardware item will not be more than 2000                     \\ \hline
 Hardware Warranty                    & Presence Check            &Yes               & True                  & Ensures a True/False statement is entered                      \\ \hline
 Hardware Warranty ExpirationDate           & Format                      &No             & 11/03/2017               &   Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                    \\ \hline
@@ -723,15 +728,15 @@ Hardware SerialNumber              & Length                 &Yes                
 Hardware PurchaseDate               & Format                 &No                  & 11/03/2015              & Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                       \\ \hline
 Hardware-IMEI               & Length              &Yes                     & EH37000781               & Ensures a length of up to 30 characters                      \\ \hline
 Hardware PhoneNumber                  & Length            &Yes                      & 07927551125              &   Ensures only 11 chracters are entered                      \\ \hline
-DeviceID                     & Range Validation \textgreater0 and \textless=100            &Yes                       & 24                 & This allows 100 different devices to be added to the database                    \\ \hline
+DeviceID                     & NOT NULL - UNIQUE             &Yes                       & 24                 & The ID is autogenerated and is unique                    \\ \hline
 DeviceName                         & Length                       &Yes            & Phone, Laptop, Tablet                &  Ensures a length of a device is not more than 15 characters                     \\ \hline
-Hardware MakeID                    & Range Validation \textgreater0 and \textless=200      &Yes                             & 24                 & 200 different models can be entered into the database                       \\ \hline
+Hardware MakeID                    & NOT NULL - UNIQUE       &Yes                             & 24                 & The ID is autogenerated and is unique                       \\ \hline
 Hardware Make                        & Length               &Yes                    & iPhone                & Ensures the length of a make is not more than 15 characters                      \\ \hline
-Hardware ModelID		& Range Validation \textgreater0 and \textless=300                      &Yes             & 24                 & Allows for 300 models to be entered into the database                        \\ \hline
+Hardware ModelID		& NOT NULL - UNIQUE                       &Yes             & 24                 & The ID is autogenerated and is unique                        \\ \hline
 Hardware Model                      & Length            &Yes                       & 5S                    & Ensures no more than 15 characters will be entered                       \\ \hline
-DepartmentID 	&Range Validation \textgreater0 and \textless=75	&Yes	& 24		& Allows for 75 departments to be added to the database	\\ \hline
+DepartmentID 	&NOT NULL - UNIQUE 	&Yes	& 24		& The ID is autogenerated and is unique	\\ \hline
 Department Name	& Length	&Yes	& Financing		& Allows for 25 characters to be entered for the department	\\ \hline
-LocationID 		&Range Validation \textgreater0 and \textless=20	&Yes	& 	24	& 20 work locations can be entered		\\ \hline
+LocationID 		&NOT NULL - UNIQUE 	&Yes	& 	24	& The ID is autogenerated and is unique		\\ \hline
 Location Name	& Length	&Yes	&	Orwell	 & No more than 25 characters can be entered for the location  \\ \hline
 Location AddrLine1 & Length	&Yes	&	50 Fisher's Ln	 & Up to 50 characters may be entered for address line 1  \\ \hline
 Location AddrLine2 & Length	&No	&	Orwell	 & Up to 15 characters may be entered for address line 2 \\ \hline
