@@ -41,7 +41,6 @@ class AddDataWindow(QDialog):
                     if PurchaseDateExist == True:
                         if name == '':   ##This replaces all the spaces with line edits
                             self.LE = QLineEdit()
-                            self.LE.setText('')
                             self.calander_btn = QPushButton()
                             self.calander_btn.setFixedWidth(50)
 
@@ -54,9 +53,9 @@ class AddDataWindow(QDialog):
                             self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
                             self.grid.addWidget(self.linelist[count],*position)
                             self.grid.addWidget(self.calander_btn,*position)
+                            self.calander_btn.clicked.connect(self.OpenCalander)
                             count+=1
                             PurchaseDateExist = False
-                            self.calander_btn.clicked.connect(self.OpenCalander)
                     
                 elif name == 'PurchaseDate':
                     label = QLabel(name)
@@ -117,8 +116,13 @@ class AddDataWindow(QDialog):
             self.AddData_Choice.clicked.connect(self.Commit_Changes) ## Button click will run chosen method
 
     def OpenCalander(self):
-            CalenderWidget = Calendar()
-            CalenderWidget.show()
+        CalenderWidget = Calendar()
+        CalenderWidget.exec_()
+        self.linelist[2].setText(CalenderWidget.date)
+        self.linelist[2].setAlignment(Qt.Alignment(AlignHCenter))
+        
+        
+            
         
         
 
