@@ -485,29 +485,30 @@ As well as the above I will be prototyping the following:
 \subsection{Explanation of how data output items are generated}
 
 \begin{center}
-    \begin{tabular}{|p{5cm}|p{5cm}|}
+    \begin{longtable}{|p{5cm}|p{5cm}|}
         \hline
         \textbf{Output} & \textbf{How Output is Generated}\\ \hline
 	Purchase Date & When the calender date is clicked for data inputs the date will automatically enter.\\ \hline
-	Staff First Name & IT Staff Input Information \\ \hline
-	Staff Last Name & IT Staff Input Information \\ \hline
-	Staff Job Title & IT Staff Input Information \\ \hline
-	Department & IT Staff Input Information \\ \hline
-	Location & IT Staff Input Information \\ \hline
-	Hardware Cost & IT Staff Input Information \\ \hline
-	Hardware Warranty & IT Staff Input Information \\ \hline
-	Hardware Serial Number & IT Staff Input Information \\ \hline
-	Hardware IMEI Number & IT Staff Input Information \\ \hline
-	Phone Number & IT Staff Input Information \\ \hline
-	Hardware Make & IT Staff Input Information \\ \hline
-	Hardware Model & IT Staff Input Information \\ \hline
-	Device Name & IT Staff Input Information \\ \hline
-	Purchase Date & IT Staff Input Information \\ \hline
-	Location Name & IT Staff Input Information \\ \hline
-	Location Address Line 1 & IT Staff Input Information \\ \hline
-	Location Address Line 2 & IT Staff Input Information \\ \hline
-	Location Address Line 3 & IT Staff Input Information \\ \hline
-    \end{tabular}
+	Staff First Name & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Staff Last Name & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Staff Job Title & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Department & IT Staff Input Information. The program will have a dropdown list of locations to choose and then display the chosen option in a table. \\ \hline
+	Location & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware Cost & IT Staff Input Information. The program will validate it to make sure it is a currency and display it in a table. \\ \hline
+	Hardware Warranty & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware Serial Number & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware IMEI Number & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Phone Number & IT Staff Input Information. The program will validate it to make sure only 11 characters are entered and display it in a table. \\ \hline
+	Hardware Make & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware Model & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Device Name & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Location Name & IT Staff Input Information. The program will have a dropdown list of locations to choose and then display the chosen option in a table.\\ \hline
+	Location Address Line 1 & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Location Address Line 2 & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Location Address Line 3 & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Emails from bug reports & This will output as an email to the IT Staff after the user has filled out the bug report form on the program. \\ \hline
+	Emails from data errors & This will output as an email to the IT Staff after the user has filled out the data error form on the program. \\ \hline
+    \end{longtable}
 \end{center}
 
 \newpage
@@ -657,23 +658,27 @@ This database will be accessed by a large amount of computers at once and it wil
 
 """insert into\
 
-Staff(FirstName,LastName, JobTitle, DepartmentID) values
-(‘{'John'}’,’{'Smith'}’,’{'Data Scientist'}’,'{'5'}')
-"""					 & This SQL statement will add 3 new records to the database. In this example it is entering a new staff record with attributes: FirstName, LastName, JobTitle and DepartmentID \\ \hline
+Staff(FirstName,LastName, JobTitle, DepartmentID) values\
+
+(‘\{0\},’\{1\}’,’\{2\}’,\{3\}')"""
+
+.format(FirstName, LastName, JobTitle, DepartmentID)					 & This is an SQL statement to add records to the database. In this example it is entering a new staff record with attributes: FirstName, LastName, JobTitle and DepartmentID \\ \hline
 
 """delete from Staff\
 
-where StaffID = ‘{3}’\
+where StaffID = ‘\{0\}’\
 
-""".format(StaffID) & This statement will delete the staff member from the Staff table with the StaffID of {3} \\ \hline
+""".format(StaffID) & This statement will delete the staff member from the Staff table with the ID of StaffID \\ \hline
 
 """SELECT HardwareMakeName,
 From Hardware, Staff
-Where HardwareID = '{0}' and StaffID = '{1}',""".format(HardwareID,StaffID) & This will fetch the HardwareMakeName the Staff with the ID of 'StaffID' has of the HardwareID of "HardwareID" \\ \hline
+Where HardwareID = '\{0\}' and StaffID = '\{1\}',""".format(HardwareID,StaffID) & This will fetch the HardwareMakeName the Staff with the ID of 'StaffID' has, of the HardwareID of "HardwareID" \\ \hline
 
 """UPDATE Staff
-	SET JobTitle = "Finance Manager"
-	WHERE StaffID IN ("Jack",John")""" & In this example lets assume two people are being promoted at work. Both of their job titles will need changing. Here I take the job title of "Finance Manager" and apply it to both Jack and John.\\ \hline
+	SET JobTitle = "\{0\}"
+	WHERE StaffID IN ("\{1\}",\{2\}")"""
+
+.format(Jobtitle,StaffID,StaffID) & In this example lets assume two people are being promoted at work. Both of their job titles will need changing. Here I take the job title of Jobtitle and apply it to two IDs.\\ \hline
 
 \end{tabular}
 \end{center}
@@ -711,11 +716,11 @@ Appropriate technical and organisational measures shall be taken against unautho
     \begin{longtable}{|p{2.5cm}|p{2cm}|p{3cm}|p{3cm}|p{3cm}|}
         \hline
         \textbf{Data Item} & \textbf{Validation} & \textbf{Presence Check?} & \textbf{Example} & \textbf{Comments} \\ \hline
-StaffID                              & Range Validation \textgreater0 and \textless=350        &  Yes & 5        & This will make sure that 350 staff members can be added to the database   \\ \hline
+StaffID                              & NOT NULL - UNIQUE        &  Yes & 5        & The ID is autogenerated and is unique  \\ \hline
 Staff-FirstName                      & Presence Check                   & Yes        & John                  &  Ensures a name is entered                      \\ \hline
 Staff-LastName                       & Presence Check               & Yes            & Smith                 &   Ensures a name is entered                     \\ \hline
 StaffJobTitle			&   Length Check 			&Yes & Finance Manager		&Ensures a job title is entered and that the title is no more than 30 characters		\\ \hline
-HardwareID                         &   Range Validation \textgreater0 and  \textless=300      &Yes                & 121                   & Enables up to 300 hardware devices to be added to the database \\ \hline
+HardwareID                         &   NOT NULL - UNIQUE       &Yes                & 121                   &The ID is autogenerated and is unique \\ \hline
 Hardware Cost                     &   Range Validation \textgreater0 and \textless=2000            &Yes                        & £500                  &  The cost of a hardware item will not be more than 2000                     \\ \hline
 Hardware Warranty                    & Presence Check            &Yes               & True                  & Ensures a True/False statement is entered                      \\ \hline
 Hardware Warranty ExpirationDate           & Format                      &No             & 11/03/2017               &   Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                    \\ \hline
@@ -723,15 +728,15 @@ Hardware SerialNumber              & Length                 &Yes                
 Hardware PurchaseDate               & Format                 &No                  & 11/03/2015              & Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                       \\ \hline
 Hardware-IMEI               & Length              &Yes                     & EH37000781               & Ensures a length of up to 30 characters                      \\ \hline
 Hardware PhoneNumber                  & Length            &Yes                      & 07927551125              &   Ensures only 11 chracters are entered                      \\ \hline
-DeviceID                     & Range Validation \textgreater0 and \textless=100            &Yes                       & 24                 & This allows 100 different devices to be added to the database                    \\ \hline
+DeviceID                     & NOT NULL - UNIQUE             &Yes                       & 24                 & The ID is autogenerated and is unique                    \\ \hline
 DeviceName                         & Length                       &Yes            & Phone, Laptop, Tablet                &  Ensures a length of a device is not more than 15 characters                     \\ \hline
-Hardware MakeID                    & Range Validation \textgreater0 and \textless=200      &Yes                             & 24                 & 200 different models can be entered into the database                       \\ \hline
+Hardware MakeID                    & NOT NULL - UNIQUE       &Yes                             & 24                 & The ID is autogenerated and is unique                       \\ \hline
 Hardware Make                        & Length               &Yes                    & iPhone                & Ensures the length of a make is not more than 15 characters                      \\ \hline
-Hardware ModelID		& Range Validation \textgreater0 and \textless=300                      &Yes             & 24                 & Allows for 300 models to be entered into the database                        \\ \hline
+Hardware ModelID		& NOT NULL - UNIQUE                       &Yes             & 24                 & The ID is autogenerated and is unique                        \\ \hline
 Hardware Model                      & Length            &Yes                       & 5S                    & Ensures no more than 15 characters will be entered                       \\ \hline
-DepartmentID 	&Range Validation \textgreater0 and \textless=75	&Yes	& 24		& Allows for 75 departments to be added to the database	\\ \hline
+DepartmentID 	&NOT NULL - UNIQUE 	&Yes	& 24		& The ID is autogenerated and is unique	\\ \hline
 Department Name	& Length	&Yes	& Financing		& Allows for 25 characters to be entered for the department	\\ \hline
-LocationID 		&Range Validation \textgreater0 and \textless=20	&Yes	& 	24	& 20 work locations can be entered		\\ \hline
+LocationID 		&NOT NULL - UNIQUE 	&Yes	& 	24	& The ID is autogenerated and is unique		\\ \hline
 Location Name	& Length	&Yes	&	Orwell	 & No more than 25 characters can be entered for the location  \\ \hline
 Location AddrLine1 & Length	&Yes	&	50 Fisher's Ln	 & Up to 50 characters may be entered for address line 1  \\ \hline
 Location AddrLine2 & Length	&No	&	Orwell	 & Up to 15 characters may be entered for address line 2 \\ \hline
@@ -754,6 +759,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 4 & To check information can be read from the database and read through the system & Bottom-up testing &  Components will be tested as they become available\\ \hline
 5 & Check that the system cannot have unauthorised access & Unit testing & To test individual software components \\ \hline
 6 & To check the finished system will fulfil the specifications &  Acceptance Testing & Performed by the client to check the system meets their requirements\\ \hline
+7 & To test that the UI works effectively and certain shortcuts can be pressed & Black Box Testing & An output that the program produces will be examined for correctness and then the next output can be examined.\\ \hline
 
     \end{tabular}
 \end{center}
@@ -761,7 +767,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 \subsection{Detailed Plan}
 
 \begin{center}
-    \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+    \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{4cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test} & \textbf{Test Description} & \textbf{Test Data} & \textbf{Test Data Type (Normal/ Erroneous/ Boundary)} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Evidence}\\ \hline
 1.01 & Test the manager login button on the select login page to ensure it works correctly  & This takes the user to the appropriate login screen & Click the Manager Login button & Normal & The manager login screen should be displayed && \\ \hline
@@ -815,11 +821,11 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 2.2 & Test the dropdown boxes for data input windows (e.g. location and department) & To test whether the drop down boxes will function corrently when inputting data. The options must actually fill in the boxes once clicked  & Click each button on the dropdown box & Normal  & Each button should fill the box with the selection chosen && \\ \hline
 
 2.3 & Test the calender works for date inputs & To test whether the calender will open when the icon is clicked. Once a date is selected it should automatically fill the box. & Click a date on the calender & Normal  & The date should be entered once a date on the calender is clicked in the following format DD/MM/YYYY && \\ \hline
-2.4 & Verify that the username field has between 3 - 12 characters in it & The field cannot be blank, it has to have more than 3 characters but no more than 12. & Nothing \ 30597 \ JSmith21 \ JordanSumerfield &Erroneous \ Normal \ Normal \ Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
-2.5 & Verify that the password field has between 6 - 20 characters in it & The field cannot be blank, it has to have more than 6 characters but no more than 20. & Nothing \par\ password \par pA33WoRD \par cat  &Erroneous \par Normal \par Normal \par Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
-2.6 & Verify Email, Forename, Surname is entered in recover password fields & The fields cannot be blank and must have a '@' symbol in the email address. & John, Smith, J.com \par John, Smith, J@gmail.com \par JJ, D, JJD@hotmail.com \par & Erroneous \par Valid \par Valid \\ \hline
-2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par All details filled out & Erroneous \par Normal & Error \par Valid && \\ \hline
-2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par All details filled out & Erroneous \par Normal & Error \par Valid && \\ \hline
+2.4 & Verify that the username field has between 3 - 12 characters in it & The field cannot be blank, it has to have more than 3 characters but no more than 12. & Nothing \par \bigskip 30597 \par \bigskip JSmith21 \par \bigskip JordanSumerfield &Erroneous \par \bigskip  Normal \par \bigskip Normal \par \bigskip Erroneous & Error         \par \bigskip Valid              \par \bigskip Valid                 \par \bigskip Error && \\ \hline
+2.5 & Verify that the password field has between 6 - 20 characters in it & The field cannot be blank, it has to have more than 6 characters but no more than 20. & Nothing \par password \par pA33WoRD \par cat  &Erroneous \par Normal \par Normal \par Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
+2.6 & Verify Email, Forename, Surname is entered in recover password fields & The fields cannot be blank and must have a '@' symbol in the email address. & John, Smith, J.com \par  \bigskip John, Smith, \par J@gmail.com \bigskip \par JJ, D, JJD@hotmail.com \par & Erroneous \par \bigskip Normal \par \bigskip \bigskip Normal &  \par Valid \par \bigskip Valid \par \bigskip \bigskip Valid&&\\ \hline
+2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par\bigskip \bigskip Valid && \\ \hline
+2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par \bigskip \bigskip Valid && \\ \hline
 
 3.1 & Verify the Staff details are entered correctly into the Staff database & All information should be added to the required fields  & Staff information & Normal& Data is added to Staff table && \\ \hline
 3.2 & Verify the Hardware details are entered correctly into the Hardware database & All information should be added to the required fields  &Hardware information & Normal& Data is added to Hardware table && \\ \hline
@@ -831,6 +837,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 3.8 & Verify the Staff's Hardware details with purchase date are entered correctly into the StaffHardware database & All information should be added to the required fields  &StaffHardware information & Normal& Data is added to StaffHardware table && \\ \hline
 3.9 & Verify the DepartmentLocation details with purchase date are entered correctly into the DepartmentLocation database & All information should be added to the required fields  &DepartmentLocation information & Normal& Data is added to DepartmentLocation table && \\ \hline
 
+
 4 & Verify each table can be read by clicking the dropdown box and selecting the database wanted & Each table should be able to be clicked and be viewed in a table format&Data from the following tables: \par Staff \par Hardware \par Location \par Department \par DeviceType \par HardwareMake \par HardwareModel \par StaffHardware \par DepartmentLocation & Normal& The table will be shown and will match information in the database && \\ \hline
 
 5.1 & Check that staff members cannot log in to managers or admins interfaces & Staff should not be able to use their login to access the admin interface or the manager interface, only their own. & Staff login details & Erroneous & The system will say incorrect login details && \\ \hline
@@ -838,6 +845,14 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 5.2 & Check that admins cannot log in to staff or managers interfaces & admins should not be able to use their login to access the manager interface or the staff interface, only their own. & admins login details & Erroneous & The system will say incorrect login details && \\ \hline
 
 6 & Verify the program fulfils all the specifications & Run through the program testing every aspect with correct and incorrect data to insure all the objectives are met & Normal &The program should fulfil all specifications and objectives && \\ \hline
+
+7.1 & Allow the enter button to be pressed on the login window instead of using the push button & To test if the enter button will work as an alternative & press the enter button while on the login screen & Normal & The layout will switch to the appropriate main menu && \\ \hline
+7.2 & Allow the escape button to be used to close the calendar widget & The user should be able to use escape instead of pressing the cross to close the window & Press ESC when calendar is opened from add data screen & Normal & The calendar should close with TAB && \\ \hline
+7.3  & Allow the TAB button to be pressed on all data inputs with line edits & The user will be able to switch line edits using TAB & Press TAB on any data input & Normal & Should be able to switch line edits with tab && \\ \hline
+7.4 & Login screen should be a fixed size & The user should not be able to resize the login window & Try to resize the window & Normal & The window should not allow itself to be resized && \\ \hline
+7.5 & Clicking any blank space on an open window should not affect the program & Clicking on any area of a window with no functionality should not give any errors & Normal & Nothing should happen && \\ \hline
+
+
 
 %##################### GOT TO FIGURE 2.9 on buttons
     \end{longtable}

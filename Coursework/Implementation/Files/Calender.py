@@ -2,10 +2,11 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
 
-class Calendar(QWidget):
+class Calendar(QDialog):
 
     def __init__(self):
         super().__init__()
+        self.clicked = False
         self.initUI()
 
     def initUI(self):
@@ -13,16 +14,16 @@ class Calendar(QWidget):
         verticle = QVBoxLayout()
         
         
-        cal = QCalendarWidget(self)
-        cal.setGridVisible(True)
-        verticle.addWidget(cal)
-        cal.clicked[QDate].connect(self.showDate)
+        self.cal = QCalendarWidget(self)
+        self.cal.setGridVisible(True)
+        verticle.addWidget(self.cal)
+        self.cal.clicked[QDate].connect(self.showDate)
 
         self.lbl = QLabel(self)
         horizontal.addStretch(1)
         horizontal.addWidget(self.lbl)
         horizontal.addStretch(1)
-        date = cal.selectedDate()
+        date = self.cal.selectedDate()
         self.lbl.setText(date.toString())
         
 
@@ -35,7 +36,10 @@ class Calendar(QWidget):
     
 
     def showDate(self, date):
+        self.clicked = True
         self.lbl.setText(date.toString())
+        self.date = date.toString("dd-MM-yy")
+        self.reject()
 
 def main():
     app = QApplication(sys.argv)
