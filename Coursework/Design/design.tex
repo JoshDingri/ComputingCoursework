@@ -759,6 +759,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 4 & To check information can be read from the database and read through the system & Bottom-up testing &  Components will be tested as they become available\\ \hline
 5 & Check that the system cannot have unauthorised access & Unit testing & To test individual software components \\ \hline
 6 & To check the finished system will fulfil the specifications &  Acceptance Testing & Performed by the client to check the system meets their requirements\\ \hline
+7 & To test that the UI works effectively and certain shortcuts can be pressed & Black Box Testing & An output that the program produces will be examined for correctness and then the next output can be examined.\\ \hline
 
     \end{tabular}
 \end{center}
@@ -766,7 +767,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 \subsection{Detailed Plan}
 
 \begin{center}
-    \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+    \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{4cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test} & \textbf{Test Description} & \textbf{Test Data} & \textbf{Test Data Type (Normal/ Erroneous/ Boundary)} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Evidence}\\ \hline
 1.01 & Test the manager login button on the select login page to ensure it works correctly  & This takes the user to the appropriate login screen & Click the Manager Login button & Normal & The manager login screen should be displayed && \\ \hline
@@ -820,11 +821,11 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 2.2 & Test the dropdown boxes for data input windows (e.g. location and department) & To test whether the drop down boxes will function corrently when inputting data. The options must actually fill in the boxes once clicked  & Click each button on the dropdown box & Normal  & Each button should fill the box with the selection chosen && \\ \hline
 
 2.3 & Test the calender works for date inputs & To test whether the calender will open when the icon is clicked. Once a date is selected it should automatically fill the box. & Click a date on the calender & Normal  & The date should be entered once a date on the calender is clicked in the following format DD/MM/YYYY && \\ \hline
-2.4 & Verify that the username field has between 3 - 12 characters in it & The field cannot be blank, it has to have more than 3 characters but no more than 12. & Nothing \ 30597 \ JSmith21 \ JordanSumerfield &Erroneous \ Normal \ Normal \ Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
-2.5 & Verify that the password field has between 6 - 20 characters in it & The field cannot be blank, it has to have more than 6 characters but no more than 20. & Nothing \par\ password \par pA33WoRD \par cat  &Erroneous \par Normal \par Normal \par Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
-2.6 & Verify Email, Forename, Surname is entered in recover password fields & The fields cannot be blank and must have a '@' symbol in the email address. & John, Smith, J.com \par John, Smith, J@gmail.com \par JJ, D, JJD@hotmail.com \par & Erroneous \par Valid \par Valid \\ \hline
-2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par All details filled out & Erroneous \par Normal & Error \par Valid && \\ \hline
-2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par All details filled out & Erroneous \par Normal & Error \par Valid && \\ \hline
+2.4 & Verify that the username field has between 3 - 12 characters in it & The field cannot be blank, it has to have more than 3 characters but no more than 12. & Nothing \par \bigskip 30597 \par \bigskip JSmith21 \par \bigskip JordanSumerfield &Erroneous \par \bigskip  Normal \par \bigskip Normal \par \bigskip Erroneous & Error         \par \bigskip Valid              \par \bigskip Valid                 \par \bigskip Error && \\ \hline
+2.5 & Verify that the password field has between 6 - 20 characters in it & The field cannot be blank, it has to have more than 6 characters but no more than 20. & Nothing \par password \par pA33WoRD \par cat  &Erroneous \par Normal \par Normal \par Erroneous & Error         \par Valid              \par Valid                 \par Error && \\ \hline
+2.6 & Verify Email, Forename, Surname is entered in recover password fields & The fields cannot be blank and must have a '@' symbol in the email address. & John, Smith, J.com \par  \bigskip John, Smith, \par J@gmail.com \bigskip \par JJ, D, JJD@hotmail.com \par & Erroneous \par \bigskip Normal \par \bigskip \bigskip Normal &  \par Valid \par \bigskip Valid \par \bigskip \bigskip Valid&&\\ \hline
+2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par\bigskip \bigskip Valid && \\ \hline
+2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par \bigskip \bigskip Valid && \\ \hline
 
 3.1 & Verify the Staff details are entered correctly into the Staff database & All information should be added to the required fields  & Staff information & Normal& Data is added to Staff table && \\ \hline
 3.2 & Verify the Hardware details are entered correctly into the Hardware database & All information should be added to the required fields  &Hardware information & Normal& Data is added to Hardware table && \\ \hline
