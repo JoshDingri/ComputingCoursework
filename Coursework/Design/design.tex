@@ -23,7 +23,7 @@ Hardware Allocation Database
 \item IT staff have admin rights to the system. They will be able to view everyones information and are the only people who may edit information on the system.
 \item Once logged in they will be presented with a user interface with buttons allowing them to open a database or search for staff.
 \item All IT staff will share a username and password.
-\item The search function will take the user to an interface which will allow them to search for a staff member and be shown which hardware devices they own. This search could also be performed by going to the staff database and using the search function there, but this may be used frequently and so is placed here for convenience.
+\item The search function will take the user to an interface which will allow them to search for a staff member and be shown which hardware devices they own. The user will be able to enter text and get results based on specified text. This search could also be performed by going to the staff database and using the search function there, but this may be used frequently and so is placed here for convenience.
 \item The open database button will take them to a user interface that will have a dropdown box allowing them to pick which database to view. There will be Edit, Add and Remove options available when a database is shown. A search button will also be on this screen to allow the user to search for a specific field.
 \item The edit database will allow the user to change information on the database.
 \item The add data will allow the user to add new records
@@ -480,6 +480,7 @@ As well as the above I will be prototyping the following:
 \item Location Address Line 3
 \item Emails from bug reports
 \item Emails from data errors
+\item Search Results
 \end{itemize}
 
 \subsection{Explanation of how data output items are generated}
@@ -508,6 +509,7 @@ As well as the above I will be prototyping the following:
 	Location Address Line 3 & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
 	Emails from bug reports & This will output as an email to the IT Staff after the user has filled out the bug report form on the program. \\ \hline
 	Emails from data errors & This will output as an email to the IT Staff after the user has filled out the data error form on the program. \\ \hline
+	Search Results & This output will display the results for the search specified depending on which table is selected. \\ \hline
     \end{longtable}
 \end{center}
 
@@ -627,6 +629,8 @@ This database will be accessed by a large amount of computers at once and it wil
 \end{figure}
 
 \subsection{SQL Queries}
+
+For the following SQL statements, I have formatted them with the python .format() function to format the SQL strings.
 
 \begin{center}
 \begin{tabular}{|p{6cm}|p{5cm}|}
@@ -760,6 +764,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 5 & Check that the system cannot have unauthorised access & Unit testing & To test individual software components \\ \hline
 6 & To check the finished system will fulfil the specifications &  Acceptance Testing & Performed by the client to check the system meets their requirements\\ \hline
 7 & To test that the UI works effectively and certain shortcuts can be pressed & Black Box Testing & An output that the program produces will be examined for correctness and then the next output can be examined.\\ \hline
+8 & Test algorithms to make sure that the output is correct & White Box Testing & Tests will be derived from knowledge of the program code \\ \hline
 
     \end{tabular}
 \end{center}
@@ -827,15 +832,24 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par\bigskip \bigskip Valid && \\ \hline
 2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par \bigskip \bigskip Valid && \\ \hline
 
-3.1 & Verify the Staff details are entered correctly into the Staff database & All information should be added to the required fields  & Staff information & Normal& Data is added to Staff table && \\ \hline
-3.2 & Verify the Hardware details are entered correctly into the Hardware database & All information should be added to the required fields  &Hardware information & Normal& Data is added to Hardware table && \\ \hline
-3.3 & Verify the Location details are entered correctly into the Location database & All information should be added to the required fields  &Location information & Normal& Data is added to Location table && \\ \hline
-3.4 & Verify the Department details are entered correctly into the Department database & All information should be added to the required fields  &Department information & Normal& Data is added to Department table && \\ \hline
-3.5 & Verify the DeviceType details are entered correctly into the DeviceType database & All information should be added to the required fields  &DeviceType information & Normal& Data is added to DeviceType table && \\ \hline
-3.6 & Verify the HardwareMake details are entered correctly into the HardwareMake database & All information should be added to the required fields  &HardwareMake information & Normal& Data is added to HardwareMake table && \\ \hline
-3.7 & Verify the HardwareModel details are entered correctly into the HardwareModel database & All information should be added to the required fields  &HardwareModel information & Normal& Data is added to HardwareModel table && \\ \hline
-3.8 & Verify the Staff's Hardware details with purchase date are entered correctly into the StaffHardware database & All information should be added to the required fields  &StaffHardware information & Normal& Data is added to StaffHardware table && \\ \hline
-3.9 & Verify the DepartmentLocation details with purchase date are entered correctly into the DepartmentLocation database & All information should be added to the required fields  &DepartmentLocation information & Normal& Data is added to DepartmentLocation table && \\ \hline
+3.01 & Verify the Staff details are entered into the Staff database using add data UI and conforms to validation rules& All information should be added to the required fields  & Staff information & Normal& Data is added to Staff table && \\ \hline
+3.02 & Verify the Hardware details are entered into the Hardware database using add data UI and conforms to validation rules & All information should be added to the required fields  &Hardware information & Normal& Data is added to Hardware table && \\ \hline
+3.03 & Verify the Location details are entered into the Location database using add data UI and conforms to validation rules & All information should be added to the required fields  &Location information & Normal& Data is added to Location table && \\ \hline
+3.04 & Verify the Department details are entered into the Department database using add data UI and conforms to validation rules & All information should be added to the required fields  &Department information & Normal& Data is added to Department table && \\ \hline
+3.05 & Verify the DeviceType details are entered into the DeviceType database using add data UI and conforms to validation rules & All information should be added to the required fields  &DeviceType information & Normal& Data is added to DeviceType table && \\ \hline
+3.06 & Verify the HardwareMake details are entered into the HardwareMake database using add data UI and conforms to validation rules & All information should be added to the required fields  &HardwareMake information & Normal& Data is added to HardwareMake table && \\ \hline
+3.07 & Verify the HardwareModel details are entered into the HardwareModel database using add data UI and conforms to validation rules & All information should be added to the required fields  &HardwareModel information & Normal& Data is added to HardwareModel table && \\ \hline
+3.08 & Verify the Staff's Hardware details with purchase date are entered into the StaffHardware database using add data UI and conforms to validation rules & All information should be added to the required fields  &StaffHardware information & Normal& Data is added to StaffHardware table && \\ \hline
+3.09 & Verify the DepartmentLocation details with purchase date are entered into the DepartmentLocation database using add data UI and conforms to validation rules & All information should be added to the required fields  &DepartmentLocation information & Normal& Data is added to DepartmentLocation table && \\ \hline
+3.10 & Verify that user can update Staff details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip John & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.11 & Verify that user can update Hardware details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip £100 & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.12 & Verify that user can update Location details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip Orwell & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.13 & Verify that user can update Department details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip Financing & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.14 & Verify that user can update DeviceType details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip Phone & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.15 & Verify that user can update HardwareMake details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip iPhone & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.16 & Verify that user can update HardwareModel details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 4S & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.17 & Verify that user can update Staff's Hardware details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 13/12/2015 & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.18 & Verify that user can update DepartmentLocation details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 1 & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
 
 
 4 & Verify each table can be read by clicking the dropdown box and selecting the database wanted & Each table should be able to be clicked and be viewed in a table format&Data from the following tables: \par Staff \par Hardware \par Location \par Department \par DeviceType \par HardwareMake \par HardwareModel \par StaffHardware \par DepartmentLocation & Normal& The table will be shown and will match information in the database && \\ \hline
@@ -850,7 +864,12 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 7.2 & Allow the escape button to be used to close the calendar widget & The user should be able to use escape instead of pressing the cross to close the window & Press ESC when calendar is opened from add data screen & Normal & The calendar should close with TAB && \\ \hline
 7.3  & Allow the TAB button to be pressed on all data inputs with line edits & The user will be able to switch line edits using TAB & Press TAB on any data input & Normal & Should be able to switch line edits with tab && \\ \hline
 7.4 & Login screen should be a fixed size & The user should not be able to resize the login window & Try to resize the window & Normal & The window should not allow itself to be resized && \\ \hline
-7.5 & Clicking any blank space on an open window should not affect the program & Clicking on any area of a window with no functionality should not give any errors & Normal & Nothing should happen && \\ \hline
+7.5 & Clicking any blank space on an open window should not affect the program & Clicking on any area of a window with no functionality should not give any errors & Click anywhere on each window & Normal & Nothing should happen && \\ \hline
+7.6 & User should not be able to click away from a dialog box & The user should not be able to click away from the Add Data dialog box without pressing the cross or the cancel/save changes button & Try to click off the dialog box & Normal & Window should stay raised and centralised && \\ \hline
+
+8.1 & Verify that search function works correctly & Enter text into any search function on the program should return specified information back & -Enter some text into the search bar- & Normal & Returns results for the specified search && \\ \hline
+8.2 & Verify new password overwrites old password when changed & The old password should not work if a new password is set & Try old password on login & Normal & Error && \\ \hline
+8.3 & Verify that Managers and other Staff cannot change any data in the table & No unauthorised staff should be able to edit anything in the table & Try to change data in tables using Manager and Staff logins & Normal & Error && \\ \hline
 
 
 
