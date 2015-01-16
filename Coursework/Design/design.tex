@@ -36,7 +36,7 @@ Hardware Allocation Database
 
 \begin{itemize}
 \item Line manager's have more rights than normal staff but unlike IT staff they cannot edit any information.
-\item Line manager's share the same username if they are part of the same department and the same location (liverpool and orwell cannot use the same department login) and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username at the moment will be a 5 digit number allocated to them by IT staff, however this username may change depending on the users needs. (the best way to do this will be via email). 
+\item Line manager's have unique usernames and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username at the moment will be a 5 digit number allocated to them by IT staff, however this username may change depending on the users needs. (the best way to do this will be via email). 
 \item Line manager's can view information of members from their own department.
 \item Once logged in, the user interface will show a "View Department" button and a "View My Information" button.
 \item The "View Department" button will show the staff database but only show records from staff at their own department. There will be a search function to find a specific field.
@@ -57,7 +57,7 @@ Hardware Allocation Database
 \textbf{Login screen}
 \begin{itemize}
 \item The login screen will have a username field and a password field. There will also be two buttons, one to login and the other will be "Forgot Your Password?".
-\item The "Forgot Your Password?" button will take the user to another interface which will ask for their Volac (company) email address, Forename and Surname. This information will be sent to the IT staff who can review it and email the user another password to use or tell them what their password was. It is important to note that all Volac staff have the same buisness email (for example XXX.Volac.com), this means SMTP settings can be set up easily in Python. This process will be easier than asking IT Staff directly.
+\item The "Forgot Your Password?" button will take the user to another interface which will ask for their Volac (company) email address, Forename and Surname. This information will be sent to the IT staff who can review it and email the user another password to use or tell them what their password was. It is important to note that all Volac staff have the same business email (for example XXX.Volac.com), this means SMTP settings can be set up easily in Python. This process will be easier than asking IT Staff directly.
 \item Normal staff all have their own username and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
 \item Line manager's all have their own username and a password that they may change at any time. Upon first using the system their password will be issued by IT staff. Their username will be a 5 digit number allocated to them by IT staff (the best way to do this will be via email). 
 \item All IT staff (in the same location) will share a username and password to have admin rights. Although sharing passwords/usernames is a security risk, the IT staff will have access to changing and giving staff usernames and passwords, therefore there is no purpose of using different logins for IT staff. However this can be discussed with my client if it is an issue.
@@ -207,7 +207,7 @@ Users will connect to the system using their own computers at the workplace. The
 \subsection{Top-down design structure charts}
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{PS.jpg}
+\includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{PS.jpg}
 \caption{}
 \end{figure}
 
@@ -247,6 +247,7 @@ Users will connect to the system using their own computers at the workplace. The
 
 \subsection{Algorithms in pseudo-code for each data transformation process}
 
+There are no calculations performed from data transformation processes at this stage.
 
 \begin{algorithm}[H]
 \begin{algorithmic}
@@ -413,14 +414,34 @@ Another prototype I made was a calender. This will be used when inputting dates.
 \caption{Login Window}
 \end{figure}
 
-\
+\newpage
 
-As well as the above I will be prototyping the following:
+\underline {\textbf{Add Data GUI}}
 
-\begin{itemize}
-\item Adding data using GUI and connecting it to the database. The data will be viewed using SQLite Inspector
-\item Sending emails from Python. I do not know how to do this therefore it is important I work it out before I start implementing to save time.
-\end{itemize}
+The prototype below shows a basic GUI to add data to the database. I linked it with the SQL file and added placeholder text. It was simple to make so designing this in the implementation should be no problem.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{AddDataUIDesign.jpg}
+\caption{Add data design}
+\end{figure}
+
+\newpage
+
+\underline {\textbf{Email Prototype}}
+
+The prototype below displays a simple email GUI. I did not know initially how to start setting up email but it was important to find out so it would make the implemenation a lot easy as this is one of my goals.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{EmailDesign.jpg}
+\caption{GUI for sending emails.}
+\end{figure}
+
+\textbf{The SMTP can be set to Volac, which will work with all staff emails. Below is the email setup for my prototype email.}
+
+        self.mail = smtplib.SMTP("smtp.live.com",587) \par
+        self.mail.ehlo() \par 
+        self.mail.starttls() \par
+        self.mail.login("EMAIL","PASSWORD") \par
 
 
 \section{Definition of Data Requirements}
@@ -440,6 +461,7 @@ As well as the above I will be prototyping the following:
 \item Department
 \item Location
 \item Hardware Cost
+\item Hardware Warranty 
 \item Hardware Warranty Expiration Date
 \item Hardware Serial Number
 \item Hardware IMEI Number
@@ -467,6 +489,7 @@ As well as the above I will be prototyping the following:
 \item Location
 \item Hardware Cost
 \item Hardware Warranty
+\item Hardware Warranty Expiration Date
 \item Hardware Serial Number
 \item Hardware IMEI Number
 \item Phone Number
@@ -496,7 +519,8 @@ As well as the above I will be prototyping the following:
 	Department & IT Staff Input Information. The program will have a dropdown list of locations to choose and then display the chosen option in a table. \\ \hline
 	Location & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
 	Hardware Cost & IT Staff Input Information. The program will validate it to make sure it is a currency and display it in a table. \\ \hline
-	Hardware Warranty & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
+	Hardware Warranty & IT Staff Input Information. Boolean value selection. \\ \hline
+	Hardware Warranty  Expiration Date & When the calender date is clicked for data inputs the date will automatically enter. \\ \hline
 	Hardware Serial Number & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
 	Hardware IMEI Number & IT Staff Input Information. The program will validate it and display it in a table. \\ \hline
 	Phone Number & IT Staff Input Information. The program will validate it to make sure only 11 characters are entered and display it in a table. \\ \hline
@@ -552,7 +576,7 @@ Location AddrLine3  & String				& 1-30				& Length		&	Royston 	 &  \\ \hline
 \newpage
 \subsection{Identification of appropriate storage media}
 
-This database will be accessed by a large amount of computers at once and it will need to be updated everytime someone changes it. This would be impossible to do if it was stored locally on one machine since the changes will only be made on that one machine. Therefore the best way to do this would be to store the system on the company's server. The company already have a large number of servers in their ventilated server room and using one to store the system on is not a problem. Every computer in the company has access to the server so making changes can be done on any machine and viewed from any other computer. The data will be stored on a 4TB hard drive inside the server and backups can be made on backup drives the company hold which are 2-4TB in size. The company mainly uses online backups through cloud storage which can be used as well, the file size plays little impact as their download speed is over 100mb/s with an upload speed of about 70mb/s so the system can be backed up quickly.
+This database will be accessed by a large amount of computers at once and it will need to be updated every time someone changes it. This would be impossible to do if it was stored locally on one machine since the changes will only be made on that one machine. Therefore the best way to do this would be to store the system on the company's server. The company already have a large number of servers in their ventilated server room and using one to store the system on is not a problem. Every computer in the company has access to the server so making changes can be done on any machine and viewed from any other computer. The data will be stored on a 4TB hard drive inside the server and backups can be made on backup drives the company hold which are 2-4TB in size. The company mainly uses online backups through cloud storage which can be used as well, the file size plays little impact as their download speed is over 100mb/s with an upload speed of about 70mb/s so the system can be backed up quickly.
 \section{Database Design}
 
 \subsection{Normalisation}
@@ -717,14 +741,14 @@ Appropriate technical and organisational measures shall be taken against unautho
 \section{Validation}
 
 \begin{center}
-    \begin{longtable}{|p{2.5cm}|p{2cm}|p{3cm}|p{3cm}|p{3cm}|}
+    \begin{longtable}{|p{2.5cm}|p{2cm}|p{1.5cm}|p{2cm}|p{3cm}|}
         \hline
         \textbf{Data Item} & \textbf{Validation} & \textbf{Presence Check?} & \textbf{Example} & \textbf{Comments} \\ \hline
-StaffID                              & NOT NULL - UNIQUE        &  Yes & 5        & The ID is autogenerated and is unique  \\ \hline
+StaffID                              & Auto generated - No validation criteria        &  N/A & 5        & not NULL and unique  \\ \hline
 Staff-FirstName                      & Presence Check                   & Yes        & John                  &  Ensures a name is entered                      \\ \hline
 Staff-LastName                       & Presence Check               & Yes            & Smith                 &   Ensures a name is entered                     \\ \hline
 StaffJobTitle			&   Length Check 			&Yes & Finance Manager		&Ensures a job title is entered and that the title is no more than 30 characters		\\ \hline
-HardwareID                         &   NOT NULL - UNIQUE       &Yes                & 121                   &The ID is autogenerated and is unique \\ \hline
+HardwareID                         &  Auto generated - No validation criteria        &  N/A & 121        & not NULL and unique \\ \hline
 Hardware Cost                     &   Range Validation \textgreater0 and \textless=2000            &Yes                        & £500                  &  The cost of a hardware item will not be more than 2000                     \\ \hline
 Hardware Warranty                    & Presence Check            &Yes               & True                  & Ensures a True/False statement is entered                      \\ \hline
 Hardware Warranty ExpirationDate           & Format                      &No             & 11/03/2017               &   Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                    \\ \hline
@@ -732,15 +756,15 @@ Hardware SerialNumber              & Length                 &Yes                
 Hardware PurchaseDate               & Format                 &No                  & 11/03/2015              & Ensures the date is entered in the correct format. This will automatically be entered when the user clicks the calender date                       \\ \hline
 Hardware-IMEI               & Length              &Yes                     & EH37000781               & Ensures a length of up to 30 characters                      \\ \hline
 Hardware PhoneNumber                  & Length            &Yes                      & 07927551125              &   Ensures only 11 chracters are entered                      \\ \hline
-DeviceID                     & NOT NULL - UNIQUE             &Yes                       & 24                 & The ID is autogenerated and is unique                    \\ \hline
+DeviceID                     &  Auto generated - No validation criteria        &  N/A & 24        & not NULL and unique                    \\ \hline
 DeviceName                         & Length                       &Yes            & Phone, Laptop, Tablet                &  Ensures a length of a device is not more than 15 characters                     \\ \hline
-Hardware MakeID                    & NOT NULL - UNIQUE       &Yes                             & 24                 & The ID is autogenerated and is unique                       \\ \hline
+Hardware MakeID                    &  Auto generated - No validation criteria        &  N/A & 24        & not NULL and unique                       \\ \hline
 Hardware Make                        & Length               &Yes                    & iPhone                & Ensures the length of a make is not more than 15 characters                      \\ \hline
-Hardware ModelID		& NOT NULL - UNIQUE                       &Yes             & 24                 & The ID is autogenerated and is unique                        \\ \hline
+Hardware ModelID		& Auto generated - No validation criteria        &  N/A & 24        & not NULL and unique                        \\ \hline
 Hardware Model                      & Length            &Yes                       & 5S                    & Ensures no more than 15 characters will be entered                       \\ \hline
-DepartmentID 	&NOT NULL - UNIQUE 	&Yes	& 24		& The ID is autogenerated and is unique	\\ \hline
+DepartmentID 	& Auto generated - No validation criteria        &  N/A & 24        & not NULL and unique	\\ \hline
 Department Name	& Length	&Yes	& Financing		& Allows for 25 characters to be entered for the department	\\ \hline
-LocationID 		&NOT NULL - UNIQUE 	&Yes	& 	24	& The ID is autogenerated and is unique		\\ \hline
+LocationID 		& Auto generated - No validation criteria        &  N/A & 24        & not NULL and unique		\\ \hline
 Location Name	& Length	&Yes	&	Orwell	 & No more than 25 characters can be entered for the location  \\ \hline
 Location AddrLine1 & Length	&Yes	&	50 Fisher's Ln	 & Up to 50 characters may be entered for address line 1  \\ \hline
 Location AddrLine2 & Length	&No	&	Orwell	 & Up to 15 characters may be entered for address line 2 \\ \hline
@@ -748,9 +772,8 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
     \end{longtable}
 \end{center}
 
-\section{Testing}
-
 \begin{landscape}
+\section{Testing}
 \subsection{Outline Plan}
 
 \begin{center}
@@ -772,7 +795,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 \subsection{Detailed Plan}
 
 \begin{center}
-    \begin{longtable}{|p{1.5cm}|p{2.5cm}|p{2.5cm}|p{4cm}|p{2cm}|p{2cm}|p{1cm}|p{1cm}|}
+    \begin{longtable}{|p{1.5cm}|p{2cm}|p{2.5cm}|p{4cm}|p{2cm}|p{2cm}|p{1cm}|p{1.7cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test} & \textbf{Test Description} & \textbf{Test Data} & \textbf{Test Data Type (Normal/ Erroneous/ Boundary)} & \textbf{Expected Result} & \textbf{Actual Result} & \textbf{Evidence}\\ \hline
 1.01 & Test the manager login button on the select login page to ensure it works correctly  & This takes the user to the appropriate login screen & Click the Manager Login button & Normal & The manager login screen should be displayed && \\ \hline
@@ -858,7 +881,7 @@ Location AddrLine3  & Length	&No	&	Royston 	 &Up to 15 characters may be entered
 5.2 & Check that managers cannot log in to staff or admins interfaces & managers should not be able to use their login to access the admin interface or the staff interface, only their own. & managers login details & Erroneous & The system will say incorrect login details && \\ \hline
 5.2 & Check that admins cannot log in to staff or managers interfaces & admins should not be able to use their login to access the manager interface or the staff interface, only their own. & admins login details & Erroneous & The system will say incorrect login details && \\ \hline
 
-6 & Verify the program fulfils all the specifications & Run through the program testing every aspect with correct and incorrect data to insure all the objectives are met & Normal &The program should fulfil all specifications and objectives && \\ \hline
+6 & Verify the program fulfils all the specifications & The program should meet the clients specification and the goals proposed in the Analysis stage & Run through the program testing every aspect with correct and incorrect data to insure all the objectives are met & Normal &The program should fulfil all specifications and objectives && \\ \hline
 
 7.1 & Allow the enter button to be pressed on the login window instead of using the push button & To test if the enter button will work as an alternative & press the enter button while on the login screen & Normal & The layout will switch to the appropriate main menu && \\ \hline
 7.2 & Allow the escape button to be used to close the calendar widget & The user should be able to use escape instead of pressing the cross to close the window & Press ESC when calendar is opened from add data screen & Normal & The calendar should close with TAB && \\ \hline
