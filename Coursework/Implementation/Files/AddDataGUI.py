@@ -31,6 +31,7 @@ class AddDataWindow(QDialog):
                     
             count = 0
             PurchaseDateExist = False
+            WarrantyDateExists = False
             for position, name in zip(positions,self.col):
                 print(name)
                 if name == '':   ##This replaces all the spaces with line edits
@@ -61,6 +62,12 @@ class AddDataWindow(QDialog):
                     label = QLabel(name)
                     self.grid.addWidget(label,*position)
                     PurchaseDateExist = True
+                    
+                elif name == 'WarrantyExpirationDate':
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    WarrantyDateExists = True
+                    
                 else:
                     label = QLabel(name)
                     self.grid.addWidget(label,*position)
@@ -166,7 +173,7 @@ class AddDataWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    launcher = AddDataWindow('Hardware')
+    launcher = AddDataWindow('StaffHardware')
     launcher.show()
     launcher.raise_()
     app.exec_()
