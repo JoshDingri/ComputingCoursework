@@ -169,6 +169,7 @@ class OpenDatabase(QMainWindow):
             print('Table Could Not Be Made')
         self.currentcbvalue = self.CurrentTable
         self.table.cellChanged.connect(self.cellchanged)
+        self.table.cellClicked.connect(self.cellclicked)
 
 
 
@@ -184,7 +185,20 @@ class OpenDatabase(QMainWindow):
                 itemlist[count].setBackgroundColor(QColor('Yellow'))
 
     def cellchanged(self):
-        print(self.table.currentItem().text())
+        print('CurrentCell',self.CurrentCell)
+        print('CurrentItem',self.table.currentItem().text())
+        print('ID',self.table.item(self.table.currentRow(),0).text())
+        
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = 'update {0} set {1} where {2}={3}'.format(self.currentcbvalue,self.CurrentCell)
+
+    def cellclicked(self):
+        self.CurrentCell = (self.table.currentItem().text())
+        print(self.table.currentColumn())
+        print(self.table.horizontalHeaderItem(1))
+            
+        
 
     def EditDatabaseClicked(self): ## Boolean statements to say whether the button has been clicked
         self.EditDB = True

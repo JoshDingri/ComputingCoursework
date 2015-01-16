@@ -32,6 +32,7 @@ class AddDataWindow(QDialog):
             count = 0
             PurchaseDateExist = False
             WarrantyDateExists = False
+            self.CurrentLineEditExists = False
             for position, name in zip(positions,self.col):
                 print(name)
                 if name == '':   ##This replaces all the spaces with line edits
@@ -41,6 +42,9 @@ class AddDataWindow(QDialog):
                     count+=1
                     if PurchaseDateExist == True:
                         if name == '':   ##This replaces all the spaces with line edits
+                            if self.CurrentLineEditExists == False:
+                                self.CurrentLineEdit = count
+                                self.CurrentLineEditExists = True
                             self.LE = QLineEdit()
                             self.calander_btn = QPushButton()
                             self.calander_btn.setFixedWidth(50)
@@ -58,15 +62,10 @@ class AddDataWindow(QDialog):
                             count+=1
                             PurchaseDateExist = False
                     
-                elif name == 'PurchaseDate':
+                elif name == 'PurchaseDate' or name == 'WarrantyExpirationDate':
                     label = QLabel(name)
                     self.grid.addWidget(label,*position)
                     PurchaseDateExist = True
-                    
-                elif name == 'WarrantyExpirationDate':
-                    label = QLabel(name)
-                    self.grid.addWidget(label,*position)
-                    WarrantyDateExists = True
                     
                 else:
                     label = QLabel(name)
@@ -125,8 +124,8 @@ class AddDataWindow(QDialog):
     def OpenCalander(self):
         CalenderWidget = Calendar()
         CalenderWidget.exec_()
-        self.linelist[2].setText(CalenderWidget.date)
-        self.linelist[2].setAlignment(Qt.AlignHCenter)
+        self.linelist[self.CurrentLineEdit].setText('    '+CalenderWidget.date)
+        self.linelist[self.CurrentLineEdit].setAlignment(Qt.AlignCenter)
         
         
             
@@ -173,7 +172,7 @@ class AddDataWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    launcher = AddDataWindow('StaffHardware')
+    launcher = AddDataWindow('Staff')
     launcher.show()
     launcher.raise_()
     app.exec_()

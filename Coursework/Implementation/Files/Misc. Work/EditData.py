@@ -97,7 +97,7 @@ def UpdatingData(table_name,field_names,ID,fields):
         update_fields.append(field_names[int(field_choice)])
         inputdata = input("Change field to: ")
         data.append(inputdata)
-        print()
+        print(update_fields)
         finished = input("Do you want to finish? (y/n): ")
         print()
     update_fields = ','.join(update_fields)
