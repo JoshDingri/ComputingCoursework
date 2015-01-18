@@ -185,18 +185,23 @@ class OpenDatabase(QMainWindow):
                 itemlist[count].setBackgroundColor(QColor('Yellow'))
 
     def cellchanged(self):
-        print('CurrentCell',self.CurrentCell)
-        print('CurrentItem',self.table.currentItem().text())
-        print('ID',self.table.item(self.table.currentRow(),0).text())
+        data = self.table.currentItem().text()
+        self.IDtoChange = (self.table.item(self.table.currentRow(),0).text())
+        colnumber = int(self.table.currentColumn())
+        self.Columnname = (self.table.horizontalHeaderItem(colnumber).text())
+        self.Columnname = (self.Columnname + '=?')
+        
         
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            sql = 'update {0} set {1} where {2}={3}'.format(self.currentcbvalue,self.CurrentCell)
+            sql = "update {0} set {1} where {2}={3}".format(self.currentcbvalue,self.Columnname,self.ID,self.IDtoChange)
+            cursor.execute("PRAGMA foreign_keys = ON")
+            cursor.execute(sql,(data,)) ################ FIX FOR sqlite3.ProgrammingError: Incorrect number of bindings supplied
+            db.commit()
 
     def cellclicked(self):
         self.CurrentCell = (self.table.currentItem().text())
-        print(self.table.currentColumn())
-        print(self.table.horizontalHeaderItem(1))
+        self.ID = (self.table.horizontalHeaderItem(0).text())
             
         
 
