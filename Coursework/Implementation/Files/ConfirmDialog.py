@@ -46,7 +46,7 @@ class Warning_Dialog(QDialog):
         self.setLayout(self.vertical)
 
     def Confirm_Deletion(self):
-        Database_window = OpenDatabase()
+        Database_window = self.OpenDatabaseWindow()
         Database_window.Confirm_Deletion()
 
 if __name__ == '__main__':

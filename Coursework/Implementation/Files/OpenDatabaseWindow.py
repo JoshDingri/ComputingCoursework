@@ -244,7 +244,6 @@ class OpenDatabase(QMainWindow):
 
 
     def Confirm_Deletion(self):
-        WarningDialog.reject()
         button = qApp.focusWidget()
         index = self.table.indexAt(button.pos())
         if index.isValid():
