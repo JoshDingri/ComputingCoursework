@@ -34,7 +34,6 @@ class AddDataWindow(QDialog):
             WarrantyDateExists = False
             self.CurrentLineEditExists = False
             for position, name in zip(positions,self.col):
-                print(name)
                 if name == '':   ##This replaces all the spaces with line edits
                     self.LE = QLineEdit() 
                     self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
@@ -120,6 +119,12 @@ class AddDataWindow(QDialog):
 
 
             self.AddData_Choice.clicked.connect(self.Commit_Changes) ## Button click will run chosen method
+            self.Cancel_Choice.clicked.connect(self.Close_window) ## Closes the Add data GUI
+
+
+    def Close_window(self):
+        self.reject()
+        
 
     def OpenCalander(self):
         CalenderWidget = Calendar()
@@ -150,7 +155,6 @@ class AddDataWindow(QDialog):
         values = (str(values).replace('[','('))
         values = (str(values).replace(']',')'))
         values = values.replace("'","")
-        print(data)
 
 
         ## Adds entered data into database

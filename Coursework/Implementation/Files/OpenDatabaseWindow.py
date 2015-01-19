@@ -136,6 +136,8 @@ class OpenDatabase(QMainWindow):
                         self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
 
             elif self.DeleteRC == True:
+                self.Deletebtn_list = []
+                self.counter = 0
                 for self.row, form in enumerate(self.cursor):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form):
@@ -144,9 +146,12 @@ class OpenDatabase(QMainWindow):
                         self.table.setItem(self.row, self.column,self.item)
                 self.table.insertColumn(self.column+1)
                 last_column = self.table.columnCount()
-                for count in range(self.table.rowCount()):
+                for count in range(self.table.rowCount()): 
                         self.delete_btn = QPushButton('Delete')
-                        self.table.setCellWidget(count,last_column-1,self.delete_btn)   ##Adds a button to every row (count) and to the last column
+                        self.Deletebtn_list.append(self.delete_btn)
+                        self.table.setCellWidget(count,last_column-1,self.Deletebtn_list[self.counter])   ##Adds a button to every row (count) and to the last column
+                        self.Deletebtn_list[self.counter].clicked.connect(self.Delete_btnclicked)
+                        self.counter +=1
 
 
             ##If the editdb is not active
@@ -226,8 +231,15 @@ class OpenDatabase(QMainWindow):
             self.DeleteRC = False
         else:
             self.DeleteRC = True
+            
         
         self.ChosenTableMethod()
+
+    def Delete_btnclicked(self):
+        self.Deletebtn_list[self.counter] = qApp.focusWidget()
+        index = self.table.indexAt(self.Deletebtn_list[self.counter].pos())
+        if index.isValid():
+            print(index.row(), index.column())
         
         
         
