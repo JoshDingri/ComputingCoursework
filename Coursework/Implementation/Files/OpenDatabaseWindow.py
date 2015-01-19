@@ -238,6 +238,7 @@ class OpenDatabase(QMainWindow):
 
     def Delete_btnclicked(self):
         WarningDialog = Warning_Dialog()
+        WarningDialog.YesBtn.clicked.connect(self.Confirm_Deletion)
         WarningDialog.exec()
 
 
