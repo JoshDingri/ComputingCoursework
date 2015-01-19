@@ -4,6 +4,7 @@ import sys
 from MenuBarAdmin import *
 import sqlite3
 from MainProgram import *
+from ConfirmDialog import *
 
 class OpenDatabase(QMainWindow):
     """Opening database to add, edit and remove"""
@@ -149,8 +150,8 @@ class OpenDatabase(QMainWindow):
                 for count in range(self.table.rowCount()): 
                         self.delete_btn = QPushButton('Delete')
                         self.Deletebtn_list.append(self.delete_btn)
-                        self.table.setCellWidget(count,last_column-1,self.Deletebtn_list[self.counter])   ##Adds a button to every row (count) and to the last column
-                        self.Deletebtn_list[self.counter].clicked.connect(self.Delete_btnclicked)
+                        self.table.setCellWidget(count,last_column-1,self.delete_btn)   ##Adds a button to every row (count) and to the last column
+                        self.delete_btn.clicked.connect(self.Delete_btnclicked)
                         self.counter +=1
 
 
@@ -236,10 +237,31 @@ class OpenDatabase(QMainWindow):
         self.ChosenTableMethod()
 
     def Delete_btnclicked(self):
-        self.Deletebtn_list[self.counter] = qApp.focusWidget()
-        index = self.table.indexAt(self.Deletebtn_list[self.counter].pos())
+        WarningDialog = Warning_Dialog()
+        WarningDialog.exec()
+
+
+
+
+    def Confirm_Deletion(self):
+        WarningDialog.reject()
+        button = qApp.focusWidget()
+        index = self.table.indexAt(button.pos())
         if index.isValid():
-            print(index.row(), index.column())
+            DeleteRow = index.row()
+        self.IDtoChange = (self.table.item(DeleteRow,0).text())
+        self.ID = (self.table.horizontalHeaderItem(0).text())
+        
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "delete from {0} where {1}={2}".format(self.currentcbvalue,self.ID,self.IDtoChange)
+            cursor.execute("PRAGMA foreign_keys = ON")
+            cursor.execute(sql)
+            db.commit()
+        self.ChosenTableMethod()
+        
+    def Cancel_Deletion(self):
+        print('hi')
         
         
         
