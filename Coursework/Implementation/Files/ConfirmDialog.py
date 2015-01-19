@@ -40,7 +40,6 @@ class Warning_Dialog(QDialog):
         self.vertical.addLayout(self.horizontal_layout2)
         self.vertical.addLayout(self.horizontal_layout3)
         
-        self.YesBtn.clicked.connect(self.Confirm_Deletion)
 
         
         self.setLayout(self.vertical)

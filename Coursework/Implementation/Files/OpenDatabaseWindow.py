@@ -237,19 +237,21 @@ class OpenDatabase(QMainWindow):
         self.ChosenTableMethod()
 
     def Delete_btnclicked(self):
-        WarningDialog = Warning_Dialog()
-        WarningDialog.YesBtn.clicked.connect(self.Confirm_Deletion)
-        WarningDialog.exec()
+        button = qApp.focusWidget()
+        index = self.table.indexAt(button.pos())
+        if index.isValid():
+            self.DeleteRow = index.row()
+        self.WarningDialog = Warning_Dialog()
+        self.WarningDialog.YesBtn.clicked.connect(self.Confirm_Deletion)
+        self.WarningDialog.NoBtn.clicked.connect(self.Cancel_Deletion)
+        self.WarningDialog.exec()
 
 
 
 
     def Confirm_Deletion(self):
-        button = qApp.focusWidget()
-        index = self.table.indexAt(button.pos())
-        if index.isValid():
-            DeleteRow = index.row()
-        self.IDtoChange = (self.table.item(DeleteRow,0).text())
+        self.WarningDialog.reject()
+        self.IDtoChange = (self.table.item(self.DeleteRow,0).text())
         self.ID = (self.table.horizontalHeaderItem(0).text())
         
         with sqlite3.connect("Volac.db") as db:
@@ -261,7 +263,7 @@ class OpenDatabase(QMainWindow):
         self.ChosenTableMethod()
         
     def Cancel_Deletion(self):
-        print('hi')
+        self.WarningDialog.reject()
         
         
         
