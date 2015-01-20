@@ -73,8 +73,11 @@ class OpenDatabase(QMainWindow):
         self.horizontal.addWidget(self.Remove_btn)
         self.grid.addWidget(self.iconbutton,2,3)
 
+        self.table = QTableWidget()
+
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
+        self.verticle.addWidget(self.table)
 
         window_widget = QWidget()
         window_widget.setLayout(self.verticle)
@@ -102,6 +105,7 @@ class OpenDatabase(QMainWindow):
         self.addToolBar(Qt.BottomToolBarArea,self.EditDB_ToolBar)
         self.EditDB_ToolBar.setFont(QFont('',11))
         self.EditDB_ToolBar.setVisible(False)
+        
         self.savechanges.triggered.connect(self.EditDB_SaveChanges)
         self.cancel.triggered.connect(self.EditDB_Cancel)
         
@@ -110,7 +114,8 @@ class OpenDatabase(QMainWindow):
         
 
     def ChosenTableMethod(self):
-            
+        self.table.deleteLater()
+        
         self.CurrentTable = (self.Database_CB.currentText())
         if self.exists == True:
             self.verticle.removeWidget(self.table)
@@ -191,19 +196,16 @@ class OpenDatabase(QMainWindow):
                 itemlist[count].setBackgroundColor(QColor('Yellow'))
 
     def cellchanged(self):
-        data = self.table.currentItem().text()
-        self.IDtoChange = (self.table.item(self.table.currentRow(),0).text())
-        colnumber = int(self.table.currentColumn())
-        self.Columnname = (self.table.horizontalHeaderItem(colnumber).text())
-        self.Columnname = (self.Columnname + '=?')
+        try:
+            self.Edited_data = self.table.currentItem().text()
+            self.IDtoChange = (self.table.item(self.table.currentRow(),0).text())
+            self.colnumber = int(self.table.currentColumn())
+            self.Columnname = (self.table.horizontalHeaderItem(self.colnumber).text())
+            self.Columnname = (self.Columnname + '=?')
+        except AttributeError:
+            pass
         
         
-        with sqlite3.connect("Volac.db") as db:
-            cursor = db.cursor()
-            sql = "update {0} set {1} where {2}={3}".format(self.currentcbvalue,self.Columnname,self.ID,self.IDtoChange)
-            cursor.execute("PRAGMA foreign_keys = ON")
-            cursor.execute(sql,(data,)) ################ FIX FOR sqlite3.ProgrammingError: Incorrect number of bindings supplied
-            db.commit()
 
     def cellclicked(self):
         self.CurrentCell = (self.table.currentItem().text())
@@ -217,13 +219,34 @@ class OpenDatabase(QMainWindow):
         self.ChosenTableMethod()
 
     def EditDB_SaveChanges(self):
-        self.EditDB = False
-        self.EditDB_ToolBar.setVisible(False)
-        self.ChosenTableMethod()
+        try:
         
+            with sqlite3.connect("Volac.db") as db:
+                cursor = db.cursor()
+                sql = "update {0} set {1} where {2}={3}".format(self.currentcbvalue,self.Columnname,self.ID,self.IDtoChange)
+                cursor.execute("PRAGMA foreign_keys = ON")
+                cursor.execute(sql,(self.Edited_data,)) ################ FIX FOR sqlite3.ProgrammingError: Incorrect number of bindings supplied
+                db.commit()
+
+            self.EditDB = False
+            self.EditDB_ToolBar.setVisible(False)
+            self.ChosenTableMethod()
+
+        except (AttributeError,sqlite3.OperationalError):
+            pass
+            
+
+
     def EditDB_Cancel(self):
         self.EditDB = False
         self.EditDB_ToolBar.setVisible(False)
+
+        self.Edited_data = None
+        self.IDtoChange = None
+        self.colnumber = None
+        self.Columnname = None
+        self.Columnname = None
+        
         self.ChosenTableMethod()
 
     def DeleteRecordsClicked(self):
