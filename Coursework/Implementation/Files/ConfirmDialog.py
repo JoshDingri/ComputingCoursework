@@ -24,7 +24,7 @@ class Warning_Dialog(QDialog):
         self.horizontal_layout.addWidget(Picture)
         self.horizontal_layout.addStretch(1)
 
-        WarningText = QLabel('ARE YOU SURE YOU WANT TO DELETE ITEM(S)')
+        WarningText = QLabel('ARE YOU SURE YOU WANT TO DELETE ITEMS')
         WarningText.setFont(QFont('Calibri',12))
         self.horizontal_layout2.addStretch(1)
         self.horizontal_layout2.addWidget(WarningText)

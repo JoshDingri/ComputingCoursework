@@ -182,6 +182,9 @@ class OpenDatabase(QMainWindow):
         self.table.cellChanged.connect(self.cellchanged)
         self.table.cellClicked.connect(self.cellclicked)
 
+    def FilterTable(self):
+        pass
+
 
 
     def SearchMethod(self):
@@ -189,11 +192,13 @@ class OpenDatabase(QMainWindow):
         if text == '':
             itemlist = self.table.findItems(text,Qt.MatchStartsWith)
             for count in range(len(itemlist)):
+                print(itemlist.text())
                 itemlist[count].setBackgroundColor(QColor('White'))
         else:
             itemlist = self.table.findItems(text,Qt.MatchStartsWith)
             for count in range(len(itemlist)):
                 itemlist[count].setBackgroundColor(QColor('Yellow'))
+                print(itemlist[count].row())
 
     def cellchanged(self):
         try:
