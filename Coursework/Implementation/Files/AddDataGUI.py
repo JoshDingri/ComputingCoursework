@@ -37,7 +37,7 @@ class AddDataWindow(QDialog):
                 if name == '':   ##This replaces all the spaces with line edits
                     self.LE = QLineEdit() 
                     self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
-                    self.linelist[count].setStyleSheet("background-color: #ED0707; border-radius: 3px; border: 2px solid black")
+                    self.linelist[count].setStyleSheet("background-color: #F04A37; border-radius: 3px; border: 2px solid black")
                     self.linelist[count].textChanged.connect(self.PresenceValid)
                     self.grid.addWidget(self.linelist[count],*position) 
                     count+=1
@@ -124,7 +124,13 @@ class AddDataWindow(QDialog):
             self.Cancel_Choice.clicked.connect(self.Close_window) ## Closes the Add data GUI
             
     def PresenceValid(self):
-        self.linelist[count].setStyleSheet("background-color: green")
+        for count in range(len(self.linelist)):
+            text = self.linelist[count].text()
+            if text == '':
+                self.linelist[count].setStyleSheet("background-color: #F04A37; border-radius: 3px; border: 2px solid black")
+            else:
+                self.linelist[count].setStyleSheet("background-color: #C7DE43; border-radius: 3px; border: 2px solid black")
+        
 
 
     def Close_window(self):
