@@ -20,19 +20,19 @@ class OpenDatabase(QMainWindow):
         self.verticle = QVBoxLayout()
         
         
-        DatabaseLbl = QLabel("Table",self)
+        DatabaseLbl = QLabel(self)
         DatabaseLbl.setFont(QFont("Calibri",20))
         self.Database_CB = QComboBox(self)
-        self.Database_CB.addItem('-')
+        self.Database_CB.addItem('Select Table')
         self.Database_CB.setFixedHeight(30)
         self.Database_CB.setFixedWidth(150)
 
 
-
-        SearchLbl = QLabel("Search Fields",self)
+        SearchLbl = QLabel(self)
         self.Search_LE = QLineEdit(self)
         self.Search_LE.setFixedWidth(150)
         self.Search_LE.setFixedHeight(25)
+        self.Search_LE.setPlaceholderText("Search Fields")
         SearchLbl.setFont(QFont("Calibri",20))
 
         self.Back_btn = QPushButton("Back",self)
@@ -42,7 +42,7 @@ class OpenDatabase(QMainWindow):
         self.Add_btn = QPushButton("Add Data",self)
         self.Remove_btn = QPushButton("Remove Data",self)
 
-        space = QLabel('',self)
+        space = QLabel('                                      ',self)
         self.AddDatabase = QPushButton('Open Database',self)
         self.AddDatabase.setFont(QFont("Calibri",8))
         self.AddDatabase.setFixedWidth(80)
@@ -62,11 +62,11 @@ class OpenDatabase(QMainWindow):
 
         self.grid.setVerticalSpacing(20)
 
-        self.iconbutton = QPushButton(self)
+        self.iconbutton = QLabel(self)
+
         pixmap = QPixmap('search.png')
-        ButtonIcon = QIcon(pixmap)
-        self.iconbutton.setIcon(ButtonIcon)
-        self.iconbutton.setIconSize(QSize(25,25))
+        pixmap = pixmap.scaled(QSize(25,25),Qt.KeepAspectRatio)
+        self.iconbutton.setPixmap(pixmap)
 
         self.horizontal.addWidget(self.EditDatabase_btn)
         self.horizontal.addWidget(self.Add_btn)
@@ -85,7 +85,7 @@ class OpenDatabase(QMainWindow):
         
         self.Database_CB.activated.connect(self.ChosenTableMethod) 
         self.Remove_btn.clicked.connect(self.DeleteRecordsClicked)
-        self.iconbutton.clicked.connect(self.SearchMethod)
+        self.Search_LE.textChanged.connect(self.SearchMethod)
         self.EditDatabase_btn.clicked.connect(self.EditDatabaseClicked)
 
         rspacer = QWidget()
@@ -188,17 +188,21 @@ class OpenDatabase(QMainWindow):
 
 
     def SearchMethod(self):
+        for index in range(self.table.rowCount()):
+            self.table.setRowHidden(index,True)
         text = self.Search_LE.text()
         if text == '':
             itemlist = self.table.findItems(text,Qt.MatchStartsWith)
             for count in range(len(itemlist)):
-                print(itemlist.text())
                 itemlist[count].setBackgroundColor(QColor('White'))
+            for index in range(self.table.rowCount()):
+                self.table.setRowHidden(index,False)
         else:
             itemlist = self.table.findItems(text,Qt.MatchStartsWith)
             for count in range(len(itemlist)):
-                itemlist[count].setBackgroundColor(QColor('Yellow'))
-                print(itemlist[count].row())
+##                itemlist[count].setBackgroundColor(QColor('Yellow'))
+                rownum = (itemlist[count].row())
+                self.table.setRowHidden(rownum,False)
 
     def cellchanged(self):
         try:
