@@ -45,3 +45,15 @@ class SearchStaff(QMainWindow):
 
         self.verticle.addLayout(self.grid)
 
+        window_widget = QWidget()
+        window_widget.setLayout(self.verticle)
+        self.setCentralWidget(window_widget)
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    launcher = SearchStaff()
+    launcher.show()
+    launcher.raise_()
+    app.exec_()
+

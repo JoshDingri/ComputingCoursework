@@ -41,7 +41,7 @@ class AddDataWindow(QDialog):
                     self.LE = QLineEdit()
                     self.LE.setFixedHeight(22)
                     self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
-                    self.linelist[count].setStyleSheet("background-color: #FFFEB8; border-radius: 3px; border: 2px solid black; background-image: url('icons_trick.png')")
+                    self.linelist[count].setStyleSheet("background-color: White; border-radius: 3px; border: 2px solid black; background-image: url('icons_trick.png')")
                     self.linelist[count].textChanged.connect(self.PresenceValid)
                     self.grid.addWidget(self.linelist[count],*position) 
                     count+=1
@@ -131,7 +131,7 @@ class AddDataWindow(QDialog):
         for count in range(len(self.linelist)):
             text = self.linelist[count].text()
             if text == '':
-                self.linelist[count].setStyleSheet("background-color: #FFFEB8; border-radius: 3px; border: 2px solid black")
+                self.linelist[count].setStyleSheet("background-color: White; border-radius: 3px; border: 2px solid black")
             else:
                 self.linelist[count].setStyleSheet("background-color: #C7DE43; border-radius: 3px; border: 2px solid black")
         
@@ -180,6 +180,7 @@ class AddDataWindow(QDialog):
                 cursor.execute("PRAGMA foreign_keys = ON")
                 cursor.execute(sql,data)
                 db.commit()
+        self.reject()
     
             
 
@@ -191,7 +192,7 @@ class AddDataWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    launcher = AddDataWindow('Staff')
+    launcher = AddDataWindow('StaffHardware')
     launcher.show()
     launcher.raise_()
     app.exec_()
