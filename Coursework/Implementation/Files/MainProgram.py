@@ -46,7 +46,7 @@ class CurrentLayoutAdmin(QMainWindow):
     def OpenDatabaseWidget_Method(self):
         self.OpenDatabaseWindow = OpenDatabase()
         self.setCentralWidget(self.OpenDatabaseWindow)
-        self.resize(770,500)
+        self.resize(738,500)
         self.move (500,180)
             
         

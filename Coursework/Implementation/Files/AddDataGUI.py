@@ -9,10 +9,13 @@ class AddDataWindow(QDialog):
     """The new window for entering data"""
 
     def __init__(self,CurrentCBValue):  ##CurrentCBValue is the table selected from dropdown box. Passed in from main program
+            
             self.linelist = []
             self.dateclicked = False
             
             super().__init__()
+
+            self.resize(500,180)
         
             self.grid = QGridLayout()
             self.verticle = QVBoxLayout()
@@ -35,9 +38,10 @@ class AddDataWindow(QDialog):
             self.CurrentLineEditExists = False
             for position, name in zip(positions,self.col):
                 if name == '':   ##This replaces all the spaces with line edits
-                    self.LE = QLineEdit() 
+                    self.LE = QLineEdit()
+                    self.LE.setFixedHeight(22)
                     self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
-                    self.linelist[count].setStyleSheet("background-color: #F04A37; border-radius: 3px; border: 2px solid black")
+                    self.linelist[count].setStyleSheet("background-color: #FFFEB8; border-radius: 3px; border: 2px solid black; background-image: url('icons_trick.png')")
                     self.linelist[count].textChanged.connect(self.PresenceValid)
                     self.grid.addWidget(self.linelist[count],*position) 
                     count+=1
@@ -127,7 +131,7 @@ class AddDataWindow(QDialog):
         for count in range(len(self.linelist)):
             text = self.linelist[count].text()
             if text == '':
-                self.linelist[count].setStyleSheet("background-color: #F04A37; border-radius: 3px; border: 2px solid black")
+                self.linelist[count].setStyleSheet("background-color: #FFFEB8; border-radius: 3px; border: 2px solid black")
             else:
                 self.linelist[count].setStyleSheet("background-color: #C7DE43; border-radius: 3px; border: 2px solid black")
         

@@ -108,9 +108,37 @@ class OpenDatabase(QMainWindow):
         
         self.savechanges.triggered.connect(self.EditDB_SaveChanges)
         self.cancel.triggered.connect(self.EditDB_Cancel)
-        
 
-        
+        self.ButtonStyleSheet =  ("""QPushButton{
+                    color: #333;
+                    border: 2px solid #555;
+                    border-radius: 11px;
+                    padding: 5px;
+                    background: qradialgradient(cx: 0.3, cy: -0.4,
+                    fx: 0.3, fy: -0.4,
+                    radius: 1.35, stop: 0 #fff, stop: 1 #888);
+                    min-width: 80px;
+                    }"""
+                             
+                    """QPushButton:hover{
+                    background: qradialgradient(cx: 0.3, cy: -0.4,
+                    fx: 0.3, fy: -0.4,
+                    radius: 1.35, stop: 0 #fff, stop: 1 #bbb);
+                    }"""
+
+                    """QPushButton:pressed {
+                    background: qradialgradient(cx: 0.4, cy: -0.1,
+                    fx: 0.4, fy: -0.1,
+                    radius: 1.35, stop: 0 #fff, stop: 1 #ddd);
+                    }""")
+
+                    
+        self.EditDatabase_btn.setStyleSheet(self.ButtonStyleSheet)
+        self.Add_btn.setStyleSheet(self.ButtonStyleSheet)
+        self.Remove_btn.setStyleSheet(self.ButtonStyleSheet)
+                        
+
+                        
         
 
     def ChosenTableMethod(self):
@@ -140,6 +168,8 @@ class OpenDatabase(QMainWindow):
                     for self.column, item in enumerate(form): ##Inserts amount of columns needed
                         self.item = QTableWidgetItem(str(item)) 
                         self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
+                        self.table.horizontalHeader().setStretchLastSection(True)
+                
 
             elif self.DeleteRC == True:
                 self.Deletebtn_list = []
@@ -158,6 +188,7 @@ class OpenDatabase(QMainWindow):
                         self.table.setCellWidget(count,last_column-1,self.delete_btn)   ##Adds a button to every row (count) and to the last column
                         self.delete_btn.clicked.connect(self.Delete_btnclicked)
                         self.counter +=1
+                        self.table.horizontalHeader().setStretchLastSection(True)
 
 
             ##If the editdb is not active
@@ -170,6 +201,7 @@ class OpenDatabase(QMainWindow):
                         self.item = QTableWidgetItem(str(item))
                         self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                         self.table.setItem(self.row, self.column,self.item)
+                        self.table.horizontalHeader().setStretchLastSection(True)
 
                             
             self.verticle.addWidget(self.table)
@@ -223,11 +255,21 @@ class OpenDatabase(QMainWindow):
         
 
     def EditDatabaseClicked(self): ## Boolean statements to say whether the button has been clicked
+        self.EditDatabase_btn.setStyleSheet("""
+                                            color: #333;
+                                            background-color: #E6CCCC;
+                                            border: 2px solid #555;
+                                            border-radius: 11px;
+                                            padding: 5px;
+                                            min-width: 80px;
+                                            """)
+        
         self.EditDB = True
         self.EditDB_ToolBar.setVisible(True)
         self.ChosenTableMethod()
 
     def EditDB_SaveChanges(self):
+        self.EditDatabase_btn.setStyleSheet(self.ButtonStyleSheet)
         try:
         
             with sqlite3.connect("Volac.db") as db:
@@ -247,6 +289,7 @@ class OpenDatabase(QMainWindow):
 
 
     def EditDB_Cancel(self):
+        self.EditDatabase_btn.setStyleSheet(self.ButtonStyleSheet)
         self.EditDB = False
         self.EditDB_ToolBar.setVisible(False)
 
@@ -261,9 +304,18 @@ class OpenDatabase(QMainWindow):
     def DeleteRecordsClicked(self):
         """Allows deletion of records in QTableWidget and Database"""
         if self.DeleteRC == True:
+            self.Remove_btn.setStyleSheet(self.ButtonStyleSheet)
             self.DeleteRC = False
         else:
             self.DeleteRC = True
+            self.Remove_btn.setStyleSheet("""
+                                        color: #333;
+                                        background-color: #E6CCCC;
+                                        border: 2px solid #555;
+                                        border-radius: 11px;
+                                        padding: 5px;
+                                        min-width: 80px;
+                                            """)
             
         
         self.ChosenTableMethod()
@@ -295,7 +347,7 @@ class OpenDatabase(QMainWindow):
         self.ChosenTableMethod()
         
     def Cancel_Deletion(self):
-        self.WarningDialog.reject()
+        self.WarningDialog()
         
         
         
