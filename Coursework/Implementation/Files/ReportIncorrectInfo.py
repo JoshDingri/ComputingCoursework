@@ -67,6 +67,8 @@ class ReportBug(QMainWindow):
         window_widget.setLayout(self.vertical_overall_layout)
         self.setCentralWidget(window_widget)
 
+        self.submit_btn.clicked.connect(self.SendMail)
+
     def SendMail(self):
         self.mail = smtplib.SMTP("smtp.live.com",25)
         self.mail.ehlo()
