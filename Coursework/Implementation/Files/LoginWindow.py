@@ -1,6 +1,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
+import sqlite3
 
 
 class LoginWindow(QWidget):
@@ -92,6 +93,12 @@ class LoginWindow(QWidget):
         print(self.username)
         self.password = self.password.text()
         print(self.password)
+
+        with sqlite3.connect("Accounts.db") as db:
+            cursor = db.cursor
+            cursor.execute("SELECT {0} FROM Accounts".format(self.username))
+
+        
         
         
 
