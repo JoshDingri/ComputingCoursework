@@ -8,5 +8,5 @@ def Add_Logins(values):
         db.commit()
 
 if __name__ == "__main__":
-    product = ("JDingri1","password","Admin")
+    product = ("JoshD","qwerty","Staff")
     Add_Logins(product)

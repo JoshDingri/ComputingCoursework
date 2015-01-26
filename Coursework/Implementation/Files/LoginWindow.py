@@ -2,9 +2,10 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
 import sqlite3
+from MainProgram import *
 
 
-class LoginWindow(QWidget):
+class LoginWindow(QMainWindow):
     """A Login Window"""
 
     def __init__(self):
@@ -24,16 +25,16 @@ class LoginWindow(QWidget):
         LoginLbl = QLabel("PLEASE LOG IN")
         LoginLbl.setFont(QFont("Georgia",18))
 
-        self.username = QLineEdit()
-        self.username.setPlaceholderText("Username")
-        self.username.setFixedWidth(250)
-        self.username.setFixedHeight(30)
+        self.usernameLE = QLineEdit()
+        self.usernameLE.setPlaceholderText("Username")
+        self.usernameLE.setFixedWidth(250)
+        self.usernameLE.setFixedHeight(30)
         
-        self.password = QLineEdit()
-        self.password.setPlaceholderText("Password")
-        self.password.setEchoMode(QLineEdit.Password)
-        self.password.setFixedWidth(250)
-        self.password.setFixedHeight(30)
+        self.passwordLE = QLineEdit()
+        self.passwordLE.setPlaceholderText("Password")
+        self.passwordLE.setEchoMode(QLineEdit.Password)
+        self.passwordLE.setFixedWidth(250)
+        self.passwordLE.setFixedHeight(30)
         
         LoginBtn = QPushButton("Log In")
         LoginBtn.setStyleSheet("""QPushButton{
@@ -66,11 +67,11 @@ class LoginWindow(QWidget):
         self.horizontal1.addStretch(1)
 
         self.horizontal2.addStretch(1)
-        self.horizontal2.addWidget(self.username)
+        self.horizontal2.addWidget(self.usernameLE)
         self.horizontal2.addStretch(1)
         
         self.horizontal3.addStretch(1)
-        self.horizontal3.addWidget(self.password)
+        self.horizontal3.addWidget(self.passwordLE)
         self.horizontal3.addStretch(1)
         
         self.horizontal4.addStretch(1)
@@ -84,19 +85,32 @@ class LoginWindow(QWidget):
         self.verticle.addStretch(1)
         self.verticle.addLayout(self.horizontal4)
 
-        self.setLayout(self.verticle)
+        window_widget = QWidget()
+        window_widget.setLayout(self.verticle)
+        self.setCentralWidget(window_widget)
+
 
         LoginBtn.clicked.connect(self.CheckLogin)
 
     def CheckLogin(self):
-        self.username = self.username.text()
-        print(self.username)
-        self.password = self.password.text()
-        print(self.password)
+        self.username = self.usernameLE.text()
+        self.password = self.passwordLE.text()
 
         with sqlite3.connect("Accounts.db") as db:
-            cursor = db.cursor
-            cursor.execute("SELECT {0} FROM Accounts".format(self.username))
+            cursor = db.cursor()
+            cursor.execute("SELECT * FROM Accounts WHERE Username=? ",(self.username,))
+            account = cursor.fetchone()
+        if account[0] == self.username and account[1] == self.password:
+            if account[2] == 'Admin':
+                self.OpenSystem = CurrentLayoutAdmin()
+                self.OpenSystem.show()
+                self.hide()
+            else:
+                print('hi')
+        else:
+            print("Invalid Login")
+        
+            
 
         
         
