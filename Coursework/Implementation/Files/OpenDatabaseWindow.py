@@ -232,7 +232,6 @@ class OpenDatabase(QMainWindow):
         else:
             itemlist = self.table.findItems(text,Qt.MatchStartsWith)
             for count in range(len(itemlist)):
-##                itemlist[count].setBackgroundColor(QColor('Yellow'))
                 rownum = (itemlist[count].row())
                 self.table.setRowHidden(rownum,False)
 
