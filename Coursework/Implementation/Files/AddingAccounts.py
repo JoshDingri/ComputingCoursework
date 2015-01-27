@@ -32,6 +32,9 @@ class AddUserAccounts(QMainWindow):
         self.AccessLevel_CB.addItem("Manager")
         self.AccessLevel_CB.addItem("Staff")
 
+        self.Department_lbl = QLabel("Department")
+        self.Department_LE = QLineEdit()
+
         self.grid.addWidget(self.FName_Lbl,0,0)
         self.grid.addWidget(self.FName_LE,0,1)
 
@@ -41,9 +44,13 @@ class AddUserAccounts(QMainWindow):
         self.grid.addWidget(self.AccessLevel_Lbl,2,0)
         self.grid.addWidget(self.AccessLevel_CB,2,1)
 
+        self.grid.addWidget(self.Department_lbl,3,0)
+        self.grid.addWidget(self.Department_LE,3,1)
+
         self.UsernameResult  = QLineEdit()
         self.RandomPassword = QLineEdit()
         self.AccessLevel = QLineEdit()
+        self.DepartmentLE = QLineEdit()
 
         self.GenerateAccount_btn = QPushButton("Create Account")
         self.GenerateAccount_btn.setFixedWidth(300)
@@ -58,14 +65,18 @@ class AddUserAccounts(QMainWindow):
         self.Passwordlbl.setAlignment(Qt.AlignCenter)
         self.AccessLevl = QLabel("Access Level")
         self.AccessLevl.setAlignment(Qt.AlignCenter)
+        self.Department = QLabel("Department")
+        self.Department.setAlignment(Qt.AlignCenter)
 
         self.horizontal4.addWidget(self.Usernamelbl)
         self.horizontal4.addWidget(self.Passwordlbl)
         self.horizontal4.addWidget(self.AccessLevl)
+        self.horizontal4.addWidget(self.Department)
 
         self.horizontal2.addWidget(self.UsernameResult)
         self.horizontal2.addWidget(self.RandomPassword)
         self.horizontal2.addWidget(self.AccessLevel)
+        self.horizontal2.addWidget(self.DepartmentLE)
 
         self.horizontal3.addWidget(self.AddAccount)
 
@@ -84,10 +95,12 @@ class AddUserAccounts(QMainWindow):
         self.setCentralWidget(self.window)
 
         self.GenerateAccount_btn.clicked.connect(self.GenerateAccount)
+        self.AddAccount.clicked.connect(self.AddAccountDBConnection)
 
     def GenerateAccount(self):
         self.FirstName = self.FName_LE.text()
         self.LastName = self.LName_LE.text()
+        self.GetDepartment = self.Department_LE.text()
         self.GetAccessLevel = self.AccessLevel_CB.currentText()
 
         username = (self.FirstName[0]+self.LastName+str(random.randint(1,10)))
@@ -101,18 +114,17 @@ class AddUserAccounts(QMainWindow):
         self.UsernameResult.setText(username)
         self.RandomPassword.setText(Password)
         self.AccessLevel.setText(self.GetAccessLevel)
-
-        self.AddAccount.clicked.connect(self.AddAccountDBConnection)
-
+        self.DepartmentLE.setText(self.GetDepartment)
 
     def AddAccountDBConnection(self):
-        values = None
-        values = (self.UsernameResult.text(),self.RandomPassword.text(),self.AccessLevel.text())
+        values = (self.UsernameResult.text(),self.RandomPassword.text(),self.AccessLevel.text(),self.DepartmentLE.text())
+        print(values)
         with sqlite3.connect("Accounts.db") as db:
             cursor = db.cursor()
-            sql = "insert into Accounts(Username,Password,Access_Level) values (?,?,?)"
+            sql = "insert into Accounts(Username,Password,Access_Level,Department) values (?,?,?,?)"
             cursor.execute(sql,values)
-            db.commit()            
+            db.commit()
+        
         
 
 
