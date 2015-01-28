@@ -3,6 +3,7 @@ from PyQt4.QtGui import *
 import sys
 import sqlite3
 from MainProgram import *
+from ManagerMainProgram import *
 
 
 class LoginWindow(QMainWindow):
@@ -20,6 +21,7 @@ class LoginWindow(QMainWindow):
         self.horizontal2 = QHBoxLayout()
         self.horizontal3 = QHBoxLayout()
         self.horizontal4 = QHBoxLayout()
+        self.horizontal_lbl = QHBoxLayout()
         self.verticle = QVBoxLayout()
 
         LoginLbl = QLabel("PLEASE LOG IN")
@@ -62,6 +64,8 @@ class LoginWindow(QMainWindow):
         LoginBtn.setFixedWidth(100)
         LoginBtn.setFixedHeight(30)
 
+        self.invalid_lbl = QLabel("Your Username Or Password Is Incorrect")
+
         self.horizontal1.addStretch(1)
         self.horizontal1.addWidget(LoginLbl)
         self.horizontal1.addStretch(1)
@@ -74,6 +78,13 @@ class LoginWindow(QMainWindow):
         self.horizontal3.addWidget(self.passwordLE)
         self.horizontal3.addStretch(1)
         
+        self.horizontal_lbl.addStretch(1)
+        self.horizontal_lbl.addWidget(self.invalid_lbl)
+        self.horizontal_lbl.addStretch(1)
+
+        self.invalid_lbl.setVisible(False)
+
+        
         self.horizontal4.addStretch(1)
         self.horizontal4.addWidget(LoginBtn)
         self.horizontal4.addStretch(1)
@@ -83,6 +94,7 @@ class LoginWindow(QMainWindow):
         self.verticle.addLayout(self.horizontal2)
         self.verticle.addLayout(self.horizontal3)
         self.verticle.addStretch(1)
+        self.verticle.addLayout(self.horizontal_lbl)
         self.verticle.addLayout(self.horizontal4)
 
         window_widget = QWidget()
@@ -100,15 +112,25 @@ class LoginWindow(QMainWindow):
             cursor = db.cursor()
             cursor.execute("SELECT * FROM Accounts WHERE Username=? ",(self.username,))
             account = cursor.fetchone()
-        if account[0] == self.username and account[1] == self.password:
-            if account[2] == 'Admin':
-                self.OpenSystem = CurrentLayoutAdmin()
-                self.OpenSystem.show()
-                self.hide()
+        try:
+            if account[0] == self.username and account[1] == self.password:
+                if account[2] == 'Admin':
+                    self.OpenSystem = CurrentLayoutAdmin()
+                    self.OpenSystem.show()
+                    self.hide()
+                elif account[2] == 'Manager':
+                    self.OpenManagerSystem = CurrentLayoutManager()
+                    self.OpenManagerSystem.show()
+                    self.hide()
+                else:
+                    pass
             else:
-                print('hi')
-        else:
-            print("Invalid Login")
+                self.invalid_lbl.setVisible(True)
+                self.passwordLE.setText('')               
+        except TypeError:
+            self.invalid_lbl.setVisible(True)
+            self.passwordLE.setText('')
+
         
             
 

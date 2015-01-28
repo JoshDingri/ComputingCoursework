@@ -31,10 +31,6 @@ class DepartmentInformation(QMainWindow):
         self.Back_btn = QPushButton("Back",self)
         self.Back_btn.setFixedWidth(50)
 
-        self.EditDatabase_btn = QPushButton("Edit Database",self)
-        self.Add_btn = QPushButton("Add Data",self)
-        self.Remove_btn = QPushButton("Remove Data",self)
-
         space = QLabel('                                      ',self)
         self.AddDatabase = QPushButton('Open Database',self)
         self.AddDatabase.setFont(QFont("Calibri",8))
@@ -61,9 +57,6 @@ class DepartmentInformation(QMainWindow):
         pixmap = pixmap.scaled(QSize(25,25),Qt.KeepAspectRatio)
         self.iconbutton.setPixmap(pixmap)
 
-        self.horizontal.addWidget(self.EditDatabase_btn)
-        self.horizontal.addWidget(self.Add_btn)
-        self.horizontal.addWidget(self.Remove_btn)
         self.grid.addWidget(self.iconbutton,2,3)
 
         self.table = QTableWidget()
@@ -102,8 +95,25 @@ class DepartmentInformation(QMainWindow):
                     self.table.horizontalHeader().setStretchLastSection(True)
 
         self.verticle.addWidget(self.table)
+
+        self.Search_LE.textChanged.connect(self.SearchMethod)
+
             
-        
+    def SearchMethod(self):
+        for index in range(self.table.rowCount()):
+            self.table.setRowHidden(index,True)
+        text = self.Search_LE.text()
+        if text == '':
+            itemlist = self.table.findItems(text,Qt.MatchStartsWith)
+            for count in range(len(itemlist)):
+                itemlist[count].setBackgroundColor(QColor('White'))
+            for index in range(self.table.rowCount()):
+                self.table.setRowHidden(index,False)
+        else:
+            itemlist = self.table.findItems(text,Qt.MatchStartsWith)
+            for count in range(len(itemlist)):
+                rownum = (itemlist[count].row())
+                self.table.setRowHidden(rownum,False)       
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
