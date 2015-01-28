@@ -62,15 +62,33 @@ class SearchStaff(QMainWindow):
         window_widget = QWidget()
         window_widget.setLayout(self.verticle)
         self.setCentralWidget(window_widget)
+        self.Database_CB.activated.connect(self.ChosenDepartment)
 
+    def ChosenDepartment(self):
+        self.department = self.Database_CB.currentText()
+
+        with sqlite3.connect("Volac.db") as db:
+            self.cursor = db.cursor()
+            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{0}'".format(self.department)
+            self.cursor.execute(sql)
+            db.commit()
+            
+        for self.row, form in enumerate(self.cursor): 
+                for self.column, item in enumerate(form): 
+                    self.DepartmentID = item
+
+        print(self.DepartmentID)
+        
         self.Search_LE.textChanged.connect(self.ShowResults)
 
+    
     def ShowResults(self):
-        print(self.Search_LE.text())
+        self.searched_name = (self.Search_LE.text())
         self.search_results_table = QTableView()
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
-            sql = "SELECT DepartmentID FROM Staff
+            sql = "SELECT * FROM Staff WHERE FirstName ={0}".format(self.searched_name)
+            
         
         
 
