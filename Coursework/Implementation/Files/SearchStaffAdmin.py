@@ -109,6 +109,8 @@ class SearchStaff(QMainWindow):
                         self.search_results_table.setRowCount(0)
 
                         b = "(',)"
+
+                        self.pushbuttons = []
                             
                         for self.row, item in enumerate(self.cursorStaff):
                             self.search_results_table.insertRow(self.row)
@@ -117,17 +119,19 @@ class SearchStaff(QMainWindow):
                                 self.item = self.item.replace(b[i],"")
                             self.item = self.item.replace(" ",", ")
                             self.item = "{0}\n{1}".format(self.item,self.department)
+                            self.buttonrow = QPushButton(self.item)
+                            self.buttonrow.setStyleSheet("text-align: left; font-size: 15px")
+                            self.pushbuttons.append(self.buttonrow)
                             
-                            self.item = QTableWidgetItem(self.item)
-                            self.item.setFont(QFont("Calibri",20))
                             
-                            self.search_results_table.setItem(self.row, self.column,self.item)
+                            self.search_results_table.setCellWidget(self.row, self.column,self.pushbuttons[self.row])
                             self.search_results_table.resizeRowsToContents()
+                            self.search_results_table.horizontalHeader().setStretchLastSection(True)
                                 
 
                         
                         self.verticle.addWidget(self.search_results_table)
-            
+                        self.resize(500,300)            
         
         
 
