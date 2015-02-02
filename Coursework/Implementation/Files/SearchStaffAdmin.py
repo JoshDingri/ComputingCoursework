@@ -9,6 +9,7 @@ class SearchStaff(QMainWindow):
 
     def __init__(self):
         super().__init__()
+        self.resize(500,300)
 
         self.grid = QGridLayout()
         self.verticle = QVBoxLayout()
@@ -16,6 +17,7 @@ class SearchStaff(QMainWindow):
         DatabaseLbl = QLabel("Department")
         DatabaseLbl.setFont(QFont("Calibri",20))
         self.Database_CB = QComboBox()
+        self.Database_CB.addItem("-")
         self.Database_CB.setFixedHeight(30)
         self.Database_CB.setFixedWidth(150)
         
@@ -45,6 +47,9 @@ class SearchStaff(QMainWindow):
 
 
         space = QLabel('')
+        self.search_results_table = QTableWidget()
+
+        self.search_button = QPushButton("Search")
         
         self.grid.addWidget(self.Back_btn,0,0)
         self.grid.addWidget(space,1,0)
@@ -54,10 +59,12 @@ class SearchStaff(QMainWindow):
 
         self.grid.addWidget(SearchLbl,2,1)
         self.grid.addWidget(self.Search_LE,2,2)
+        self.grid.addWidget(self.search_button)
 
         self.grid.setVerticalSpacing(20)
 
         self.verticle.addLayout(self.grid)
+        self.verticle.addWidget(self.search_results_table)
 
         window_widget = QWidget()
         window_widget.setLayout(self.verticle)
@@ -76,62 +83,67 @@ class SearchStaff(QMainWindow):
         for self.row, form in enumerate(self.cursor): 
                 for self.column, item in enumerate(form): 
                     self.DepartmentID = item
-
-        print(self.DepartmentID)
         
-        self.Search_LE.textChanged.connect(self.ShowResults)
+        self.search_button.clicked.connect(self.ShowResults)
 
     
     def ShowResults(self):
         self.searched_name = (self.Search_LE.text())
         with sqlite3.connect("Volac.db") as db:
-            self.cursor = db.cursor()
-            sql = "SELECT DepartmentID FROM Staff WHERE FirstName ='{0}'".format(self.searched_name)
-            self.cursor.execute(sql)
-            db.commit()
-            
-        for self.row, form in enumerate(self.cursor): 
-                for self.column, item in enumerate(form): 
-                    self.DepartmentIDStaff = item
+                self.cursor = db.cursor()
+                sql = "SELECT DepartmentID FROM Staff WHERE FirstName ='{0}'".format(self.searched_name)
+                self.cursor.execute(sql)
+                departmentid = self.cursor.fetchone()
+                db.commit()
+                
+        if departmentid == None:
+            print("does not exist")
+                
+        if self.searched_name == '':
+            pass
+        else:
+            for self.row, form in enumerate(self.cursor): 
+                    for self.column, item in enumerate(form): 
+                        self.DepartmentIDStaff = item
 
-                    print(self.DepartmentIDStaff)
-                    if self.DepartmentIDStaff == self.DepartmentID:
-                        
-                        with sqlite3.connect("Volac.db") as db:
-                            self.cursorStaff = db.cursor()
-                            sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}' AND FirstName ='{1}' ".format(self.DepartmentIDStaff,self.searched_name)
-                            self.cursorStaff.execute(sql)
-                            db.commit()
-
-                        self.search_results_table = QTableWidget(2,1)
-                                    
-                        self.search_results_table.setHorizontalHeaderLabels('')
-                        self.search_results_table.setRowCount(0)
-
-                        b = "(',)"
-
-                        self.pushbuttons = []
+                        if self.DepartmentIDStaff == self.DepartmentID:
                             
-                        for self.row, item in enumerate(self.cursorStaff):
-                            self.search_results_table.insertRow(self.row)
-                            self.item = str(item)
-                            for i in range(0,len(b)):
-                                self.item = self.item.replace(b[i],"")
-                            self.item = self.item.replace(" ",", ")
-                            self.item = "{0}\n{1}".format(self.item,self.department)
-                            self.buttonrow = QPushButton(self.item)
-                            self.buttonrow.setStyleSheet("text-align: left; font-size: 15px")
-                            self.pushbuttons.append(self.buttonrow)
-                            
-                            
-                            self.search_results_table.setCellWidget(self.row, self.column,self.pushbuttons[self.row])
-                            self.search_results_table.resizeRowsToContents()
-                            self.search_results_table.horizontalHeader().setStretchLastSection(True)
+                            with sqlite3.connect("Volac.db") as db:
+                                self.cursorStaff = db.cursor()
+                                sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}' AND FirstName ='{1}' ".format(self.DepartmentIDStaff,self.searched_name)
+                                self.cursorStaff.execute(sql)
+                                db.commit()
+                            self.search_results_table.deleteLater()
+                            self.search_results_table = QTableWidget(2,1)
+                                        
+                            self.search_results_table.setHorizontalHeaderLabels('')
+                            self.search_results_table.setRowCount(0)
+
+                            b = "(',)"
+
+                            self.pushbuttons = []
                                 
+                            for self.row, item in enumerate(self.cursorStaff):
+                                self.search_results_table.insertRow(self.row)
+                                self.item = str(item)
+                                for i in range(0,len(b)):
+                                    self.item = self.item.replace(b[i],"")
+                                self.item = self.item.replace(" ",", ")
+                                self.item = "{0}\n{1}".format(self.item,self.department)
+                                self.buttonrow = QPushButton(self.item)
+                                self.buttonrow.setIcon(QIcon("arrow.png"))
+                                self.buttonrow.setStyleSheet("text-align: left; font-size: 15px")
+            
+                                self.pushbuttons.append(self.buttonrow)
+                                
+                                
+                                self.search_results_table.setCellWidget(self.row, self.column,self.pushbuttons[self.row])
+                                self.search_results_table.resizeRowsToContents()
+                                self.search_results_table.horizontalHeader().setStretchLastSection(True)
+                                    
 
-                        
-                        self.verticle.addWidget(self.search_results_table)
-                        self.resize(500,300)            
+                            
+            self.verticle.addWidget(self.search_results_table)
         
         
 
