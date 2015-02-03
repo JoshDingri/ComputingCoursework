@@ -2,6 +2,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
 import sqlite3
+import string
 
 
 class SearchStaff(QMainWindow):
@@ -122,11 +123,12 @@ class SearchStaff(QMainWindow):
                             b = "(',)"
 
                             self.pushbuttons = []
+                            self.names = []
                                 
                             for self.row, item in enumerate(self.cursorStaff):
                                 self.search_results_table.insertRow(self.row)
+                                self.names.append(item)
                                 self.item = str(item)
-                                self.names_dialog = item
                                 for i in range(0,len(b)):
                                     self.item = self.item.replace(b[i],"")
                                 self.item = self.item.replace(" ",", ")
@@ -152,15 +154,33 @@ class SearchStaff(QMainWindow):
             
 
 
-    def ButtonClicked(self):
+    def ButtonClicked(self,rownum):        
         self.dialog = QDialog()
+        self.dialog.resize(720,300)
+
+        button = qApp.focusWidget()
+        index = self.search_results_table.indexAt(button.pos())
+        if index.isValid():
+            self.rownum = index.row()
 
         self.vertical = QVBoxLayout()
         
-        FirstName = self.names_dialog[1]
-        Surname = self.names_dialog[0]
+        Fullname = str(self.names[self.rownum])
+        split = [x.strip() for x in Fullname.split(',')]
 
-        print(FirstName)
+
+        Chars = ")'('"
+
+        FirstName = split[1]
+        Surname = split[0]
+        
+        for i in range(0,len(Chars)):
+            FirstName = FirstName.replace(Chars[i],"")
+
+        for i in range(0,len(Chars)):
+            Surname = Surname.replace(Chars[i],"")
+            
+        
 
         with sqlite3.connect("Volac.db") as db:
             self.details_cursor = db.cursor()

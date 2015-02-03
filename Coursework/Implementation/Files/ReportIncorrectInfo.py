@@ -14,18 +14,18 @@ class ReportBug(QMainWindow):
     def WindowLayout(self):
         self.grid_layout = QGridLayout()
 
-        self.Email_lbl = QLabel("Email Address:")
-        self.Email_LE = QLineEdit()
-
-        self.Password_lbl = QLabel("Email Password:")
-        self.Password_LE = QLineEdit()
-        self.Password_LE.setEchoMode(QLineEdit.Password)
-        
-        self.grid_layout.addWidget(self.Email_lbl,0,0)
-        self.grid_layout.addWidget(self.Email_LE,0,1)
-
-        self.grid_layout.addWidget(self.Password_lbl,1,0)
-        self.grid_layout.addWidget(self.Password_LE,1,1)
+##        self.Email_lbl = QLabel("Email Address:")
+##        self.Email_LE = QLineEdit()
+##
+##        self.Password_lbl = QLabel("Email Password:")
+##        self.Password_LE = QLineEdit()
+##        self.Password_LE.setEchoMode(QLineEdit.Password)
+##        
+##        self.grid_layout.addWidget(self.Email_lbl,0,0)
+##        self.grid_layout.addWidget(self.Email_LE,0,1)
+##
+##        self.grid_layout.addWidget(self.Password_lbl,1,0)
+##        self.grid_layout.addWidget(self.Password_LE,1,1)
         
 
         self.Forename_lbl = QLabel("Forename:")
@@ -87,23 +87,20 @@ class ReportBug(QMainWindow):
 
         IT_Staff_Email = ('josh-dingri@hotmail.co.uk')
         Bug_Details_LE = str(self.Bug_Details_LE.toPlainText())
+        Email = ('donotreply_volac@hotmail.co.uk')
 
-        self.Password_LE.setEchoMode(QLineEdit.Normal)
         
-        Email = str(self.Email_LE.displayText())
-        Password = str(self.Password_LE.displayText())
-        print(Password)
         Forename = str(self.Forename_LE.displayText())
         Surname_LE = str(self.Surname_LE.displayText())
         JobTitle_LE = str(self.JobTitle_LE.displayText())
         Data_LE = str(self.Data_LE.displayText())
 
         try:
-            self.mail.login(Email,Password)
+            self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
         except smtplib.SMTPServerDisconnected:
-            self.Password_LE.setEchoMode(QLineEdit.Password)
+            print("not valid")
 
-        Content = ("User Email: {0}\nForename: {1}\nSurname: {2}\nJobTitle: {3}\nDate: {4}\nBug Details: {5}".format(Email,Forename,Surname_LE,JobTitle_LE,Data_LE,Bug_Details_LE))
+        Content = ("\nForename: {0}\nSurname: {1}\nJobTitle: {2}\nDate: {3}\nBug Details: {4}".format(Forename,Surname_LE,JobTitle_LE,Data_LE,Bug_Details_LE))
         Subject = ("Bug Report")
 
         Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
@@ -115,7 +112,6 @@ class ReportBug(QMainWindow):
     
         self.mail.sendmail(Email,IT_Staff_Email,Body)
         self.mail.quit()
-        self.Password_LE.setEchoMode(QLineEdit.Password)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

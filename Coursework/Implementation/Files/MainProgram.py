@@ -84,8 +84,7 @@ class CurrentLayoutAdmin(QMainWindow):
 
 
     def SearchStaff(self):
-        
-        self.resize(550,100)
+        self.resize(700,500)
         SearchStaffWindow = SearchStaff()
         self.setCentralWidget(SearchStaffWindow)
 
