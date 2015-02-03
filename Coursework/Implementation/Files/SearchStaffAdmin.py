@@ -9,7 +9,7 @@ class SearchStaff(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.resize(500,300)
+        self.resize(700,500)
 
         self.grid = QGridLayout()
         self.verticle = QVBoxLayout()
@@ -36,7 +36,7 @@ class SearchStaff(QMainWindow):
         self.Database_CB.addItems(field_names)
         
 
-        SearchLbl = QLabel("Name")
+        SearchLbl = QLabel("First Name:")
         self.Search_LE = QLineEdit()
         self.Search_LE.setFixedWidth(150)
         self.Search_LE.setFixedHeight(25)
@@ -49,7 +49,7 @@ class SearchStaff(QMainWindow):
         space = QLabel('')
         self.search_results_table = QTableWidget()
 
-        self.search_button = QPushButton("Search")
+        self.search_button = QPushButton("Search:")
         
         self.grid.addWidget(self.Back_btn,0,0)
         self.grid.addWidget(space,1,0)
@@ -91,7 +91,7 @@ class SearchStaff(QMainWindow):
         self.searched_name = (self.Search_LE.text())
         with sqlite3.connect("Volac.db") as db:
                 self.cursor = db.cursor()
-                sql = "SELECT DepartmentID FROM Staff WHERE FirstName ='{0}'".format(self.searched_name)
+                sql = "SELECT DepartmentID FROM Staff WHERE FirstName LIKE '{0}%'".format(self.searched_name)
                 self.cursor.execute(sql)
                 departmentid = self.cursor.fetchone()
                 db.commit()
@@ -110,7 +110,7 @@ class SearchStaff(QMainWindow):
                             
                             with sqlite3.connect("Volac.db") as db:
                                 self.cursorStaff = db.cursor()
-                                sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}' AND FirstName ='{1}' ".format(self.DepartmentIDStaff,self.searched_name)
+                                sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}' AND FirstName LIKE '{1}%' ".format(self.DepartmentIDStaff,self.searched_name)
                                 self.cursorStaff.execute(sql)
                                 db.commit()
                             self.search_results_table.deleteLater()
@@ -126,15 +126,20 @@ class SearchStaff(QMainWindow):
                             for self.row, item in enumerate(self.cursorStaff):
                                 self.search_results_table.insertRow(self.row)
                                 self.item = str(item)
+                                self.names_dialog = item
                                 for i in range(0,len(b)):
                                     self.item = self.item.replace(b[i],"")
                                 self.item = self.item.replace(" ",", ")
-                                self.item = "{0}\n{1}".format(self.item,self.department)
+                                self.item = "{0}\n{1}                                                                                                              ".format(self.item,self.department)
                                 self.buttonrow = QPushButton(self.item)
+   
                                 self.buttonrow.setIcon(QIcon("arrow.png"))
-                                self.buttonrow.setStyleSheet("text-align: left; font-size: 15px")
+                                self.buttonrow.setIconSize(QSize(30,30))
+                                self.buttonrow.setStyleSheet("font-size: 15px")
+                                self.buttonrow.setLayoutDirection(Qt.RightToLeft)
             
                                 self.pushbuttons.append(self.buttonrow)
+                                self.pushbuttons[self.row].clicked.connect(self.ButtonClicked)
                                 
                                 
                                 self.search_results_table.setCellWidget(self.row, self.column,self.pushbuttons[self.row])
@@ -144,6 +149,43 @@ class SearchStaff(QMainWindow):
 
                             
             self.verticle.addWidget(self.search_results_table)
+            
+
+
+    def ButtonClicked(self):
+        self.dialog = QDialog()
+
+        self.vertical = QVBoxLayout()
+        
+        FirstName = self.names_dialog[1]
+        Surname = self.names_dialog[0]
+
+        print(FirstName)
+
+        with sqlite3.connect("Volac.db") as db:
+            self.details_cursor = db.cursor()
+            sql = "SELECT * FROM Staff WHERE FirstName = '{0}' AND Surname = '{1}'".format(FirstName,Surname)
+            self.details_cursor.execute(sql)
+
+
+        col = [tuple[0] for tuple in self.details_cursor.description]
+        self.staff_details_table = QTableWidget(2,len(col))
+                        
+        self.staff_details_table.setHorizontalHeaderLabels(col)
+        self.staff_details_table.setRowCount(0)
+
+        for self.row, form in enumerate(self.details_cursor): ##Inserts amount of rows needed, gets from databas
+            self.staff_details_table.insertRow(self.row)
+            for self.column, item in enumerate(form): ##Inserts amount of columns needed
+                self.item = QTableWidgetItem(str(item))
+                self.staff_details_table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
+                self.staff_details_table.horizontalHeader().setStretchLastSection(True)
+
+        self.vertical.addWidget(self.staff_details_table)
+        self.dialog.setLayout(self.vertical)
+        self.dialog.exec_()
+
+                       
         
         
 

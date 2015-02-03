@@ -192,7 +192,7 @@ class AddDataWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    launcher = AddDataWindow('StaffHardware')
+    launcher = AddDataWindow('Staff')
     launcher.show()
     launcher.raise_()
     app.exec_()
