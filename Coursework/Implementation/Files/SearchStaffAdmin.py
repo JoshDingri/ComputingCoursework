@@ -15,7 +15,7 @@ class SearchStaff(QMainWindow):
         self.grid = QGridLayout()
         self.verticle = QVBoxLayout()
                 
-        DatabaseLbl = QLabel("Department")
+        DatabaseLbl = QLabel("Department:")
         DatabaseLbl.setFont(QFont("Calibri",20))
         self.Database_CB = QComboBox()
         self.Database_CB.addItem("-")
@@ -50,7 +50,7 @@ class SearchStaff(QMainWindow):
         space = QLabel('')
         self.search_results_table = QTableWidget()
 
-        self.search_button = QPushButton("Search:")
+        self.search_button = QPushButton("Search")
         
         self.grid.addWidget(self.Back_btn,0,0)
         self.grid.addWidget(space,1,0)
@@ -84,6 +84,7 @@ class SearchStaff(QMainWindow):
         for self.row, form in enumerate(self.cursor): 
                 for self.column, item in enumerate(form): 
                     self.DepartmentID = item
+        print(self.DepartmentID)
         
         self.search_button.clicked.connect(self.ShowResults)
 
@@ -113,7 +114,9 @@ class SearchStaff(QMainWindow):
                                 self.cursorStaff = db.cursor()
                                 sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}' AND FirstName LIKE '{1}%' ".format(self.DepartmentIDStaff,self.searched_name)
                                 self.cursorStaff.execute(sql)
+    
                                 db.commit()
+                                
                             self.search_results_table.deleteLater()
                             self.search_results_table = QTableWidget(2,1)
                                         
@@ -129,6 +132,7 @@ class SearchStaff(QMainWindow):
                                 self.search_results_table.insertRow(self.row)
                                 self.names.append(item)
                                 self.item = str(item)
+                                print(self.item)
                                 for i in range(0,len(b)):
                                     self.item = self.item.replace(b[i],"")
                                 self.item = self.item.replace(" ",", ")
@@ -186,6 +190,7 @@ class SearchStaff(QMainWindow):
             self.details_cursor = db.cursor()
             sql = "SELECT * FROM Staff WHERE FirstName = '{0}' AND Surname = '{1}'".format(FirstName,Surname)
             self.details_cursor.execute(sql)
+            db.commit()
 
 
         col = [tuple[0] for tuple in self.details_cursor.description]
@@ -203,7 +208,7 @@ class SearchStaff(QMainWindow):
 
         self.vertical.addWidget(self.staff_details_table)
         self.dialog.setLayout(self.vertical)
-        self.dialog.exec_()
+        self.dialog.exec_()              
 
                        
         
