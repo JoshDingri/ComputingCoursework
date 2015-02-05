@@ -8,11 +8,16 @@ class ReportBug(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Send Bug Report")
+        self.setWindowTitle("Report Incorrect Information")
         self.WindowLayout()
 
     def WindowLayout(self):
         self.grid_layout = QGridLayout()
+
+        self.Email_lbl = QLabel("Email Address:")
+        self.Email_LE = QLineEdit()
+        self.grid_layout.addWidget(self.Email_lbl,0,0)
+        self.grid_layout.addWidget(self.Email_LE,0,1)
 
         self.Forename_lbl = QLabel("Forename:")
         self.Forename_LE = QLineEdit()
@@ -61,20 +66,20 @@ class ReportBug(QMainWindow):
         self.mail.starttls()
 
         IT_Staff_Email = ('josh-dingri@hotmail.co.uk')
-        Description_LE = str(self.Bug_Details_LE.toPlainText())
+        Description = str(self.Description_LE.toPlainText())
         Email = ('donotreply_volac@hotmail.co.uk')
 
         
         Forename = str(self.Forename_LE.displayText())
         Surname_LE = str(self.Surname_LE.displayText())
-        Description = str(self.Description_LE.displayText())
+        User_Email = str(self.Email_LE.displayText())
 
         try:
             self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
         except smtplib.SMTPServerDisconnected:
             print("not valid")
 
-        Content = ("\nForename: {0}\nSurname: {1}\nDescription: {2}\nDate: {3}\nBug Details: {4}".format(Forename,Surname_LE,Description))
+        Content = ("Email: {0} \nForename: {1}\nSurname: {2}\nDescription: {3}".format(User_Email,Forename,Surname_LE,Description))
         Subject = ("Incorrect Information Report")
 
         Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
