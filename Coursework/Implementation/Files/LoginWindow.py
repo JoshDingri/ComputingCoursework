@@ -111,17 +111,21 @@ class LoginWindow(QMainWindow):
         with sqlite3.connect("Accounts.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT * FROM Accounts WHERE Username=? ",(self.username,))
-            account = cursor.fetchone()
+            self.account = cursor.fetchone()
+        
         try:
-            if account[0] == self.username and account[1] == self.password:
-                if account[2] == 'Admin':
+            if self.account[0] == self.username and self.account[1] == self.password:
+                if self.account[2] == 'Admin':
                     self.OpenSystem = CurrentLayoutAdmin()
                     self.OpenSystem.show()
                     self.hide()
-                elif account[2] == 'Manager':
+                elif self.account[2] == 'Manager':
+                    self.departmentsave = self.account[2]
                     self.OpenManagerSystem = CurrentLayoutManager()
                     self.OpenManagerSystem.show()
                     self.hide()
+                elif self.account[2] == 'Staff':
+                    pass
                 else:
                     pass
             else:

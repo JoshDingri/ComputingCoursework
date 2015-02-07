@@ -62,6 +62,12 @@ class MenuBarAdmin(QMainWindow):
         self.departmentmenu.addAction(self.RemoveData)
 
         self.setMenuBar(self.menu_bar)
+
+        self.Logout.triggered.connect(self.system_close)
+
+    def system_close(self):
+        pass
+
         
 if __name__ == "__main__":
     app = QApplication(sys.argv)

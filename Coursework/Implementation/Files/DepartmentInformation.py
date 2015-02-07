@@ -2,6 +2,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
 import sqlite3
+from LoginWindow import *
 
 class DepartmentInformation(QMainWindow):
     """Managers table view"""
@@ -71,13 +72,25 @@ class DepartmentInformation(QMainWindow):
 
         self.Database_CB.activated.connect(self.CreateTable) 
 
-    def CreateTable(self):
+    def CreateTable(self): 
+        
+
+        with sqlite3.connect("Volac.db") as db:
+            self.cursor = db.cursor()
+            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{0}'".format(accountdetails)
+            self.cursor.execute(sql)
+            db.commit()
+            
+        for self.row, form in enumerate(self.cursor): 
+                for self.column, item in enumerate(form): 
+                    self.DepartmentID = item
+            
         self.table.deleteLater()
         self.CurrentTable = (self.Database_CB.currentText())
 
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
-            sql = "SELECT * FROM {0}".format(self.CurrentTable)
+            sql = "SELECT * FROM {0} WHERE DepartmentID = '{1}'".format(self.CurrentTable,self.DepartmentID)
             self.cursor.execute(sql)
             
         col = [tuple[0] for tuple in self.cursor.description]
