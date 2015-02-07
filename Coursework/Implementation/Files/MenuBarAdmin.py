@@ -63,10 +63,8 @@ class MenuBarAdmin(QMainWindow):
 
         self.setMenuBar(self.menu_bar)
 
-        self.Logout.triggered.connect(self.system_close)
-
-    def system_close(self):
-        pass
+        self.Logout.triggered.connect(self.Log_Out)
+        self.ChangePassword.triggered.connect(self.Change_Password)
 
         
 if __name__ == "__main__":

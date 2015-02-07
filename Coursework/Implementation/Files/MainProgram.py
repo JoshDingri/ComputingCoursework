@@ -6,6 +6,8 @@ from OpenDatabaseWindow import *
 from MenuBarAdmin import *
 from SearchStaffAdmin import *
 from AddDataGUI import *
+from LoginWindow import *
+from ChangePassword import *
 import sqlite3
 
 
@@ -13,11 +15,12 @@ class CurrentLayoutAdmin(QMainWindow):
     """The purpose of the main program is to import all other python documents
        and run them from the different methods."""
     
-    def __init__(self):
+    def __init__(self,account_details):
         super().__init__()
         OpenDatabase.Items = [] ##For later use, holds dropdown box values
         self.SearchFirst = False ##Temporary method for choosing which qstackindex comes first
         self.OpenFirst = False
+        self.account_details = account_details
         self.MainMenu()
         self.MenuBar() ## Calls menubar definition
 ##        self.stacked_layout = QStackedLayout()
@@ -31,6 +34,13 @@ class CurrentLayoutAdmin(QMainWindow):
 
     def MenuBar(self):       
         MenuBarAdmin.MenuBar(self) ##Calls menubar from another python file
+
+    def Log_Out(self):
+        self.close()
+
+    def Change_Password(self):
+        self.ChangePassword_window = ChangePassword(self.account_details)
+        self.ChangePassword_window.exec_()
         
         
     def MainMenu(self):

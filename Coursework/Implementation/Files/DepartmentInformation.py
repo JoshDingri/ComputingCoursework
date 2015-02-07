@@ -7,48 +7,49 @@ from LoginWindow import *
 class DepartmentInformation(QMainWindow):
     """Managers table view"""
 
-    def __init__(self):
+    def __init__(self,department):
         super().__init__()
+        self.resize(400,500)
         self.grid = QGridLayout()
         self.horizontal = QHBoxLayout()
+        self.horizontal2 = QHBoxLayout()
         self.verticle = QVBoxLayout()
+        self.department = department
         
         
-        DatabaseLbl = QLabel(self)
-        DatabaseLbl.setFont(QFont("Calibri",20))
-        self.Database_CB = QComboBox(self)
-        self.Database_CB.addItem('Select Table')
-        self.Database_CB.setFixedHeight(30)
-        self.Database_CB.setFixedWidth(150)
+##        DatabaseLbl = QLabel(self)
+##        DatabaseLbl.setFont(QFont("Calibri",20))
+##        self.Database_CB = QComboBox(self)
+##        self.Database_CB.addItem('Select Table')
+##        self.Database_CB.setFixedHeight(30)
+##        self.Database_CB.setFixedWidth(150)
 
 
-        SearchLbl = QLabel(self)
         self.Search_LE = QLineEdit(self)
         self.Search_LE.setFixedWidth(150)
         self.Search_LE.setFixedHeight(25)
         self.Search_LE.setPlaceholderText("Search Fields")
-        SearchLbl.setFont(QFont("Calibri",20))
 
         self.Back_btn = QPushButton("Back",self)
         self.Back_btn.setFixedWidth(50)
 
         space = QLabel('                                      ',self)
-        self.AddDatabase = QPushButton('Open Database',self)
-        self.AddDatabase.setFont(QFont("Calibri",8))
-        self.AddDatabase.setFixedWidth(80)
-        self.AddDatabase.setFixedHeight(20)
+##        self.AddDatabase = QPushButton('Open Database',self)
+##        self.AddDatabase.setFont(QFont("Calibri",8))
+##        self.AddDatabase.setFixedWidth(80)
+##        self.AddDatabase.setFixedHeight(20)
 
 
 
-        self.grid.addWidget(self.Back_btn,0,0)
-        self.grid.addWidget(space,1,0)
-        self.grid.addWidget(DatabaseLbl,1,1)
-        self.grid.addWidget(self.Database_CB,1,2)
-        self.grid.addWidget(self.AddDatabase,1,3)
+        self.horizontal.addWidget(self.Back_btn)
+        self.horizontal.addStretch(1)
+##        self.grid.addWidget(DatabaseLbl,1,1)
+##        self.grid.addWidget(self.Database_CB,1,2)
+##        self.grid.addWidget(self.AddDatabase,1,3)
+
+        self.horizontal2.addStretch(1)
         
-
-        self.grid.addWidget(SearchLbl,2,1)
-        self.grid.addWidget(self.Search_LE,2,2)
+        self.horizontal2.addWidget(self.Search_LE)
 
         self.grid.setVerticalSpacing(20)
 
@@ -58,39 +59,40 @@ class DepartmentInformation(QMainWindow):
         pixmap = pixmap.scaled(QSize(25,25),Qt.KeepAspectRatio)
         self.iconbutton.setPixmap(pixmap)
 
-        self.grid.addWidget(self.iconbutton,2,3)
+        self.horizontal2.addWidget(self.iconbutton)
 
         self.table = QTableWidget()
 
-        self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
+        self.verticle.addLayout(self.horizontal2)
         self.verticle.addWidget(self.table)
 
         window_widget = QWidget()
         window_widget.setLayout(self.verticle)
         self.setCentralWidget(window_widget)
 
-        self.Database_CB.activated.connect(self.CreateTable) 
+        self.CreateTable()
 
     def CreateTable(self): 
-        
+        print(self.department)
+
 
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
-            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{0}'".format(accountdetails)
+            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{0}'".format(self.department)
             self.cursor.execute(sql)
             db.commit()
             
         for self.row, form in enumerate(self.cursor): 
-                for self.column, item in enumerate(form): 
+                for self.column, item in enumerate(form):
                     self.DepartmentID = item
             
         self.table.deleteLater()
-        self.CurrentTable = (self.Database_CB.currentText())
+##        self.CurrentTable = (self.Database_CB.currentText())
 
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
-            sql = "SELECT * FROM {0} WHERE DepartmentID = '{1}'".format(self.CurrentTable,self.DepartmentID)
+            sql = "SELECT * FROM Staff WHERE DepartmentID = '{0}'".format(self.DepartmentID)
             self.cursor.execute(sql)
             
         col = [tuple[0] for tuple in self.cursor.description]

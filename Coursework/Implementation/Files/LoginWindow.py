@@ -6,15 +6,16 @@ from MainProgram import *
 from ManagerMainProgram import *
 
 
-class LoginWindow(QMainWindow):
+class LoginWindow(QDialog):
     """A Login Window"""
 
-    def __init__(self):
+    def __init__(self,Logged_Out):
         super().__init__()
+        self.Logged_Out = Logged_Out
         self.setWindowTitle("Please Login")
         self.setWindowIcon(QIcon("key.png"))
+        self.setFixedSize(425,225)
         self.MainLayout()
-        
 
     def MainLayout(self):
         self.horizontal1 = QHBoxLayout()
@@ -97,9 +98,10 @@ class LoginWindow(QMainWindow):
         self.verticle.addLayout(self.horizontal_lbl)
         self.verticle.addLayout(self.horizontal4)
 
-        window_widget = QWidget()
-        window_widget.setLayout(self.verticle)
-        self.setCentralWidget(window_widget)
+##        window = QWidget()
+##        window.setLayout(self.verticle)
+##        self.setCentralWidget(window)
+        self.setLayout(self.verticle)
 
 
         LoginBtn.clicked.connect(self.CheckLogin)
@@ -116,12 +118,13 @@ class LoginWindow(QMainWindow):
         try:
             if self.account[0] == self.username and self.account[1] == self.password:
                 if self.account[2] == 'Admin':
-                    self.OpenSystem = CurrentLayoutAdmin()
+                    account_details = self.account
+                    self.OpenSystem = CurrentLayoutAdmin(account_details)
                     self.OpenSystem.show()
                     self.hide()
                 elif self.account[2] == 'Manager':
-                    self.departmentsave = self.account[2]
-                    self.OpenManagerSystem = CurrentLayoutManager()
+                    self.departmentsave = self.account[3]
+                    self.OpenManagerSystem = CurrentLayoutManager(self.departmentsave)
                     self.OpenManagerSystem.show()
                     self.hide()
                 elif self.account[2] == 'Staff':
@@ -130,10 +133,12 @@ class LoginWindow(QMainWindow):
                     pass
             else:
                 self.invalid_lbl.setVisible(True)
-                self.passwordLE.setText('')               
-        except TypeError:
-            self.invalid_lbl.setVisible(True)
-            self.passwordLE.setText('')
+                self.passwordLE.setText('')
+        except ValueError:
+            print('ho')
+##        except TypeError:
+##            self.invalid_lbl.setVisible(True)
+##            self.passwordLE.setText('')
 
         
             
@@ -144,10 +149,9 @@ class LoginWindow(QMainWindow):
 
 def main():
     App = QApplication(sys.argv)
-    launcher = LoginWindow()
+    launcher = LoginWindow(None)
     launcher.show()
     launcher.raise_()
-    launcher.setFixedSize(425,225)
     App.exec_()
 
 if __name__ == "__main__":
