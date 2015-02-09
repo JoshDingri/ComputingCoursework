@@ -4,6 +4,7 @@ import sys
 import sqlite3
 from MainProgram import *
 from ManagerMainProgram import *
+from StaffProgram import *
 
 
 class LoginWindow(QDialog):
@@ -129,7 +130,10 @@ class LoginWindow(QDialog):
                     self.OpenManagerSystem.show()
                     self.hide()
                 elif self.account[2] == 'Staff':
-                    pass
+                    account_details = self.account
+                    self.StaffProgram_Window = StaffDatabase(account_details)
+                    self.StaffProgram_Window.show()
+                    self.hide()                                                
                 else:
                     pass
             else:

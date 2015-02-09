@@ -39,7 +39,9 @@ class CurrentLayoutManager(QMainWindow):
 
     def MyInformation(self):
         self.My_Info = MyInformation(self.account_details)
+        self.My_Info.Back_btn.clicked.connect(self.mainmenu)
         self.setCentralWidget(self.My_Info)
+        
 
         
 if __name__ == "__main__":
