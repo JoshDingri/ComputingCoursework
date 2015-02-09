@@ -117,11 +117,11 @@ class AddUserAccounts(QMainWindow):
         self.DepartmentLE.setText(self.GetDepartment)
 
     def AddAccountDBConnection(self):
-        values = (self.UsernameResult.text(),self.RandomPassword.text(),self.AccessLevel.text(),self.DepartmentLE.text())
+        values = (self.UsernameResult.text(),self.RandomPassword.text(),self.AccessLevel.text(),self.DepartmentLE.text(),self.FirstName,self.LastName)
         print(values)
         with sqlite3.connect("Accounts.db") as db:
             cursor = db.cursor()
-            sql = "insert into Accounts(Username,Password,Access_Level,Department) values (?,?,?,?)"
+            sql = "insert into Accounts(Username,Password,Access_Level,Department,FirstName,LastName) values (?,?,?,?,?,?)"
             cursor.execute(sql,values)
             db.commit()
         

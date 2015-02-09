@@ -13,5 +13,7 @@ if __name__ == "__main__":
           Password text,
           Access_Level text,
           Department text,
+          FirstName text,
+          LastName text,
           primary key(Username))"""
     create_table(db_name,sql)
