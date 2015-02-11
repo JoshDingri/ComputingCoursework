@@ -53,9 +53,12 @@ class CurrentLayoutManager(QMainWindow):
         self.setCentralWidget(self.My_Info)
 
     def ReportError(self):
-        print("qwerty")
-        Report_Error = ReportBug()
+        Report_Error = ReportError()
         Report_Error.exec_()
+
+    def BugReport(self):
+        Report_Bug = ReportBug()
+        Report_Bug.exec_()
 
     
 

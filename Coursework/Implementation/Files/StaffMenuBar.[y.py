@@ -20,12 +20,6 @@ class Manager_Menubar(QMainWindow):
         self.AccountMenu.addAction(self.Logout)
         self.AccountMenu.addAction(self.ChangePassword)
         
-        self.ViewMenu = self.menu_bar .addMenu("View")
-        self.DepartmentDatabase = QAction("Department Database",self)
-        self.YourInformation = QAction("Your Information",self)
-        self.ViewMenu.addAction(self.DepartmentDatabase)
-        self.ViewMenu.addAction(self.YourInformation)
-
         self.HelpMenu = self.menu_bar .addMenu("Help")
         self.ReportInformation = QAction("Report Incorrect Information",self)
         self.ReportBug = QAction("Report Bug",self)
@@ -36,9 +30,6 @@ class Manager_Menubar(QMainWindow):
 
         self.Logout.triggered.connect(self.log_out)
         self.ChangePassword.triggered.connect(self.change_password)
-
-        self.DepartmentDatabase.triggered.connect(self.DepartmentInformationWindow)
-        self.YourInformation.triggered.connect(self.MyInformation)
 
         self.ReportInformation.triggered.connect(self.ReportError)
         self.ReportBug.triggered.connect(self.BugReport)

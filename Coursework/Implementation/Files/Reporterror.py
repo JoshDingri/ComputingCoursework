@@ -3,7 +3,7 @@ from PyQt4.QtGui import *
 import sys
 import smtplib
 
-class ReportBug(QDialog):
+class ReportError(QDialog):
     """A Email GUI to send bug reports"""
 
     def __init__(self):
@@ -89,7 +89,7 @@ class ReportBug(QDialog):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    launcher = ReportBug()
-    launcher.exec_()
+    launcher = ReportError()
+    launcher.show()
     launcher.raise_()
     app.exec_()

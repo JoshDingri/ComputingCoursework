@@ -3,7 +3,7 @@ from PyQt4.QtGui import *
 import sys
 import smtplib
 
-class ReportBug(QMainWindow):
+class ReportBug(QDialog):
     """A Email GUI to send bug reports"""
 
     def __init__(self):
@@ -72,9 +72,7 @@ class ReportBug(QMainWindow):
         self.vertical_overall_layout.addLayout(self.grid_layout)
         self.vertical_overall_layout.addLayout(self.horizontal_layout)
 
-        window_widget = QWidget()
-        window_widget.setLayout(self.vertical_overall_layout)
-        self.setCentralWidget(window_widget)
+        self.setLayout(self.vertical_overall_layout)
 
         self.setStyleSheet("QLabel{font-size: 12px} QPushButton{font-size: 12px;")
 

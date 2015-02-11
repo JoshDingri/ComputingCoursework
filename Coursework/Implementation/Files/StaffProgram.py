@@ -2,12 +2,14 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
 import sqlite3
+from StaffMenuBar import *
 
 class StaffDatabase(QMainWindow):
     """The staff database"""
 
     def __init__(self,account_details):
         super().__init__()
+        self.MenuBar()
         self.setWindowTitle("Staff Database")
         self.horizontal = QHBoxLayout()
         self.vertical = QVBoxLayout()
@@ -36,6 +38,25 @@ class StaffDatabase(QMainWindow):
         
         self.CreateTable()
 
+    def MenuBar(self):
+        Staff_Menubar.MenuBar(self)
+
+    def log_out(self):
+        self.close()
+
+    def change_password(self):
+        self.ChangePassword_window = ChangePassword(self.account_details)
+        self.ChangePassword_window.exec_()
+
+    def ReportError(self):
+        Report_Error = ReportError()
+        Report_Error.exec_()
+
+    def BugReport(self):
+        Report_Bug = ReportBug()
+        Report_Bug.exec_()
+
+        
         
     def CreateTable(self):
         with sqlite3.connect("Accounts.db") as db:
