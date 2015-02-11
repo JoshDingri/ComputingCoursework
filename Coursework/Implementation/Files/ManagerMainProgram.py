@@ -6,6 +6,9 @@ from DepartmentInformation import *
 from ManagerMainMenu import *
 from ManagerMenuBar import *
 from MyInformation import *
+from ChangePassword import *
+from Reporterror import *
+from BugReport import *
 
 class CurrentLayoutManager(QMainWindow):
     """The main program in charge of switching layouts"""
@@ -19,8 +22,15 @@ class CurrentLayoutManager(QMainWindow):
         
 
     def menubar(self):
-        ManagerMenu = Manager_Menubar()
-        self.setMenuBar(ManagerMenu)
+        Manager_Menubar.MenuBar(self)
+
+    def log_out(self):
+        self.close()
+
+    def change_password(self):
+        self.ChangePassword_window = ChangePassword(self.account_details)
+        self.ChangePassword_window.exec_()
+
 
     def mainmenu(self):
         self.resize(800,400)
@@ -41,7 +51,13 @@ class CurrentLayoutManager(QMainWindow):
         self.My_Info = MyInformation(self.account_details)
         self.My_Info.Back_btn.clicked.connect(self.mainmenu)
         self.setCentralWidget(self.My_Info)
-        
+
+    def ReportError(self):
+        print("qwerty")
+        Report_Error = ReportBug()
+        Report_Error.exec_()
+
+    
 
         
 if __name__ == "__main__":

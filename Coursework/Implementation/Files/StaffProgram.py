@@ -12,10 +12,28 @@ class StaffDatabase(QMainWindow):
         self.horizontal = QHBoxLayout()
         self.vertical = QVBoxLayout()
         self.account_details = account_details
+
+        SearchLbl = QLabel(self)
+        self.Search_LE = QLineEdit(self)
+        self.Search_LE.setFixedWidth(150)
+        self.Search_LE.setFixedHeight(25)
+        self.Search_LE.setPlaceholderText("Search Fields")
+        SearchLbl.setFont(QFont("Calibri",20))
         
-        self.Back_btn = QPushButton("Back")
-        self.horizontal.addWidget(self.Back_btn)
+        self.iconbutton = QLabel(self)
+
+
+        pixmap = QPixmap('search.png')
+        pixmap = pixmap.scaled(QSize(25,25),Qt.KeepAspectRatio)
+        self.iconbutton.setPixmap(pixmap)
+
         self.horizontal.addStretch(1)
+
+        self.horizontal.addWidget(self.iconbutton)
+        self.horizontal.addWidget(self.Search_LE)
+
+        self.Search_LE.textChanged.connect(self.SearchMethod)
+        
         self.CreateTable()
 
         
@@ -55,3 +73,19 @@ class StaffDatabase(QMainWindow):
         window_widget = QWidget()
         window_widget.setLayout(self.vertical)
         self.setCentralWidget(window_widget)
+        
+    def SearchMethod(self):
+        for index in range(self.table.rowCount()):
+            self.table.setRowHidden(index,True)
+        text = self.Search_LE.text()
+        if text == '':
+            itemlist = self.table.findItems(text,Qt.MatchStartsWith)
+            for count in range(len(itemlist)):
+                itemlist[count].setBackgroundColor(QColor('White'))
+            for index in range(self.table.rowCount()):
+                self.table.setRowHidden(index,False)
+        else:
+            itemlist = self.table.findItems(text,Qt.MatchStartsWith)
+            for count in range(len(itemlist)):
+                rownum = (itemlist[count].row())
+                self.table.setRowHidden(rownum,False)

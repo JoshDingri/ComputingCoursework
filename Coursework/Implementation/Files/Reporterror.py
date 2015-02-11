@@ -3,15 +3,12 @@ from PyQt4.QtGui import *
 import sys
 import smtplib
 
-class ReportBug(QMainWindow):
+class ReportBug(QDialog):
     """A Email GUI to send bug reports"""
 
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Report Incorrect Information")
-        self.WindowLayout()
-
-    def WindowLayout(self):
         self.grid_layout = QGridLayout()
 
         self.Email_lbl = QLabel("Email Address:")
@@ -51,9 +48,7 @@ class ReportBug(QMainWindow):
         self.vertical_overall_layout.addLayout(self.grid_layout)
         self.vertical_overall_layout.addLayout(self.horizontal_layout)
 
-        window_widget = QWidget()
-        window_widget.setLayout(self.vertical_overall_layout)
-        self.setCentralWidget(window_widget)
+        self.setLayout(self.vertical_overall_layout)
 
         self.setStyleSheet("QLabel{font-size: 12px} QPushButton{font-size: 12px;")
 
@@ -95,6 +90,6 @@ class ReportBug(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     launcher = ReportBug()
-    launcher.show()
+    launcher.exec_()
     launcher.raise_()
     app.exec_()
