@@ -35,7 +35,10 @@ class AddDataWindow(QDialog):
             count = 0
             PurchaseDateExist = False
             WarrantyDateExists = False
+            DepartmentID_CB = False
             self.CurrentLineEditExists = False
+            LocationID_CB = False
+            
             for position, name in zip(positions,self.col):
                 if name == '':   ##This replaces all the spaces with line edits
                     self.LE = QLineEdit()
@@ -66,11 +69,67 @@ class AddDataWindow(QDialog):
                             self.calander_btn.clicked.connect(self.OpenCalander)
                             count+=1
                             PurchaseDateExist = False
+                            
+                    if DepartmentID_CB == True:
+                        if name == '':   ##This replaces all the spaces with line edits
+                            if self.CurrentLineEditExists == False:
+                                self.DepartmentLineEdit = count
+                            self.LE = QLineEdit()
+                            with sqlite3.connect("Volac.db") as db:
+                                cursor = db.cursor()
+                                sql = "SELECT DepartmentName FROM Department"
+                                cursor.execute(sql)
+                            Departments = [item[0] for item in cursor.fetchall()]
+                            self.departmentCB = QComboBox()
+                            self.departmentCB.setFixedHeight(25)
+                            self.departmentCB.setFixedWidth(200)
+                            self.departmentCB.addItems(Departments)
+                            self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
+                            self.grid.addWidget(self.linelist[count],*position)
+                            self.grid.addWidget(self.departmentCB,*position)
+                            count+=1
+                            self.departmentCB.activated[str].connect(self.DepartmentComboBox_Activated)
+                            DepartmentID_CB = False
+                            
+
+                    if LocationID_CB == True:
+                        if name == '':   ##This replaces all the spaces with line edits
+                            if self.CurrentLineEditExists == False:
+                                self.LocationLineEdit = count
+                            self.LE = QLineEdit()
+                            with sqlite3.connect("Volac.db") as db:
+                                cursor = db.cursor()
+                                sql = "SELECT AddressLine3 FROM Location"
+                                cursor.execute(sql)
+                            Locations = [item[0] for item in cursor.fetchall()]
+                            self.LocationCB = QComboBox()
+                            self.LocationCB.setFixedHeight(25)
+                            self.LocationCB.setFixedWidth(200)
+                            self.LocationCB.addItems(Locations)
+                            self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
+                            self.grid.addWidget(self.linelist[count],*position)
+                            self.grid.addWidget(self.LocationCB,*position)
+                            count+=1
+                            self.LocationCB.activated[str].connect(self.LocationComboBox_Activated)
+                            LocationID_CB = False
+                            
                     
                 elif name == 'PurchaseDate' or name == 'WarrantyExpirationDate':
                     label = QLabel(name)
                     self.grid.addWidget(label,*position)
                     PurchaseDateExist = True
+
+                elif name == 'DepartmentID':# or name == 'LocationID' or name == 'HardwareModelID' or name == 'HardwareMakeID' or name == 'StaffID' or name == 'HardwareID':
+                    name = name[:-2]
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    DepartmentID_CB = True
+
+                elif name == 'LocationID':
+                    name = name[:-2]
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    LocationID_CB = True
                     
                 else:
                     label = QLabel(name)
@@ -146,8 +205,25 @@ class AddDataWindow(QDialog):
         CalenderWidget.exec_()
         self.linelist[self.CurrentLineEdit].setText('    '+CalenderWidget.date)
         self.linelist[self.CurrentLineEdit].setAlignment(Qt.AlignCenter)
-        
-        
+
+    def DepartmentComboBox_Activated(self,text):
+        print(text)
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{}'".format(text)
+            cursor.execute(sql)
+            department = list(cursor.fetchone())
+        self.linelist[self.DepartmentLineEdit].setText(str(department[0]))
+
+    def LocationComboBox_Activated(self,text):
+        print(text)    
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT LocationID FROM Location WHERE AddressLine3='{}'".format(text)
+            cursor.execute(sql)
+            location = list(cursor.fetchone())
+            
+        self.linelist[self.LocationLineEdit].setText(str(location[0]))   
             
         
         

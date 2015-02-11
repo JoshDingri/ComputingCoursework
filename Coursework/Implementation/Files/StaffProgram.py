@@ -3,13 +3,17 @@ from PyQt4.QtGui import *
 import sys
 import sqlite3
 from StaffMenuBar import *
+from ChangePassword import *
+from Reporterror import *
+from BugReport import *
 
 class StaffDatabase(QMainWindow):
     """The staff database"""
 
     def __init__(self,account_details):
         super().__init__()
-        self.MenuBar()
+        self.resize(800,400)
+        
         self.setWindowTitle("Staff Database")
         self.horizontal = QHBoxLayout()
         self.vertical = QVBoxLayout()
@@ -35,7 +39,7 @@ class StaffDatabase(QMainWindow):
         self.horizontal.addWidget(self.Search_LE)
 
         self.Search_LE.textChanged.connect(self.SearchMethod)
-        
+        self.MenuBar()
         self.CreateTable()
 
     def MenuBar(self):
