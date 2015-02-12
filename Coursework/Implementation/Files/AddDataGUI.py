@@ -4,6 +4,7 @@ import sys
 import sqlite3
 from MainProgram import *
 from Calender import *
+import string
 
 class AddDataWindow(QDialog):
     """The new window for entering data"""
@@ -38,6 +39,9 @@ class AddDataWindow(QDialog):
             DepartmentID_CB = False
             self.CurrentLineEditExists = False
             LocationID_CB = False
+            HardwareModelID_CB = False
+            HardwareMakeID_CB = False
+            StaffID_CB = False
             
             for position, name in zip(positions,self.col):
                 if name == '':   ##This replaces all the spaces with line edits
@@ -52,7 +56,6 @@ class AddDataWindow(QDialog):
                         if name == '':   ##This replaces all the spaces with line edits
                             if self.CurrentLineEditExists == False:
                                 self.CurrentLineEdit = count
-                                self.CurrentLineEditExists = True
                             self.LE = QLineEdit()
                             self.calander_btn = QPushButton()
                             self.calander_btn.setFixedWidth(50)
@@ -70,7 +73,7 @@ class AddDataWindow(QDialog):
                             count+=1
                             PurchaseDateExist = False
                             
-                    if DepartmentID_CB == True:
+                    if DepartmentID_CB == True and self.linelist != self.linelist[0]:
                         if name == '':   ##This replaces all the spaces with line edits
                             if self.CurrentLineEditExists == False:
                                 self.DepartmentLineEdit = count
@@ -92,7 +95,7 @@ class AddDataWindow(QDialog):
                             DepartmentID_CB = False
                             
 
-                    if LocationID_CB == True:
+                    if LocationID_CB == True and self.linelist != self.linelist[0]:
                         if name == '':   ##This replaces all the spaces with line edits
                             if self.CurrentLineEditExists == False:
                                 self.LocationLineEdit = count
@@ -112,6 +115,69 @@ class AddDataWindow(QDialog):
                             count+=1
                             self.LocationCB.activated[str].connect(self.LocationComboBox_Activated)
                             LocationID_CB = False
+
+                    if HardwareModelID_CB == True:
+                        if name == '':   ##This replaces all the spaces with line edits
+                            if self.CurrentLineEditExists == False:
+                                self.HardwareLineEdit = count
+                            self.LE = QLineEdit()
+                            with sqlite3.connect("Volac.db") as db:
+                                cursor = db.cursor()
+                                sql = "SELECT HardwareModelName FROM HardwareModel"
+                                cursor.execute(sql)
+                            HardwareModels = [item[0] for item in cursor.fetchall()]
+                            self.HardwareModelCB = QComboBox()
+                            self.HardwareModelCB.setFixedHeight(30)
+                            self.HardwareModelCB.addItems(HardwareModels)
+                            self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
+                            self.grid.addWidget(self.linelist[count],*position)
+                            self.grid.addWidget(self.HardwareModelCB,*position)
+                            count+=1
+                            self.HardwareModelCB.activated[str].connect(self.HardwareModelComboBox_Activated)
+                            HardwareModelID_CB = False
+
+                    if HardwareMakeID_CB == True:
+                        if name == '':   ##This replaces all the spaces with line edits
+                            if self.CurrentLineEditExists == False:
+                                self.HardwarMakeLineEdit = count
+                            self.LE = QLineEdit()
+                            with sqlite3.connect("Volac.db") as db:
+                                cursor = db.cursor()
+                                sql = "SELECT HardwareModelName FROM HardwareModel"
+                                cursor.execute(sql)
+                            HardwareMakes = [item[0] for item in cursor.fetchall()]
+                            self.HardwareMakeCB = QComboBox()
+                            self.HardwareMakeCB.setFixedHeight(30)
+                            self.HardwareMakeCB.addItems(HardwareMakes)
+                            self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
+                            self.grid.addWidget(self.linelist[count],*position)
+                            self.grid.addWidget(self.HardwareMakeCB,*position)
+                            count+=1
+                            self.HardwareMakeCB.activated[str].connect(self.HardwareMakeComboBox_Activated)
+                            HardwareMakeID_CB = False
+
+                    if StaffID_CB == True and self.linelist != self.linelist[0]:
+                        if name == '':   ##This replaces all the spaces with line edits
+                            if self.CurrentLineEditExists == False:
+                                self.StaffLineEdit = count
+                            self.LE = QLineEdit()
+                            with sqlite3.connect("Volac.db") as db:
+                                cursor = db.cursor()
+                                sql = "SELECT Surname,FirstName FROM Staff"
+                                cursor.execute(sql)
+                            self.Staff = [item[0] + ', ' + item[1] for item in cursor.fetchall()]
+                            self.StaffCB = QComboBox()
+                            self.StaffCB.setFixedHeight(30)
+                            self.StaffCB.addItems(self.Staff)
+                            self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
+                            self.grid.addWidget(self.linelist[count],*position)
+                            self.grid.addWidget(self.StaffCB,*position)
+                            count+=1
+                            self.StaffCB.activated[str].connect(self.StaffComboBox_Activated)
+                            StaffID_CB = False
+
+
+                    
                             
                     
                 elif name == 'PurchaseDate' or name == 'WarrantyExpirationDate':
@@ -130,6 +196,30 @@ class AddDataWindow(QDialog):
                     label = QLabel(name)
                     self.grid.addWidget(label,*position)
                     LocationID_CB = True
+                    
+                elif name == 'HardwareModelID':
+                    name = name[:-2]
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    HardwareModelID_CB = True
+                    
+                elif name == 'HardwareMakeID':
+                    name = name[:-2]
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    HardwareMakeID_CB = True
+                    
+                elif name == 'StaffID':
+                    name = name[:-2]
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    StaffID_CB = True
+                    
+                elif name == 'HardwareID':
+                    name = name[:-2]
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    HardwareID_CB = True
                     
                 else:
                     label = QLabel(name)
@@ -223,8 +313,35 @@ class AddDataWindow(QDialog):
             cursor.execute(sql)
             location = list(cursor.fetchone())
             
-        self.linelist[self.LocationLineEdit].setText(str(location[0]))   
-            
+        self.linelist[self.LocationLineEdit].setText(str(location[0]))
+
+    def HardwareModelComboBox_Activated(self,text):
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT HardwareModelID FROM HardwareModel WHERE HardwareModelName='{}'".format(text)
+            cursor.execute(sql)
+            hardwaremodel = list(cursor.fetchone())
+        self.linelist[self.HardwareLineEdit].setText(str(hardwaremodel[0]))
+
+
+    def HardwareMakeComboBox_Activated(self,text):            
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName='{}'".format(text)
+            cursor.execute(sql)
+            HardwareMake = list(cursor.fetchone())
+        self.linelist[self.HardwarMakeLineEdit].setText(str(HardwareMake[0]))
+
+    def StaffComboBox_Activated(self,text):
+        FullStaff = str(self.Staff[0])
+        split = [x.strip() for x in FullStaff.split(',')]
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT StaffID FROM Staff WHERE Surname ='{}' AND FirstName ='{}'".format(split[0],split[1])
+            cursor.execute(sql)
+            StaffsID = list(cursor.fetchone())
+        print(StaffsID[0])
+        self.linelist[self.StaffLineEdit].setText(str(StaffsID[0]))      
         
         
 
@@ -268,7 +385,7 @@ class AddDataWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    launcher = AddDataWindow('Staff')
+    launcher = AddDataWindow('StaffHardware')
     launcher.show()
     launcher.raise_()
     app.exec_()
