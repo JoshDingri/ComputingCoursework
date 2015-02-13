@@ -42,6 +42,8 @@ class AddDataWindow(QDialog):
             HardwareModelID_CB = False
             HardwareMakeID_CB = False
             StaffID_CB = False
+            HardwareID_CB = False
+            DeviceID_CB = False
             
             for position, name in zip(positions,self.col):
                 if name == '':   ##This replaces all the spaces with line edits
@@ -145,7 +147,7 @@ class AddDataWindow(QDialog):
                             self.LE = QLineEdit()
                             with sqlite3.connect("Volac.db") as db:
                                 cursor = db.cursor()
-                                sql = "SELECT HardwareModelName FROM HardwareModel"
+                                sql = "SELECT HardwareMakeName FROM HardwareMake"
                                 cursor.execute(sql)
                             HardwareMakes = [item[0] for item in cursor.fetchall()]
                             self.HardwareMakeCB = QComboBox()
@@ -165,7 +167,7 @@ class AddDataWindow(QDialog):
                             self.LE = QLineEdit()
                             with sqlite3.connect("Volac.db") as db:
                                 cursor = db.cursor()
-                                sql = "SELECT DeviceName,HardwareModelName FROM Staff"
+                                sql = "SELECT FirstName,Surname FROM Staff"
                                 cursor.execute(sql)
                             self.Staff = [item[0] + ', ' + item[1] for item in cursor.fetchall()] #device and model
                             self.StaffCB = QComboBox()
@@ -185,18 +187,39 @@ class AddDataWindow(QDialog):
                             self.LE = QLineEdit()
                             with sqlite3.connect("Volac.db") as db:
                                 cursor = db.cursor()
-                                sql = "SELECT Surname,FirstName FROM Staff"
+                                sql = "SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareMake,HardwareModel"
                                 cursor.execute(sql)
                             self.Hardware = [item[0] + ', ' + item[1] for item in cursor.fetchall()]
-                            self.StaffCB = QComboBox()
-                            self.StaffCB.setFixedHeight(30)
-                            self.StaffCB.addItems(self.Staff)
+                            print(self.Hardware)
+                            self.HardwareCB = QComboBox()
+                            self.HardwareCB.setFixedHeight(30)
+                            self.HardwareCB.addItems(self.Hardware)
                             self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
                             self.grid.addWidget(self.linelist[count],*position)
-                            self.grid.addWidget(self.StaffCB,*position)
+                            self.grid.addWidget(self.HardwareCB,*position)
                             count+=1
-                            self.StaffCB.activated[str].connect(self.StaffComboBox_Activated)
+                            self.HardwareCB.activated[str].connect(self.HardwareComboBox_Activated)
                             StaffID_CB = False
+
+                    if DeviceID_CB == True:
+                        if name == '':   ##This replaces all the spaces with line edits
+                            if self.CurrentLineEditExists == False:
+                                self.DeviceLineEdit = count
+                            self.LE = QLineEdit()
+                            with sqlite3.connect("Volac.db") as db:
+                                cursor = db.cursor()
+                                sql = "SELECT DeviceName FROM DeviceType"
+                                cursor.execute(sql)
+                            Devices = [item[0] for item in cursor.fetchall()]
+                            self.DeviceCB = QComboBox()
+                            self.DeviceCB.setFixedHeight(30)
+                            self.DeviceCB.addItems(Devices)
+                            self.linelist.append(self.LE)   ##line edits are added to a list so they can be seperated and chosen individually if needed later
+                            self.grid.addWidget(self.linelist[count],*position)
+                            self.grid.addWidget(self.Devices,*position)
+                            count+=1
+                            self.DeviceCB.activated[str].connect(self.DeviceComboBox_Activated)
+                            DeviceID_CB = False
 
 
                     
@@ -266,6 +289,16 @@ class AddDataWindow(QDialog):
                     label = QLabel(name)
                     self.grid.addWidget(label,*position)
                     HardwareID_CB = True
+
+                elif name == 'DeviceID':
+                    if count == 0:
+                        label = QLabel(name)
+                        self.grid.addWidget(label,*position)
+                        continue
+                    name = name[:-2]
+                    label = QLabel(name)
+                    self.grid.addWidget(label,*position)
+                    DeviceID_CB = True
                     
                 else:
                     label = QLabel(name)
@@ -374,6 +407,7 @@ class AddDataWindow(QDialog):
             sql = "SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName='{}'".format(text)
             cursor.execute(sql)
             HardwareMake = list(cursor.fetchone())
+            db.commit()
         self.linelist[self.HardwarMakeLineEdit].setText(str(HardwareMake[0]))
 
     def StaffComboBox_Activated(self,text):
@@ -381,13 +415,31 @@ class AddDataWindow(QDialog):
         split = [x.strip() for x in FullStaff.split(',')]
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            sql = "SELECT StaffID FROM Staff WHERE Surname ='{}' AND FirstName ='{}'".format(split[0],split[1])
+            sql = "SELECT StaffID FROM Staff WHERE Surname ='{}' AND FirstName ='{}'".format(split[1],split[0])
             cursor.execute(sql)
             StaffsID = list(cursor.fetchone())
-        print(StaffsID[0])
-        self.linelist[self.StaffLineEdit].setText(str(StaffsID[0]))      
+        self.linelist[self.StaffLineEdit].setText(str(StaffsID[0]))
         
-        
+
+    def HardwareComboBox_Activated(self,text):
+        FullHardware = str(self.Hardware[0])
+        split = [x.strip() for x in FullHardware.split(',')]
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT HardwareMake.HardwareMakeID,HardwareModel.HardwareModelID FROM HardwareMake,HardwareModel WHERE HardwareMake.HardwareMakeName ='{}' AND HardwareModel.HardwareModelName ='{}'".format(split[0],split[1])
+            cursor.execute(sql)
+            HardwareIDs = list(cursor.fetchone())
+        self.linelist[self.HardwareLineEdit].setText(str(HardwareIDs[0]))
+
+    def DeviceComboBox_Activated(self,text):            
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT DeviceID FROM DeviceType WHERE DeviceName='{}'".format(text)
+            cursor.execute(sql)
+            Device = list(cursor.fetchone())
+            db.commit()
+        self.linelist[self.DeviceLineEdit].setText(str(Device[0]))
+            
 
     def Commit_Changes(self):
         data = []

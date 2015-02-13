@@ -9,6 +9,8 @@ from AddDataGUI import *
 from LoginWindow import *
 from ChangePassword import *
 import sqlite3
+import time
+import datetime
 
 
 class CurrentLayoutAdmin(QMainWindow):
@@ -22,6 +24,7 @@ class CurrentLayoutAdmin(QMainWindow):
         self.OpenFirst = False
         self.account_details = account_details
         self.MainMenu()
+        self.CheckExpirationDates()
         self.MenuBar() ## Calls menubar definition
 ##        self.stacked_layout = QStackedLayout()
 ##        self.stacked_layout.addWidget(self.MainMenuWidget)
@@ -30,7 +33,77 @@ class CurrentLayoutAdmin(QMainWindow):
 ##        self.setCentralWidget(self.central_widget)
     
 
+    def CheckExpirationDates(self):
+        self.currentdate = time.strftime("%d-%m-%y")
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = ("SELECT PurchaseDate FROM StaffHardware")
+            cursor.execute(sql)
+        purchasedates = [item[0] for item in cursor.fetchall()]
 
+
+        b = "(', )" 
+            
+        for count in range (len(purchasedates)):
+            for i in range(0,len(b)):
+                purchasedates[count] = str(purchasedates[count]).replace(b[i],"")
+                self.expiringitem = purchasedates[count]
+
+            currentdate = datetime.datetime.strptime(self.currentdate,"%d-%m-%y")
+            self.purchasedate = datetime.datetime.strptime(purchasedates[count],"%d-%m-%y")
+
+            
+            daysleft = self.purchasedate - currentdate
+            if daysleft.days == 6:
+                self.SendExpirationEmail()
+
+    def SendExpirationEmail(self):
+        self.purchasedate = self.purchasedate.strftime("%d-%m-%y")
+        self.purchasedate =  ("    " + self.purchasedate)
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = ("SELECT HardwareID FROM StaffHardware WHERE PurchaseDate='{}'".format(self.purchasedate))
+            cursor.execute(sql)
+            HardwareIDs = list(cursor.fetchone())
+            db.commit()
+
+        print(HardwareIDs[0])
+
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = ("SELECT HardwareModelID FROM Hardware WHERE HardwareID='{}'".format(HardwareIDs[0]))
+            cursor.execute(sql)
+            ModelID = list(cursor.fetchone())
+            db.commit()
+
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = ("SELECT HardwareModelName FROM HardwareModel WHERE HardwareModelID='{}'".format(ModelID[0]))
+            cursor.execute(sql)
+            HardwareModel = list(cursor.fetchone())
+            db.commit()
+
+        print(HardwareModel[0])
+        
+        self.mail = smtplib.SMTP("smtp.live.com",25)
+        self.mail.ehlo()
+        self.mail.starttls()
+
+        IT_Staff_Email = ('josh-dingri@hotmail.co.uk')
+        Email = ('donotreply_volac@hotmail.co.uk')
+        try:
+            self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
+        except smtplib.SMTPServerDisconnected:
+            print("not valid")
+
+        Content = ("The following item has 90 days left before the warranty will run out:\n\nHardware ID: {0}\nHardware Item: {1}".format(HardwareIDs[0],HardwareModel[0]))
+        Subject = ("Warranty Expiration Warning")
+
+        Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
+        print(Body)
+
+        self.mail.sendmail(Email,IT_Staff_Email,Body)
+        self.mail.quit()
 
     def MenuBar(self):       
         MenuBarAdmin.MenuBar(self) ##Calls menubar from another python file
@@ -112,7 +185,7 @@ class CurrentLayoutAdmin(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    launcher = CurrentLayoutAdmin()
+    launcher = CurrentLayoutAdmin(None)
     launcher.show()
     launcher.raise_()
     app.exec_()

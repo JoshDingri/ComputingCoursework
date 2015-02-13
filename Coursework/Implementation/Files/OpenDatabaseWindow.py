@@ -73,7 +73,7 @@ class OpenDatabase(QMainWindow):
         self.horizontal.addWidget(self.Remove_btn)
         self.grid.addWidget(self.iconbutton,2,3)
 
-        self.table = QTableView()
+        self.table = QTableWidget()
 
         self.verticle.addLayout(self.grid)
         self.verticle.addLayout(self.horizontal)
@@ -156,10 +156,9 @@ class OpenDatabase(QMainWindow):
                     self.cursor.execute(sql)
 
             col = [tuple[0] for tuple in self.cursor.description]
-            self.table = QTableView()
-            self.table.addDatabase("Volac.db")
+            self.table = QTableWidget(2,len(col))
                         
-            self.table.setHorizontalHeader(col)
+            self.table.setHorizontalHeaderLabels(col)
             self.table.setRowCount(0)
 
             ##If the editdb button is active
