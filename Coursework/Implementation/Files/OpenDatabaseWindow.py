@@ -166,7 +166,7 @@ class OpenDatabase(QMainWindow):
                 for self.row, form in enumerate(self.cursor): ##Inserts amount of rows needed, gets from database
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form): ##Inserts amount of columns needed
-                        self.item = QTableWidgetItem(str(item)) 
+                        self.item = QTableWidgetItem(str(item))
                         self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
                         self.table.horizontalHeader().setStretchLastSection(True)
                 
@@ -198,6 +198,38 @@ class OpenDatabase(QMainWindow):
                 for self.row, form in enumerate(self.cursor):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form):
+                        
+                        if self.CurrentTable == 'Staff':
+                            if self.column == 4:
+                                print(self.table.horizontalHeaderItem(4).text())
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT DepartmentName from Department WHERE DepartmentID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    Foreign_Item = list(cursor.fetchone())
+                                    db.commit()
+                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.table.setItem(self.row, self.column,self.item)
+                                self.table.horizontalHeader().setStretchLastSection(True)
+                                continue
+                            if self.column == 5:
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT AddressLine3 from Location WHERE LocationID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    Foreign_Item = list(cursor.fetchone())
+                                    db.commit()
+                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.table.setItem(self.row, self.column,self.item)
+                                self.table.horizontalHeader().setStretchLastSection(True)
+                                continue
+                        if self.CurrentTable == 'Department':
+                            pass
+                                    
                         self.item = QTableWidgetItem(str(item))
                         self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                         self.table.setItem(self.row, self.column,self.item)
