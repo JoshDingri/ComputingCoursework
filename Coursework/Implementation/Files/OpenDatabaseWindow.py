@@ -142,6 +142,7 @@ class OpenDatabase(QMainWindow):
         
 
     def ChosenTableMethod(self):
+        columncount = 0
         self.table.deleteLater()
         
         self.CurrentTable = (self.Database_CB.currentText())
@@ -201,7 +202,6 @@ class OpenDatabase(QMainWindow):
                         
                         if self.CurrentTable == 'Staff':
                             if self.column == 4:
-                                print(self.table.horizontalHeaderItem(4).text())
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
                                     sql = "SELECT DepartmentName from Department WHERE DepartmentID ='{}'".format(item)
@@ -227,9 +227,88 @@ class OpenDatabase(QMainWindow):
                                 self.table.setItem(self.row, self.column,self.item)
                                 self.table.horizontalHeader().setStretchLastSection(True)
                                 continue
-                        if self.CurrentTable == 'Department':
-                            pass
-                                    
+                            
+                        elif self.CurrentTable == 'Department': 
+                            if self.column == 7:
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT DeviceName from DeviceType WHERE DeviceID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    Foreign_Item = list(cursor.fetchone())
+                                    db.commit()
+                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.table.setItem(self.row, self.column,self.item)
+                                self.table.horizontalHeader().setStretchLastSection(True)
+                                continue
+                                
+                            if self.column == 8:
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareModelName from HardwareModel WHERE HardwareModelID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    Foreign_Item = list(cursor.fetchone())
+                                    db.commit()
+                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.table.setItem(self.row, self.column,self.item)
+                                self.table.horizontalHeader().setStretchLastSection(True)
+                                continue
+
+                        elif self.CurrentTable == 'HardwareModel': 
+                            if self.column == 2:
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareMakeName from HardwareMake WHERE HardwareMakeID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    Foreign_Item = list(cursor.fetchone())
+                                    db.commit()
+                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.table.setItem(self.row, self.column,self.item)
+                                self.table.horizontalHeader().setStretchLastSection(True)
+                                continue
+
+                        elif self.CurrentTable == 'StaffHardware': 
+                            if self.column == 2:
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT Surname,FirstName from Staff WHERE StaffID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    Foreign_Item = list(cursor.fetchall())
+                                    db.commit()
+                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.table.setItem(self.row, self.column,self.item)
+                                self.table.horizontalHeader().setStretchLastSection(True)
+                                continue
+                                
+##                            if self.column == 3:
+##                                with sqlite3.connect("Volac.db") as db:
+##                                    cursor = db.cursor()
+##                                    sql = "SELECT FirstName from Hardware WHERE HardwareID ='{}'".format(item)
+##                                    cursor.execute("PRAGMA foreign_keys = ON")
+##                                    cursor.execute(sql)
+##                                    Foreign_Item = list(cursor.fetchall())
+##                                    db.commit()
+##                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+##                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+##                                self.table.setItem(self.row, self.column,self.item)
+##                                self.table.horizontalHeader().setStretchLastSection(True)
+
+
+                        
+
+
+
+
+
+
+                                
                         self.item = QTableWidgetItem(str(item))
                         self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                         self.table.setItem(self.row, self.column,self.item)
