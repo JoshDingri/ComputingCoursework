@@ -105,16 +105,6 @@ def Location():
           primary key(LocationID))"""
     create_table(db_name,"Location",sql)
 
-def DepartmentLocation():
-    sql = """create table DepartmentLocation
-          (DepartmentLocationID integer,
-          LocationID integer,
-          DepartmentID integer,
-          primary key(DepartmentLocationID),
-          foreign key(LocationID) references Location(LocationID),
-          foreign key(DepartmentID) references Department(DepartmentID))"""
-    create_table(db_name,"DepartmentLocation",sql)
-
 
 
 if __name__ == "__main__":
@@ -127,4 +117,3 @@ if __name__ == "__main__":
     StaffHardware()
     Department()
     Location()
-    DepartmentLocation()

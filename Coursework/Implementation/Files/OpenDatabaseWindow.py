@@ -46,7 +46,7 @@ class OpenDatabase(QMainWindow):
         self.AddDatabase = QPushButton('Open Database',self)
         self.AddDatabase.setFont(QFont("Calibri",8))
         self.AddDatabase.setFixedWidth(80)
-        self.AddDatabase.setFixedHeight(20)
+        self.AddDatabase.setFixedHeight(25)
 
 
 
@@ -109,46 +109,24 @@ class OpenDatabase(QMainWindow):
         self.savechanges.triggered.connect(self.EditDB_SaveChanges)
         self.cancel.triggered.connect(self.EditDB_Cancel)
 
-        self.ButtonStyleSheet =  ("""QPushButton{
-                    color: #333;
-                    border: 2px solid #555;
-                    border-radius: 11px;
-                    padding: 5px;
-                    background: qradialgradient(cx: 0.3, cy: -0.4,
-                    fx: 0.3, fy: -0.4,
-                    radius: 1.35, stop: 0 #fff, stop: 1 #888);
-                    min-width: 80px;
-                    }"""
-                             
-                    """QPushButton:hover{
-                    background: qradialgradient(cx: 0.3, cy: -0.4,
-                    fx: 0.3, fy: -0.4,
-                    radius: 1.35, stop: 0 #fff, stop: 1 #bbb);
-                    }"""
 
-                    """QPushButton:pressed {
-                    background: qradialgradient(cx: 0.4, cy: -0.1,
-                    fx: 0.4, fy: -0.1,
-                    radius: 1.35, stop: 0 #fff, stop: 1 #ddd);
-                    }""")
-
-                    
-        self.EditDatabase_btn.setStyleSheet(self.ButtonStyleSheet)
-        self.Add_btn.setStyleSheet(self.ButtonStyleSheet)
-        self.Remove_btn.setStyleSheet(self.ButtonStyleSheet)
-                        
+           
 
                         
         
 
     def ChosenTableMethod(self):
-        columncount = 0
-        self.table.deleteLater()
-        
+        columncount = 0        
         self.CurrentTable = (self.Database_CB.currentText())
+        if self.CurrentTable == 'Select Table':
+            return
+
+        
         if self.exists == True:
             self.verticle.removeWidget(self.table)
         try:
+            self.table.deleteLater()
+
 
             with sqlite3.connect("Volac.db") as db:
                     self.cursor = db.cursor()
@@ -169,7 +147,7 @@ class OpenDatabase(QMainWindow):
                     for self.column, item in enumerate(form): ##Inserts amount of columns needed
                         self.item = QTableWidgetItem(str(item))
                         self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
-                        self.table.horizontalHeader().setStretchLastSection(True)
+                        self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                 
 
             elif self.DeleteRC == True:
@@ -189,7 +167,7 @@ class OpenDatabase(QMainWindow):
                         self.table.setCellWidget(count,last_column-1,self.delete_btn)   ##Adds a button to every row (count) and to the last column
                         self.delete_btn.clicked.connect(self.Delete_btnclicked)
                         self.counter +=1
-                        self.table.horizontalHeader().setStretchLastSection(True)
+                        self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
 
 
             ##If the editdb is not active
@@ -199,9 +177,9 @@ class OpenDatabase(QMainWindow):
                 for self.row, form in enumerate(self.cursor):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form):
+                        CurrentHeader = (self.table.horizontalHeaderItem(self.column).text())
                         
-                        if self.CurrentTable == 'Staff':
-                            if self.column == 4:
+                        if CurrentHeader == 'DepartmentID' and self.column != 0:
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
                                     sql = "SELECT DepartmentName from Department WHERE DepartmentID ='{}'".format(item)
@@ -210,11 +188,12 @@ class OpenDatabase(QMainWindow):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setStretchLastSection(True)
+                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                                 continue
-                            if self.column == 5:
+                        elif CurrentHeader == 'LocationID' and self.column != 0:
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
                                     sql = "SELECT AddressLine3 from Location WHERE LocationID ='{}'".format(item)
@@ -223,13 +202,13 @@ class OpenDatabase(QMainWindow):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setStretchLastSection(True)
+                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                                 continue
                             
-                        elif self.CurrentTable == 'Department': 
-                            if self.column == 7:
+                        elif CurrentHeader == 'DeviceID' and self.column != 0: 
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
                                     sql = "SELECT DeviceName from DeviceType WHERE DeviceID ='{}'".format(item)
@@ -238,12 +217,13 @@ class OpenDatabase(QMainWindow):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setStretchLastSection(True)
+                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                                 continue
                                 
-                            if self.column == 8:
+                        elif CurrentHeader == 'HardwareModelID' and self.column != 0:
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
                                     sql = "SELECT HardwareModelName from HardwareModel WHERE HardwareModelID ='{}'".format(item)
@@ -252,13 +232,13 @@ class OpenDatabase(QMainWindow):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setStretchLastSection(True)
+                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                                 continue
 
-                        elif self.CurrentTable == 'HardwareModel': 
-                            if self.column == 2:
+                        elif CurrentHeader == 'HardwareMakeID' and self.column != 0: 
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
                                     sql = "SELECT HardwareMakeName from HardwareMake WHERE HardwareMakeID ='{}'".format(item)
@@ -267,38 +247,69 @@ class OpenDatabase(QMainWindow):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setStretchLastSection(True)
+                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                                 continue
 
-                        elif self.CurrentTable == 'StaffHardware': 
-                            if self.column == 2:
+                        elif CurrentHeader == 'StaffID' and self.column != 0: 
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    sql = "SELECT Surname,FirstName from Staff WHERE StaffID ='{}'".format(item)
+                                    sql = "SELECT FirstName,Surname from Staff WHERE StaffID ='{}'".format(item)
                                     cursor.execute("PRAGMA foreign_keys = ON")
                                     cursor.execute(sql)
-                                    Foreign_Item = list(cursor.fetchall())
                                     db.commit()
-                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                Foreign_Item = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
+                                
+                                b = "[]'',"
+                                for i in range(0,len(b)):
+                                    Foreign_Item = Foreign_Item.replace(b[i],"") 
+                                
+                                self.item = QTableWidgetItem(Foreign_Item)
+                                self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setStretchLastSection(True)
+                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                                 continue
                                 
-##                            if self.column == 3:
-##                                with sqlite3.connect("Volac.db") as db:
-##                                    cursor = db.cursor()
-##                                    sql = "SELECT FirstName from Hardware WHERE HardwareID ='{}'".format(item)
-##                                    cursor.execute("PRAGMA foreign_keys = ON")
-##                                    cursor.execute(sql)
-##                                    Foreign_Item = list(cursor.fetchall())
-##                                    db.commit()
-##                                self.item = QTableWidgetItem(str(Foreign_Item[0]))
-##                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
-##                                self.table.setItem(self.row, self.column,self.item)
-##                                self.table.horizontalHeader().setStretchLastSection(True)
+                        elif CurrentHeader == 'HardwareID' and self.column != 0:
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareModelID from Hardware WHERE HardwareID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    ModelID = list(cursor.fetchone())
+                                    db.commit()
+                                    
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareMakeID from HardwareModel WHERE HardwareModelID ='{}'".format(ModelID[0])
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    MakeID = list(cursor.fetchone())
+                                    db.commit()
+
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID ='{}' AND HardwareMake.HardwareMakeID = '{}'".format(ModelID[0],MakeID[0])
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    db.commit()
+
+                                HardwareForeignKey = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
+
+                                
+                                b = "[]'',"
+                                for i in range(0,len(b)):
+                                    HardwareForeignKey = HardwareForeignKey.replace(b[i],"") 
+                                    
+                                self.item = QTableWidgetItem(HardwareForeignKey)
+                                self.item.setTextAlignment(Qt.AlignCenter)
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.table.setItem(self.row, self.column,self.item)
+                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+                                continue
 
 
                         
@@ -310,9 +321,11 @@ class OpenDatabase(QMainWindow):
 
                                 
                         self.item = QTableWidgetItem(str(item))
-                        self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                        self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off)
+                        self.item.setTextAlignment(Qt.AlignCenter)
                         self.table.setItem(self.row, self.column,self.item)
-                        self.table.horizontalHeader().setStretchLastSection(True)
+                        self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+
 
                             
             self.verticle.addWidget(self.table)
@@ -365,21 +378,13 @@ class OpenDatabase(QMainWindow):
         
 
     def EditDatabaseClicked(self): ## Boolean statements to say whether the button has been clicked
-        self.EditDatabase_btn.setStyleSheet("""
-                                            color: #333;
-                                            background-color: #E6CCCC;
-                                            border: 2px solid #555;
-                                            border-radius: 11px;
-                                            padding: 5px;
-                                            min-width: 80px;
-                                            """)
+        
         
         self.EditDB = True
         self.EditDB_ToolBar.setVisible(True)
         self.ChosenTableMethod()
 
     def EditDB_SaveChanges(self):
-        self.EditDatabase_btn.setStyleSheet(self.ButtonStyleSheet)
         try:
         
             with sqlite3.connect("Volac.db") as db:
@@ -399,7 +404,6 @@ class OpenDatabase(QMainWindow):
 
 
     def EditDB_Cancel(self):
-        self.EditDatabase_btn.setStyleSheet(self.ButtonStyleSheet)
         self.EditDB = False
         self.EditDB_ToolBar.setVisible(False)
 
@@ -414,18 +418,9 @@ class OpenDatabase(QMainWindow):
     def DeleteRecordsClicked(self):
         """Allows deletion of records in QTableWidget and Database"""
         if self.DeleteRC == True:
-            self.Remove_btn.setStyleSheet(self.ButtonStyleSheet)
             self.DeleteRC = False
         else:
             self.DeleteRC = True
-            self.Remove_btn.setStyleSheet("""
-                                        color: #333;
-                                        background-color: #E6CCCC;
-                                        border: 2px solid #555;
-                                        border-radius: 11px;
-                                        padding: 5px;
-                                        min-width: 80px;
-                                            """)
             
         
         self.ChosenTableMethod()

@@ -22,7 +22,7 @@ class LoginWindow(QDialog):
         self.MainLayout()
 
     def SplashScreen(self):
-        pixmap = QPixmap("Splashscreen.jpg")
+        pixmap = QPixmap("Splashscreen.JPG")
         Spashscreen = QSplashScreen(pixmap, Qt.WindowStaysOnTopHint)
         Spashscreen.setMask(pixmap.mask())
         Spashscreen.show()

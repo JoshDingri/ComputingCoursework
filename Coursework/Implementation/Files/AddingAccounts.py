@@ -5,7 +5,7 @@ import sqlite3
 import random
 import string
 
-class AddUserAccounts(QMainWindow):
+class AddUserAccounts(QDialog):
     """Program will allow IT Staff to add user accounts"""
 
     def __init__(self):
@@ -89,10 +89,9 @@ class AddUserAccounts(QMainWindow):
 
         self.horizontal4.setSpacing(0)
 
+        self.setLayout(self.vertical)
 
-        self.window = QWidget()
-        self.window.setLayout(self.vertical)
-        self.setCentralWidget(self.window)
+
 
         self.GenerateAccount_btn.clicked.connect(self.GenerateAccount)
         self.AddAccount.clicked.connect(self.AddAccountDBConnection)

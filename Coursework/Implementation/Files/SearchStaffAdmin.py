@@ -15,11 +15,10 @@ class SearchStaff(QMainWindow):
         self.grid = QGridLayout()
         self.verticle = QVBoxLayout()
                 
-        DatabaseLbl = QLabel("Department:")
-        DatabaseLbl.setFont(QFont("Calibri",20))
+        DatabaseLbl = QLabel("Select Department:")
+        DatabaseLbl.setFont(QFont("Calibri",19))
         self.Database_CB = QComboBox()
-        self.Database_CB.addItem("-")
-        self.Database_CB.setFixedHeight(30)
+        self.Database_CB.setFixedHeight(27)
         self.Database_CB.setFixedWidth(150)
         
         with sqlite3.connect("Volac.db") as db:
@@ -35,13 +34,14 @@ class SearchStaff(QMainWindow):
                     field_names.append(item)
 
         self.Database_CB.addItems(field_names)
+        self.Database_CB.setCurrentIndex(0)
         
 
-        SearchLbl = QLabel("First Name:")
+        SearchLbl = QLabel("Enter First Name:")
         self.Search_LE = QLineEdit()
         self.Search_LE.setFixedWidth(150)
         self.Search_LE.setFixedHeight(25)
-        SearchLbl.setFont(QFont("Calibri",20))
+        SearchLbl.setFont(QFont("Calibri",19))
 
         self.Back_btn = QPushButton("Back")
         self.Back_btn.setFixedWidth(50)
@@ -70,7 +70,9 @@ class SearchStaff(QMainWindow):
         window_widget = QWidget()
         window_widget.setLayout(self.verticle)
         self.setCentralWidget(window_widget)
+        self.default_table()
         self.Database_CB.activated.connect(self.ChosenDepartment)
+
 
     def ChosenDepartment(self):
         self.department = self.Database_CB.currentText()
@@ -85,39 +87,82 @@ class SearchStaff(QMainWindow):
                 for self.column, item in enumerate(form): 
                     self.DepartmentID = item
         print(self.DepartmentID)
+        self.default_table()
         
         self.search_button.clicked.connect(self.ShowResults)
+
+    def default_table(self):
+        self.department = self.Database_CB.currentText()
+
+        with sqlite3.connect("Volac.db") as db:
+            self.cursor = db.cursor()
+            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{0}'".format(self.department)
+            self.cursor.execute(sql)
+            db.commit()
+            
+        for self.row, form in enumerate(self.cursor): 
+                for self.column, item in enumerate(form): 
+                    self.DepartmentID = item
+                    
+        with sqlite3.connect("Volac.db") as db:
+            self.cursorStaff = db.cursor()
+            sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}'".format(self.DepartmentID)
+            self.cursorStaff.execute(sql)
+            db.commit()
+
+        self.search_results_table.deleteLater()
+        self.search_results_table = QTableWidget(2,1)
+                        
+        self.search_results_table.setHorizontalHeaderLabels('')
+        self.search_results_table.setRowCount(0)
+
+        b = "(',)"
+
+        self.pushbuttons = []
+        self.names = []
+                
+        for self.row, item in enumerate(self.cursorStaff):
+            self.search_results_table.insertRow(self.row)
+            self.names.append(item)
+            self.item = str(item)
+            for i in range(0,len(b)):
+                self.item = self.item.replace(b[i],"")
+            self.item = self.item.replace(" ",", ")
+            self.item = "{0}\n{1}                                                                                                              ".format(self.item,self.department)
+            self.buttonrow = QPushButton(self.item)
+
+            self.buttonrow.setIcon(QIcon("arrow.png"))
+            self.buttonrow.setIconSize(QSize(30,30))
+            self.buttonrow.setStyleSheet("font-size: 15px")
+            self.buttonrow.setLayoutDirection(Qt.RightToLeft)
+
+            self.pushbuttons.append(self.buttonrow)
+            self.pushbuttons[self.row].clicked.connect(self.ButtonClicked)
+                
+                
+            self.search_results_table.setCellWidget(self.row, self.column,self.pushbuttons[self.row])
+            self.search_results_table.resizeRowsToContents()
+            self.search_results_table.horizontalHeader().setStretchLastSection(True)
+
+
+                                    
+
+                            
+        self.verticle.addWidget(self.search_results_table)
+
+
+
+
 
     
     def ShowResults(self):
         self.searched_name = (self.Search_LE.text())
         print(self.searched_name)
         if self.searched_name == '':
-            print('boo')
+            self.default_table()
         
-##        with sqlite3.connect("Volac.db") as db:
-##                self.cursor = db.cursor()
-##                sql = "SELECT DepartmentID FROM Staff WHERE FirstName LIKE '{0}%'".format(self.searched_name)
-##                self.cursor.execute(sql)
-##                departmentid = self.cursor.fetchone()
-##                db.commit()
 
-##        departmentid = str(departmentid)
-
-##        chars = "(),"
-
-##        for i in range(len(chars)):
-##            departmentid = departmentid.replace(chars[i],"")
-##
-##        self.DepartmentIDStaff = int(departmentid)
-##        print(self.DepartmentIDStaff)
-                
-##        if departmentid == None:
-##            print("does not exist")
-        
-        else:
-##                    print(self.DepartmentIDStaff,self.DepartmentID)
-                            
+        else:        
                     with sqlite3.connect("Volac.db") as db:
                         self.cursorStaff = db.cursor()
                         sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}' AND FirstName LIKE '{1}%' ".format(self.DepartmentID,self.searched_name)
@@ -196,7 +241,14 @@ class SearchStaff(QMainWindow):
 
         with sqlite3.connect("Volac.db") as db:
             self.details_cursor = db.cursor()
-            sql = "SELECT * FROM Staff WHERE FirstName = '{0}' AND Surname = '{1}'".format(FirstName,Surname)
+            sql = "SELECT StaffID FROM Staff WHERE FirstName = '{0}' AND Surname = '{1}'".format(FirstName,Surname)
+            self.details_cursor.execute(sql)
+            StaffID = list(self.details_cursor.fetchone())
+            db.commit()
+            
+        with sqlite3.connect("Volac.db") as db:
+            self.details_cursor = db.cursor()
+            sql = "SELECT * FROM StaffHardware WHERE StaffID = '{0}'".format(StaffID[0])
             self.details_cursor.execute(sql)
             db.commit()
 

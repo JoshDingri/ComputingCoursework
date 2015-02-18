@@ -24,6 +24,7 @@ class CurrentLayoutAdmin(QMainWindow):
         self.OpenFirst = False
         self.account_details = account_details
         self.MainMenu()
+        self.ToolBar()
         self.CheckExpirationDates()
         self.MenuBar() ## Calls menubar definition
 ##        self.stacked_layout = QStackedLayout()
@@ -31,6 +32,21 @@ class CurrentLayoutAdmin(QMainWindow):
 ##        self.central_widget = QWidget()
 ##        self.central_widget.setLayout(self.stacked_layout)
 ##        self.setCentralWidget(self.central_widget)
+
+
+    def ToolBar(self):
+        OpenGraphBtn = QPushButton("Generate Hardware Graph")
+        OpenGraphBtn.clicked.connect(Graph)
+        CreateAccounts = QPushButton("Create User Accounts")
+        CreateAccounts.clicked.connect(self.Create_Account)        
+        self.toolbar = self.addToolBar("Open")
+        self.toolbar.addWidget(OpenGraphBtn)
+        self.toolbar.addWidget(CreateAccounts)
+        
+    def Create_Account(self):
+        CreateAccount = AddUserAccounts()
+        CreateAccount.resize(600,300)
+        CreateAccount.exec_()
     
 
     def CheckExpirationDates(self):
@@ -56,6 +72,7 @@ class CurrentLayoutAdmin(QMainWindow):
             daysleft = self.purchasedate - currentdate
             if daysleft.days == 6:
                 self.SendExpirationEmail()
+
 
     def SendExpirationEmail(self):
         self.purchasedate = self.purchasedate.strftime("%d-%m-%y")
@@ -117,7 +134,7 @@ class CurrentLayoutAdmin(QMainWindow):
         
         
     def MainMenu(self):
-        self.resize(650,320)
+        self.resize(780,380)
         MainMenuWindow = AdminMainMenu()
         self.setCentralWidget(MainMenuWindow)
 
@@ -130,7 +147,6 @@ class CurrentLayoutAdmin(QMainWindow):
         self.OpenDatabaseWindow = OpenDatabase()
         self.setCentralWidget(self.OpenDatabaseWindow)
         self.resize(738,500)
-        self.move (500,180)
             
         
         self.OpenDatabaseWindow.Back_btn.clicked.connect(self.MainMenu)
