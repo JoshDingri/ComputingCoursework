@@ -20,11 +20,27 @@ class AddUserAccounts(QDialog):
         self.horizontal4 = QHBoxLayout()
         self.vertical = QVBoxLayout()
 
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT FirstName FROM Staff"
+            cursor.execute(sql)
+            db.commit()
+        FirstnameList = [item[0] for item in cursor.fetchall()]
+
         self.FName_Lbl = QLabel("First Name")
-        self.FName_LE = QLineEdit()
+        self.FName_CB = QComboBox()
+        self.FName_CB.addItems(FirstnameList)
+        
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT Surname FROM Staff"
+            cursor.execute(sql)
+            db.commit()
+        LastNameList = [item[0] for item in cursor.fetchall()]
         
         self.LName_Lbl = QLabel("Last Name")
-        self.LName_LE = QLineEdit()
+        self.LName_CB = QComboBox()
+        self.LName_CB.addItems(LastNameList)
 
         self.AccessLevel_Lbl = QLabel("Access Level")
         self.AccessLevel_CB = QComboBox()
@@ -32,20 +48,28 @@ class AddUserAccounts(QDialog):
         self.AccessLevel_CB.addItem("Manager")
         self.AccessLevel_CB.addItem("Staff")
 
+        with sqlite3.connect("Volac.db") as db:
+            cursor = db.cursor()
+            sql = "SELECT DepartmentName FROM Department"
+            cursor.execute(sql)
+            db.commit()
+        DepartmentList = [item[0] for item in cursor.fetchall()]
+
         self.Department_lbl = QLabel("Department")
-        self.Department_LE = QLineEdit()
+        self.Department_CB = QComboBox()
+        self.Department_CB.addItems(DepartmentList)
 
         self.grid.addWidget(self.FName_Lbl,0,0)
-        self.grid.addWidget(self.FName_LE,0,1)
+        self.grid.addWidget(self.FName_CB,0,1)
 
         self.grid.addWidget(self.LName_Lbl,1,0)
-        self.grid.addWidget(self.LName_LE,1,1)
+        self.grid.addWidget(self.LName_CB,1,1)
 
         self.grid.addWidget(self.AccessLevel_Lbl,2,0)
         self.grid.addWidget(self.AccessLevel_CB,2,1)
 
         self.grid.addWidget(self.Department_lbl,3,0)
-        self.grid.addWidget(self.Department_LE,3,1)
+        self.grid.addWidget(self.Department_CB,3,1)
 
         self.UsernameResult  = QLineEdit()
         self.RandomPassword = QLineEdit()
@@ -97,9 +121,9 @@ class AddUserAccounts(QDialog):
         self.AddAccount.clicked.connect(self.AddAccountDBConnection)
 
     def GenerateAccount(self):
-        self.FirstName = self.FName_LE.text()
-        self.LastName = self.LName_LE.text()
-        self.GetDepartment = self.Department_LE.text()
+        self.FirstName = self.FName_CB.currentText()
+        self.LastName = self.LName_CB.currentText()
+        self.GetDepartment = self.Department_CB.currentText()
         self.GetAccessLevel = self.AccessLevel_CB.currentText()
 
         username = (self.FirstName[0]+self.LastName+str(random.randint(1,10)))

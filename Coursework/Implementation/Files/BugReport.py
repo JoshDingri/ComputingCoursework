@@ -1,5 +1,6 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from Calender import *
 import sys
 import smtplib
 
@@ -46,11 +47,20 @@ class ReportBug(QDialog):
         self.grid_layout.addWidget(self.JobTitle_lbl,4,0)
         self.grid_layout.addWidget(self.JobTitle_LE,4,1)
 
+        self.calander_btn = QPushButton()
+        self.calander_btn.setFixedWidth(50)
+        pixmap = QPixmap('calendar-icon.png')
+        ButtonIcon = QIcon(pixmap)
+        self.calander_btn.setIcon(ButtonIcon)
+        self.calander_btn.setIconSize(QSize(13,13))
+        self.calander_btn.clicked.connect(self.OpenCalander)
+
         self.Date_lbl = QLabel("Date:")
         self.Data_LE = QLineEdit()
 
         self.grid_layout.addWidget(self.Date_lbl,5,0)
         self.grid_layout.addWidget(self.Data_LE,5,1)
+        self.grid_layout.addWidget(self.calander_btn,5,1)
 
         self.Bug_Details_lbl = QLabel("Details of Bug:\n \nPlease say where\nit happened,on which\ninterface and what you\nintended to do before it\nhappened.") 
         self.Bug_Details_LE = QTextEdit()
@@ -77,6 +87,12 @@ class ReportBug(QDialog):
         self.setStyleSheet("QLabel{font-size: 12px} QPushButton{font-size: 12px;")
 
         self.submit_btn.clicked.connect(self.SendMail)
+        
+    def OpenCalander(self):
+        CalenderWidget = Calendar()
+        CalenderWidget.exec_()
+        self.Data_LE.setText(CalenderWidget.date)
+        self.Data_LE.setAlignment(Qt.AlignCenter)
 
     def SendMail(self):
         self.mail = smtplib.SMTP("smtp.live.com",25)
@@ -92,6 +108,7 @@ class ReportBug(QDialog):
         Surname_LE = str(self.Surname_LE.displayText())
         JobTitle_LE = str(self.JobTitle_LE.displayText())
         Data_LE = str(self.Data_LE.displayText())
+        print(Data_LE)
 
         try:
             self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')

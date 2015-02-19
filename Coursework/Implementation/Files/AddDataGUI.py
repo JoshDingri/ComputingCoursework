@@ -299,7 +299,7 @@ class AddDataWindow(QDialog):
 
                     if PhoneNumberValidation == True:
                         if name == '':   ##This replaces all the spaces with line edits
-                            PhoneNumberRegExp = QRegExp("^[0-9]{10,12}$")
+                            PhoneNumberRegExp = QRegExp("/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/")
                             self.PhoneNumberLineEdit = count-1
                             self.linelist[count-1].setText('-')
                             self.linelist[count-1].setEnabled(False)

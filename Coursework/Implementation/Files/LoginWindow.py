@@ -5,6 +5,7 @@ import sqlite3
 from MainProgram import *
 from ManagerMainProgram import *
 from StaffProgram import *
+from ForgottenAccount import *
 import time
 
 
@@ -13,7 +14,7 @@ class LoginWindow(QDialog):
 
     def __init__(self,Logged_Out):
         super().__init__()
-        self.SplashScreen()
+        #self.SplashScreen()
         
         self.Logged_Out = Logged_Out
         self.setWindowTitle("Please Login")
@@ -22,7 +23,7 @@ class LoginWindow(QDialog):
         self.MainLayout()
 
     def SplashScreen(self):
-        pixmap = QPixmap("Splashscreen.jpg")
+        pixmap = QPixmap("splashscreen.jpg")
         Spashscreen = QSplashScreen(pixmap, Qt.WindowStaysOnTopHint)
         Spashscreen.setMask(pixmap.mask())
         Spashscreen.show()
@@ -34,11 +35,12 @@ class LoginWindow(QDialog):
         self.horizontal2 = QHBoxLayout()
         self.horizontal3 = QHBoxLayout()
         self.horizontal4 = QHBoxLayout()
+        self.horizontal5 = QHBoxLayout()
         self.horizontal_lbl = QHBoxLayout()
         self.verticle = QVBoxLayout()
 
         LoginLbl = QLabel("PLEASE LOG IN")
-        LoginLbl.setFont(QFont("Georgia",18))
+        LoginLbl.setFont(QFont("Calibri",18))
 
         self.usernameLE = QLineEdit()
         self.usernameLE.setPlaceholderText("Username")
@@ -50,6 +52,12 @@ class LoginWindow(QDialog):
         self.passwordLE.setEchoMode(QLineEdit.Password)
         self.passwordLE.setFixedWidth(250)
         self.passwordLE.setFixedHeight(30)
+
+        self.TextFormat = QFont("Calibri",11)
+        self.TextFormat.setUnderline(True)
+        self.ForgotAccount = QLabel("Forgot Username or Password?")
+        self.ForgotAccount.setFont(self.TextFormat)
+        self.ForgotAccount.mousePressEvent = self.ForgottenAccount
         
         LoginBtn = QPushButton("Log In")
         LoginBtn.setStyleSheet("""QPushButton{
@@ -86,10 +94,15 @@ class LoginWindow(QDialog):
         self.horizontal2.addStretch(1)
         self.horizontal2.addWidget(self.usernameLE)
         self.horizontal2.addStretch(1)
+
         
         self.horizontal3.addStretch(1)
         self.horizontal3.addWidget(self.passwordLE)
         self.horizontal3.addStretch(1)
+
+        self.horizontal5.addStretch(1)
+        self.horizontal5.addWidget(self.ForgotAccount)
+        self.horizontal5.addStretch(1)
         
         self.horizontal_lbl.addStretch(1)
         self.horizontal_lbl.addWidget(self.invalid_lbl)
@@ -106,6 +119,7 @@ class LoginWindow(QDialog):
         self.verticle.addStretch(1)
         self.verticle.addLayout(self.horizontal2)
         self.verticle.addLayout(self.horizontal3)
+        self.verticle.addLayout(self.horizontal5)
         self.verticle.addStretch(1)
         self.verticle.addLayout(self.horizontal_lbl)
         self.verticle.addLayout(self.horizontal4)
@@ -155,6 +169,10 @@ class LoginWindow(QDialog):
 ##        except TypeError:
 ##            self.invalid_lbl.setVisible(True)
 ##            self.passwordLE.setText('')
+
+    def ForgottenAccount(self,event):
+        Account_Recovery = ForgottenAccount()
+        Account_Recovery.exec_()
 
         
             

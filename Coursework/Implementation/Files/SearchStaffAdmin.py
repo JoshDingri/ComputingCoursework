@@ -262,9 +262,68 @@ class SearchStaff(QMainWindow):
         for self.row, form in enumerate(self.details_cursor): ##Inserts amount of rows needed, gets from databas
             self.staff_details_table.insertRow(self.row)
             for self.column, item in enumerate(form): ##Inserts amount of columns needed
+                CurrentHeader = (self.staff_details_table.horizontalHeaderItem(self.column).text())
+                if CurrentHeader == 'StaffID' and self.column != 0: 
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT FirstName,Surname from Staff WHERE StaffID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    db.commit()
+                                Foreign_Item = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
+                                
+                                b = "[]'',"
+                                for i in range(0,len(b)):
+                                    Foreign_Item = Foreign_Item.replace(b[i],"") 
+                                
+                                self.item = QTableWidgetItem(Foreign_Item)
+                                self.item.setTextAlignment(Qt.AlignCenter)
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.staff_details_table.setItem(self.row, self.column,self.item)
+                                self.staff_details_table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+                                continue
+                elif CurrentHeader == 'HardwareID' and self.column != 0:
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareModelID from Hardware WHERE HardwareID ='{}'".format(item)
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    ModelID = list(cursor.fetchone())
+                                    db.commit()
+                                    
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareMakeID from HardwareModel WHERE HardwareModelID ='{}'".format(ModelID[0])
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    MakeID = list(cursor.fetchone())
+                                    db.commit()
+
+                                with sqlite3.connect("Volac.db") as db:
+                                    cursor = db.cursor()
+                                    sql = "SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID ='{}' AND HardwareMake.HardwareMakeID = '{}'".format(ModelID[0],MakeID[0])
+                                    cursor.execute("PRAGMA foreign_keys = ON")
+                                    cursor.execute(sql)
+                                    db.commit()
+
+                                HardwareForeignKey = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
+
+                                
+                                b = "[]'',"
+                                for i in range(0,len(b)):
+                                    HardwareForeignKey = HardwareForeignKey.replace(b[i],"") 
+                                    
+                                self.item = QTableWidgetItem(HardwareForeignKey)
+                                self.item.setTextAlignment(Qt.AlignCenter)
+                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                self.staff_details_table.setItem(self.row, self.column,self.item)
+                                self.staff_details_table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+                                continue
                 self.item = QTableWidgetItem(str(item))
-                self.staff_details_table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
-                self.staff_details_table.horizontalHeader().setStretchLastSection(True)
+                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off)
+                self.item.setTextAlignment(Qt.AlignCenter)
+                self.staff_details_table.setItem(self.row, self.column,self.item)
+                self.staff_details_table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
 
         self.vertical.addWidget(self.staff_details_table)
         self.dialog.setLayout(self.vertical)

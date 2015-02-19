@@ -3,19 +3,22 @@ from PyQt4.QtGui import *
 import sys
 import smtplib
 
-class ReportError(QDialog):
-    """A Email GUI to send bug reports"""
-
+class ForgottenAccount(QDialog):
+    """A Email GUI to recover account information"""
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Report Incorrect Information")
-        self.grid_layout = QGridLayout()
+        self.resize(500,250)
+        self.setWindowTitle("Account Recovery")
+        self.WindowLayout()
 
-        self.Email_lbl = QLabel("Email Address:")
+    def WindowLayout(self):
+        self.grid_layout = QGridLayout()
+        
+        self.Email_lbl = QLabel("Email:")
         self.Email_LE = QLineEdit()
         EmailRegExp = QRegExp("[^@]+@[^@]+\.[^@]+")
         self.Email_LE.setValidator(QRegExpValidator(EmailRegExp))
-        
+
         self.grid_layout.addWidget(self.Email_lbl,0,0)
         self.grid_layout.addWidget(self.Email_LE,0,1)
 
@@ -30,13 +33,6 @@ class ReportError(QDialog):
 
         self.grid_layout.addWidget(self.Surname_lbl,2,0)
         self.grid_layout.addWidget(self.Surname_LE,2,1)
-
-        self.Description = QLabel("Description of data error:") 
-        self.Description_LE = QTextEdit()
-        self.Description_LE.setFixedHeight(150)
-
-        self.grid_layout.addWidget(self.Description,3,0)
-        self.grid_layout.addWidget(self.Description_LE,3,1)
 
         self.cancel_btn = QPushButton("Cancel")
         self.submit_btn = QPushButton("Submit")
@@ -53,46 +49,44 @@ class ReportError(QDialog):
 
         self.setLayout(self.vertical_overall_layout)
 
-        self.setStyleSheet("QLabel{font-size: 12px} QPushButton{font-size: 12px;")
-
         self.submit_btn.clicked.connect(self.SendMail)
 
     def SendMail(self):
-        self.mail = smtplib.SMTP("smtp.live.com",25)                                                                                                                                                                                                                                                                                            
-        
+        self.mail = smtplib.SMTP("smtp.live.com",25)
         self.mail.ehlo()
         self.mail.starttls()
 
         IT_Staff_Email = ('josh-dingri@hotmail.co.uk')
-        Description = str(self.Description_LE.toPlainText())
         Email = ('donotreply_volac@hotmail.co.uk')
 
-        
         Forename = str(self.Forename_LE.displayText())
         Surname_LE = str(self.Surname_LE.displayText())
-        User_Email = str(self.Email_LE.displayText())
+        Email_LE = str(self.Email_LE.displayText())
 
         try:
             self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
         except smtplib.SMTPServerDisconnected:
             print("not valid")
 
-        Content = ("Email: {0} \nForename: {1}\nSurname: {2}\nDescription: {3}".format(User_Email,Forename,Surname_LE,Description))
-        Subject = ("Incorrect Information Report")
+        Content = ("\nForename: {0}\nSurname: {1}\nEmail: {2}".format(Forename,Surname_LE,Email_LE))
+        Subject = ("Account Recovery Request")
 
         Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
         print(Body)
 
-        
-                            
-
-    
         self.mail.sendmail(Email,IT_Staff_Email,Body)
         self.mail.quit()
 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    launcher = ReportError()
+    launcher = ForgottenAccount()
     launcher.show()
     launcher.raise_()
     app.exec_()
+
+
+
+
+
+        
