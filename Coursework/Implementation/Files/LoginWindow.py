@@ -139,29 +139,31 @@ class LoginWindow(QDialog):
             self.account = cursor.fetchone()
 
     #The try and except statement will catch any invalid usernames entered
-    
-        if self.account[0] == self.username and self.account[1] == self.password:
-            if self.account[2] == 'Admin':
-                account_details = self.account
-                self.OpenSystem = CurrentLayoutAdmin(account_details)
-                self.OpenSystem.show()
-                self.hide()
-            elif self.account[2] == 'Manager':
-                self.departmentsave = self.account[3]
-                account_details = self.account
-                self.OpenManagerSystem = CurrentLayoutManager(self.departmentsave,account_details)
-                self.OpenManagerSystem.show()
-                self.hide()
-            elif self.account[2] == 'Staff':
-                account_details = self.account
-                self.StaffProgram_Window = StaffDatabase(account_details)
-                self.StaffProgram_Window.show()
-                self.hide()
-        else:
+        try:
+            if self.account[0] == self.username and self.account[1] == self.password:
+                if self.account[2] == 'Admin':
+                    account_details = self.account
+                    self.OpenSystem = CurrentLayoutAdmin(account_details)
+                    self.OpenSystem.show()
+                    self.hide()
+                elif self.account[2] == 'Manager':
+                    self.departmentsave = self.account[3]
+                    account_details = self.account
+                    self.OpenManagerSystem = CurrentLayoutManager(self.departmentsave,account_details)
+                    self.OpenManagerSystem.show()
+                    self.hide()
+                elif self.account[2] == 'Staff':
+                    account_details = self.account
+                    self.StaffProgram_Window = StaffDatabase(account_details)
+                    self.StaffProgram_Window.show()
+                    self.hide()
+            else:
+                self.invalid_lbl.setVisible(True)
+                self.passwordLE.setText('')
+
+        except:
             self.invalid_lbl.setVisible(True)
             self.passwordLE.setText('')
-
-
 
     def ForgottenAccount(self,event):
         Account_Recovery = ForgottenAccount()

@@ -29,7 +29,7 @@ class ForgottenAccount(QDialog):
         self.grid_layout.addWidget(self.Forename_lbl,1,0)
         self.grid_layout.addWidget(self.Forename_LE,1,1)
 
-        self.Surname_lbl = QLabel("Surame:")
+        self.Surname_lbl = QLabel("Surname:")
         self.Surname_LE = QLineEdit()
 
         self.grid_layout.addWidget(self.Surname_lbl,2,0)

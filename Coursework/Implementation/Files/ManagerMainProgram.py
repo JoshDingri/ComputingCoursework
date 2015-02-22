@@ -55,13 +55,13 @@ class CurrentLayoutManager(QMainWindow):
 
 
     def mainmenu(self):
-        self.resize(800,400)
+        self.setMaximumSize(750,400)
+        self.setMinimumSize(750,400)
         self.InstantiateMainMenu = Manager_Main_Menu()
         self.stacked_layout.addWidget(self.InstantiateMainMenu)
         
 
     def DepartmentInformationWindow(self):
-        self.resize(800,400)
         self.InstantiateDatabaseWindow = DepartmentInformation(self.department)
         self.stacked_layout.addWidget(self.InstantiateDatabaseWindow)        
 
@@ -70,12 +70,18 @@ class CurrentLayoutManager(QMainWindow):
         self.stacked_layout.addWidget(self.InstantiateMy_Info)
 
     def SwitchToDepartmentInformationWindow(self):
+        self.setMaximumSize(1000,500)
+        self.setMinimumSize(750,400)
         self.stacked_layout.setCurrentIndex(2)
 
     def SwitchToMyInformation(self):
+        self.setMaximumSize(1000,500)
+        self.setMinimumSize(750,400)
         self.stacked_layout.setCurrentIndex(1)
 
     def BackToMenu(self):
+        self.setMaximumSize(750,400)
+        self.setMinimumSize(750,400)
         self.stacked_layout.setCurrentIndex(0)
 
 

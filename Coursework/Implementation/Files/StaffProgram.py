@@ -12,7 +12,8 @@ class StaffDatabase(QMainWindow):
 
     def __init__(self,account_details):
         super().__init__()
-        self.resize(800,400)
+        self.setMaximumSize(1000,500)
+        self.setMinimumSize(750,400)
         
         self.setWindowTitle("Staff Database")
         self.horizontal_layout = QHBoxLayout()
@@ -28,12 +29,23 @@ class StaffDatabase(QMainWindow):
         
         self.iconbutton = QLabel(self)
 
+        with sqlite3.connect("Accounts.db") as db:
+            cursor = db.cursor()
+            cursor.execute("SELECT FirstName,LastName FROM Accounts WHERE Username =?",(self.account_details[0],))
+            self.values = list(cursor.fetchone())
+            db.commit()
+
+        name_lbl = QLabel("        Welcome {0}! These Are Your Current Hardware Devices".format(self.values[0]))
+        name_lbl.setFont(QFont("Arial",14))
+        self.horizontal_layout.addWidget(name_lbl)
+        self.horizontal_layout.addStretch(1)
+
+
 
         pixmap = QPixmap('search.png')
         pixmap = pixmap.scaled(QSize(25,25),Qt.KeepAspectRatio)
         self.iconbutton.setPixmap(pixmap)
 
-        self.horizontal_layout.addStretch(1)
 
         self.horizontal_layout.addWidget(self.iconbutton)
         self.horizontal_layout.addWidget(self.Search_LE)
@@ -69,17 +81,12 @@ class StaffDatabase(QMainWindow):
         
         
     def CreateTable(self):
-        with sqlite3.connect("Accounts.db") as db:
-            cursor = db.cursor()
-            cursor.execute("SELECT FirstName,LastName FROM Accounts WHERE Username =?",(self.account_details[0],))
-            values = list(cursor.fetchone())
-            db.commit()
 
 
 
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT StaffID FROM Staff WHERE FirstName =? AND Surname =?",(values[0],values[1],))
+            cursor.execute("SELECT StaffID FROM Staff WHERE FirstName =? AND Surname =?",(self.values[0],self.values[1],))
             staffids = list(cursor.fetchone())
             db.commit()
 

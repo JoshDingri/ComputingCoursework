@@ -126,8 +126,6 @@ class OpenDatabase(QWidget):
             self.Verical_Layout.removeWidget(self.table)
         try:
             self.table.deleteLater()
-
-
             with sqlite3.connect("Volac.db") as db:
                     self.cursor = db.cursor()
                     self.cursor.execute("SELECT * FROM {}".format(self.CurrentTable))
@@ -323,8 +321,9 @@ class OpenDatabase(QWidget):
             
             self.exists = True          ##This is important so table views do not keep being added, they get replaced
             
-        except sqlite3.OperationalError:
-            print('Table Could Not Be Made')
+        except:
+            BlankFieldsWarning = Presence_Dialog("{0:^50}".format("Tables could not be made."))
+            BlankFieldsWarning.exec_()
         self.currentcbvalue = self.CurrentTable
         self.table.cellChanged.connect(self.cellchanged)
         self.table.cellClicked.connect(self.cellclicked)

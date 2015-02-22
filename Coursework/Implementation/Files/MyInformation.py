@@ -38,6 +38,11 @@ class MyInformation(QWidget):
             self.cursor = db.cursor()
             self.cursor.execute("SELECT * FROM StaffHardware WHERE StaffID =?",(staffids[0],))
             db.commit()
+
+        name_lbl = QLabel("Welcome {0}! These Are Your Current Hardware Devices".format(values[0]))
+        name_lbl.setFont(QFont("Arial",14))
+        self.horizontal.addWidget(name_lbl)
+        self.horizontal.addStretch(1)
         
 
         col = [tuple[0] for tuple in self.cursor.description] #Gets column headers and stores into tuple

@@ -148,21 +148,27 @@ class CurrentLayoutAdmin(QMainWindow):
         
         
     def MainMenu(self):
-        self.resize(780,380)
         self.MainMenuWindow = AdminMainMenu()
-        
         self.stacked_layout.addWidget(self.MainMenuWindow)
+        self.setMaximumSize(750,400)
+        self.setMinimumSize(750,400)
  
         
 
     def SwitchToOpenDatabase(self):
         self.stacked_layout.setCurrentIndex(1)
+        self.setMaximumSize(1500,500)
+        self.setMinimumSize(800,500)
 
     def SwitchToSearch(self):
         self.stacked_layout.setCurrentIndex(2)
+        self.setMaximumSize(900,700)
+        self.setMinimumSize(750,500)
 
     def BackToMenu(self):
         self.stacked_layout.setCurrentIndex(0)
+        self.setMaximumSize(750,400)
+        self.setMinimumSize(750,400)
         
 
     def OpenDatabaseWidget_Method(self):
@@ -170,7 +176,6 @@ class CurrentLayoutAdmin(QMainWindow):
         
         self.stacked_layout.addWidget(self.OpenDatabaseWindow)
         
-        self.resize(738,500)
             
 
 
@@ -187,6 +192,10 @@ class CurrentLayoutAdmin(QMainWindow):
         try:
             filename = QFileDialog.getOpenFileName(self,'Open File')
             f = open(filename,'r')
+            if "Volac" not in filename:
+                BlankFieldsWarning = Presence_Dialog("{0:^50}".format("Incorrect File Opened. Please Try Again."))
+                BlankFieldsWarning.exec_()
+                return
             with sqlite3.connect(filename) as db:
                 cursor = db.cursor()
                 cursor.execute("SELECT name FROM sqlite_master WHERE type = 'table';")

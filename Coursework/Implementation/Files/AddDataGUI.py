@@ -54,6 +54,7 @@ class AddDataWindow(QDialog):
             SerialValidation = False
             IMEIValidation = False
             WarrantyDate = False
+            self.DateFieldExists = False
 
             self.MainGridLayout.setHorizontalSpacing(20)
             self.MainGridLayout.setVerticalSpacing(10)
@@ -75,6 +76,7 @@ class AddDataWindow(QDialog):
                     self.LineEditList[0].setReadOnly(True)   ## Line edit is read only
                     
                     if PurchaseDateExist == True:
+                        self.DateFieldExists = True
                         if name == '':   ##This replaces all the spaces with line edits
                             if self.CurrentLineEditExists == False:
                                 self.CurrentLineEdit = count
@@ -86,6 +88,7 @@ class AddDataWindow(QDialog):
                             ButtonIcon = QIcon(pixmap)
                             self.calander_btn.setIcon(ButtonIcon)
                             self.calander_btn.setIconSize(QSize(13,13))
+                            self.LineEditList[count-1].setEnabled(False)
 
 
                             self.MainGridLayout.addWidget(self.LineEditList[count-1],*position)
@@ -94,6 +97,7 @@ class AddDataWindow(QDialog):
                             PurchaseDateExist = False
                             
                     if WarrantyDate == True:
+                        self.DateFieldExists = True
                         if name == '':   ##This replaces all the spaces with line edits
                             if self.CurrentLineEditExists == False:
                                 self.CurrentLineEdit = count
@@ -716,7 +720,10 @@ class AddDataWindow(QDialog):
         data = []
         values = []
         for count in range(len(self.LineEditList)):
-            if self.LineEditList[count].text() == '':
+            if self.DateFieldExists == True:
+                if self.LineEditList[self.CurrentLineEdit-1].text() == '':
+                    self.LineEditList[self.CurrentLineEdit-1].setPlaceholderText('                  Fill Out Date')
+            elif self.LineEditList[count].text() == '':
                 self.LineEditList[count].setPlaceholderText('Field Cannot Be Blank')
                 Invalid = True
 
@@ -738,12 +745,15 @@ class AddDataWindow(QDialog):
 
                 
         if self.CostExists == True:
-            if (int(self.LineEditList[self.Cost_Validation].text())) > 2000:
-                    self.LineEditList[self.Cost_Validation].clear()
-                    self.LineEditList[self.Cost_Validation].setPlaceholderText('Price Invalid')
-                    Invalid = True
-            else:
-                pass
+            try:
+                if (int(self.LineEditList[self.Cost_Validation].text())) > 2000:
+                        self.LineEditList[self.Cost_Validation].clear()
+                        self.LineEditList[self.Cost_Validation].setPlaceholderText('Price Invalid')
+                        Invalid = True
+                else:
+                    pass
+            except ValueError:
+                return
 
 
 

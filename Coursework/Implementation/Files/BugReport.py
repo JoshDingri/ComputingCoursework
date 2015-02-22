@@ -52,6 +52,7 @@ class ReportBug(QDialog):
 
         self.Date_lbl = QLabel("Date:")
         self.Data_LE = QLineEdit()
+        self.Data_LE.setEnabled(False)
 
         self.grid_layout.addWidget(self.Date_lbl,5,0)
         self.grid_layout.addWidget(self.Data_LE,5,1)

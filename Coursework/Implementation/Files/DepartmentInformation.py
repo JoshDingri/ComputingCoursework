@@ -32,6 +32,12 @@ class DepartmentInformation(QWidget):
         self.horizontal.addWidget(self.Back_btn)
         self.horizontal.addStretch(1)
 
+
+        name_lbl = QLabel("Welcome, This Table Displays Your Department's Information")
+        name_lbl.setFont(QFont("Arial",14))
+        self.horizontal.addWidget(name_lbl)
+        self.horizontal.addStretch(1)
+
         self.horizontal2.addStretch(1)
         
         self.horizontal2.addWidget(self.Search_LE)
