@@ -1,6 +1,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from Calender import *
+from PresenceCheckDialogue import *
 import sys
 import smtplib
 
@@ -15,19 +16,13 @@ class ReportBug(QDialog):
     def WindowLayout(self):
         self.grid_layout = QGridLayout()
 
-##        self.Email_lbl = QLabel("Email Address:")
-##        self.Email_LE = QLineEdit()
-##
-##        self.Password_lbl = QLabel("Email Password:")
-##        self.Password_LE = QLineEdit()
-##        self.Password_LE.setEchoMode(QLineEdit.Password)
-##        
-##        self.grid_layout.addWidget(self.Email_lbl,0,0)
-##        self.grid_layout.addWidget(self.Email_LE,0,1)
-##
-##        self.grid_layout.addWidget(self.Password_lbl,1,0)
-##        self.grid_layout.addWidget(self.Password_LE,1,1)
+        self.Email_lbl = QLabel("Email Address:")
+        self.Email_LE = QLineEdit()
+        EmailRegExp = QRegExp("[^@]+@[^@]+\.[^@]+")
+        self.Email_LE.setValidator(QRegExpValidator(EmailRegExp))
         
+        self.grid_layout.addWidget(self.Email_lbl,1,0)
+        self.grid_layout.addWidget(self.Email_LE,1,1)
 
         self.Forename_lbl = QLabel("Forename:")
         self.Forename_LE = QLineEdit()
@@ -35,7 +30,7 @@ class ReportBug(QDialog):
         self.grid_layout.addWidget(self.Forename_lbl,2,0)
         self.grid_layout.addWidget(self.Forename_LE,2,1)
 
-        self.Surname_lbl = QLabel("Surame:")
+        self.Surname_lbl = QLabel("Surname:")
         self.Surname_LE = QLineEdit()
 
         self.grid_layout.addWidget(self.Surname_lbl,3,0)
@@ -87,6 +82,10 @@ class ReportBug(QDialog):
         self.setStyleSheet("QLabel{font-size: 12px} QPushButton{font-size: 12px;")
 
         self.submit_btn.clicked.connect(self.SendMail)
+        self.cancel_btn.clicked.connect(self.CloseWindow)
+
+    def CloseWindow(self):
+        self.reject()
         
     def OpenCalander(self):
         CalenderWidget = Calendar()
@@ -95,38 +94,37 @@ class ReportBug(QDialog):
         self.Data_LE.setAlignment(Qt.AlignCenter)
 
     def SendMail(self):
+        BlankFieldsWarning = Presence_Dialog()        
         self.mail = smtplib.SMTP("smtp.live.com",25)
         self.mail.ehlo()
         self.mail.starttls()
 
-        IT_Staff_Email = ('josh-dingri@hotmail.co.uk')
+        IT_Staff_Email = ('josh-dingri@hotmail.co.uk') #Will be IT Staff email address(es)
         Bug_Details_LE = str(self.Bug_Details_LE.toPlainText())
-        Email = ('donotreply_volac@hotmail.co.uk')
+        Email = ('donotreply_volac@hotmail.co.uk') #The outgoing email address
 
-        
+        Email_UserLE = str(self.Email_LE.displayText())
         Forename = str(self.Forename_LE.displayText())
         Surname_LE = str(self.Surname_LE.displayText())
         JobTitle_LE = str(self.JobTitle_LE.displayText())
         Data_LE = str(self.Data_LE.displayText())
-        print(Data_LE)
 
-        try:
-            self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
-        except smtplib.SMTPServerDisconnected:
-            print("not valid")
+        if Email_UserLE == '' or Forename == '' or Surname_LE == '' or JobTitle_LE == '' or Data_LE == '' :
+            BlankFieldsWarning.exec_()
+        else:
+            try:
+                self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
+            except smtplib.SMTPServerDisconnected:
+                print("not valid") #prints validity to aid bug fixing
 
-        Content = ("\nForename: {0}\nSurname: {1}\nJobTitle: {2}\nDate: {3}\nBug Details: {4}".format(Forename,Surname_LE,JobTitle_LE,Data_LE,Bug_Details_LE))
-        Subject = ("Bug Report")
+            Content = ("Email: {0}\nForename: {1}\nSurname: {2}\nJobTitle: {3}\nDate: {4}\nBug Details: {5}".format(Email_UserLE,Forename,Surname_LE,JobTitle_LE,Data_LE,Bug_Details_LE))
+            Subject = ("Bug Report")
 
-        Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
-        print(Body)
+            Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
 
-        
-                            
 
-    
-        self.mail.sendmail(Email,IT_Staff_Email,Body)
-        self.mail.quit()
+            self.mail.sendmail(Email,IT_Staff_Email,Body)
+            self.mail.quit()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

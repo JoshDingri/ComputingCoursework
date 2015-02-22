@@ -24,7 +24,7 @@ class Graph():
                 
             with sqlite3.connect("Volac.db") as db:
                 cursor = db.cursor()
-                cursor.execute("SELECT DepartmentID FROM Staff WHERE StaffID = '{}'".format(NumberOfHardware[count]))
+                cursor.execute("SELECT DepartmentID FROM Staff WHERE StaffID =?",(NumberOfHardware[count],))
                 db.commit()
             DepartmentIDs = [item[0] for item in cursor.fetchall()]
             DepartmentIDs = str(DepartmentIDs).replace("[","")
@@ -40,13 +40,13 @@ class Graph():
 
             with sqlite3.connect("Volac.db") as db:
                 cursor = db.cursor()
-                cursor.execute("SELECT DepartmentName FROM Department WHERE DepartmentID ='{}'".format(departmentids[count]))
+                cursor.execute("SELECT DepartmentName FROM Department WHERE DepartmentID =?",(departmentids[count],))
                 db.commit()
             departments = [item[0] for item in cursor.fetchall()]
             departments = str(departments).replace("[","")
             departments = departments.replace("]","")
             departments = departments.replace("'","")
-            departmentnames.append(departments)  #### WHICH DEPARTMENTS HAVE HARDWARE AND HOW MANY
+            departmentnames.append(departments)  #### which departments own hardware and how many they own
 
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
@@ -57,7 +57,7 @@ class Graph():
 
         counter = Counter(departmentnames)
 
-        d = {}
+        d = {} #creates dictionary
 
         for count in range(len(Departments)):
             d["{0}".format(Departments[count])]=counter[Departments[count]]

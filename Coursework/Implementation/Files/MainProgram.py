@@ -22,26 +22,41 @@ class CurrentLayoutAdmin(QMainWindow):
         OpenDatabase.Items = [] ##For later use, holds dropdown box values
         self.SearchFirst = False ##Temporary method for choosing which qstackindex comes first
         self.OpenFirst = False
-        self.account_details = account_details
+        
+        self.stacked_layout = QStackedWidget() #Holds widgets on a stack
+        self.setCentralWidget(self.stacked_layout)
+
+        
+        self.account_details = account_details 
         self.MainMenu()
+        self.OpenDatabaseWidget_Method()
+        self.SearchStaff()
+        
         self.ToolBar()
         self.CheckExpirationDates()
-        self.MenuBar() ## Calls menubar definition
-##        self.stacked_layout = QStackedLayout()
-##        self.stacked_layout.addWidget(self.MainMenuWidget)
-##        self.central_widget = QWidget()
-##        self.central_widget.setLayout(self.stacked_layout)
-##        self.setCentralWidget(self.central_widget)
+        self.MenuBar() 
+        self.ButtonTriggers()
 
+
+        
+    def ButtonTriggers(self):
+        self.OpenGraphBtn.clicked.connect(Graph)
+        self.CreateAccounts.clicked.connect(self.Create_Account)
+        self.menubar.Logout.triggered.connect(self.Log_Out)
+        self.menubar.ChangePassword.triggered.connect(self.Change_Password)
+        self.MainMenuWindow.OpenDatabaseBtn.clicked.connect(self.SwitchToOpenDatabase)
+        self.MainMenuWindow.SearchStaffBtn.clicked.connect(self.SwitchToSearch)
+        self.OpenDatabaseWindow.Back_btn.clicked.connect(self.BackToMenu)
+        self.OpenDatabaseWindow.AddDatabase.clicked.connect(self.BrowseDatabase)
+        self.OpenDatabaseWindow.Add_btn.clicked.connect(self.AddDataGUI)
+        self.SearchStaffWindow.Back_btn.clicked.connect(self.BackToMenu)
 
     def ToolBar(self):
-        OpenGraphBtn = QPushButton("Generate Hardware Graph")
-        OpenGraphBtn.clicked.connect(Graph)
-        CreateAccounts = QPushButton("Create User Accounts")
-        CreateAccounts.clicked.connect(self.Create_Account)        
+        self.OpenGraphBtn = QPushButton("Generate Hardware Graph")
+        self.CreateAccounts = QPushButton("Create User Accounts")
         self.toolbar = self.addToolBar("Open")
-        self.toolbar.addWidget(OpenGraphBtn)
-        self.toolbar.addWidget(CreateAccounts)
+        self.toolbar.addWidget(self.OpenGraphBtn)
+        self.toolbar.addWidget(self.CreateAccounts)
         
     def Create_Account(self):
         CreateAccount = AddUserAccounts()
@@ -50,6 +65,7 @@ class CurrentLayoutAdmin(QMainWindow):
     
 
     def CheckExpirationDates(self):
+        """Function that will check if a device has 90 days before warranty expires"""
         self.currentdate = time.strftime("%d-%m-%y")
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
@@ -70,37 +86,32 @@ class CurrentLayoutAdmin(QMainWindow):
 
             
             daysleft = self.purchasedate - currentdate
-            if daysleft.days == 6:
+            if daysleft.days == 8:
                 self.SendExpirationEmail()
 
 
     def SendExpirationEmail(self):
+        """Sends hardware expiring email"""
         self.purchasedate = self.purchasedate.strftime("%d-%m-%y")
-        self.purchasedate =  ("    " + self.purchasedate)
+        self.purchasedate =  (self.purchasedate)
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            sql = ("SELECT HardwareID FROM StaffHardware WHERE PurchaseDate='{}'".format(self.purchasedate))
-            cursor.execute(sql)
+            cursor.execute("SELECT HardwareID FROM StaffHardware WHERE PurchaseDate=?",(self.purchasedate,))
             HardwareIDs = list(cursor.fetchone())
             db.commit()
 
-        print(HardwareIDs[0])
-
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            sql = ("SELECT HardwareModelID FROM Hardware WHERE HardwareID='{}'".format(HardwareIDs[0]))
-            cursor.execute(sql)
+            cursor.execute("SELECT HardwareModelID FROM Hardware WHERE HardwareID=?",(HardwareIDs[0],))
             ModelID = list(cursor.fetchone())
             db.commit()
 
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            sql = ("SELECT HardwareModelName FROM HardwareModel WHERE HardwareModelID='{}'".format(ModelID[0]))
-            cursor.execute(sql)
+            cursor.execute("SELECT HardwareModelName FROM HardwareModel WHERE HardwareModelID=?",(ModelID[0],))
             HardwareModel = list(cursor.fetchone())
             db.commit()
 
-        print(HardwareModel[0])
         
         self.mail = smtplib.SMTP("smtp.live.com",25)
         self.mail.ehlo()
@@ -117,13 +128,14 @@ class CurrentLayoutAdmin(QMainWindow):
         Subject = ("Warranty Expiration Warning")
 
         Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
-        print(Body)
 
         self.mail.sendmail(Email,IT_Staff_Email,Body)
         self.mail.quit()
 
-    def MenuBar(self):       
-        MenuBarAdmin.MenuBar(self) ##Calls menubar from another python file
+    def MenuBar(self):
+        self.menubar = AdminMenuBar()
+        self.setMenuBar(self.menubar) ##Calls menubar from another python file
+        
 
     def Log_Out(self):
         self.close()
@@ -135,24 +147,29 @@ class CurrentLayoutAdmin(QMainWindow):
         
     def MainMenu(self):
         self.resize(780,380)
-        MainMenuWindow = AdminMainMenu()
-        self.setCentralWidget(MainMenuWindow)
+        self.MainMenuWindow = AdminMainMenu()
+        
+        self.stacked_layout.addWidget(self.MainMenuWindow)
+ 
+        
 
-            
-        MainMenuWindow.OpenDatabaseBtn.clicked.connect(self.OpenDatabaseWidget_Method)
-        MainMenuWindow.SearchStaffBtn.clicked.connect(self.SearchStaff)
+    def SwitchToOpenDatabase(self):
+        self.stacked_layout.setCurrentIndex(1)
+
+    def SwitchToSearch(self):
+        self.stacked_layout.setCurrentIndex(2)
+
+    def BackToMenu(self):
+        self.stacked_layout.setCurrentIndex(0)
         
 
     def OpenDatabaseWidget_Method(self):
         self.OpenDatabaseWindow = OpenDatabase()
-        self.setCentralWidget(self.OpenDatabaseWindow)
+        
+        self.stacked_layout.addWidget(self.OpenDatabaseWindow)
+        
         self.resize(738,500)
             
-        
-        self.OpenDatabaseWindow.Back_btn.clicked.connect(self.MainMenu)
-        self.OpenDatabaseWindow.AddDatabase.clicked.connect(self.BrowseDatabase)
-        self.OpenDatabaseWindow.Add_btn.clicked.connect(self.AddDataGUI)
- #       self.OpenDatabaseWindow.Remove_btn.clicked.connect(self.RemoveData_btnClick)
 
 
     def RemoveData_btnClick(self):
@@ -163,7 +180,8 @@ class CurrentLayoutAdmin(QMainWindow):
 
             
 
-    def BrowseDatabase(self): ###### This opens the file finder to choose the database
+    def BrowseDatabase(self): 
+        """This opens the file finder to choose the database"""
         try:
             filename = QFileDialog.getOpenFileName(self,'Open File')
             f = open(filename,'r')
@@ -184,11 +202,9 @@ class CurrentLayoutAdmin(QMainWindow):
 
     def SearchStaff(self):
         self.resize(700,500)
-        SearchStaffWindow = SearchStaff()
-        self.setCentralWidget(SearchStaffWindow)
-
+        self.SearchStaffWindow = SearchStaff()
+        self.stacked_layout.addWidget(self.SearchStaffWindow)
         
-        SearchStaffWindow.Back_btn.clicked.connect(self.MainMenu)
         
     def AddDataGUI(self):
         CurrentCBValue = self.OpenDatabaseWindow.Database_CB.currentText()

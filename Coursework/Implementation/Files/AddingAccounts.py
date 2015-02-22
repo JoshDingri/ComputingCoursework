@@ -6,29 +6,29 @@ import random
 import string
 
 class AddUserAccounts(QDialog):
-    """Program will allow IT Staff to add user accounts"""
+    """This class will allow IT Staff to add user accounts"""
 
     def __init__(self):
         super().__init__()
         self.ProgramLayout()
 
     def ProgramLayout(self):
-        self.grid = QGridLayout()
+        self.UserInput_GridLayout = QGridLayout()
         self.horizontal = QHBoxLayout()
         self.horizontal2 = QHBoxLayout()
         self.horizontal3 = QHBoxLayout()
         self.horizontal4 = QHBoxLayout()
-        self.vertical = QVBoxLayout()
+        self.Overall_Layout_Vertical = QVBoxLayout()
 
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
             sql = "SELECT FirstName FROM Staff"
             cursor.execute(sql)
             db.commit()
-        FirstnameList = [item[0] for item in cursor.fetchall()]
+        FirstnameList = [item[0] for item in cursor.fetchall()] #List will fetch all items from database
 
         self.FName_Lbl = QLabel("First Name")
-        self.FName_CB = QComboBox()
+        self.FName_CB = QComboBox()         
         self.FName_CB.addItems(FirstnameList)
         
         with sqlite3.connect("Volac.db") as db:
@@ -58,18 +58,20 @@ class AddUserAccounts(QDialog):
         self.Department_lbl = QLabel("Department")
         self.Department_CB = QComboBox()
         self.Department_CB.addItems(DepartmentList)
+        
 
-        self.grid.addWidget(self.FName_Lbl,0,0)
-        self.grid.addWidget(self.FName_CB,0,1)
+        self.UserInput_GridLayout.addWidget(self.FName_Lbl,0,0)
+        self.UserInput_GridLayout.addWidget(self.FName_CB,0,1)
 
-        self.grid.addWidget(self.LName_Lbl,1,0)
-        self.grid.addWidget(self.LName_CB,1,1)
+        self.UserInput_GridLayout.addWidget(self.LName_Lbl,1,0)
+        self.UserInput_GridLayout.addWidget(self.LName_CB,1,1)
 
-        self.grid.addWidget(self.AccessLevel_Lbl,2,0)
-        self.grid.addWidget(self.AccessLevel_CB,2,1)
+        self.UserInput_GridLayout.addWidget(self.AccessLevel_Lbl,2,0)
+        self.UserInput_GridLayout.addWidget(self.AccessLevel_CB,2,1)
 
-        self.grid.addWidget(self.Department_lbl,3,0)
-        self.grid.addWidget(self.Department_CB,3,1)
+        self.UserInput_GridLayout.addWidget(self.Department_lbl,3,0)
+        self.UserInput_GridLayout.addWidget(self.Department_CB,3,1)
+
 
         self.UsernameResult  = QLineEdit()
         self.RandomPassword = QLineEdit()
@@ -104,16 +106,15 @@ class AddUserAccounts(QDialog):
 
         self.horizontal3.addWidget(self.AddAccount)
 
-        self.vertical.addLayout(self.grid)
-        self.vertical.addLayout(self.horizontal)
-        self.vertical.addStretch(1)
-        self.vertical.addLayout(self.horizontal4)
-        self.vertical.addLayout(self.horizontal2)
-        self.vertical.addLayout(self.horizontal3)
+        self.Overall_Layout_Vertical.addLayout(self.UserInput_GridLayout)
+        self.Overall_Layout_Vertical.addLayout(self.horizontal)
+        self.Overall_Layout_Vertical.addStretch(1)
+        self.Overall_Layout_Vertical.addLayout(self.horizontal4)
+        self.Overall_Layout_Vertical.addLayout(self.horizontal2)
+        self.Overall_Layout_Vertical.addLayout(self.horizontal3)
 
-        self.horizontal4.setSpacing(0)
 
-        self.setLayout(self.vertical)
+        self.setLayout(self.Overall_Layout_Vertical)
 
 
 
@@ -126,13 +127,15 @@ class AddUserAccounts(QDialog):
         self.GetDepartment = self.Department_CB.currentText()
         self.GetAccessLevel = self.AccessLevel_CB.currentText()
 
-        username = (self.FirstName[0]+self.LastName+str(random.randint(1,10)))
+        username = (self.FirstName[0]+self.LastName+str(random.randint(1,100))) #Username will take the first letter of the firstname and the surname. Then add a random integer
 
 
         Password_chars = string.ascii_uppercase + string.digits + string.ascii_lowercase
         Password_size = 7
 
-        Password = ("".join((random.choice(Password_chars)) for count in range(Password_size)))
+        Password = ("".join((random.choice(Password_chars)) for count in range(Password_size))) #A random password will be generated with 7 characters using upper/lowercase and integers. 
+
+        ##The admin can change the username/password if they would like by editing the line edits. Or they can simply generate new ones.
 
         self.UsernameResult.setText(username)
         self.RandomPassword.setText(Password)

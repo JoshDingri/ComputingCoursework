@@ -6,13 +6,13 @@ from graph import *
 from AddingAccounts import *
 
 
-class AdminMainMenu(QMainWindow):
-    """The admin's main menu screen"""
+class AdminMainMenu(QWidget):
+    """The Admin's main menu screen"""
 
     def __init__(self):
         super().__init__()
 
-        self.horizontal_layout = QVBoxLayout()
+        self.Vertical_Layout = QVBoxLayout()
         
         self.ButtonStyleSheet =  ("""QPushButton{
                     color: #333;
@@ -47,15 +47,11 @@ class AdminMainMenu(QMainWindow):
         self.SearchStaffBtn.setStyleSheet(self.ButtonStyleSheet)
         self.OpenDatabaseBtn.setStyleSheet(self.ButtonStyleSheet)
 
-        self.horizontal_layout.addWidget(self.OpenDatabaseBtn)
-        self.horizontal_layout.addWidget(self.SearchStaffBtn)
+        self.Vertical_Layout.addWidget(self.OpenDatabaseBtn)
+        self.Vertical_Layout.addWidget(self.SearchStaffBtn)
 
-
-
+        self.setLayout(self.Vertical_Layout)
         
-        window_widget = QWidget()
-        window_widget.setLayout(self.horizontal_layout)
-        self.setCentralWidget(window_widget)
         
 
 if __name__ == "__main__":

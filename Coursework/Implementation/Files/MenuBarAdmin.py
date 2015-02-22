@@ -2,24 +2,20 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import sys
 
-class MenuBarAdmin(QMainWindow):
+class AdminMenuBar(QMenuBar):
     """Menu bar for every window"""
 
     def __init__(self):
         super().__init__()
-        self.MenuBar()
-
-    def MenuBar(self):
-        self.menu_bar = QMenuBar()
         
-        self.AccountMenu = self.menu_bar.addMenu("Account")
+        self.AccountMenu = self.addMenu("Account")
         
         self.Logout = QAction("Log Out",self)
         self.ChangePassword = QAction("Change Password",self)        
         self.AccountMenu.addAction(self.Logout)
         self.AccountMenu.addAction(self.ChangePassword)
      
-        self.DatabaseMenu = self.menu_bar.addMenu("Database")
+        self.DatabaseMenu = self.addMenu("Database")
 
         self.SelectDatabaseMenu = QMenu("Select Database",self)
         self.DatabaseMenu.addMenu(self.SelectDatabaseMenu)
@@ -61,10 +57,6 @@ class MenuBarAdmin(QMainWindow):
         self.locationmenu.addAction(self.RemoveData)
         self.departmentmenu.addAction(self.RemoveData)
 
-        self.setMenuBar(self.menu_bar)
-
-        self.Logout.triggered.connect(self.Log_Out)
-        self.ChangePassword.triggered.connect(self.Change_Password)
 
         
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import sqlite3
 import string
 
 
-class SearchStaff(QMainWindow):
+class SearchStaff(QWidget):
     """Admin search staff window"""
 
     def __init__(self):
@@ -13,7 +13,7 @@ class SearchStaff(QMainWindow):
         self.resize(700,500)
 
         self.grid = QGridLayout()
-        self.verticle = QVBoxLayout()
+        self.Vertical_Layout = QVBoxLayout()
                 
         DatabaseLbl = QLabel("Select Department:")
         DatabaseLbl.setFont(QFont("Calibri",19))
@@ -31,7 +31,7 @@ class SearchStaff(QMainWindow):
         
         for self.row, form in enumerate(self.cursor): 
                 for self.column, item in enumerate(form): 
-                    field_names.append(item)
+                    field_names.append(item) #adds items from database into a list
 
         self.Database_CB.addItems(field_names)
         self.Database_CB.setCurrentIndex(0)
@@ -64,12 +64,10 @@ class SearchStaff(QMainWindow):
 
         self.grid.setVerticalSpacing(20)
 
-        self.verticle.addLayout(self.grid)
-        self.verticle.addWidget(self.search_results_table)
+        self.Vertical_Layout.addLayout(self.grid)
+        self.Vertical_Layout.addWidget(self.search_results_table)
 
-        window_widget = QWidget()
-        window_widget.setLayout(self.verticle)
-        self.setCentralWidget(window_widget)
+        self.setLayout(self.Vertical_Layout)
         self.default_table()
         self.Database_CB.activated.connect(self.ChosenDepartment)
 
@@ -79,14 +77,12 @@ class SearchStaff(QMainWindow):
 
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
-            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{0}'".format(self.department)
-            self.cursor.execute(sql)
+            self.cursor.execute("SELECT DepartmentID FROM Department WHERE DepartmentName=?",(self.department,))
             db.commit()
             
         for self.row, form in enumerate(self.cursor): 
                 for self.column, item in enumerate(form): 
                     self.DepartmentID = item
-        print(self.DepartmentID)
         self.default_table()
         
         self.search_button.clicked.connect(self.ShowResults)
@@ -96,8 +92,7 @@ class SearchStaff(QMainWindow):
 
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
-            sql = "SELECT DepartmentID FROM Department WHERE DepartmentName='{0}'".format(self.department)
-            self.cursor.execute(sql)
+            self.cursor.execute("SELECT DepartmentID FROM Department WHERE DepartmentName=?",(self.department,))
             db.commit()
             
         for self.row, form in enumerate(self.cursor): 
@@ -106,8 +101,7 @@ class SearchStaff(QMainWindow):
                     
         with sqlite3.connect("Volac.db") as db:
             self.cursorStaff = db.cursor()
-            sql = "SELECT Surname,FirstName FROM Staff WHERE DepartmentID ='{0}'".format(self.DepartmentID)
-            self.cursorStaff.execute(sql)
+            self.cursorStaff.execute("SELECT Surname,FirstName FROM Staff WHERE DepartmentID =?",(self.DepartmentID,))
             db.commit()
 
         self.search_results_table.deleteLater()
@@ -148,7 +142,7 @@ class SearchStaff(QMainWindow):
                                     
 
                             
-        self.verticle.addWidget(self.search_results_table)
+        self.Vertical_Layout.addWidget(self.search_results_table)
 
 
 
@@ -157,9 +151,8 @@ class SearchStaff(QMainWindow):
     
     def ShowResults(self):
         self.searched_name = (self.Search_LE.text())
-        print(self.searched_name)
         if self.searched_name == '':
-            self.default_table()
+            self.default_table() #If no search query is enter then the default table will show all staff from the department selected
         
 
         else:        
@@ -207,7 +200,7 @@ class SearchStaff(QMainWindow):
                                     
 
                             
-        self.verticle.addWidget(self.search_results_table)
+        self.Vertical_Layout.addWidget(self.search_results_table)
             
 
 
@@ -216,9 +209,9 @@ class SearchStaff(QMainWindow):
         self.dialog.resize(720,300)
 
         button = qApp.focusWidget()
-        index = self.search_results_table.indexAt(button.pos())
+        index = self.search_results_table.indexAt(button.pos()) #Tracks what button has been clicked
         if index.isValid():
-            self.rownum = index.row()
+            self.rownum = index.row() #Gets the valid mouse click and saves the row number of the button
 
         self.vertical = QVBoxLayout()
         
@@ -241,19 +234,17 @@ class SearchStaff(QMainWindow):
 
         with sqlite3.connect("Volac.db") as db:
             self.details_cursor = db.cursor()
-            sql = "SELECT StaffID FROM Staff WHERE FirstName = '{0}' AND Surname = '{1}'".format(FirstName,Surname)
-            self.details_cursor.execute(sql)
+            self.details_cursor.execute("SELECT StaffID FROM Staff WHERE FirstName =? AND Surname =?",(FirstName,Surname,))
             StaffID = list(self.details_cursor.fetchone())
             db.commit()
             
         with sqlite3.connect("Volac.db") as db:
             self.details_cursor = db.cursor()
-            sql = "SELECT * FROM StaffHardware WHERE StaffID = '{0}'".format(StaffID[0])
-            self.details_cursor.execute(sql)
+            self.details_cursor.execute("SELECT * FROM StaffHardware WHERE StaffID =?",(StaffID[0],))
             db.commit()
 
 
-        col = [tuple[0] for tuple in self.details_cursor.description]
+        col = [tuple[0] for tuple in self.details_cursor.description] #Adds column headers to tuple
         self.staff_details_table = QTableWidget(2,len(col))
                         
         self.staff_details_table.setHorizontalHeaderLabels(col)
@@ -263,12 +254,14 @@ class SearchStaff(QMainWindow):
             self.staff_details_table.insertRow(self.row)
             for self.column, item in enumerate(form): ##Inserts amount of columns needed
                 CurrentHeader = (self.staff_details_table.horizontalHeaderItem(self.column).text())
+                
+                ## The below if statements provide a user friendly display of foreign keys##
+                
                 if CurrentHeader == 'StaffID' and self.column != 0: 
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    sql = "SELECT FirstName,Surname from Staff WHERE StaffID ='{}'".format(item)
                                     cursor.execute("PRAGMA foreign_keys = ON")
-                                    cursor.execute(sql)
+                                    cursor.execute("SELECT FirstName,Surname from Staff WHERE StaffID =?",(item,))
                                     db.commit()
                                 Foreign_Item = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
                                 
@@ -285,25 +278,22 @@ class SearchStaff(QMainWindow):
                 elif CurrentHeader == 'HardwareID' and self.column != 0:
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    sql = "SELECT HardwareModelID from Hardware WHERE HardwareID ='{}'".format(item)
                                     cursor.execute("PRAGMA foreign_keys = ON")
-                                    cursor.execute(sql)
+                                    cursor.execute("SELECT HardwareModelID from Hardware WHERE HardwareID =?",(item,))
                                     ModelID = list(cursor.fetchone())
                                     db.commit()
                                     
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    sql = "SELECT HardwareMakeID from HardwareModel WHERE HardwareModelID ='{}'".format(ModelID[0])
                                     cursor.execute("PRAGMA foreign_keys = ON")
-                                    cursor.execute(sql)
+                                    cursor.execute("SELECT HardwareMakeID from HardwareModel WHERE HardwareModelID =?",(ModelID[0],))
                                     MakeID = list(cursor.fetchone())
                                     db.commit()
 
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    sql = "SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID ='{}' AND HardwareMake.HardwareMakeID = '{}'".format(ModelID[0],MakeID[0])
                                     cursor.execute("PRAGMA foreign_keys = ON")
-                                    cursor.execute(sql)
+                                    cursor.execute("SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID =? AND HardwareMake.HardwareMakeID =?",(ModelID[0],MakeID[0],))
                                     db.commit()
 
                                 HardwareForeignKey = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])

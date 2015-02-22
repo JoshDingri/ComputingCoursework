@@ -17,12 +17,34 @@ class CurrentLayoutManager(QMainWindow):
         super().__init__()
         self.department = department
         self.account_details = account_details
-        self.menubar()
+        self.stacked_layout = QStackedWidget()
+        self.setCentralWidget(self.stacked_layout)
+
         self.mainmenu()
+        self.MyInformation()
+        self.DepartmentInformationWindow()
+        self.menubar()
+        self.ButtonTriggers()
+
+    def ButtonTriggers(self):
+        self.ManagerMenuBar.Logout.triggered.connect(self.log_out)
+        self.ManagerMenuBar.ChangePassword.triggered.connect(self.change_password)
+        self.ManagerMenuBar.DepartmentDatabase.triggered.connect(self.SwitchToDepartmentInformationWindow)
+        self.ManagerMenuBar.YourInformation.triggered.connect(self.SwitchToMyInformation)
+        self.ManagerMenuBar.ReportInformation.triggered.connect(self.ReportError)
+        self.ManagerMenuBar.ReportBug.triggered.connect(self.BugReport)
+
+        self.InstantiateMainMenu.DeparmentInfoBtn.clicked.connect(self.SwitchToDepartmentInformationWindow)
+        self.InstantiateMainMenu.MyInfoBtn.clicked.connect(self.SwitchToMyInformation)
+
+        self.InstantiateDatabaseWindow.Back_btn.clicked.connect(self.BackToMenu)
+        
+        self.InstantiateMy_Info.Back_btn.clicked.connect(self.BackToMenu)
         
 
     def menubar(self):
-        Manager_Menubar.MenuBar(self)
+        self.ManagerMenuBar = Manager_Menubar()
+        self.setMenuBar(self.ManagerMenuBar)
 
     def log_out(self):
         self.close()
@@ -34,23 +56,28 @@ class CurrentLayoutManager(QMainWindow):
 
     def mainmenu(self):
         self.resize(800,400)
-        MainMenu = Manager_Main_Menu()
-        self.setCentralWidget(MainMenu)
-
-        MainMenu.DeparmentInfoBtn.clicked.connect(self.DepartmentInformationWindow)
-        MainMenu.MyInfoBtn.clicked.connect(self.MyInformation)
+        self.InstantiateMainMenu = Manager_Main_Menu()
+        self.stacked_layout.addWidget(self.InstantiateMainMenu)
+        
 
     def DepartmentInformationWindow(self):
         self.resize(800,400)
-        self.databasewindow = DepartmentInformation(self.department)
-        self.setCentralWidget(self.databasewindow)
-        
-        self.databasewindow.Back_btn.clicked.connect(self.mainmenu)
+        self.InstantiateDatabaseWindow = DepartmentInformation(self.department)
+        self.stacked_layout.addWidget(self.InstantiateDatabaseWindow)        
 
     def MyInformation(self):
-        self.My_Info = MyInformation(self.account_details)
-        self.My_Info.Back_btn.clicked.connect(self.mainmenu)
-        self.setCentralWidget(self.My_Info)
+        self.InstantiateMy_Info = MyInformation(self.account_details)
+        self.stacked_layout.addWidget(self.InstantiateMy_Info)
+
+    def SwitchToDepartmentInformationWindow(self):
+        self.stacked_layout.setCurrentIndex(2)
+
+    def SwitchToMyInformation(self):
+        self.stacked_layout.setCurrentIndex(1)
+
+    def BackToMenu(self):
+        self.stacked_layout.setCurrentIndex(0)
+
 
     def ReportError(self):
         Report_Error = ReportError()

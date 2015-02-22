@@ -1,5 +1,6 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from PresenceCheckDialogue import *
 import sys
 import smtplib
 
@@ -13,8 +14,8 @@ class ReportError(QDialog):
 
         self.Email_lbl = QLabel("Email Address:")
         self.Email_LE = QLineEdit()
-        EmailRegExp = QRegExp("[^@]+@[^@]+\.[^@]+")
-        self.Email_LE.setValidator(QRegExpValidator(EmailRegExp))
+        EmailRegExp = QRegExp("[^@]+@[^@]+\.[^@]+") #Will check the email is in a valid format (eg. @ cannot be the first character)
+        self.Email_LE.setValidator(QRegExpValidator(EmailRegExp)) 
         
         self.grid_layout.addWidget(self.Email_lbl,0,0)
         self.grid_layout.addWidget(self.Email_LE,0,1)
@@ -25,7 +26,7 @@ class ReportError(QDialog):
         self.grid_layout.addWidget(self.Forename_lbl,1,0)
         self.grid_layout.addWidget(self.Forename_LE,1,1)
 
-        self.Surname_lbl = QLabel("Surame:")
+        self.Surname_lbl = QLabel("Surname:")
         self.Surname_LE = QLineEdit()
 
         self.grid_layout.addWidget(self.Surname_lbl,2,0)
@@ -56,39 +57,43 @@ class ReportError(QDialog):
         self.setStyleSheet("QLabel{font-size: 12px} QPushButton{font-size: 12px;")
 
         self.submit_btn.clicked.connect(self.SendMail)
+        self.cancel_btn.clicked.connect(self.CloseWindow)
+
+    def CloseWindow(self):
+        self.reject()
 
     def SendMail(self):
+        BlankFieldsWarning = Presence_Dialog()
         self.mail = smtplib.SMTP("smtp.live.com",25)                                                                                                                                                                                                                                                                                            
         
         self.mail.ehlo()
         self.mail.starttls()
 
-        IT_Staff_Email = ('josh-dingri@hotmail.co.uk')
+        IT_Staff_Email = ('josh-dingri@hotmail.co.uk') #Will be IT Staff email address(es)
         Description = str(self.Description_LE.toPlainText())
-        Email = ('donotreply_volac@hotmail.co.uk')
+        Email = ('donotreply_volac@hotmail.co.uk') #The outgoing email address
 
         
         Forename = str(self.Forename_LE.displayText())
         Surname_LE = str(self.Surname_LE.displayText())
         User_Email = str(self.Email_LE.displayText())
 
-        try:
-            self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
-        except smtplib.SMTPServerDisconnected:
-            print("not valid")
+        if Description == '' or Forename == '' or Surname_LE == '' or User_Email == '':
+            BlankFieldsWarning.exec_()
+        else:
 
-        Content = ("Email: {0} \nForename: {1}\nSurname: {2}\nDescription: {3}".format(User_Email,Forename,Surname_LE,Description))
-        Subject = ("Incorrect Information Report")
+            try:
+                self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
+            except smtplib.SMTPServerDisconnected:
+                print("not valid")
 
-        Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
-        print(Body)
+            Content = ("Email: {0} \nForename: {1}\nSurname: {2}\nDescription: {3}".format(User_Email,Forename,Surname_LE,Description))
+            Subject = ("Incorrect Information Report")
 
-        
-                            
+            Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
 
-    
-        self.mail.sendmail(Email,IT_Staff_Email,Body)
-        self.mail.quit()
+            self.mail.sendmail(Email,IT_Staff_Email,Body)
+            self.mail.quit()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

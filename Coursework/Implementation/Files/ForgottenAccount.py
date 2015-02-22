@@ -1,5 +1,6 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from PresenceCheckDialogue import *
 import sys
 import smtplib
 
@@ -16,7 +17,7 @@ class ForgottenAccount(QDialog):
         
         self.Email_lbl = QLabel("Email:")
         self.Email_LE = QLineEdit()
-        EmailRegExp = QRegExp("[^@]+@[^@]+\.[^@]+")
+        EmailRegExp = QRegExp("[^@]+@[^@]+\.[^@]+") 
         self.Email_LE.setValidator(QRegExpValidator(EmailRegExp))
 
         self.grid_layout.addWidget(self.Email_lbl,0,0)
@@ -50,8 +51,13 @@ class ForgottenAccount(QDialog):
         self.setLayout(self.vertical_overall_layout)
 
         self.submit_btn.clicked.connect(self.SendMail)
+        self.cancel_btn.clicked.connect(self.CloseWindow)
+
+    def CloseWindow(self):
+        self.reject()
 
     def SendMail(self):
+        BlankFieldsWarning = Presence_Dialog() 
         self.mail = smtplib.SMTP("smtp.live.com",25)
         self.mail.ehlo()
         self.mail.starttls()
@@ -63,19 +69,22 @@ class ForgottenAccount(QDialog):
         Surname_LE = str(self.Surname_LE.displayText())
         Email_LE = str(self.Email_LE.displayText())
 
-        try:
-            self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
-        except smtplib.SMTPServerDisconnected:
-            print("not valid")
+        if Email_LE == '' or Forename == '' or Surname_LE == '':
+            BlankFieldsWarning.exec_()
+        else:
 
-        Content = ("\nForename: {0}\nSurname: {1}\nEmail: {2}".format(Forename,Surname_LE,Email_LE))
-        Subject = ("Account Recovery Request")
+            try:
+                self.mail.login('donotreply_volac@hotmail.co.uk','toffee2015')
+            except smtplib.SMTPServerDisconnected:
+                print("not valid")
 
-        Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
-        print(Body)
+            Content = ("\nForename: {0}\nSurname: {1}\nEmail: {2}".format(Forename,Surname_LE,Email_LE))
+            Subject = ("Account Recovery Request")
 
-        self.mail.sendmail(Email,IT_Staff_Email,Body)
-        self.mail.quit()
+            Body = ("Subject: {0}\n\n{1}".format(Subject,Content))
+
+            self.mail.sendmail(Email,IT_Staff_Email,Body)
+            self.mail.quit()
 
 
 if __name__ == "__main__":
