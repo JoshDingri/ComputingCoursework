@@ -13,7 +13,15 @@ class ChangePassword(QDialog):
 
         self.GridLayout = QGridLayout()
         self.horizontal = QHBoxLayout()
+        self.horizontallbl = QHBoxLayout()
         self.vertical = QVBoxLayout()
+
+        self.changed_lbl = QLabel()
+        self.changed_lbl.setVisible(False)
+
+        self.horizontallbl.addStretch(1)
+        self.horizontallbl.addWidget(self.changed_lbl)
+        self.horizontallbl.addStretch(1)
 
         self.old_pw_lbl = QLabel("Old Password:")
         self.old_pw_le = QLineEdit()
@@ -39,6 +47,7 @@ class ChangePassword(QDialog):
 
         self.vertical.addLayout(self.GridLayout)
         self.vertical.addLayout(self.horizontal)
+        self.vertical.addLayout(self.horizontallbl)
 
         self.setLayout(self.vertical)
 
@@ -61,11 +70,14 @@ class ChangePassword(QDialog):
                     cursor.execute("UPDATE Accounts SET Password=? WHERE Username=? ",(new_password,self.username,))
                     cursor.execute("PRAGMA foreign_keys = ON")
                     db.commit()
-                print("Password Updated")
+                self.changed_lbl.setText("Password Has Been Changed")
+                self.changed_lbl.setVisible(True)
             else:
-                print("passwords do not match")
+                self.changed_lbl.setText("Passwords Do Not Match")
+                self.changed_lbl.setVisible(True)
         else:
-            print("Invalid Password")
+            self.changed_lbl.setText("Incorrect Password")
+            self.changed_lbl.setVisible(True)
             
                 
                 
