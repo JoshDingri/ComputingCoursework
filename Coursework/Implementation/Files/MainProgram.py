@@ -222,7 +222,7 @@ class CurrentLayoutAdmin(QMainWindow):
         CurrentCBValue = self.OpenDatabaseWindow.Database_CB.currentText()
         AddDataGUI = AddDataWindow(CurrentCBValue)
         AddDataGUI.exec_() ## executes dialog box
-        
+        self.OpenDatabaseWindow.ChosenTableMethod()
         
 
         
