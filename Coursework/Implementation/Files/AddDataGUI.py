@@ -122,6 +122,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT DepartmentName FROM Department"
                                 cursor.execute(sql)
+                                db.commit()
                             Departments = [item[0] for item in cursor.fetchall()]
                             self.departmentCB = QComboBox()
                             self.departmentCB.setFixedHeight(25)
@@ -144,6 +145,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT AddressLine3 FROM Location"
                                 cursor.execute(sql)
+                                db.commit()
                             Locations = [item[0] for item in cursor.fetchall()]
                             self.LocationCB = QComboBox()
                             self.LocationCB.setFixedHeight(25)
@@ -167,6 +169,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT HardwareMakeName FROM HardwareMake"
                                 cursor.execute(sql)
+                                db.commit()
                             HardwareMakes = [item[0] for item in cursor.fetchall()]
                             self.HardwareMakeCB = QComboBox()
                             self.HardwareMakeCB.setFixedHeight(30)
@@ -187,6 +190,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT FirstName,Surname FROM Staff"
                                 cursor.execute(sql)
+                                db.commit()
                             self.Staff = [item[0] + ', ' + item[1] for item in cursor.fetchall()] #device and model
                             print(self.Staff)
                             self.StaffCB = QComboBox()
@@ -208,6 +212,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT HardwareMakeName FROM HardwareMake"
                                 cursor.execute(sql)
+                                db.commit()
                             self.Hardware = [item[0] for item in cursor.fetchall()]
                             print(self.Hardware)
                             self.HardwareCB = QComboBox()
@@ -231,6 +236,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT HardwareModelID FROM Hardware"
                                 cursor.execute(sql)
+                                db.commit()
                             hardwaremodelid = [item[0] for item in cursor.fetchall()]
                             hardwaremodelid = str(hardwaremodelid).replace("[","(")
                             self.hardwaremodelid = hardwaremodelid.replace("]",")")
@@ -240,6 +246,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT HardwareMakeID FROM HardwareModel WHERE HardwareModelID IN {}".format(self.hardwaremodelid)
                                 cursor.execute(sql)
+                                db.commit()
                                 
                             self.MakeID = [item[0] for item in cursor.fetchall()]
                             self.MakeID = str(self.MakeID).replace("[","(")
@@ -250,6 +257,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT HardwareMakeName FROM HardwareMake WHERE HardwareMakeID IN {}".format(self.MakeID)
                                 cursor.execute(sql)
+                                db.commit()
                             self.Hardware = [item[0] for item in cursor.fetchall()]
                                 
                             self.HardwareCB = QComboBox()
@@ -274,6 +282,7 @@ class AddDataWindow(QDialog):
                                 cursor = db.cursor()
                                 sql = "SELECT DeviceName FROM DeviceType"
                                 cursor.execute(sql)
+                                db.commit()
                             Devices = [item[0] for item in cursor.fetchall()]
                             self.DeviceCB = QComboBox()
                             self.DeviceCB.setFixedHeight(30)
@@ -560,6 +569,7 @@ class AddDataWindow(QDialog):
             cursor = db.cursor()
             cursor.execute("SELECT DepartmentID FROM Department WHERE DepartmentName=?",(text,))
             department = list(cursor.fetchone())
+            db.commit()
         self.LineEditList[self.DepartmentLineEdit].setText(str(department[0]))
 
     def LocationComboBox_Activated(self,text):
@@ -567,6 +577,7 @@ class AddDataWindow(QDialog):
             cursor = db.cursor()
             cursor.execute("SELECT LocationID FROM Location WHERE AddressLine3=?",(text,))
             location = list(cursor.fetchone())
+            db.commit()
             
         self.LineEditList[self.LocationLineEdit].setText(str(location[0]))
 
@@ -575,6 +586,7 @@ class AddDataWindow(QDialog):
             cursor = db.cursor()
             cursor.execute("SELECT HardwareModelID FROM HardwareModel WHERE HardwareModelName=?",(text,))
             hardwaremodel = list(cursor.fetchone())
+            db.commit()
         self.LineEditList[self.HardwareModelLineEdit].setText(str(hardwaremodel[0]))
 
 
@@ -594,6 +606,7 @@ class AddDataWindow(QDialog):
             cursor = db.cursor()
             cursor.execute("SELECT StaffID FROM Staff WHERE Surname =? AND FirstName =?",(split[1],split[0],))
             StaffsID = list(cursor.fetchone())
+            db.commit()
         self.LineEditList[self.StaffLineEdit].setText(str(StaffsID[0]))
 
     def SelectModel(self,text):
@@ -601,10 +614,12 @@ class AddDataWindow(QDialog):
             cursor = db.cursor()
             cursor.execute("SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName =?",(text,))
             HardwareID = list(cursor.fetchone())
+            db.commit()
             
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID=?",(HardwareID[0],))
+            db.commit()
         self.Model = [item[0] for item in cursor.fetchall()]
         
         ModelLineEdit = QLineEdit()
@@ -621,12 +636,14 @@ class AddDataWindow(QDialog):
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName =?",(text,))
+            db.commit()
         HardwareMakeID  = [item[0] for item in cursor.fetchall()]
         
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
             sql = "SELECT HardwareModelID FROM Hardware"
             cursor.execute(sql)
+            db.commit()
         HardwareModels  = [item[0] for item in cursor.fetchall()]
         HardwareModels = str(HardwareModels).replace("[","(")
         HardwareModels = HardwareModels.replace("]",")")
@@ -634,6 +651,7 @@ class AddDataWindow(QDialog):
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID = '{}' AND HardwareModelID IN {}".format(HardwareMakeID[0],HardwareModels))
+            db.commit()
         
         self.ModelHardware = [item[0] for item in cursor.fetchall()]
         
@@ -653,6 +671,7 @@ class AddDataWindow(QDialog):
             cursor = db.cursor()
             cursor.execute("SELECT HardwareModel.HardwareModelID FROM HardwareMake,HardwareModel WHERE HardwareMake.HardwareMakeName =? AND HardwareModel.HardwareModelName =?",(MakeName,ModelName,))
             HardwareIDs = list(cursor.fetchone())
+            db.commit()
         self.LineEditList[self.HardwareLineEdit].setText(str(HardwareIDs[0]))
 
     def HardwareComboBox_Activated(self):
@@ -662,11 +681,13 @@ class AddDataWindow(QDialog):
             cursor = db.cursor()            
             cursor.execute("SELECT HardwareModel.HardwareMakeID,HardwareModel.HardwareModelID FROM HardwareModel,HardwareMake WHERE HardwareMake.HardwareMakeName =? AND HardwareModelName =?",(MakeName,ModelName,))
             HardwareModelIDs = list(cursor.fetchone())
+            db.commit()
             
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT Hardware.HardwareID FROM Hardware,HardwareModel WHERE Hardware.HardwareModelID =? AND HardwareModel.HardwareMakeID=?",(HardwareModelIDs[1],HardwareModelIDs[0],))
             HardwareID = list(cursor.fetchone())
+            db.commit()
         self.LineEditList[self.HardwareLineEdit].setText(str(HardwareID[0]))
 
     def DeviceComboBox_Activated(self,text):

@@ -14,10 +14,14 @@ class Manager_Menubar(QMenuBar):
         self.ChangePassword = QAction("Change Password",self)        
         self.AccountMenu.addAction(self.Logout)
         self.AccountMenu.addAction(self.ChangePassword)
+        self.Logout.setShortcut("CTRL+W")
+        self.ChangePassword.setShortcut("CTRL+C")
         
         self.ViewMenu = self.addMenu("View")
         self.DepartmentDatabase = QAction("Department Database",self)
+        self.DepartmentDatabase.setShortcut("F1")
         self.YourInformation = QAction("Your Information",self)
+        self.YourInformation.setShortcut("F2")
         self.ViewMenu.addAction(self.DepartmentDatabase)
         self.ViewMenu.addAction(self.YourInformation)
 

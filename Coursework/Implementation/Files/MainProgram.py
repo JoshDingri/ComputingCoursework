@@ -8,6 +8,7 @@ from SearchStaffAdmin import *
 from AddDataGUI import *
 from LoginWindow import *
 from ChangePassword import *
+from PopupDialog import *
 import sqlite3
 import time
 import datetime
@@ -71,6 +72,7 @@ class CurrentLayoutAdmin(QMainWindow):
             cursor = db.cursor()
             sql = ("SELECT PurchaseDate FROM StaffHardware")
             cursor.execute(sql)
+            db.commit()
         purchasedates = [item[0] for item in cursor.fetchall()]
 
 
@@ -189,10 +191,11 @@ class CurrentLayoutAdmin(QMainWindow):
                 cursor = db.cursor()
                 cursor.execute("SELECT name FROM sqlite_master WHERE type = 'table';")
                 items = cursor.fetchall() ### Gets all the table names
-                for count in range(len(items)):
-                    items[count] = str(items[count])
-                    items[count] = items[count].strip("()'',")
-                    self.OpenDatabaseWindow.Database_CB.addItem(items[count]) ## Adds all the tables to the dropdown box
+                db.commit()
+            for count in range(len(items)):
+                items[count] = str(items[count])
+                items[count] = items[count].strip("()'',")
+                self.OpenDatabaseWindow.Database_CB.addItem(items[count]) ## Adds all the tables to the dropdown box
 
         except FileNotFoundError:
             pass

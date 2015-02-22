@@ -98,7 +98,6 @@ class DepartmentInformation(QWidget):
                     if CurrentHeader == 'StaffID' and self.column != 0: ##Wont run if statement if the header is primary key
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    cursor.execute("PRAGMA foreign_keys = ON")
                                     cursor.execute("SELECT FirstName,Surname from Staff WHERE StaffID =?",(item,))
                                     db.commit()
                                 Foreign_Item = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
@@ -117,21 +116,18 @@ class DepartmentInformation(QWidget):
                     elif CurrentHeader == 'HardwareID' and self.column != 0:
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    cursor.execute("PRAGMA foreign_keys = ON")
                                     cursor.execute("SELECT HardwareModelID from Hardware WHERE HardwareID =?",(item,))
                                     ModelID = list(cursor.fetchone())
                                     db.commit()
                                     
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    cursor.execute("PRAGMA foreign_keys = ON")
                                     cursor.execute("SELECT HardwareMakeID from HardwareModel WHERE HardwareModelID =?",(ModelID[0],))
                                     MakeID = list(cursor.fetchone())
                                     db.commit()
 
                                 with sqlite3.connect("Volac.db") as db:
                                     cursor = db.cursor()
-                                    cursor.execute("PRAGMA foreign_keys = ON")
                                     cursor.execute("SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID =? AND HardwareMake.HardwareMakeID =?",(ModelID[0],MakeID[0],))
                                     db.commit()
 

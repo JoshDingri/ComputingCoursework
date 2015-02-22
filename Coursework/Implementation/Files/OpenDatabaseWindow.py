@@ -93,7 +93,9 @@ class OpenDatabase(QWidget):
         lspacer.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
         
         self.savechanges = QAction("Save Changes",self)
+        self.savechanges.setShortcut("CTRL+S")
         self.cancel = QAction("Cancel",self)
+        self.cancel.setShortcut("CTRL+C")
         self.EditDB_ToolBar = QToolBar("Complete Changes")
         self.EditDB_ToolBar.addWidget(lspacer)
         self.EditDB_ToolBar.addAction(self.savechanges)
@@ -128,8 +130,8 @@ class OpenDatabase(QWidget):
 
             with sqlite3.connect("Volac.db") as db:
                     self.cursor = db.cursor()
-                    sql = "SELECT * FROM {0}".format(self.CurrentTable)
-                    self.cursor.execute(sql)
+                    self.cursor.execute("SELECT * FROM {}".format(self.CurrentTable))
+                    db.commit()
 
             col = [tuple[0] for tuple in self.cursor.description] #Adds column headers to tuple
             self.table = QTableWidget(2,len(col))
@@ -424,13 +426,17 @@ class OpenDatabase(QWidget):
         self.WarningDialog.reject()
         self.IDtoChange = (self.table.item(self.DeleteRow,0).text())
         self.ID = (self.table.horizontalHeaderItem(0).text())
+        try:
         
-        with sqlite3.connect("Volac.db") as db:
-            cursor = db.cursor()
-            sql = "delete from {0} where {1}={2}".format(self.currentcbvalue,self.ID,self.IDtoChange)
-            cursor.execute("PRAGMA foreign_keys = ON")
-            cursor.execute(sql)
-            db.commit()
+            with sqlite3.connect("Volac.db") as db:
+                cursor = db.cursor()
+                sql = "delete from {0} where {1}={2}".format(self.currentcbvalue,self.ID,self.IDtoChange)
+                cursor.execute("PRAGMA foreign_keys = ON")
+                cursor.execute(sql)
+                db.commit()
+        except sqlite3.IntegrityError:
+            BlankFieldsWarning = Presence_Dialog("{0:^50}".format("FOREIGN KEY IS REFERENCED SOMEWHERE ELSE.\n                        CANNOT BE DELETED"))
+            BlankFieldsWarning.exec_()
         self.ChosenTableMethod()
         
     def Cancel_Deletion(self):

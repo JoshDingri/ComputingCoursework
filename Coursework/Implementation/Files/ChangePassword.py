@@ -59,6 +59,7 @@ class ChangePassword(QDialog):
                 with sqlite3.connect("Accounts.db") as db:
                     cursor = db.cursor()
                     cursor.execute("UPDATE Accounts SET Password=? WHERE Username=? ",(new_password,self.username,))
+                    cursor.execute("PRAGMA foreign_keys = ON")
                     db.commit()
                 print("Password Updated")
             else:

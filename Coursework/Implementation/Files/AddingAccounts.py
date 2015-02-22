@@ -148,6 +148,7 @@ class AddUserAccounts(QDialog):
         with sqlite3.connect("Accounts.db") as db:
             cursor = db.cursor()
             sql = "insert into Accounts(Username,Password,Access_Level,Department,FirstName,LastName) values (?,?,?,?,?,?)"
+            cursor.execute("PRAGMA foreign_keys = ON")
             cursor.execute(sql,values)
             db.commit()
         

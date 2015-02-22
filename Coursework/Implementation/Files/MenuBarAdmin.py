@@ -11,7 +11,9 @@ class AdminMenuBar(QMenuBar):
         self.AccountMenu = self.addMenu("Account")
         
         self.Logout = QAction("Log Out",self)
-        self.ChangePassword = QAction("Change Password",self)        
+        self.Logout.setShortcut("CTRL+W")
+        self.ChangePassword = QAction("Change Password",self)
+        self.ChangePassword.setShortcut("CTRL+C")
         self.AccountMenu.addAction(self.Logout)
         self.AccountMenu.addAction(self.ChangePassword)
      

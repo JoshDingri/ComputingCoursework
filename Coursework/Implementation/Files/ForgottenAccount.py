@@ -1,6 +1,6 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from PresenceCheckDialogue import *
+from PopupDialog import *
 import sys
 import smtplib
 
@@ -57,7 +57,7 @@ class ForgottenAccount(QDialog):
         self.reject()
 
     def SendMail(self):
-        BlankFieldsWarning = Presence_Dialog() 
+        BlankFieldsWarning = Presence_Dialog("PLEASE MAKE SURE ALL FIELDS ARE FILLED OUT") 
         self.mail = smtplib.SMTP("smtp.live.com",25)
         self.mail.ehlo()
         self.mail.starttls()

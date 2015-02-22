@@ -14,6 +14,8 @@ class Staff_Menubar(QMenuBar):
         self.ChangePassword = QAction("Change Password",self)        
         self.AccountMenu.addAction(self.Logout)
         self.AccountMenu.addAction(self.ChangePassword)
+        self.Logout.setShortcut("CTRL+W")
+        self.ChangePassword.setShortcut("CTRL+C")
         
         self.HelpMenu = self.addMenu("Help")
         self.ReportInformation = QAction("Report Incorrect Information",self)

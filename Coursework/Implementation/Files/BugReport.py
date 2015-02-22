@@ -1,7 +1,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from Calender import *
-from PresenceCheckDialogue import *
+from PopupDialog import *
 import sys
 import smtplib
 
@@ -94,7 +94,7 @@ class ReportBug(QDialog):
         self.Data_LE.setAlignment(Qt.AlignCenter)
 
     def SendMail(self):
-        BlankFieldsWarning = Presence_Dialog()        
+        BlankFieldsWarning = Presence_Dialog("PLEASE MAKE SURE ALL FIELDS ARE FILLED OUT")        
         self.mail = smtplib.SMTP("smtp.live.com",25)
         self.mail.ehlo()
         self.mail.starttls()

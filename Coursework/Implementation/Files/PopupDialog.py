@@ -4,7 +4,7 @@ import sys
 
 class Presence_Dialog(QDialog):
     """Presence Check Dialog"""
-    def __init__(self):
+    def __init__(self,text):
         super().__init__()
         self.resize(100,100)
         self.horizontal_layout = QHBoxLayout()
@@ -20,7 +20,7 @@ class Presence_Dialog(QDialog):
         self.horizontal_layout.addWidget(Picture)
         self.horizontal_layout.addStretch(1)
 
-        WarningText = QLabel('PLEASE MAKE SURE ALL FIELDS ARE FILLED OUT')
+        WarningText = QLabel(text)
         WarningText.setFont(QFont('Calibri',12))
         self.horizontal_layout2.addStretch(1)
         self.horizontal_layout2.addWidget(WarningText)
