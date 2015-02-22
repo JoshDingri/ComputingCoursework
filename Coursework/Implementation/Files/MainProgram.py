@@ -88,7 +88,7 @@ class CurrentLayoutAdmin(QMainWindow):
 
             
             daysleft = self.purchasedate - currentdate
-            if daysleft.days == 8:
+            if daysleft.days == 90:
                 self.SendExpirationEmail()
 
 
