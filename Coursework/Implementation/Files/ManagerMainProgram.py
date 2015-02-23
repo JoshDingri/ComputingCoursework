@@ -15,6 +15,54 @@ class CurrentLayoutManager(QMainWindow):
 
     def __init__(self,department,account_details):
         super().__init__()
+        self.setStyleSheet("""QMainWindow {
+                                   background-color: #ffffff;
+                                   color: #cccccc;
+                                }
+                                QMenu:item:selected:enabled{
+                                background: rgb(220, 220, 220);
+                                color: black;}
+
+                    QMenu:item:disabled{
+                                color: #96FF70;
+                                color: black;}
+
+                    QMenu:item:selected:disabled:pressed{
+                                background: black;}
+
+                    QMenuBar{
+                                font-family: Segoe UI;
+                                font-size: 10.4pt;
+                                font: bold;
+                                background-color: white;}
+
+                    QMenuBar:item{
+                                font-family: Segoe UI;
+                                font-size: 11pt;
+                                background-color: white;
+                                color: green;}
+                                
+                    QMenuBar:item:enabled:pressed{
+                                background-color: #96FF70;
+                                color: green;}
+
+                    QMenuBar:item:active{
+                                background-color: #96FF70;
+                                color: green;}
+                    QPushButton{
+                                min-height: 1.7em;
+                                color: black;
+                                background-color: #F5F5F5;
+                                padding: 1px;
+                                border-style: outset;
+                                border-radius: 8px;
+                                border-width: 2px;
+                                border-color: green;}
+                             
+                            QPushButton:pressed {
+                                background-color: #F2E4E4
+                            }""")
+        
         self.department = department
         self.account_details = account_details
         self.stacked_layout = QStackedWidget()

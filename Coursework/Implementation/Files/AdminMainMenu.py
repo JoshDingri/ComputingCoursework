@@ -14,28 +14,21 @@ class AdminMainMenu(QWidget):
 
         self.Vertical_Layout = QVBoxLayout()
         
+        
         self.ButtonStyleSheet =  ("""QPushButton{
-                    color: #333;
-                    border: 2px solid #555;
-                    border-radius: 11px;
-                    padding: 5px;
-                    background: qradialgradient(cx: 0.3, cy: -0.4,
-                    fx: 0.3, fy: -0.4,
-                    radius: 1.35, stop: 0 #fff, stop: 1 #888);
-                    min-width: 80px;
-                    }"""
+                                min-height: 1.7em;
+                                font: 1em;
+                                margin: 0 1px 0 1px;
+                                color: black;
+                                background-color: #F5F5F5;
+                                border-style: outset;
+                                border-radius: 20px;
+                                border-width: 3px;
+                                border-color: green;}
                              
-                    """QPushButton:hover{
-                    background: qradialgradient(cx: 0.3, cy: -0.4,
-                    fx: 0.3, fy: -0.4,
-                    radius: 1.35, stop: 0 #fff, stop: 1 #bbb);
-                    }"""
-
-                    """QPushButton:pressed {
-                    background: qradialgradient(cx: 0.4, cy: -0.1,
-                    fx: 0.4, fy: -0.1,
-                    radius: 1.35, stop: 0 #fff, stop: 1 #ddd);
-                    }""")
+                            QPushButton:pressed {
+                                background-color: #F2E4E4
+                            }""")
 
         self.OpenDatabaseBtn = QPushButton("Open Database")
         self.OpenDatabaseBtn.setFont(QFont("Calibri",20))

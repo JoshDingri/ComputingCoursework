@@ -25,17 +25,20 @@ class ChangePassword(QDialog):
 
         self.old_pw_lbl = QLabel("Old Password:")
         self.old_pw_le = QLineEdit()
+        self.old_pw_le.setEchoMode(QLineEdit.Password)
         self.GridLayout.addWidget(self.old_pw_lbl,0,0)
         self.GridLayout.addWidget(self.old_pw_le,0,1)
         
         
         self.new_pw_lbl = QLabel("New Password:")
         self.new_pw_le = QLineEdit()
+        self.new_pw_le.setEchoMode(QLineEdit.Password)
         self.GridLayout.addWidget(self.new_pw_lbl,1,0)
         self.GridLayout.addWidget(self.new_pw_le,1,1)
         
         self.new_pw_lbl2 = QLabel("Retype New Password:")
         self.new_pw_le2 = QLineEdit()
+        self.new_pw_le2.setEchoMode(QLineEdit.Password)
         self.GridLayout.addWidget(self.new_pw_lbl2,2,0)
         self.GridLayout.addWidget(self.new_pw_le2,2,1)
 

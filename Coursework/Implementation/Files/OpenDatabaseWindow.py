@@ -19,7 +19,22 @@ class OpenDatabase(QWidget):
         self.horizontal = QHBoxLayout()
         self.Verical_Layout = QVBoxLayout()
         
+        self.PushButtonStyles =  ("""QPushButton{
+                                min-height: 1.7em;
+                                font: 14px;
+                                color: black;
+                                background-color: #F5F5F5;
+                                padding: 1px;
+                                border-style: outset;
+                                border-radius: 8px;
+                                border-width: 2px;
+                                border-color: green;}
+                             
+                            QPushButton:pressed {
+                                background-color: #F2E4E4
+                            }""")
         
+                
         DatabaseLbl = QLabel(self)
         DatabaseLbl.setFont(QFont("Calibri",20))
         self.Database_CB = QComboBox(self)
@@ -37,10 +52,14 @@ class OpenDatabase(QWidget):
 
         self.Back_btn = QPushButton("Back",self)
         self.Back_btn.setFixedWidth(50)
+        self.Back_btn.setStyleSheet(self.PushButtonStyles)
 
         self.EditDatabase_btn = QPushButton("Edit Database",self)
+        self.EditDatabase_btn.setStyleSheet(self.PushButtonStyles)
         self.Add_btn = QPushButton("Add Data",self)
+        self.Add_btn.setStyleSheet(self.PushButtonStyles)
         self.Remove_btn = QPushButton("Remove Data",self)
+        self.Remove_btn.setStyleSheet(self.PushButtonStyles)
 
         space = QLabel('                                      ',self)
         self.AddDatabase = QPushButton('Open Database',self)
@@ -144,6 +163,7 @@ class OpenDatabase(QWidget):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form): ##Inserts amount of columns needed
                         self.item = QTableWidgetItem(str(item))
+                        self.item.setFont(QFont("Arial",12))
                         self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
                         self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
                 
@@ -155,6 +175,7 @@ class OpenDatabase(QWidget):
                     self.table.insertRow(self.row)
                     for self.column, item in enumerate(form):
                         self.item = QTableWidgetItem(str(item))
+                        self.item.setFont(QFont("Arial",12))
                         self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                         self.table.setItem(self.row, self.column,self.item)
                 self.table.insertColumn(self.column+1)
@@ -185,6 +206,7 @@ class OpenDatabase(QWidget):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFont(QFont("Arial",12))
                                 self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
@@ -198,6 +220,7 @@ class OpenDatabase(QWidget):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFont(QFont("Arial",12))
                                 self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
@@ -212,6 +235,7 @@ class OpenDatabase(QWidget):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFont(QFont("Arial",12))
                                 self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
@@ -226,6 +250,7 @@ class OpenDatabase(QWidget):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFont(QFont("Arial",12))
                                 self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
@@ -240,6 +265,7 @@ class OpenDatabase(QWidget):
                                     Foreign_Item = list(cursor.fetchone())
                                     db.commit()
                                 self.item = QTableWidgetItem(str(Foreign_Item[0]))
+                                self.item.setFont(QFont("Arial",12))
                                 self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
@@ -259,6 +285,7 @@ class OpenDatabase(QWidget):
                                     Foreign_Item = Foreign_Item.replace(b[i],"") 
                                 
                                 self.item = QTableWidgetItem(Foreign_Item)
+                                self.item.setFont(QFont("Arial",12))
                                 self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
@@ -294,6 +321,7 @@ class OpenDatabase(QWidget):
                                     HardwareForeignKey = HardwareForeignKey.replace(b[i],"") 
                                     
                                 self.item = QTableWidgetItem(HardwareForeignKey)
+                                self.item.setFont(QFont("Arial",12))
                                 self.item.setTextAlignment(Qt.AlignCenter)
                                 self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
                                 self.table.setItem(self.row, self.column,self.item)
@@ -310,6 +338,7 @@ class OpenDatabase(QWidget):
 
                                 
                         self.item = QTableWidgetItem(str(item))
+                        self.item.setFont(QFont("Arial",12))
                         self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off)
                         self.item.setTextAlignment(Qt.AlignCenter)
                         self.table.setItem(self.row, self.column,self.item)

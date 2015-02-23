@@ -14,6 +14,31 @@ class LoginWindow(QDialog):
 
     def __init__(self):
         super().__init__()
+        
+        self.setStyleSheet("""QDialog {
+                                   background-color: #ffffff;
+                                   color: #cccccc;
+                                }
+                                QMenu:item:selected:enabled{
+                                background: rgb(220, 220, 220);
+                                color: black;}
+
+                            QPushButton{
+                                min-height: 1.7em;
+                                font: 14px;
+                                color: black;
+                                background-color: #F5F5F5;
+                                padding: 1px;
+                                border-style: outset;
+                                border-radius: 8px;
+                                border-width: 2px;
+                                border-color: green;}
+                             
+                            QPushButton:pressed {
+                                background-color: #F2E4E4
+                            }""")
+
+                    
         self.SplashScreen()
 
         self.setWindowTitle("Please Login")
@@ -59,28 +84,7 @@ class LoginWindow(QDialog):
         self.ForgotAccount.mousePressEvent = self.ForgottenAccount
 
         LoginBtn = QPushButton("Log In")
-        LoginBtn.setStyleSheet("""QPushButton{
-                                color: #333;
-                                border: 2px solid #555;
-                                border-radius: 11px;
-                                padding: 5px;
-                                background: qradialgradient(cx: 0.3, cy: -0.4,
-                                fx: 0.3, fy: -0.4,
-                                radius: 1.35, stop: 0 #fff, stop: 1 #888);
-                                min-width: 80px;
-                                }"""
 
-                                """QPushButton:hover{
-                                background: qradialgradient(cx: 0.3, cy: -0.4,
-                                fx: 0.3, fy: -0.4,
-                                radius: 1.35, stop: 0 #fff, stop: 1 #bbb);
-                                }"""
-
-                                """QPushButton:pressed {
-                                background: qradialgradient(cx: 0.4, cy: -0.1,
-                                fx: 0.4, fy: -0.1,
-                                radius: 1.35, stop: 0 #fff, stop: 1 #ddd);
-                                }""")
         LoginBtn.setFixedWidth(100)
         LoginBtn.setFixedHeight(30)
 

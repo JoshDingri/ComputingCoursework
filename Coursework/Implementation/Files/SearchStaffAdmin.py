@@ -12,6 +12,36 @@ class SearchStaff(QWidget):
         super().__init__()
         self.resize(700,500)
 
+        self.ButtonStyleSheet =  ("""QPushButton{
+                                padding: 5px;
+                                font: bold 15px;
+                                margin: 0 1px 0 1px;
+                                color: black;
+                                background-color: #F5F5F5;
+                                border-style: outset;
+                                border-radius: 20px;
+                                border-width: 2px;
+                                border-color: green;}
+                             
+                            QPushButton:pressed {
+                                background-color: #F2E4E4}""")
+
+        self.white_btn =      ("""QPushButton{
+                                min-height: 1.7em;
+                                font: 1em;
+                                margin: 0 1px 0 1px;
+                                color: black;
+                                background-color: #F5F5F5;
+                                padding: 1px;
+                                border-style: outset;
+                                border-radius: 8px;
+                                border-width: 2px;
+                                border-color: green;}
+                             
+                            QPushButton:pressed {
+                                background-color: #F2E4E4
+                            }""")
+
         self.grid = QGridLayout()
         self.Vertical_Layout = QVBoxLayout()
                 
@@ -44,6 +74,8 @@ class SearchStaff(QWidget):
         SearchLbl.setFont(QFont("Calibri",19))
 
         self.Back_btn = QPushButton("Back")
+        self.Back_btn.setObjectName("backbtn")
+        self.Back_btn.setStyleSheet(self.white_btn)
         self.Back_btn.setFixedWidth(50)
 
 
@@ -51,6 +83,7 @@ class SearchStaff(QWidget):
         self.search_results_table = QTableWidget()
 
         self.search_button = QPushButton("Search")
+        self.search_button.setStyleSheet(self.white_btn)
         
         self.grid.addWidget(self.Back_btn,0,0)
         self.grid.addWidget(space,1,0)
@@ -122,12 +155,12 @@ class SearchStaff(QWidget):
             for i in range(0,len(b)):
                 self.item = self.item.replace(b[i],"")
             self.item = self.item.replace(" ",", ")
-            self.item = "{0}\n{1}                                                                                                              ".format(self.item,self.department)
+            self.item = "  {0}\n  {1}                                                                            ".format(self.item,self.department)
             self.buttonrow = QPushButton(self.item)
-
+            self.buttonrow.setStyleSheet(self.ButtonStyleSheet)
             self.buttonrow.setIcon(QIcon("arrow.png"))
             self.buttonrow.setIconSize(QSize(30,30))
-            self.buttonrow.setStyleSheet("font-size: 15px")
+            self.buttonrow.setStyleSheet(self.ButtonStyleSheet)
             self.buttonrow.setLayoutDirection(Qt.RightToLeft)
 
             self.pushbuttons.append(self.buttonrow)
@@ -180,12 +213,13 @@ class SearchStaff(QWidget):
                             for i in range(0,len(b)):
                                 self.item = self.item.replace(b[i],"")
                             self.item = self.item.replace(" ",", ")
-                            self.item = "{0}\n{1}                                                                                                              ".format(self.item,self.department)
+                            self.item = "  {0}\n  {1}                                                                           ".format(self.item,self.department)
                             self.buttonrow = QPushButton(self.item)
+                            self.buttonrow.setStyleSheet(self.ButtonStyleSheet)
    
                             self.buttonrow.setIcon(QIcon("arrow.png"))
                             self.buttonrow.setIconSize(QSize(30,30))
-                            self.buttonrow.setStyleSheet("font-size: 15px")
+                            self.buttonrow.setStyleSheet(self.ButtonStyleSheet)
                             self.buttonrow.setLayoutDirection(Qt.RightToLeft)
             
                             self.pushbuttons.append(self.buttonrow)

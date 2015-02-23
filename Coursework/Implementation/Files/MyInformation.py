@@ -8,11 +8,14 @@ class MyInformation(QWidget):
 
     def __init__(self,account_details):
         super().__init__()
+        
+        
         self.horizontal = QHBoxLayout()
         self.vertical = QVBoxLayout()
         
         self.account_details = account_details
         self.Back_btn = QPushButton("Back")
+        self.Back_btn.setFixedWidth(50)
         self.setWindowTitle("My Information")
         self.horizontal.addWidget(self.Back_btn)
         self.horizontal.addStretch(1)

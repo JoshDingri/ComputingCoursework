@@ -12,6 +12,41 @@ class StaffDatabase(QMainWindow):
 
     def __init__(self,account_details):
         super().__init__()
+        self.setStyleSheet("""QMainWindow {
+                                   background-color: #ffffff;
+                                   color: #cccccc;
+                                }
+                                QMenu:item:selected:enabled{
+                                background: rgb(220, 220, 220);
+                                color: black;}
+
+                    QMenu:item:disabled{
+                                color: #96FF70;
+                                color: black;}
+
+                    QMenu:item:selected:disabled:pressed{
+                                background: black;}
+
+                    QMenuBar{
+                                font-family: Segoe UI;
+                                font-size: 10.4pt;
+                                font: bold;
+                                background-color: white;}
+
+                    QMenuBar:item{
+                                font-family: Segoe UI;
+                                font-size: 11pt;
+                                background-color: white;
+                                color: green;}
+                                
+                    QMenuBar:item:enabled:pressed{
+                                background-color: #96FF70;
+                                color: green;}
+
+                    QMenuBar:item:active{
+                                background-color: #96FF70;
+                                color: green;}""")
+
         self.setMaximumSize(1000,500)
         self.setMinimumSize(750,400)
         

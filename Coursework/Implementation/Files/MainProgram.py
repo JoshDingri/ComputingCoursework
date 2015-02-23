@@ -26,6 +26,7 @@ class CurrentLayoutAdmin(QMainWindow):
         
         self.stacked_layout = QStackedWidget() #Holds widgets on a stack
         self.setCentralWidget(self.stacked_layout)
+        self.setWindowTitle("Volac Database")
 
         
         self.account_details = account_details 
@@ -37,6 +38,64 @@ class CurrentLayoutAdmin(QMainWindow):
         self.CheckExpirationDates()
         self.MenuBar() 
         self.ButtonTriggers()
+
+        self.setStyleSheet("""QMainWindow {
+                                   background-color: #ffffff;
+                                   color: #cccccc;
+                                }
+                                QMenu:item:selected:enabled{
+                                background: rgb(220, 220, 220);
+                                color: black;}
+
+                    QMenu:item:disabled{
+                                color: #96FF70;
+                                color: black;}
+
+                    QMenu:item:selected:disabled:pressed{
+                                background: black;}
+
+                    QMenuBar{
+                                font-family: Segoe UI;
+                                font-size: 10.4pt;
+                                font: bold;
+                                background-color: white;}
+
+                    QMenuBar:item{
+                                font-family: Segoe UI;
+                                font-size: 11pt;
+                                background-color: white;
+                                color: green;}
+                                
+                    QMenuBar:item:enabled:pressed{
+                                background-color: #96FF70;
+                                color: green;}
+
+                    QMenuBar:item:active{
+                                background-color: #96FF70;
+                                color: green;}
+                    QPushButton#OpenGraph,QPushButton#CreateAccounts{
+                                padding: 4px;
+                                border: none;
+                                font: 13px;
+                                color: green;
+                                background-color: white;
+                                }
+                             
+                    QPushButton#OpenGraph:hover,QPushButton#CreateAccounts:hover {                                
+                                font: 1em;
+                                color: green;
+                                background-color: #F5F5F5;
+                            }
+                            
+                    QPushButton#OpenGraph:pressed,QPushButton#CreateAccounts:pressed {                                
+                                font: 1em;
+                                border: solid;
+                                border-style: outset;
+                                color: green;
+                                background-color: #BFBFBF;
+                            }""")
+            
+
 
 
         
@@ -54,7 +113,9 @@ class CurrentLayoutAdmin(QMainWindow):
 
     def ToolBar(self):
         self.OpenGraphBtn = QPushButton("Generate Hardware Graph")
+        self.OpenGraphBtn.setObjectName("OpenGraph")
         self.CreateAccounts = QPushButton("Create User Accounts")
+        self.CreateAccounts.setObjectName("CreateAccounts")
         self.toolbar = self.addToolBar("Open")
         self.toolbar.addWidget(self.OpenGraphBtn)
         self.toolbar.addWidget(self.CreateAccounts)
@@ -157,7 +218,7 @@ class CurrentLayoutAdmin(QMainWindow):
 
     def SwitchToOpenDatabase(self):
         self.stacked_layout.setCurrentIndex(1)
-        self.setMaximumSize(1500,500)
+        self.setMaximumSize(1500,800)
         self.setMinimumSize(800,500)
 
     def SwitchToSearch(self):
@@ -167,8 +228,8 @@ class CurrentLayoutAdmin(QMainWindow):
 
     def BackToMenu(self):
         self.stacked_layout.setCurrentIndex(0)
-        self.setMaximumSize(750,400)
         self.setMinimumSize(750,400)
+        self.setMaximumSize(750,400)
         
 
     def OpenDatabaseWidget_Method(self):
