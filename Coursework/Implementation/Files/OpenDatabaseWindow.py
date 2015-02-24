@@ -114,7 +114,7 @@ class OpenDatabase(QWidget):
         self.savechanges = QAction("Save Changes",self)
         self.savechanges.setShortcut("CTRL+S")
         self.cancel = QAction("Cancel",self)
-        self.cancel.setShortcut("CTRL+C")
+        self.cancel.setShortcut("CTRL+X")
         self.EditDB_ToolBar = QToolBar("Complete Changes")
         self.EditDB_ToolBar.addWidget(lspacer)
         self.EditDB_ToolBar.addAction(self.savechanges)
