@@ -39,10 +39,15 @@ class Warning_Dialog(QDialog):
         self.vertical.addLayout(self.horizontal_layout)
         self.vertical.addLayout(self.horizontal_layout2)
         self.vertical.addLayout(self.horizontal_layout3)
+
+        self.NoBtn.clicked.connect(self.Close_Window)
         
 
         
         self.setLayout(self.vertical)
+
+    def Close_Window(self):
+        self.reject()
 
 
 if __name__ == '__main__':

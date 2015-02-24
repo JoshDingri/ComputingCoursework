@@ -15,6 +15,8 @@ class CurrentLayoutManager(QMainWindow):
 
     def __init__(self,department,account_details):
         super().__init__()
+        self.setWindowIcon(QIcon("WindowIcon.png")    )    
+        self.setWindowTitle("Volac Database")
         self.setStyleSheet("""QMainWindow {
                                    background-color: #ffffff;
                                    color: #cccccc;

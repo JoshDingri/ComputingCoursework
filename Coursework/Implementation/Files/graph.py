@@ -70,7 +70,7 @@ class Graph():
                 
 
             
-        figure(figsize=(20,10))
+        figure(figsize=(15,8))
         pos = arange(len(Departments))+1
         barh(pos,(values),align = 'center',color='#b8ff5c')
         yticks(pos,(Departments))

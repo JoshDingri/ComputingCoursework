@@ -444,7 +444,6 @@ class OpenDatabase(QWidget):
             self.DeleteRow = index.row()
         self.WarningDialog = Warning_Dialog()
         self.WarningDialog.YesBtn.clicked.connect(self.Confirm_Deletion)
-        self.WarningDialog.NoBtn.clicked.connect(self.Cancel_Deletion)
         self.WarningDialog.exec()
 
 
@@ -467,8 +466,6 @@ class OpenDatabase(QWidget):
             BlankFieldsWarning.exec_()
         self.ChosenTableMethod()
         
-    def Cancel_Deletion(self):
-        self.WarningDialog()
         
 
 

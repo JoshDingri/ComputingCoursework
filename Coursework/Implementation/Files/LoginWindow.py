@@ -41,8 +41,8 @@ class LoginWindow(QDialog):
                     
         self.SplashScreen()
 
-        self.setWindowTitle("Please Login")
-        self.setWindowIcon(QIcon("key.png"))
+        self.setWindowTitle("Volac")
+        self.setWindowIcon(QIcon("WindowIcon.png"))
         self.setFixedSize(425,225)
         self.MainLayout()
 

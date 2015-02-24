@@ -23,7 +23,8 @@ class CurrentLayoutAdmin(QMainWindow):
         OpenDatabase.Items = [] ##For later use, holds dropdown box values
         self.SearchFirst = False ##Temporary method for choosing which qstackindex comes first
         self.OpenFirst = False
-        
+
+        self.setWindowIcon(QIcon("WindowIcon.png")    )    
         self.stacked_layout = QStackedWidget() #Holds widgets on a stack
         self.setCentralWidget(self.stacked_layout)
         self.setWindowTitle("Volac Database")
@@ -103,8 +104,10 @@ class CurrentLayoutAdmin(QMainWindow):
     def ToolBar(self):
         self.OpenGraphBtn = QPushButton("Generate Hardware Graph")
         self.OpenGraphBtn.setObjectName("OpenGraph")
+        self.OpenGraphBtn.setIcon(QIcon("chart_bar.png"))
         self.CreateAccounts = QPushButton("Create User Accounts")
         self.CreateAccounts.setObjectName("CreateAccounts")
+        self.CreateAccounts.setIcon(QIcon("accounticon.png"))
         self.toolbar = self.addToolBar("Open")
         self.toolbar.addWidget(self.OpenGraphBtn)
         self.toolbar.addWidget(self.CreateAccounts)
