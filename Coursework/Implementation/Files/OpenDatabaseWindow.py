@@ -4,6 +4,7 @@ import sys
 from MenuBarAdmin import *
 import sqlite3
 from MainProgram import *
+from PopupDialog import *
 from ConfirmDialog import *
 
 class OpenDatabase(QWidget):

@@ -134,17 +134,20 @@
     \begin{longtable}{|p{1.5cm}|p{2cm}|p{2.5cm}|p{4cm}|p{2cm}|p{2cm}|p{1cm}|p{1.7cm}|}
         \hline
         \textbf{Test Series} & \textbf{Purpose of Test} & \textbf{Test Description} & \textbf{Test Data} & \textbf{Test Data Type (Normal/ Erroneous/ Boundary)} & \textbf{Expected Result/reason for removal} & \textbf{Actual Result} & \textbf{Evidence}\\ \hline
-\rowcolor{gray}1.01 & Test the manager login button on the select login page to ensure it works correctly  & This takes the user to the appropriate login screen & Click the Manager Login button & Normal & Page removed, all staff use one login screen now. && \\ \hline
+\rowcolor{gray}1.01 & Test the manager login button on the select login page to ensure it works correctly  & This takes the user to the appropriate login screen & Click the Manager Login button & Normal & Page removed, all staff use one login screen now. & & \\ \hline
 \rowcolor{gray}1.02 & Test the staff login button on the select login page to ensure it works corrently & This takes the user to the appropriate login screen & Click the Staff Login button & Normal &  Page removed, all staff use one login screen now. && \\ \hline
 \rowcolor{gray}1.03 & Test the staff admin button on the select login page to ensure it works corrently & This takes the user to the appropriate login screen & Click the Admin Login button & Normal &  Page removed, all staff use one login screen now. && \\ \hline
 \rowcolor{gray}1.04 & Test the log in button on the manager login screen  & This takes the user to the appropriate main menu & Click the Log In button on the manager login screen & Normal &  Page removed, all staff use one login screen now.&& \\ \hline
 \rowcolor{gray}1.05 & Test the log in button on the staff login screen  & This takes the user to the appropriate main menu & Click the Log In button on the staff login screen & Normal &  Page removed, all staff use one login screen now.&& \\ \hline
 \rowcolor{gray}1.05 & Test the log in button on the admin login screen  & This takes the user to the appropriate main menu & Click the Log In button on the admin login screen & Normal &  Page removed, all staff use one login screen now. && \\ \hline
-\rowcolor{green}1.05 & Test the log in button on the login screen  & This takes the user to the appropriate main menu & Click the Log In button on the login screen & Normal &  The appropriate interface should be displayed.&& \\ \hline
-1.06 & Test the forgot password button on the login screens & Takes the user to password recovery & Click the forgot password button & Normal & The password recovery form will be displayed && \\ \hline
+\rowcolor{lightgray}1.02 & Test the log in button using admin details on the login screen  & This takes the user to the appropriate main menu & Click the Log In button on the login screen & Normal &  The appropriate interface should be displayed.&The admin inferace was displayed & Login Screen: \ref{fig:LoginScreen} and Admin Interface:  \ref{fig:AdminInterfaceLogin} on page \pageref{fig:LoginScreen} \\ \hline
+\rowcolor{lightgray}1.03 & Test the log in button using manager details on the login screen  & This takes the user to the appropriate main menu & Click the Log In button on the login screen & Normal &  The appropriate interface should be displayed.& The manager interface was displayed & Manager Interface:  \ref{fig:ManagerInterfaceLogin} on page \pageref{fig:ManagerInterfaceLogin}  \\ \hline
+\rowcolor{lightgray}1.04 & Test the log in button using staff details on the login screen  & This takes the user to the appropriate main menu & Click the Log In button on the login screen & Normal &  The appropriate interface should be displayed.& The staff interface was displayed & Staff Interface:  \ref{fig:StaffInterfaceLogin} on page \pageref{fig:StaffInterfaceLogin}  \\ \hline
+\rowcolor{lightgray}1.05 & Test the cancel button on the fogotten password interface & Closes password recovery & Click the cancel button & Normal & The password recovery will close & Password recovery window closed & \\ \hline
+1.06 & Test the forgot password button on the login screen & Takes the user to password recovery & Click the forgot password button & Normal & The password recovery form will be displayed & The password recovery is displayed& \\ \hline
 1.07 & Test the submit button on the password recovery form & After the user enters form details they will click this to send it to IT staff & Click the submit button & Normal & An email will be sent to the IT staff (or the email specified) && \\ \hline
-1.08 & Test the view department  button on the manager homepage & Will take the user to view their department information & Click the view department button & Normal & The layout will be switched to the staff database showing only people in their department && \\ \hline
-1.09 & Test the view my information button on the manager homepage & Will take the user to view their own information & Click the view own information button& Normal  & The layout will be switched to the staff database showing only their own information && \\ \hline
+1.08 & Test the department information button on the manager homepage & Will take the user to view their department information & Click the view department button & Normal & The layout will be switched to the staff database showing only people in their department && \\ \hline
+1.09 & Test the my information button on the manager homepage & Will take the user to view their own information & Click the view own information button& Normal  & The layout will be switched to the staff database showing only their own information && \\ \hline
 1.10 & Test the cancel button on the change password screen & No changes will be saved & Click the cancel button & Normal & The window will close && \\ \hline
 1.11 & Test the change button on the change password screen & Changes will be saved & Click the change button & Normal & The window will close and changes will be saved&& \\ \hline
 1.12 & Test the cancel button on the report bug screen & Changes will not be saved & Click the cancel button & Normal & The window will close&& \\ \hline
@@ -156,8 +159,9 @@
 \rowcolor{gray}1.18 & Test the close button on the staff information (search staff screen) & The window will close  & Click the close button& Normal  &The user has no close button, instead will click the window 'X' && \\ \hline
 \rowcolor{gray}1.19 & Test the edit database button on the open database screen & To test whether the edit buttons will shown up  & Click the edit database button& Normal  & This design has been replaced. Buttons to Add,Edit,Remove will stay visible && \\ \hline
 \rowcolor{gray}1.20 & Test the edit button on the edit database screen & To test whether the edit buttons will open up a edit screen  & Click a edit button& Normal  & This design has been replaced. User can now simply click a field in the table to overwrite it && \\ \hline
-\rowcolor{green}1.19 & Test the edit button on the edit database screen   & Test that after the button is clicked the table fields can be edited &Click a edit button and enter information & Normal &  The program should allow the input of data.&& \\ \hline
-\rowcolor{green}1.20 & Test the cancel button on the edit database input screen   & Test that after the button is clicked the changes will not be saved &Click the cancel button & Normal &   The information will go back to being ineditable but changes will not have applied&& \\ \hline
+\rowcolor{lightgray}1.18 & Test the open database button on the open database screen   & Test that after the button is clicked a file browser will appear allowing the database to be chosen &Click the open database button and select the correct file & Normal &  The program should load the database into the table&& \\ \hline
+\rowcolor{lightgray}1.19 & Test the edit button on the open database screen  & Test that after the button is clicked the table fields can be edited &Click a edit button and enter information & Normal & The program should allow the input of data.&& \\ \hline
+\rowcolor{lightgray}1.20 & Test the cancel button on the edit database input screen   & Test that after the button is clicked the changes will not be saved &Click the cancel button & Normal &   The information will go back to being ineditable but changes will not have applied&& \\ \hline
 1.21 & Test the save changes button on the edit database input screen & To test whether the save changes button will save the changes made  & Click a save changes button& Normal  & The information will go back to being ineditable but changes will have applied && \\ \hline
 1.22 & Test the add data button on the open database screen & To test whether screen to input data will show up  & Click the add data button& Normal  & The window to add data to the database will show up && \\ \hline
 1.23 & Test the add data button on the data input screen & To test whether data will be added to the database  & Click the add data button& Normal  & The window will close and the data entered will have been added to the database && \\ \hline
@@ -179,15 +183,15 @@
 \rowcolor{gray}1.35 & Test the Database menu buttons (on Admin GUI) & To test whether the buttons will work on the database menu coming off of  "Staff", "Hardware", "Location" and "Department"  & Click each button & Normal  &  This menu has been remove since it is unnecessary && \\ \hline
 
 \rowcolor{gray}1.36 & Test the arrow buttons on the seach staff screen & To test whether the buttons next to each record will open a new window to view more information  & Click each button & Normal  & The arrows have been added to buttons, the user can now click anywhere on the button to open the window && \\ \hline
-\rowcolor{green}1.36 & Test the buttons on the seach staff screen & To test whether the buttons will open a new window to view more information  & Click each button & Normal  & Each button should open more information on the staff member specified&& \\ \hline
+\rowcolor{lightgray}1.36 & Test the buttons on the seach staff screen & To test whether the buttons will open a new window to view more information  & Click each button & Normal  & Each button should open more information on the staff member specified&& \\ \hline
 
 \rowcolor{gray}1.37 & Test the return to database view button on the open database screen & After Edit, Add or Remove is clicked the user may click this button to return to the viewing mode & Click return to database view button & Normal  & This design has been replaced. Buttons to Add,Edit,Remove will stay visible && \\ \hline
 
 1.38 & Test the back button on the admin interfaces & These buttons will take the user back to the home page & Click the return button & Normal  & The layout will change to the admin home page. && \\ \hline
-\rowcolor{green}1.39 & Test the generate graph toolbar button & A hardware graph should be generated in a new window & Click the toolbar button & Normal  & A new window will open with the graph displayed && \\ \hline
-\rowcolor{green}1.40 & Test the create user accounts toolbar button & A new window should appear allowing user account creation & Click the toolbar button & Normal  & A new window will open with account creation && \\ \hline
-\rowcolor{green}1.41 & Test the create accounts button on create user accounts layout & The line edits should fill depending on the entered informationl after the button is pressed & Click the create account button & Normal  & Line edits should be filled with information && \\ \hline
-\rowcolor{green}1.42 & Test the add account button on create user accounts layout & Account information should be added to the database & Click the add account button & Normal  &User account should be working && \\ \hline
+\rowcolor{lightgray}1.39 & Test the generate graph toolbar button & A hardware graph should be generated in a new window & Click the toolbar button & Normal  & A new window will open with the graph displayed && \\ \hline
+\rowcolor{lightgray}1.40 & Test the create user accounts toolbar button & A new window should appear allowing user account creation & Click the toolbar button & Normal  & A new window will open with account creation && \\ \hline
+\rowcolor{lightgray}1.41 & Test the create accounts button on create user accounts layout & The line edits should fill depending on the entered informationl after the button is pressed & Click the create account button & Normal  & Line edits should be filled with information && \\ \hline
+\rowcolor{lightgray}1.42 & Test the add account button on create user accounts layout & Account information should be added to the database & Click the add account button & Normal  &User account should be working && \\ \hline
 
 2.1 & Test the dropdown boxes for department selection & To test whether the drop down boxes will function corrently on the open database and the search staff page. The options must actually open that database  & Click each button on the dropdown box & Normal  & Each button should open the database wanted && \\ \hline
 2.2 & Test the dropdown boxes for data input windows (e.g. location and department) & To test whether the drop down boxes will function corrently when inputting data. The options must actually fill in the boxes once clicked  & Click each button on the dropdown box & Normal  & Each button should fill the box with the selection chosen && \\ \hline
@@ -198,10 +202,8 @@
 2.6 & Verify Email, Forename, Surname is entered in recover password fields & The fields cannot be blank and must have a '@' symbol in the email address. & John, Smith, J.com \par  \bigskip John, Smith, \par J@gmail.com \bigskip \par JJ, D, JJD@hotmail.com \par & Erroneous \par \bigskip Normal \par \bigskip \bigskip Normal &  \par Valid \par \bigskip Valid \par \bigskip \bigskip Valid&&\\ \hline
 2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par\bigskip \bigskip Valid && \\ \hline
 2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par \bigskip \bigskip Valid && \\ \hline
-\rowcolor{green}2.9 & Test to see if warning dialog box will appear when the incorrect file is opened from the open database screen & If the incorrect file is opened a warning dialog should appear to disallow the tables to be shown & Click on the wrong file & Normal &Warning dialog box should appear && \\ \hline
-\rowcolor{green}2.10& Test to see if warning dialog box will appear when a primary key referenced somewhere else is being deleted & If the primary key cannot be deleted a warning dialog should appear to disallow the user to delete it & Delete a primary key referenced in another table & Normal &Warning dialog box should appear && \\ \hline
-\rowcolor{green}2.11& Test to see if warning dialog box will appear if fields are blank on report bug layout & If there are any blank fields the program will show an error without submitting data & Try and submit without filling out all fields & Normal &Warning dialog box should appear && \\ \hline
-\rowcolor{green}2.12& Test to see if warning dialog box will appear if fields are blank on report errors layout & If there are any blank fields the program will show an error without submitting data & Try and submit without filling out all fields & Normal &Warning dialog box should appear && \\ \hline
+\rowcolor{lightgray}2.9 & Test to see if warning dialog box will appear when the incorrect file is opened from the open database screen & If the incorrect file is opened a warning dialog should appear to disallow the tables to be shown & Click on the wrong file & Normal &Warning dialog box should appear && \\ \hline
+\rowcolor{lightgray}2.10& Test to see if warning dialog box will appear when a primary key referenced somewhere else is being deleted & If the primary key cannot be deleted a warning dialog should appear to disallow the user to delete it & Delete a primary key referenced in another table & Normal &Warning dialog box should appear && \\ \hline
 
 
 3.01 & Verify the Staff details are entered into the Staff database using add data UI and conforms to validation rules& All information should be added to the required fields  & Staff information & Normal& Data is added to Staff table && \\ \hline
@@ -222,7 +224,7 @@
 3.16 & Verify that user can update HardwareModel details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 4S & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
 3.17 & Verify that user can update Staff's Hardware details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 13/12/2015 & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
 \rowcolor{gray}3.18 & Verify that user can update DepartmentLocation details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 1 & Erroneous \par \bigskip Normal & The department location table has been removed since it was unnecessary&& \\ \hline
-\rowcolor{green}3.18 & Check that emails sent from the program appear in IT staff inbox (or test inbox) & When a user submits data using email  it should appear in the specified email inbox & Submit emails from Report Bug, Report Incorrect Information, forgotten user accounts or allow the program to send an automated warranty email & Normal &The correct subject and body should appear in the email && \\ \hline
+\rowcolor{lightgray}3.18 & Check that emails sent from the program appear in IT staff inbox (or test inbox) & When a user submits data using email  it should appear in the specified email inbox & Submit emails from Report Bug, Report Incorrect Information, forgotten user accounts or allow the program to send an automated warranty email & Normal &The correct subject and body should appear in the email && \\ \hline
 
 
 4 & Verify each table can be read by clicking the dropdown box and selecting the database wanted & Each table should be able to be clicked and be viewed in a table format&Data from the following tables: \par Staff \par Hardware \par Location \par Department \par DeviceType \par HardwareMake \par HardwareModel \par StaffHardware \par DepartmentLocation & Normal& The table will be shown and will match information in the database && \\ \hline
@@ -239,19 +241,19 @@
 7.4 & Login screen should be a fixed size & The user should not be able to resize the login window & Try to resize the window & Normal & The window should not allow itself to be resized && \\ \hline
 7.5 & Clicking any blank space on an open window should not affect the program & Clicking on any area of a window with no functionality should not give any errors & Click anywhere on each window & Normal & Nothing should happen && \\ \hline
 7.6 & User should not be able to click away from a dialog box & The user should not be able to click away from the Add Data dialog box without pressing the cross or the cancel/save changes button & Try to click off the dialog box & Normal & Window should stay raised and centralised && \\ \hline
-\rowcolor{green}7.7 & Allow CTRL-C to be pressed on all  interfaces to show change password window & To test if the CTRL-C will work as an alternative to pressing the menu button & press CTRL-C  while on each window of the interfaces & Normal & The change password window should show up && \\ \hline
-\rowcolor{green}7.8 & Allow CTRL-W to be pressed on all interfaces to close program & To test if the CTRL-W will work as an alternative to pressing the menu button & press CTRL-W while on each window of the interfaces & Normal & The program should close && \\ \hline
-\rowcolor{green}7.9 & Allow CTRL-S to be pressed on the open database layout when information has been changed to save changes& To test if the CTRL-S will work as an alternative to pressing the push button & press CTRL-S when information has been changed & Normal & The information will go back to being ineditable but changes will have applied  && \\ \hline
-\rowcolor{green}7.10 & Allow CTRL-X to be pressed on the open database layout when information has been changed to cancel changes & To test if the CTRL-X will work as an alternative to pressing the push button & press CTRL-X when information has been changed & Normal & The information will go back to being ineditable and changes will not have applied  && \\ \hline
-\rowcolor{green}7.11& Allow F1 to be pressed on the manager interface to switch to Department Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The department information layout will be shown  && \\ \hline
-\rowcolor{green}7.12 & Allow F2 to be pressed on the manager interface to switch to My Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The My Infomation layout will be shown  && \\ \hline
+\rowcolor{lightgray}7.7 & Allow CTRL-C to be pressed on all  interfaces to show change password window & To test if the CTRL-C will work as an alternative to pressing the menu button & press CTRL-C  while on each window of the interfaces & Normal & The change password window should show up && \\ \hline
+\rowcolor{lightgray}7.8 & Allow CTRL-W to be pressed on all interfaces to close program & To test if the CTRL-W will work as an alternative to pressing the menu button & press CTRL-W while on each window of the interfaces & Normal & The program should close && \\ \hline
+\rowcolor{lightgray}7.9 & Allow CTRL-S to be pressed on the open database layout when information has been changed to save changes& To test if the CTRL-S will work as an alternative to pressing the push button & press CTRL-S when information has been changed & Normal & The information will go back to being ineditable but changes will have applied  && \\ \hline
+\rowcolor{lightgray}7.10 & Allow CTRL-X to be pressed on the open database layout when information has been changed to cancel changes & To test if the CTRL-X will work as an alternative to pressing the push button & press CTRL-X when information has been changed & Normal & The information will go back to being ineditable and changes will not have applied  && \\ \hline
+\rowcolor{lightgray}7.11& Allow F1 to be pressed on the manager interface to switch to Department Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The department information layout will be shown  && \\ \hline
+\rowcolor{lightgray}7.12 & Allow F2 to be pressed on the manager interface to switch to My Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The My Infomation layout will be shown  && \\ \hline
 
 
 
 8.1 & Verify that search function works correctly & Enter text into any search function on the program should return specified information back & -Enter some text into the search bar- & Normal & Returns results for the specified search && \\ \hline
 8.2 & Verify new password overwrites old password when changed & The old password should not work if a new password is set & Try old password on login & Normal & Error && \\ \hline
 8.3 & Verify that Managers and other Staff cannot change any data in the table & No unauthorised staff should be able to edit anything in the table & Try to change data in tables using Manager and Staff logins & Normal & Error && \\ \hline
-\rowcolor{green}8.4 & Verify that an automatic email will be sent if a hardware device has 90 left before warranty ends &If the program is ran on the 90 day mark an automated email will be sent to IT staff &Make a hardware item have a remaining warranty of 90 days &Normal&Email will appear in IT staff email (or test email) && \\ \hline
+\rowcolor{lightgray}8.4 & Verify that an automatic email will be sent if a hardware device has 90 left before warranty ends &If the program is ran on the 90 day mark an automated email will be sent to IT staff &Make a hardware item have a remaining warranty of 90 days &Normal&Email will appear in IT staff email (or test email) && \\ \hline
 
 
 
@@ -262,15 +264,47 @@
 
 \subsection{Original Test Data}
 
+The test data has been shown in the original table above.
+
 \subsection{Changes to Test Data}
+
+The test data has been shown in the changed table above.
 
 \section{Annotated Samples}
 
 \subsection{Actual Results}
 
-\subsection{Evidence}
+The actual results have been shown in the changed table above.
 
 \end{landscape}
+
+\subsection{Evidence}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/LoginScreen.png}
+    \caption{The log in screen used for every staff member} \label{fig:LoginScreen}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/AdminInterface.png}
+    \caption{Admin Interface Login} \label{fig:AdminInterfaceLogin}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/ManagerLogin.png}
+    \caption{Manager Interface Login} \label{fig:ManagerInterfaceLogin}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/StaffLogin.png}
+    \caption{Staff Interface Login} \label{fig:StaffInterfaceLogin}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/ForgotPassword.png}
+    \caption{Forgotten Password Interface} \label{fig:ForgottenPassword}
+\end{figure}
+
 
 \section{Evaluation}
 

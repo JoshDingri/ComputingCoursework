@@ -123,7 +123,7 @@ class CurrentLayoutAdmin(QMainWindow):
         self.currentdate = time.strftime("%d-%m-%y")
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            sql = ("SELECT PurchaseDate FROM StaffHardware")
+            sql = ("SELECT WarrantyExpirationDate FROM Hardware")
             cursor.execute(sql)
             db.commit()
         purchasedates = [item[0] for item in cursor.fetchall()]
@@ -132,12 +132,15 @@ class CurrentLayoutAdmin(QMainWindow):
         b = "(', )" 
             
         for count in range (len(purchasedates)):
+            if purchasedates[count] == '-':
+                continue
             for i in range(0,len(b)):
                 purchasedates[count] = str(purchasedates[count]).replace(b[i],"")
                 self.expiringitem = purchasedates[count]
 
             currentdate = datetime.datetime.strptime(self.currentdate,"%d-%m-%y")
             self.purchasedate = datetime.datetime.strptime(purchasedates[count],"%d-%m-%y")
+            
 
             
             daysleft = self.purchasedate - currentdate
@@ -151,7 +154,7 @@ class CurrentLayoutAdmin(QMainWindow):
         self.purchasedate =  (self.purchasedate)
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT HardwareID FROM StaffHardware WHERE PurchaseDate=?",(self.purchasedate,))
+            cursor.execute("SELECT HardwareID FROM Hardware WHERE WarrantyExpirationDate=?",(self.purchasedate,))
             HardwareIDs = list(cursor.fetchone())
             db.commit()
 

@@ -110,7 +110,7 @@ class ReportBug(QDialog):
         JobTitle_LE = str(self.JobTitle_LE.displayText())
         Data_LE = str(self.Data_LE.displayText())
 
-        if Email_UserLE == '' or Forename == '' or Surname_LE == '' or JobTitle_LE == '' or Data_LE == '' :
+        if Email_UserLE == '' or Forename == '' or Surname_LE == '' or JobTitle_LE == '' or Data_LE == '' or Bug_Details_LE == '':
             BlankFieldsWarning.exec_()
         else:
             try:
