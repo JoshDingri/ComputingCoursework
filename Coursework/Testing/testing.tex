@@ -21,6 +21,25 @@
     \end{tabular}
 \end{center}
 
+\subsection{Changes to Outline Plan}
+
+There were no changes made to my outline plan.
+
+\begin{center}
+    \begin{tabular}{|p{2cm}|p{5cm}|p{5cm}|p{4cm}|}
+        \hline
+        \textbf{Test Series} & \textbf{Purpose of Test Series} & \textbf{Testing Strategy} & \textbf{Strategy Rationale}\\ \hline
+1 & Test flow of control between the user interfaces & Top-down testing & A outline of the GUI will be developed and once working more modules will be added \\ \hline
+       2 & To test validation of input data is performed correctly & Bottom-up testing & Components will be tested as they become available \\ \hline
+3 & To test if the data is stored in its correct location & Black box testing & An output that the program produces will be examined for correctness and then the next output can be examined.\\ \hline
+4 & To check information can be read from the database and read through the system & Bottom-up testing &  Components will be tested as they become available\\ \hline
+5 & Check that the system cannot have unauthorised access & Unit testing & To test individual software components \\ \hline
+6 & To check the finished system will fulfil the specifications &  Acceptance Testing & Performed by the client to check the system meets their requirements\\ \hline
+7 & To test that the UI works effectively and certain shortcuts can be pressed & Black Box Testing & An output that the program produces will be examined for correctness and then the next output can be examined.\\ \hline
+8 & Test algorithms to make sure that the output is correct & White Box Testing & Tests will be derived from knowledge of the program code \\ \hline
+
+    \end{tabular}
+\end{center}
 
 \subsection{Original Detailed Plan}
 
@@ -130,6 +149,8 @@
 
 \subsection{Changes to Detailed Plan}
 
+Changes made are shown in light grey. The tests that have been removed are shown in darker grey.
+
 \begin{center}
     \begin{longtable}{|p{1.5cm}|p{2cm}|p{2.5cm}|p{2cm}|p{2cm}|p{2cm}|p{3cm}|p{1.7cm}|}
         \hline
@@ -143,7 +164,7 @@
 \rowcolor{lightgray}1.02 & Test the log in button using admin details on the login screen  & This takes the user to the appropriate main menu & Click the Log In button on the login screen & Normal &  The appropriate interface should be displayed.&The admin inferace was displayed & Login Screen: \ref{fig:LoginScreen} and Admin Interface:  \ref{fig:AdminInterfaceLogin} on page \pageref{fig:LoginScreen} \\ \hline
 \rowcolor{lightgray}1.03 & Test the log in button using manager details on the login screen  & This takes the user to the appropriate main menu & Click the Log In button on the login screen & Normal &  The appropriate interface should be displayed.& The manager interface was displayed & Manager Interface:  \ref{fig:ManagerInterfaceLogin}  \\ \hline
 \rowcolor{lightgray}1.04 & Test the log in button using staff details on the login screen  & This takes the user to the appropriate main menu & Click the Log In button on the login screen & Normal &  The appropriate interface should be displayed.& The staff interface was displayed & Staff Interface:  \ref{fig:StaffInterfaceLogin}  \\ \hline
-\rowcolor{lightgray}1.05 & Test the cancel button on the fogotten password interface & Closes password recovery & Click the cancel button & Normal & The password recovery will close & Password recovery window closed as expected & \ref{ FogottenPasswordClose}  \\ \hline
+\rowcolor{lightgray}1.05 & Test the cancel button on the fogotten password interface & Closes password recovery & Click the cancel button & Normal & The password recovery will close & Password recovery window closed as expected &  \\ \hline
 1.06 & Test the forgot password button on the login screen & Takes the user to password recovery & Click the forgot password button & Normal & The password recovery form will be displayed & The password recovery is displayed as expected& \ref{fig:ForgotPassword}  \\ \hline
 1.07 & Test the submit button on the password recovery form & After the user enters form details they will click this to send it to IT staff & Click the submit button & Normal & An email will be sent to the IT staff (or the email specified) & The data was added to the database as expected &\ref{fig:SubmitPassword} \\ \hline
 1.08 & Test the department information button on the manager homepage & Will take the user to view their department information & Click the view department button & Normal & The layout will be switched to the staff database showing only people in their department & The interface was changed as expected&  \ref {fig:DepartmentInformation}   \\ \hline
@@ -162,14 +183,14 @@
 \rowcolor{gray}1.20 & Test the edit button on the edit database screen & To test whether the edit buttons will open up a edit screen  & Click a edit button& Normal  & This design has been replaced. User can now simply click a field in the table to overwrite it && \\ \hline
 \rowcolor{lightgray}1.18 & Test the open database button on the open database screen   & Test that after the button is clicked a file browser will appear allowing the database to be chosen &Click the open database button and select the correct file & Normal &  The program should load the database into the table& Database opened as expected& \ref {fig:OpenDatabaseFileBefore} \\ \hline
 \rowcolor{lightgray}1.19 & Test the edit button on the open database screen  & Test that after the button is clicked the table fields can be edited &Click a edit button and enter information & Normal & The program should allow the input of data.& Data can be edited as expected&  \ref {fig:EditDataBtn}\\ \hline
-\rowcolor{lightgray}1.20 & Test the cancel button on the edit database input screen   & Test that after the button is clicked the changes will not be saved &Click the cancel button & Normal &   The information will go back to being ineditable but changes will not have applied& Changes did not save and went back to being ineditable & \ref {fig:EditDataBtn} \\ \hline
+\rowcolor{lightgray}1.20 & Test the cancel button on the edit database input screen   & Test that after the button is clicked the changes will not be saved &Click the cancel button & Normal &   The information will go back to being ineditable but changes will not have applied& Changes did not save and went back to being ineditable & \ref {fig:CancelBtn} \\ \hline
 1.21 & Test the save changes button on the edit database input screen & To test whether the save changes button will save the changes made  & Click a save changes button& Normal  & The information will go back to being ineditable but changes will have applied & Changes applied as expected & \ref {fig:SaveChanges} \\ \hline
 1.22 & Test the add data button on the open database screen & To test whether screen to input data will show up  & Click the add data button& Normal  & The window to add data to the database will show up & Add data window appeared as expected&  \ref {fig:AddDataWindow} \\ \hline
 1.23 & Test the add data button on the data input screen & To test whether data will be added to the database  & Click the add data button& Normal  & The window will close and the data entered will have been added to the database & Data added to database and table as expected&  \ref {fig:AddDataDataExample} \\ \hline
 1.24 & Test the remove data button on the open database screen & To test whether delete buttons will show up next to the records in the database  & Click the remove data button& Normal  & The delete buttons will show up next to each record & Delete buttons showed as expected &\ref {fig:RemoveDataButtons} \\ \hline
-1.25 & Test the delete buttons on the delete data screen & To test whether delete buttons will display a message  & Click a delete data button & Normal  & A warning sign should show up to confirm the user would like to remove the selected data & Data deletion warning message showed as expected  &\ref {fig:NoButton} \\ \hline
-1.26 & Test the no button on the delete data warning window & To test whether the no button will keep the data from being deleted  & Click the no data button & Normal  & The warning window will close and return to the previous screen. & Window closed and no data was removed& \\ \hline
-1.27 & Test the yes button on the delete data warning window & To test whether the yes button will delete the data selected  & Click the yes data button & Normal  & The warning window will close and return to the previous screen with the specified data deleted . &Window closed and data was removed&\ref {fig:RemovedData} \\ \hline
+1.25 & Test the delete buttons on the delete data screen & To test whether delete buttons will display a message  & Click a delete data button & Normal  & A warning sign should show up to confirm the user would like to remove the selected data & Data deletion warning message showed as expected  & \\ \hline
+1.26 & Test the no button on the delete data warning window & To test whether the no button will keep the data from being deleted  & Click the no data button & Normal  & The warning window will close and return to the previous screen. & Window closed and no data was removed&\ref {fig:NoButton} \\ \hline
+1.27 & Test the yes button on the delete data warning window & To test whether the yes button will delete the data selected  & Click the yes data button & Normal  & The warning window will close and return to the previous screen with the specified data deleted . &Window closed and data was removed&\ref {fig:YesBtn} \\ \hline
 
 1.28 & Test the Help menu (on Staff and Manager GUI) & To test whether a dropdown list of buttons will show up  & Click the help menu & Normal  & The menu should function correctly and display the "report bug" and "report incorrect information" buttons . & Help menu works as expected &\ref {fig:HelpMenu} \\ \hline
 1.29 & Test the Help menu buttons (on Staff and Manager GUI) & To test whether the buttons will work on the help menu  & Click the report bug and report incorrect information buttons & Normal  & The "report bug" should take the user to the report bug screen and "report incorrect information" should take the user to the report incorrect information screen . &Buttons worked as expected& \\ \hline
@@ -189,8 +210,8 @@
 \rowcolor{gray}1.37 & Test the return to database view button on the open database screen & After Edit, Add or Remove is clicked the user may click this button to return to the viewing mode & Click return to database view button & Normal  & This design has been replaced. Buttons to Add,Edit,Remove will stay visible && \\ \hline
 
 1.38 & Test the back button on the admin interfaces & These buttons will take the user back to the home page & Click the return button & Normal  & The layout will change to the admin home page. & Back buttons work as expected& \\ \hline
-\rowcolor{lightgray}1.39 & Test the generate graph toolbar button & A hardware graph should be generated in a new window & Click the toolbar button & Normal  & A new window will open with the graph displayed & Button generates graph as expected& \ref {fig:GraphButton} \\ \hline
-\rowcolor{lightgray}1.40 & Test the create user accounts toolbar button & A new window should appear allowing user account creation & Click the toolbar button & Normal  & A new window will open with account creation &Button opens create accounts window as expected &\ref {fig:AddAccountsButton} \\ \hline
+\rowcolor{lightgray}1.39 & Test the generate graph toolbar button & A hardware graph should be generated in a new window & Click the toolbar button & Normal  & A new window will open with the graph displayed & Button generates graph as expected& \ref {fig:GraphBtn} \\ \hline
+\rowcolor{lightgray}1.40 & Test the create user accounts toolbar button & A new window should appear allowing user account creation & Click the toolbar button & Normal  & A new window will open with account creation &Button opens create accounts window as expected &\ref {fig:AddAccountsBtn} \\ \hline
 \rowcolor{lightgray}1.41 & Test the create accounts button on create user accounts layout & The line edits should fill depending on the entered informationl after the button is pressed & Click the create account button & Normal  & Line edits should be filled with information & Button works as expected & \ref {fig:AddAccountDetails}\\ \hline
 \rowcolor{lightgray}1.42 & Test the add account button on create user accounts layout & Account information should be added to the database & Click the add account button & Normal  &User account should be working &Data added to database as expected& \\ \hline
 
@@ -204,7 +225,7 @@
 2.7 & Verify Email, Forename, Surname, Job Title, Date and Details of bug are entered in the report bug page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from Details of bug \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par\bigskip \bigskip Valid &Errors were given where required. Everything worked as expected.&\ref {fig:ReportBugValidation} \\ \hline
 2.8 & Verify Email, Forename, Surname and description are entered in the report errors page & All fields must have some data in them before the submit  button is clicked & All fields filled out apart from forename \par \bigskip All details filled out & Erroneous \par \bigskip \bigskip Normal & Error \par \bigskip \bigskip Valid &Errors were given where required. Everything worked as expected.&\ref {fig:ReportErrorValidation}  \\ \hline
 \rowcolor{lightgray}2.9 & Test to see if warning dialog box will appear when the incorrect file is opened from the open database screen & If the incorrect file is opened a warning dialog should appear to disallow the tables to be shown & Click on the wrong file & Normal &Warning dialog box should appear &Dailog box appeared as expected& \ref {fig:IncorrectFile}  \\ \hline
-\rowcolor{lightgray}2.10& Test to see if warning dialog box will appear when a primary key referenced somewhere else is being deleted & If the primary key cannot be deleted a warning dialog should appear to disallow the user to delete it & Delete a primary key referenced in another table & Normal &Warning dialog box should appear &Dailog box appeared as expected&\ref {fig:DailogNoClickAway} \\ \hline
+\rowcolor{lightgray}2.10& Test to see if warning dialog box will appear when a primary key referenced somewhere else is being deleted & If the primary key cannot be deleted a warning dialog should appear to disallow the user to delete it & Delete a primary key referenced in another table & Normal &Warning dialog box should appear &Dailog box appeared as expected& \ref{fig:DialogNoClickAway} \\ \hline
 
 
 3.01 & Verify the Staff details are entered into the Staff database using add data UI and conforms to validation rules& All information should be added to the required fields  & Staff information & Normal& Data is added to Staff table &Works as expected& \\ \hline
@@ -216,7 +237,7 @@
 3.07 & Verify the HardwareModel details are entered into the HardwareModel database using add data UI and conforms to validation rules & All information should be added to the required fields  &HardwareModel information & Normal& Data is added to HardwareModel table &Works as expected& \\ \hline
 3.08 & Verify the Staff's Hardware details with purchase date are entered into the StaffHardware database using add data UI and conforms to validation rules & All information should be added to the required fields  &StaffHardware information & Normal& Data is added to StaffHardware table &Works as expected& \\ \hline
 \rowcolor{gray}3.09 & Verify the DepartmentLocation details with purchase date are entered into the DepartmentLocation database using add data UI and conforms to validation rules & All information should be added to the required fields  &DepartmentLocation information & Normal&The department location table has been removed since it was unnecessary && \\ \hline
-3.10 & Verify that user can update Staff details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip John & Erroneous \par \bigskip Normal & Data should appear in the database && \\ \hline
+3.10 & Verify that user can update Staff details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip John & Erroneous \par \bigskip Normal & Data should appear in the database &User can update information as expected& \\ \hline
 3.11 & Verify that user can update Hardware details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip £100 & Erroneous \par \bigskip Normal & Data should appear in the database &User can update information as expected& \\ \hline
 3.12 & Verify that user can update Location details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip Orwell & Erroneous \par \bigskip Normal & Data should appear in the database &User can update information as expected& \\ \hline
 3.13 & Verify that user can update Department details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip Financing & Erroneous \par \bigskip Normal & Data should appear in the database &User can update information as expected& \\ \hline
@@ -225,7 +246,7 @@
 3.16 & Verify that user can update HardwareModel details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 4S & Erroneous \par \bigskip Normal & Data should appear in the database &User can update information as expected& \\ \hline
 3.17 & Verify that user can update Staff's Hardware details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 13/12/2015 & Erroneous \par \bigskip Normal & Data should appear in the database &User can update information as expected& \\ \hline
 \rowcolor{gray}3.18 & Verify that user can update DepartmentLocation details in the database using UI & When the Update Database button is clicked, the user should be able to edit cells in the current table. This should change the database file if the save changes button is clicked. & Blank \par \bigskip 1 & Erroneous \par \bigskip Normal & The department location table has been removed since it was unnecessary&& \\ \hline
-\rowcolor{lightgray}3.18 & Check that emails sent from the program appear in IT staff inbox (or test inbox) & When a user submits data using email  it should appear in the specified email inbox & Submit emails from Report Bug, Report Incorrect Information, forgotten user accounts or allow the program to send an automated warranty email & Normal &The correct subject and body should appear in the email &All emails working as expected&\ref {fig:EmailHardwareExpired} \\ \hline
+\rowcolor{lightgray}3.18 & Check that emails sent from the program appear in IT staff inbox (or test inbox) & When a user submits data using email  it should appear in the specified email inbox & Submit emails from Report Bug, Report Incorrect Information, forgotten user accounts or allow the program to send an automated warranty email & Normal &The correct subject and body should appear in the email &All emails working as expected&\ref {fig:EmailExpiredHardware} \\ \hline
 
 
 4 & Verify each table can be read by clicking the dropdown box and selecting the database wanted & Each table should be able to be clicked and be viewed in a table format&Data from the following tables: \par Staff \par Hardware \par Location \par Department \par DeviceType \par HardwareMake \par HardwareModel \par StaffHardware \par DepartmentLocation & Normal& The table will be shown and will match information in the database &Works as expected& \ref {fig:ComboBoxHardware}\\ \hline
@@ -246,15 +267,15 @@
 \rowcolor{lightgray}7.8 & Allow CTRL-W to be pressed on all interfaces to close program & To test if the CTRL-W will work as an alternative to pressing the menu button & press CTRL-W while on each window of the interfaces & Normal & The program should close &Shortcut works as expected& \\ \hline
 \rowcolor{lightgray}7.9 & Allow CTRL-S to be pressed on the open database layout when information has been changed to save changes& To test if the CTRL-S will work as an alternative to pressing the push button & press CTRL-S when information has been changed & Normal & The information will go back to being ineditable but changes will have applied  &Shortcut works as expected& \\ \hline
 \rowcolor{lightgray}7.10 & Allow CTRL-X to be pressed on the open database layout when information has been changed to cancel changes & To test if the CTRL-X will work as an alternative to pressing the push button & press CTRL-X when information has been changed & Normal & The information will go back to being ineditable and changes will not have applied  &Shortcut works as expected& \\ \hline
-\rowcolor{lightgray}7.11& Allow F1 to be pressed on the manager interface to switch to Department Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The department information layout will be shown  &Shortcut works as expected& \\ \hline
-\rowcolor{lightgray}7.12 & Allow F2 to be pressed on the manager interface to switch to My Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The My Infomation layout will be shown  &Shortcut works as expected& \\ \hline
+\rowcolor{lightgray}7.11& Allow F1 to be pressed on the manager interface to switch to Department Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The department information layout will be shown  &Shortcut works as expected& \ref {fig:DepartmentInformationButton}\\ \hline
+\rowcolor{lightgray}7.12 & Allow F2 to be pressed on the manager interface to switch to My Information  & To test if the F1 will work as an alternative to pressing the push button & press F1 on any layout of manager interface & Normal & The My Infomation layout will be shown  &Shortcut works as expected& \ref {fig:DepartmentInformationButton} \\ \hline
 
 
 
 8.1 & Verify that search function works correctly & Enter text into any search function on the program should return specified information back & -Enter some text into the search bar- & Normal & Returns results for the specified search &Works as expected&\ref {fig:BeforeSearch} \\ \hline
-8.2 & Verify new password overwrites old password when changed & The old password should not work if a new password is set & Try old password on login & Normal & Error & Works as expected&\ref {fig:ChangedPassword} \\ \hline
+8.2 & Verify new password overwrites old password when changed & The old password should not work if a new password is set & Try old password on login & Normal & Error & Works as expected. But it upon testing it seems that to change the password again the program must be logged out and logged in again.&\ref {fig:ChangedPassword} \\ \hline
 8.3 & Verify that Managers and other Staff cannot change any data in the table & No unauthorised staff should be able to edit anything in the table & Try to change data in tables using Manager and Staff logins & Normal & Error &Works as expected&\ref {fig:ManagerNoChange} \\ \hline
-\rowcolor{lightgray}8.4 & Verify that an automatic email will be sent if a hardware device has 90 left before warranty ends &If the program is ran on the 90 day mark an automated email will be sent to IT staff &Make a hardware item have a remaining warranty of 90 days &Normal&Email will appear in IT staff email (or test email) & Works but not in the best way. In order to send the email the program will need to be restarted every morning on the server (where it will be ideally stored). If the program is left running it will not automatically update the dates &\ref {fig:EmailExpiredHardware} \\ \hline
+\rowcolor{lightgray}8.4 & Verify that an automatic email will be sent if a hardware device has 90 left before warranty ends &If the program is ran on the 90 day mark an automated email will be sent to IT staff &Make a hardware item have a remaining warranty of 90 days &Normal&Email will appear in IT staff email (or test email) & Works but not in the best way. In order to send the email the program will need to be restarted every morning on the server (where it will be ideally stored). If the program is left running it will not automatically update the dates &\ref {fig:CurrentDate} \\ \hline
 
 
 
@@ -281,7 +302,9 @@ The actual results have been shown in the changed table above.
 
 \subsection{Evidence}
 
-All staff will be presented with this Login Screen:
+\textbf{Some evidence needs multiple screenshots therefore the captions that say reference another image are part of the same evidence}
+\
+
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/LoginScreen.png}
     \label{fig:LoginScreen}
@@ -329,12 +352,12 @@ All staff will be presented with this Login Screen:
 
 \begin{figure}[H]
     \includegraphics[width=100mm,scale=1]{./Testing/Images/ChangePasswordWindow.png}
-    \caption{This is before the password is changed} \label{fig:ChangePasswordWindow}
+    \caption{This is before the password is changed - After: \ref{fig:PassChange}} \label{fig:ChangePasswordWindow}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=100mm,scale=1]{./Testing/Images/ChangedPassword.png}
-    \caption{This is after the password has been changed} \label{fig:ChangedPassword}
+    \includegraphics[width=100mm,scale=1]{./Testing/Images/PassChange1.png}
+    \caption{This is after the password has been changed} \label{fig:PassChange}
 \end{figure}
 
 \begin{figure}[H]
@@ -344,7 +367,7 @@ All staff will be presented with this Login Screen:
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AdminInterface.png}
-    \caption{Before the open database button is pressed} \label{fig:OpenDatabaseInterfaceBF}
+    \caption{Before the open database button is pressed - After: \ref{fig:OpenDatabaseInterface}} \label{fig:OpenDatabaseInterfaceBF}
 \end{figure}
 
 
@@ -355,220 +378,246 @@ All staff will be presented with this Login Screen:
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AdminInterface.png}
-    \caption{Before the search staff button is pressed} \label{fig:SearchStaffInterfaceBF}
+    \caption{Before the search staff button is pressed - After:\ref{fig:SearchStaffInterface}} \label{fig:SearchStaffInterfaceBF}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/SearchStaffInterface.png}
-    \caption{Forgotten Password Interface} \label{fig:SearchStaffInterface}
+    \caption{After the search staff button is pressed} \label{fig:SearchStaffInterface}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/OpenDatabaseFileBefore.png}
-    \caption{Forgotten Password Interface} \label{fig:OpenDatabaseFileBefore}
+    \caption{The user will click this button in order to open the database file. Next Image: \ref{fig:OpenDatabaseFileBrowser} } \label{fig:OpenDatabaseFileBefore}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/OpenDatabaseFileBrowser.png}
-    \caption{Forgotten Password Interface} \label{fig:OpenDatabaseFileBrowser}
+    \caption{The user should select the highlighted file above. Then click the open button. Next Image: \ref{fig:OpenDatabaseAfterBrowser}} \label{fig:OpenDatabaseFileBrowser}
 \end{figure}
 
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/OpenDatabaseAfterBrowser.png}
-    \caption{Forgotten Password Interface} \label{fig:OpenDatabaseAfterBrowser}
+    \caption{The database will open and the user can select a table using the combobox} \label{fig:OpenDatabaseAfterBrowser}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/EditDataBtn.png}
-    \caption{Forgotten Password Interface} \label{fig:EditDataBtn}
+    \caption{The above screenshot shows how the data can be edited if the user clicks the Edit Database button.} \label{fig:EditDataBtn}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/OpenDatabaseAfterBrowser.png}
+    \caption{If the cancel button is pressed the data will return to normal.} \label{fig:CancelBtn}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/SaveChanges.png}
-    \caption{Forgotten Password Interface} \label{fig:SaveChanges}
+    \caption{The data is saved into the table and database if the save changes button is clicked.} \label{fig:SaveChanges}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AddDataWindow.png}
-    \caption{Forgotten Password Interface} \label{fig:AddDataWindow}
+    \caption{The window above will open if the user clicks add data.} \label{fig:AddDataWindow}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AddDataDataExample.png}
-    \caption{Forgotten Password Interface} \label{fig:AddDataDataExample}
+    \caption{The user will fill out all the necessary data shown above and then will click the add data button. Next Image: \ref{fig:AddedData}} \label{fig:AddDataDataExample}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AddedData.png}
-    \caption{Forgotten Password Interface} \label{fig:AddedData}
+    \caption{The data is added to the table and database} \label{fig:AddedData}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/RemoveDataButtons.png}
-    \caption{Forgotten Password Interface} \label{fig:RemoveDataButtons}
+    \caption{When the remove data button is clicked the delete buttons will appear to allow the user to remove records. Next Image: \ref{fig:NoButton}} \label{fig:RemoveDataButtons}
 \end{figure}
 
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/NoButton.png}
-    \caption{Forgotten Password Interface} \label{fig:NoButton}
+    \caption{If the no button is clicked on the warning window the data will be kept and the window will close} \label{fig:NoButton}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/RemoveDataButtons.png}
+    \caption{Data is kept}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/NoButton.png}
+    \caption{If the yes button is clicked on the warning window the data will be removed and the window will close. Next Image: \ref{fig:RemovedData}} \label{fig:YesBtn}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/RemovedData.png}
-    \caption{Forgotten Password Interface} \label{fig:RemovedData}
+    \caption{Data is removed} \label{fig:RemovedData}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/HelpMenu.png}
-    \caption{Forgotten Password Interface} \label{fig:HelpMenu}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{./Testing/Images/ViewMenu.png}
-    \caption{Forgotten Password Interface} \label{fig:ViewMenu}
+    \caption{Screenshot showing that the help menu works as expected} \label{fig:HelpMenu}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AccountMenu.png}
-    \caption{Forgotten Password Interface} \label{fig:AccountMenu}
+    \caption{Screenshot showing that the account menu works as expected} \label{fig:AccountMenu}
 \end{figure}
 
 \begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/ViewMenu.png}
+    \caption{Screenshot showing that the view menu works as expected} \label{fig:ViewMenu}
+\end{figure}
+
+
+\begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/SearchStaffButtons.png}
-    \caption{Forgotten Password Interface} \label{fig:SearchStaffButtons}
+    \caption{If a button is clicked the window showing more information will show up.} \label{fig:SearchStaffButtons}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/OpenGraphBtn.png}
+    \caption{Before the graph button is pressed. Next Image: \ref{fig:GraphButton}} \label{fig:GraphBtn}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/GraphButton.png}
-    \caption{Forgotten Password Interface} \label{fig:GraphButton}
+    \caption{After the graph button is pressed} \label{fig:GraphButton}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/AddAccountBtn.png}
+    \caption{Before the create account is pressed - Next Image: \ref{fig:AddAccountsButton}} \label{fig:AddAccountsBtn}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AddAccountsButton.png}
-    \caption{Forgotten Password Interface} \label{fig:AddAccountsButton}
+    \caption{After the create account is pressed - Next Image: \ref{fig:AddAccountDetails}} \label{fig:AddAccountsButton}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AddAccountDetails.png}
-    \caption{Forgotten Password Interface} \label{fig:AddAccountDetails}
+    \caption{After the create account button is clicked the line edits will automatically fill} \label{fig:AddAccountDetails}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{./Testing/Images/ComboBoxHardware.png}
-    \caption{Forgotten Password Interface} \label{fig:ComboBoxHardware}
+    \includegraphics[width=50mm,scale=0.5]{./Testing/Images/ComboBoxHardware.png}
+    \caption{Example of dropdown box on open database interface to choose table.} \label{fig:ComboBoxHardware}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/Calendar.png}
-    \caption{Forgotten Password Interface} \label{fig:Calendar}
+    \caption{When the calendar button is clicked on the add data window. Next Image: \ref{fig:CalendarAdd}} \label{fig:Calendar}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/CalendarAddData.png}
+    \caption{After the date has been selected it will appear in the line edit next to the button} \label{fig:CalendarAdd}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/ReportBugValidation.png}
-    \caption{Forgotten Password Interface} \label{fig:ReportBugValidation}
+    \caption{Warning window appears if not all fields have been completed} \label{fig:ReportBugValidation}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/ReportErrorValidation.png}
-    \caption{Forgotten Password Interface} \label{fig:ReportErrorValidation}
+    \caption{Warning window appears if not all fields have been completed} \label{fig:ReportErrorValidation}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/IncorrectFile.png}
-    \caption{Forgotten Password Interface} \label{fig:IncorrectFile}
+    \caption{The screenshot shows someone selecting the incorrect file. Next Image: \ref{fig:IncorrectFileError}} \label{fig:IncorrectFile}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{./Testing/Images/IncorrectFileError.png}
-    \caption{Forgotten Password Interface} \label{fig:IncorrectFileError}
+    \includegraphics[width=80mm,scale=0.5]{./Testing/Images/IncorrectFileError.png}
+    \caption{The screenshot shows the warning that will appear if the incorrect file is opened} \label{fig:IncorrectFileError}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/DialogNoClickAway.png}
-    \caption{Forgotten Password Interface} \label{fig:DialogNoClickAway}
+    \caption{If a user attempts to delete a primary key that is referenced somewhere else this error will appear and the user will not be able to remove it until the foreign keys that reference have been deleted.} \label{fig:DialogNoClickAway}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/Dev.png}
-    \caption{Forgotten Password Interface} \label{fig:Dev}
+    \caption{A device being added to the device type table. Next Image: \ref{fig:AddedDevice}} \label{fig:Dev}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AddedDevice.png}
-    \caption{Forgotten Password Interface} \label{fig:AddedDevice}
+    \caption{The device will then appear correctly in the table (and added to the database)} \label{fig:AddedDevice}
 \end{figure}
 
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/EmailExpiredHardware.png}
-    \caption{Forgotten Password Interface} \label{fig:EmailExpiredHardware}
+    \caption{This email example shows how the automatic warranty email will look in the email inbox.} \label{fig:EmailExpiredHardware}
 \end{figure}
 
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{./Testing/Images/ComboBoxHardware.png}
-    \caption{Forgotten Password Interface} \label{fig:ComboBoxHardware}
-\end{figure}
-
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{./Testing/Images/HardwareTableAfterCombo.png}
-    \caption{Forgotten Password Interface} \label{fig:HardwareTableAfterCombo}
-\end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/DepartmentInformationButton.png}
-    \caption{Forgotten Password Interface} \label{fig:DepartmentInformationButton}
+    \caption{The F1 and F2 shortcuts shown and working.} \label{fig:DepartmentInformationButton}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/BeforeSearch.png}
-    \caption{Forgotten Password Interface} \label{fig:BeforeSearch}
+    \caption{Before the search button has been pressed and the program shows all staff in the department selected  Next Image: \ref{fig:AfterSearch}} \label{fig:BeforeSearch}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/AfterSearch.png}
-    \caption{Forgotten Password Interface} \label{fig:AfterSearch}
+    \caption{After the search button has been pressed and the program narrows to search} \label{fig:AfterSearch}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/ChangedPassword.png}
-    \caption{Forgotten Password Interface} \label{fig:ChangedPassword}
+    \caption{The password has been changed from nothing to 'qwerty'  Next Image: \ref{fig:ChangedPasswordOld}} \label{fig:ChangedPassword}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/ChangedPasswordOld.png}
-    \caption{Forgotten Password Interface} \label{fig:ChangedPasswordOld}
+    \caption{The user can now not login with no password  Next Image: \ref{fig:ChangePasswordNew}} \label{fig:ChangedPasswordOld}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/ChangePasswordNew.png}
-    \caption{Forgotten Password Interface} \label{fig:ChangePasswordNew}
+    \caption{The user can log in with 'qwerty' Next Image: \ref{fig:AdminNewPassword}} \label{fig:ChangePasswordNew}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/AdminInterface.png}\label{fig:AdminNewPassword}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/ManagerNoChange.png}
-    \caption{Forgotten Password Interface} \label{fig:ManagerNoChange}
+    \caption{The user cannot change any information. It is in read only format. Next Image: \ref{fig:StaffNoChange}} \label{fig:ManagerNoChange}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/StaffNoChange.png}
-    \caption{Forgotten Password Interface} \label{fig:StaffNoChange}
+    \caption{The user cannot change any information. It is in read only format.} \label{fig:StaffNoChange}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{./Testing/Images/CurrentDate.png}
-    \caption{Forgotten Password Interface} \label{fig:CurrentDate}
+    \includegraphics[width=60mm,scale=0.5]{./Testing/Images/CurrentDate.png}
+    \caption{The current date shown for proof of email Next Image: \ref{fig:HardwareDate}} \label{fig:CurrentDate}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/HardwareDate.png}
-    \caption{Forgotten Password Interface} \label{fig:HardwareDate}
+    \caption{Date showing 90 days in the future to test the email Next Image: \ref{fig:EmailExpiredHardware}} \label{fig:HardwareDate}
 \end{figure}
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{./Testing/Images/EmailExpiredHardware.png}
-    \caption{Forgotten Password Interface} \label{fig:EmailExpiredHardware}
+    \caption{Email comes through referencing hardware item.} \label{fig:EmailExpiredHardware}
 \end{figure}
 
 
@@ -578,12 +627,26 @@ All staff will be presented with this Login Screen:
 
 \subsection{Approach to Testing}
 
+I used decided to use a wide range of testing strategies to look out the different aspects of the program. For example to test the GUI in series 1 top-down testing was performed to check the if all the interfaces and the flow between them was working correctly. Bottom-up testing was used in series 2 to test the validation were functioning correctly, it was also used in series 4 to check the data can be read through the tables from the database file. Black-box testing was used in series 3 to make sure that the data was in fact being stored in the database and that emails were sent and stored in inboxes. Black-box testing was also used in series 7 to check shortcuts were working correctly. Unit testing was used in series 5 to test the different main programs for Staff, Managers and Admins on different access levels. Acceptance testing was used for series 6 to make sure the whole system worked correctly and met the specifications I compared this test with my original objectives.
+
 \subsection{Problems Encountered}
+
+The testing allowed me to see problems in my system. For example in test 6 the system actually didn't meet the full specifications that the client wanted. The amount of time I had was just enough to produce the GUI for the system I did not have the time or skill needed to produce an online version so multiple staff can access it at once. However I can add this functionality to my system at a later date. Also when editing and removing data the system removed the text foreign keys are reverts to numbers to reference primary keys, obviously this is a very unfriendly way to delete and edit data ( \ref{fig:RemoveDataButtons}).
+
+\par Another issue was in test 8.4. The problem here was with the automated email. It does not work in the way that is ideal since it will not automatically work out dates while the program is running, instead it can only work out the days left if the program is restarted once a day. However most likely the program would be reset each day in a real company, but it is still a big problem that would need to be fixed at a later date.
 
 \subsection{Strengths of Testing}
 
+The strengths of my testing came from the wide range of testing I did. Mainlythis was from the GUI with top-down testing in series 1. I covered my whole system and uncovered any problems shown above. In series 3 I also managed to perform a lot of validation tests covering the entire system which made sure any user can use the system without running into any errors.
+
 \subsection{Weaknesses of Testing}
+
+My weakness was mostly around test series 8 when testing algorithms. There were a lot more than just this amount of algoritms in the system and it may have been useful to identiify them.
 
 \subsection{Reliability of Application}
 
+Reliability when relating to my system is used to explain if it is consistently performing according to its specifications. I believe that testing has shown that my system is largly reliable as it thoroughly tests my whole system and outlines where the problems are, however there are only a few of problems in the entire system (that have been found - 6 and 8.4) which proves its reliability. The main problem that effects reliability that can be fixed is the fact that foreign keys arent user friendly when removing or editing data.
+
 \subsection{Robustness of Application}
+
+Robustness is used when explaining if the software can cope with any errors during execution. The testing has proved that my program handles errors very well. At no point was an error shown in the console and all calculations were made correctly. Any errors were shown with a GUI error message to allow the user of the system understand what they have done wrong.
