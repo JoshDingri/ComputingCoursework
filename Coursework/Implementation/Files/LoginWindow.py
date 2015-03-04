@@ -39,7 +39,7 @@ class LoginWindow(QDialog):
                             }""")
 
                     
-        #self.SplashScreen()
+        self.SplashScreen()
 
         self.setWindowTitle("Volac")
         self.setWindowIcon(QIcon("WindowIcon.png"))

@@ -4,26 +4,114 @@
 
 \subsection{Software}
 
+The following is the software used during my implementation.
+
+\begin{itemize}
+\item Python 3.3 and 3.4
+\item IDLE
+\item PyQt 4
+\item SQLite 3
+\item SQLite Inspector
+\item SQLite Database Browser
+\item Matplotlib
+\item Adobe Photoshop CS5
+\end{itemize}
+
 \subsection{Usage Explanation}
+
+\begin{center}
+    \begin{tabular}{|p{4cm}|p{6cm}|}
+        \hline
+        \textbf{Test Series} & \textbf{Purpose of Test Series} \\ \hline
+        Python 3.3 and 3.4 & Used as my programming language to produce my system. I have chosen this language as I have been learning it in class for the past two years \\ \hline
+        IDLE & I used this software as the developing environment. It was included with Python and has been the environment I have been using in classes so I am familiar with it. This made implementation easier\\ \hline
+        PyQt 4 & Used to create the graphical user interface for my program \\ \hline
+        SQLite 3 & This was used to access my database in order to extract and store information \\ \hline
+        SQLite Inspector & This software allowed me to browse the database file when implementing the system. It was used to check data was being added, removed and changed correctly if accessed from inside the system. \\ \hline
+        SQLite Database Browser & This program is similar to the inspector but was downloaded when I was working on my Macbook (rather than my computer). It performs the exact same task of viewing data in the database file. \\ \hline
+        Matplotlib & This allows for extracting data from the database to produce graphs \\ \hline
+        Adobe Photoshop CS5 & Used for creating the splash screen and adding transparency to arrows \\ \hline
+    \end{tabular}
+\end{center}
+
+Python features allowed me to run my system which let me
+implement and test my system in a CLI or GUI form. This will
+be used to run my system in its GUI form for my client.
 
 \subsection{Features Used}
 
+\begin{center}
+    \begin{tabular}{|p{4cm}|p{6cm}|}
+        \hline
+        \textbf{Test Series} & \textbf{Purpose of Test Series} \\ \hline
+        Python 3.3 and 3.4 & Python provided me with the features needed to create my program in both CLI and GUI form. Python allows modules to be imported from elsewhere such as matplotlib (see below).  \\ \hline
+        IDLE & IDLE is an environment specifically for Python and was used to create and run the code. The syntax highlighting that IDLE uses made implementing the program easier. \\ \hline
+        PyQt 4 & A lot of features were used of PyQt such as stacked widgets, main windows and widgets. \\ \hline
+        SQLite 3 & SQLite3 is essentially a simplified version of MySQL and included all of the functions I needed to deal with databases in my system. One of the features that was especially important was enforcing referential integrity which ensured that foreign keys matched existing primary keys.  \\ \hline
+        SQLite Inspector & The execute feature was used to debug my SQL, this allowed me to test queries before they were ran in Python  \\ \hline
+        SQLite Database Browser & I used this program for the same features as the Inspector shown above.   \\ \hline
+        Matplotlib & The module from marplotlib known as 'Pylab' was used to create my graph, more specifically it was used to create a bar chart with axes titles.  \\ \hline
+        Adobe Photoshop CS5 & The magic wand tool was used to remove image backgrounds (making them transparent), layering and selection tools were also used to create and edit images. \\ \hline
+    \end{tabular}
+\end{center}
+
 \section{System Overview}
 
-%use as many subsections as necessary for the system components
-\subsection{System Component}
+\subsection{Logins}
+
+This part of the system will prevent any unauthorised access to the system. It will check the username and password input and compare it with usernames and passwords stored in a database file. If the details match the user will gain access to the relevant part of the system. The system runs with access restrictions therefore usernames will have certain access levels attached to them which are (in order of access rights) Admin, Manager or Staff. If the username/password combination does not match a error will appear asking the user to re-enter the information until it is correct. There is also a "forgotten username or password" button to allow users to send emails to IT staff from inside the system which will request a password retrieval.
+
+\subsection{The Graphical User Interface}
+
+The whole system is built with a graphical user interface (GUI) to make sure it is professional and user friendly. The GUI contains many different features including:
+\begin{itemize}
+\item Toolbar icons and menu bars for navigational purposes
+\item Images to improve to overall look of the system
+\item File browsing to choose the database
+\item Line edits and combo boxes to allow a user friendly input of data
+\item Labels for certain parts of the system to tell users what interface they are currently viewing
+\item Stylesheets to improve the overall look and to match company website colours
+\end{itemize}
+
+\subsection{Open Database Interface}
+
+The admin main menu will provide a button that will take the user to the 'Open Database' interface. This will most likely be the most used interface on the entire system because this is where IT Staff can add, remove and edit records on the database. The user can choose the database file from a file browsing window and view each table using a combo box. After a table is selected the user can then use the buttons on screen to remove, add or edit. Removing data will allow the user to delete an entire record from the click of a button, the edit button will allow the user to simply edit the cell contents and save changes afterwards. The add button will take the user to another window to add data to the database (see below)
+
+\subsection{Adding Data}
+
+Adding data is done only from the admin interface. Depending on which table is being viewed on the 'Open Database Interface' (see above) when the user clicks the 'Add Data' button, input fields for the specified table will appear in a dialog box. The user can then enter information into the line edits, validation is used to make sure the correct data is being entered. If the wrong data is entered into a field an error message will appear as the placeholder text for the specified field. After the user has finished the data will be added into the database.
+
+\subsection{Searching Staff}
+
+Another important part of the system on the admin interface is the search staff interface, this allows the user to search for staff members by department. Each department will be shown in a combo box and to search for a staff member the user will enter a first name into the search box. After the correct staff member has been found the user may click on a labelled button to view more information about which hardware devices they own.
+
+\subsection{Graph Representation}
+
+A graph can be generated through a toolbar button on the admin user interface. This is used as a clear representation of how many hardware devices are owned by each department in a bar chart format. The graph is populated by looking at how many staff members own hardware (and how many they own), then recording which department they are from.
+
+\subsection{Department Information for Managers}
+
+The manager interface allows them to view staff information from their own department. Managers will only be able to view one table from the database which will tell them which hardware devices the staff own along with the purchase date. 
+
+\subsection{Personal Information}
+
+Managers and other staff members are able to view their own information which will display the hardware devices they own, they can then check for any errors in the information or use it to provide proof of purchase. Staff members (not admins or managers) only have access to this one interface and cannot check anyone else's information due to the access restrictions. Search bars are in place incase the table gets highly populated. This part of the system will most likely be used the least as it is only in place for convenience to view hardware, it will not be used on a daily basis.
+
+\subsection{Adding Accounts}
+
+To use the login system correctly user accounts need to be made. IT staff can create user accounts using the toolbar button on the admin interface. To initially access the system I will provide a default username/password to my client that they can then change later on. The account creation interface allows IT staff to enter a first name and last name, department and access rights. The program will then automatically generate the account details, the username will be generated by taking the first name initial along with the last name and adding a random integer up to 20 to the end. The password is made by randomly generating upper and lowercase letters and numbers with a length of 7 characters. The user can generate as many different combinations as they want or enter the account details manually.
 
 \section{Code Structure}
 
+My code was split into different files for each different main functionality or class. This is because it allowed me to work on each part of the system individually and located specific areas easily.
+
 %use as many subsections as necessary for the code sections
-\subsection{Particular Code Section}
+\subsection{Admin - Main Window}
 %the code below can be uncommented and used to get a code section from a particular file
-\begin{comment}
 \begin{figure}[H]
-    \pythonfile[firstline=5,lastline=10]{./tex/function_programs/print_function.py}
-    \caption{The print() function} \label{fig:print_function}
+    \pythonfile[firstline=17,lastline=41]{./Implementation/Files/MainProgram.py}
+    \caption{The program has three Main Window classes that will be used to import other widgets into them. These widgets can then be added to a stack so switching between interfaces can be done easily. The above class is to control the admin interfaces. A class was chosen......} \label{fig:MainWindowAdmin}
 \end{figure}
-\end{comment}
 
 \section{Variable Listing}
 
@@ -58,9 +146,98 @@
 \section{Code Listing}
 \begin{landscape}
 %include as many subsections as you have modules
-\subsection{Module 1}
+\subsection{Login Window}
 %the code below can be uncommented and used to get a code section from a particular file
-\begin{comment}
-\pythonfile[firstline=5]{./tex/function_programs/print_function.py}
-\end{comment}
+
+\pythonfile[firstline=5]{./Implementation/Files/LoginWindow.py}
+
+\newpage
+\subsection{Admin Main Program (MainProgram.py)}
+\pythonfile[firstline=5]{./Implementation/Files/MainProgram.py}
+
+\newpage
+\subsection{Admin Main Menu (AdminMainMenu.py)}
+\pythonfile[firstline=5]{./Implementation/Files/AdminMainMenu.py}
+
+\newpage
+\subsection{Admin Database Interface (OpenDatabaseWindow.py)}
+\pythonfile[firstline=5]{./Implementation/Files/OpenDatabaseWindow.py}
+
+\newpage
+\subsection{Admin Search Staff Interface (SearchStaffAdmin.py)}
+\pythonfile[firstline=5]{./Implementation/Files/SearchStaffAdmin.py}
+
+\newpage
+\subsection{Add Data Window (AddDataGUI.py)}
+\pythonfile[firstline=5]{./Implementation/Files/AddDataGUI.py}
+
+\newpage
+\subsection{Admin Menubar (MenuBarAdmin.py)}
+\pythonfile[firstline=5]{./Implementation/Files/MenuBarAdmin.py}
+
+\newpage
+\subsection{Staff Interface (StaffProgram.py)}
+\pythonfile[firstline=5]{./Implementation/Files/StaffProgram.py}
+
+\newpage
+\subsection{Staff Menu Bar (StaffMenuBar.py)}
+\pythonfile[firstline=5]{./Implementation/Files/StaffMenuBar.py}
+
+\newpage
+\subsection{Manager Main Program (ManagerMainProgram.py)}
+\pythonfile[firstline=5]{./Implementation/Files/ManagerMainProgram.py}
+
+\newpage
+\subsection{Department Information Interface (DepartmentInformation.py)}
+\pythonfile[firstline=5]{./Implementation/Files/DepartmentInformation.py}
+
+\newpage
+\subsection{Manager - My Information (MyInformation.py)}
+\pythonfile[firstline=5]{./Implementation/Files/MyInformation.py}
+
+\newpage
+\subsection{Manager Menubar (ManagerMenuBar.py)}
+\pythonfile[firstline=5]{./Implementation/Files/ManagerMenuBar.py}
+
+\newpage
+\subsection{Forgotten Account Interface (ForgottenAccount.py)}
+\pythonfile[firstline=5]{./Implementation/Files/ForgottenAccount.py}
+
+\newpage
+\subsection{Graph Creation (Graph.py)}
+\pythonfile[firstline=5]{./Implementation/Files/Graph.py}
+
+\newpage
+\subsection{Dialog Warning Box (PopupDialog.py)}
+\pythonfile[firstline=5]{./Implementation/Files/PopupDialog.py}
+
+\newpage
+\subsection{Calendar (Calender.py)}
+\pythonfile[firstline=5]{./Implementation/Files/Calender.py}
+
+\newpage
+\subsection{Confirm Deletion Dialog (ConfirmDialog.py)}
+\pythonfile[firstline=5]{./Implementation/Files/ConfirmDialog.py}
+
+\newpage
+\subsection{Report Data Error (Reporterror.py)}
+\pythonfile[firstline=5]{./Implementation/Files/Reporterror.py}
+
+\newpage
+\subsection{Report Bug (BugReport.py)}
+\pythonfile[firstline=5]{./Implementation/Files/BugReport.py}
+
+\newpage
+\subsection{Login Window (LoginWindow.py)}
+\pythonfile[firstline=5]{./Implementation/Files/LoginWindow.py}
+
+\newpage
+\subsection{Add Account Interface (AddingAccounts.py)}
+\pythonfile[firstline=5]{./Implementation/Files/AddingAccounts.py}
+
+\newpage
+\subsection{Change Password Interface (ChangePassword.py)}
+\pythonfile[firstline=5]{./Implementation/Files/ChangePassword.py}
+
+
 \end{landscape}
