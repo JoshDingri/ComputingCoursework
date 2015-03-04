@@ -110,7 +110,42 @@ My code was split into different files for each different main functionality or 
 %the code below can be uncommented and used to get a code section from a particular file
 \begin{figure}[H]
     \pythonfile[firstline=17,lastline=41]{./Implementation/Files/MainProgram.py}
-    \caption{The program has three Main Window classes that will be used to import other widgets into them. These widgets can then be added to a stack so switching between interfaces can be done easily. The above class is to control the admin interfaces. A class was chosen......} \label{fig:MainWindowAdmin}
+    \caption{The program has three Main Window classes that will be used to import other widgets into them. These widgets can then be added to a stack so switching between interfaces can be done easily. The above class is to control the admin interfaces. A class was chosen with methods so that functions can be grouped together. Classes can then inherit from each other so that no code is unnecessarily repeated.} \label{fig:MainWindowAdmin}
+\end{figure}
+
+\newpage
+
+\subsection{Dialog Box Class}
+With the use of classes I can create instances of these classes from different functions whenever I wish to call them. For example the Presence Dialog class needs a text string so that specific text can be displayed on the warning.
+\begin{figure}[H]
+    \pythonfile[firstline=5,lastline=23]{./Implementation/Files/PopupDialog.py}
+    \caption{This code section is the Presence Dialog class} \label{fig:Dialog Class}
+\end{figure}
+
+\begin{figure}[H]
+    \pythonfile[firstline=465,lastline=468]{./Implementation/Files/OpenDatabaseWindow.py}
+    \caption{This code section shows how a method is instantiating the class 'presence dialog class' with the specified text shown on line 2} \label{fig:Dialog Class}
+\end{figure}
+
+\subsection{Manager Menu Bar}
+
+Menu bars are used on every interface in the system, therefore it was important to create menubar classes that can be reused in different parts of the system which avoids repeating code unnecessarily.  
+
+\begin{figure}[H]
+    \pythonfile[firstline=5,lastline=32]{./Implementation/Files/ManagerMenuBar.py}
+    \caption{The above example is the Manager's menu bar that shows a menubar class, it can be called wherever needed.} \label{fig:Dialog Class}
+\end{figure}
+
+\begin{figure}[H]
+    \pythonfile[firstline=84,lastline=86]{./Implementation/Files/ManagerMainProgram.py}
+    \caption{This above example shows how to menubar is called.} \label{fig:Dialog Class}
+\end{figure}
+
+\subsection{Module Main Function}
+ 
+ \begin{figure}[H]
+    \pythonfile[firstline=286,lastline=291]{./Implementation/Files/MainProgram.py}
+    \caption{Mostly all of my modules have this main function at the end of them, this allows me to test each modules individually to identify if it is working correctly and to test any bugs. With the specific example above the module takes a parameter when it is instantiated therefore it was important to include the None type in order to avoid errors.} \label{fig:Dialog Class}
 \end{figure}
 
 \section{Variable Listing}
@@ -142,6 +177,151 @@ My code was split into different files for each different main functionality or 
 \section{Settings}
 
 \section{Acknowledgements}
+
+\subsection{Calendar}
+
+Since I had never built a calendar before I did not know if it was a built in function or not. After browsing the Internet I found a calendar example on ZetCode which was the exact design I was looking for. 
+
+\textbf{Link:} http://zetcode.com/gui/pyqt4/widgets/
+
+\textbf{Original code}:
+
+\begin{python}
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+"""
+ZetCode PyQt4 tutorial 
+
+This example shows a QtGui.QCalendarWidget widget.
+
+author: Jan Bodnar
+website: zetcode.com 
+last edited: September 2011
+"""
+
+import sys
+from PyQt4 import QtGui, QtCore
+
+class Example(QtGui.QWidget):
+    
+    def __init__(self):
+        super(Example, self).__init__()
+        
+        self.initUI()
+    
+    
+    def initUI(self):      
+
+        cal = QtGui.QCalendarWidget(self)
+        cal.setGridVisible(True)
+        cal.move(20, 20)
+        cal.clicked[QtCore.QDate].connect(self.showDate)
+        
+        self.lbl = QtGui.QLabel(self)
+        date = cal.selectedDate()
+        self.lbl.setText(date.toString())
+        self.lbl.move(130, 260)
+        
+        self.setGeometry(300, 300, 350, 300)
+        self.setWindowTitle('Calendar')
+        self.show()
+        
+    def showDate(self, date):     
+    
+        self.lbl.setText(date.toString())
+    
+    
+def main():
+    
+    app = QtGui.QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
+\end{python}
+
+\subsection{Populating a QTableWidget}
+
+My program displayed tables using a QTableWidgets however I needed help learning how to populate these tables with data from my database. I came across a Stackoverflow answer explaining in detail the code needed to do this. It also included a function that was new to me called 'enumerate'. I researched and understood this function before I used the code otherwise it may have been confusing when it came to bug testing.
+
+\textbf{Link:} http://stackoverflow.com/questions/11754825/inserting-data-from-sqlite-database-to-qtablewidget-using-pyqt-in-python
+
+\textbf{Original Code:}
+
+\begin{python}
+cursor.execute('''SELECT * FROM MyTable''')
+self.tblTable.setRowCount(cursor.rowcount)
+for row, form in enumerate(cursor):
+    for column, item in enumerate(form):
+        self.tblTable.setItem(row, column, QtGui.QTableWidgetItem(str(item)))   
+\end{python}
+
+\subsection{Getting column names}
+
+When I was producing my add data GUI it was necessary to use the database column names as labels for the line edits so the user knew what information to enter. I needed a way of extracting these column names into a list and using these names as labels. After searching the Internet I came across many Stackoverflow answers that showed the same kind of code. The specific answer I used is shown below.
+
+\textbf{Link:} http://stackoverflow.com/questions/9752372/how-do-i-get-the-column-names-from-a-row-returned-from-an-adodbapi-query
+
+\textbf{Original Code:}
+
+\begin{python}
+col_names = [i[0] for i in cur.description]
+\end{python}
+
+\subsection{Positioning line edits on grid layout}
+
+Before I started the Implementation I used a Zetcode code example to help create a calculator. One of the lines of code that I used was relevant for the task of positioning my line edits on a grid layout for the Add Data GUI. 
+
+\textbf{Link}: http://zetcode.com/gui/pyqt4/layoutmanagement/
+
+\textbf{Original Code:}
+\begin{python}
+positions = [(i,j) for i in range(5) for j in range(4)]
+\end{python}
+
+\newpage
+
+\subsection{Images}
+
+In my program I used a number of images which were taken from different sources on the Internet.
+
+\begin{center}
+    \begin{tabular}{|p{3.5cm}|p{7cm}|}
+    \hline
+    \textbf{Image} & \textbf{Source} \\ \hline
+    \begin{minipage}{.3\textwidth}
+    \includegraphics[width=20mm, height=20mm]{./Implementation/Files/accounticon.png}
+\end{minipage}						& \htmlinline{http://findicons.com/icon/158522/ account_and_control} \\ \hline
+
+    \begin{minipage}{.3\textwidth}
+    \includegraphics[width=20mm, height=20mm]{./Implementation/Files/chart_bar.png}
+\end{minipage} 				& \htmlinline{http://findicons.com/search/graph} \\ \hline
+
+
+
+    \begin{minipage}{.3\textwidth}
+    \includegraphics[width=20mm, height=15mm]{./Implementation/Files/calendar-icon.png}
+\end{minipage} 	 & \htmlinline{http://www.iconarchive.com/show/ mono-business-2-icons-by-custom-icon- design/calendar-icon.html} \\ \hline
+
+    \begin{minipage}{.3\textwidth}
+    \includegraphics[width=20mm, height=15mm]{./Implementation/Files/warningimage.jpg}
+\end{minipage} 	 & \htmlinline{https://christianchakra.files. wordpress.com/2012/07/ warning-sign12.jpg} \\ \hline
+
+    \begin{minipage}{.3\textwidth}
+    \includegraphics[width=20mm, height=20mm]{./Implementation/Files/arrow.png}
+\end{minipage} 	 & \htmlinline{http://commons.wikimedia.org/wiki/File: Circle_arrow_right_font_awesome.svg} \\ \hline
+
+    \begin{minipage}{.5\textwidth}
+    \includegraphics[width=30mm, height=10mm]{./Implementation/Files/volaclogo.jpg}
+\end{minipage} 	 & \htmlinline{http://mb.cision.com/Public/3857/ 9287920/93083930d801ade5_800x800ar.jpg} \\ \hline
+
+    \end{tabular}
+\end{center}   
+
+\newpage
 
 \section{Code Listing}
 \begin{landscape}
