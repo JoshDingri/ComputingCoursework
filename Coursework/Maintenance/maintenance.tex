@@ -154,11 +154,198 @@ Menu bars are used on every interface in the system, therefore it was important 
 
 \subsection{User Interface}
 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/LoginWindow.png}
+    \caption{The login screen that is displayed on initial startup.} \label{fig:LoginWindow}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/AccountRecovery.png}
+    \caption{Account recovery window if the "forgotten username or password" button is clicked} \label{fig:AccountRecovery}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/adminmainmenu.png}
+    \caption{Admin main menu interface after log in} \label{fig:adminmainmenu}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/graph.png}
+    \caption{Graph output showing departments number of hardware devices, activated when toolbar button is clicked} \label{fig:graph}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/createaccounts.png}
+    \caption{Create accounts window activated when toolbar button is clicked} \label{fig:createaccounts}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/changepassword.png}
+    \caption{Change password window activated when toolbar button is clicked} \label{fig:changepassword}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/opendb.png}
+    \caption{Open database interface, shown when user clicks button on the main menu} \label{fig:opendb}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/Searched.png}
+    \caption{Result after text is entered into the search box} \label{fig:Searched}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/filebrowser.png}
+    \caption{File browser to allow the user to choose the database file} \label{fig:filebrowser}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/deletingdata.png}
+    \caption{Delete buttons shown when the remove data button is pressed} \label{fig:deletingdata}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/EditingData.png}
+    \caption{User can edit data when edit data button is pressed} \label{fig:EditingData}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/AddingData.png}
+    \caption{The add data window to add data to the database.} \label{fig:AddingData}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/searchstaff.png}
+    \caption{Search staff interface to search staff by department} \label{fig:searchstaff}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/searchstaffresult.png}
+    \caption{Window showing more information when a staff member is clicked on the search staff screen} \label{fig:searchstaffresult}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/ManagerMM.png}
+    \caption{Manager main menu after log in} \label{fig:ManagerMM}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/departinfo.png}
+    \caption{Department information on manager interface} \label{fig:departinfo}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/myinfomanager.png}
+    \caption{Personal information ("My Information") interface shown for managers} \label{fig:myinfomanager}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/ReportError.png}
+    \caption{The report errors email interface after toolbar button click} \label{fig:ReportError}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/ReportBug.png}
+    \caption{The report bug email interface after toolbar button click} \label{fig:ReportBug}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/myinfo.png}
+    \caption{Staff interface after login also showing personal information ("My Information") for staff} \label{fig:myinfo}
+\end{figure}
+
+
+
+
 \subsection{ER Diagram}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/erupdateddiagram.png}
+    \caption{Above is my final database which has been displayed as an Entity Relationship Diagram. It has changed slightly since my initial design.} \label{fig:erdiagram}
+\end{figure}
 
 \subsection{Database Table Views}
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/StaffTable.png}
+    \caption{The "'Staff"' entity has 6 fields. The primary key of this entity is "StaffID". "DepartmentID" is a forein key that links to the "Department" entity (Fig: \ref{fig:DepartmentTable}) . "LocationID" is also a foreign key that links to the "Location" entity. (Fig: \ref{fig:LocationTable})} \label{fig:StaffTable}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/HardwareTable.png}
+    \caption{The"Hardware" entity has 9 fields. The primary key of this entity is "HardwareID". "DeviceID" is a foreign key that links to the "DeviceType" entity  (Fig: \ref{fig:DeviceType}). "HardwareModelID" is also a foreign key that links to the "HardwareModel" entity (Fig: \ref{fig:HardwareModelTable})} \label{fig:HardwareTable}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/HardwareMakeTable.png}
+    \caption{The "HardwareMake" entity has 2 fields. The primary key is "HardwareMakeID". The only store of data is the "HardwareMakeName" field} \label{fig:HardwareMakeTable}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/HardwareModelTable.png}
+    \caption{The "HardwareModel" entity has 3 fields. The primary key is "HardwareModelID". The foreign key in this entity is "HardwareMakeID" which links to the "HardwareMake" entity. (Fig: \ref{fig:HardwareMakeTable})} \label{fig:HardwareModelTable}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/DeviceType.png}
+    \caption{The "DeviceType" entity has 2 fields. The primary key is "DeviceID". The only store of data is the "DeviceName" field} \label{fig:DeviceType}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/StaffHardware.png}
+    \caption{The"StaffHardware" entity has 4 fields. The primary key of this entity is "StaffHardwareID". "StaffID" is a foreign key that links to the "Staff" entity  (Fig: \ref{fig:StaffTable}). "HardwareID" is also a foreign key that links to the "Hardware" entity (Fig: \ref{fig:HardwareTable})} \label{fig:StaffHardware}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/DepartmentTable.png}
+    \caption{The "Department" entity has 2 fields. The primary key is "DepartmentID". The only store of data is the "DepartmentName" field} \label{fig:DepartmentTable}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/LocationTable.png}
+    \caption{The "Location" entity has 4 fields. The primary key is "LocationID". The entity stores location details in the other 3 fields} \label{fig:LocationTable}
+\end{figure}
+
 \subsection{Database SQL}
+
+The below is the SQL code which created each entity in the database.
+
+\subsubsection{Staff Entity}
+
+ \pythonfile[firstline=26,lastline=38]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{Hardware Entity}
+
+ \pythonfile[firstline=40,lastline=55]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{HardwareMake Entity}
+
+ \pythonfile[firstline=57,lastline=62]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{HardwareModel Entity}
+
+ \pythonfile[firstline=64,lastline=72]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{DeviceType Entity}
+
+ \pythonfile[firstline=74,lastline=79]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{StaffHardware Entity}
+
+ \pythonfile[firstline=81,lastline=90]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{Department Entity}
+
+ \pythonfile[firstline=92,lastline=97]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{Location Entity}
+
+ \pythonfile[firstline=99,lastline=106]{./Implementation/Files/StaffDatabase.py}
+
+\subsubsection{Creation of all the tables}
+
+ \pythonfile[firstline=3,lastline=24]{./Implementation/Files/StaffDatabase.py}
 
 \subsection{SQL Queries}
 
