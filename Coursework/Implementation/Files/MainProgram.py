@@ -126,35 +126,35 @@ class CurrentLayoutAdmin(QMainWindow):
             sql = ("SELECT WarrantyExpirationDate FROM Hardware")
             cursor.execute(sql)
             db.commit()
-        purchasedates = [item[0] for item in cursor.fetchall()]
+        WarrantyExpirationDate = [item[0] for item in cursor.fetchall()]
 
 
         b = "(', )" 
             
-        for count in range (len(purchasedates)):
-            if purchasedates[count] == '-':
+        for count in range (len(WarrantyExpirationDate)):
+            if WarrantyExpirationDate[count] == '-':
                 continue
             for i in range(0,len(b)):
-                purchasedates[count] = str(purchasedates[count]).replace(b[i],"")
-                self.expiringitem = purchasedates[count]
+                WarrantyExpirationDate[count] = str(WarrantyExpirationDate[count]).replace(b[i],"")
+                self.expiringitem = WarrantyExpirationDate[count]
 
             currentdate = datetime.datetime.strptime(self.currentdate,"%d-%m-%y")
-            self.purchasedate = datetime.datetime.strptime(purchasedates[count],"%d-%m-%y")
+            self.WarrantyExpirationDate = datetime.datetime.strptime(WarrantyExpirationDate[count],"%d-%m-%y")
             
 
             
-            daysleft = self.purchasedate - currentdate
+            daysleft = self.WarrantyExpirationDate - currentdate
             if daysleft.days == 90:
                 self.SendExpirationEmail()
 
 
     def SendExpirationEmail(self):
         """Sends hardware expiring email"""
-        self.purchasedate = self.purchasedate.strftime("%d-%m-%y")
-        self.purchasedate =  (self.purchasedate)
+        self.WarrantyExpirationDate = self.WarrantyExpirationDate.strftime("%d-%m-%y")
+        self.WarrantyExpirationDate =  (self.WarrantyExpirationDate)
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
-            cursor.execute("SELECT HardwareID FROM Hardware WHERE WarrantyExpirationDate=?",(self.purchasedate,))
+            cursor.execute("SELECT HardwareID FROM Hardware WHERE WarrantyExpirationDate=?",(self.WarrantyExpirationDate,))
             HardwareIDs = list(cursor.fetchone())
             db.commit()
 

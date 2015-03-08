@@ -38,9 +38,9 @@ class AddDataWindow(QDialog):
             ## The below boolean variables are set to false and will later be changed if needed
             
             PurchaseDateExist = False 
-            WarrantyDateExists = False
+            #WarrantyDateExists = False
             DepartmentID_CB = False
-            self.CurrentLineEditExists = False
+            self.CurrentLfineEditExists = False
             LocationID_CB = False
             HardwareModelID_CB = False
             HardwareMakeID_CB = False
@@ -337,7 +337,7 @@ class AddDataWindow(QDialog):
                             Regexp = QRegExp("[0-9]{1,20}")
                             self.LineEditList[count-1].setText('-')
                             self.LineEditList[count-1].setEnabled(False)
-                            self.LineEditList[count-1].setValidator(QRegExpValidator(Regexp))
+                            self.LineEditList[count-1].setValidator (QRegExpValidator(Regexp))
                             IMEIValidation = False
 
                     
@@ -568,7 +568,6 @@ class AddDataWindow(QDialog):
         self.LineEditList[self.CurrentLineEdit-1].setAlignment(Qt.AlignCenter)
 
     def DepartmentComboBox_Activated(self,text):
-        print(text)
         with sqlite3.connect("Volac.db") as db:
             cursor = db.cursor()
             cursor.execute("SELECT DepartmentID FROM Department WHERE DepartmentName=?",(text,))

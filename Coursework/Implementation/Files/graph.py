@@ -1,6 +1,7 @@
 from pylab import *
 import sqlite3
 from collections import Counter
+import matplotlib.backends.backend_tkagg
 
 class Graph():
     """Hardware By Department Graph"""
@@ -56,6 +57,7 @@ class Graph():
 
 
         counter = Counter(departmentnames)
+        print(counter)
 
         d = {} #creates dictionary
 
