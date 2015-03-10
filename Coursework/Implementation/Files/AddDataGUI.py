@@ -40,7 +40,7 @@ class AddDataWindow(QDialog):
             PurchaseDateExist = False 
             #WarrantyDateExists = False
             DepartmentID_CB = False
-            self.CurrentLfineEditExists = False
+            self.CurrentLineEditExists = False
             LocationID_CB = False
             HardwareModelID_CB = False
             HardwareMakeID_CB = False
