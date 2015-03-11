@@ -235,29 +235,121 @@ To log in to the system you will first be required to have a user account. If yo
 
 If you have data but do not know your account. See section ----
 
+\subsubsection{How do I change my password?}
+
+
+
 Admin Interface Tutorial
 
-\subsubsection{How do I open the database?}
+\subsubsection{How do I open the database?}\label{opendb}
 
-\subsubsection{How do I view the different tables in the database?}
+1) From the main menu click the "Open Database" button
 
-\subsubsection{How do I add data to the database?}
+2) Click the "Open Database"  button (next to the "Select Table" dropdown box)
+
+3) Choose the correct database file, it will be named "Volac.db". 
+
+4) The database is now open
+
+\subsubsection{How do I view the different tables in the database?}\label{viewdb}
+
+1) Open the database (follow the above tutorial \ref{opendb} if you need help doing this)
+
+2) Press the dropdown box named "Select Table" 
+
+3) Select the desired table to view it
+
+\subsubsection{How do I add data to the database?}\label{adddata}
+
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) Press the "Add Data" button
+
+4) Fill out all the required fields, the fields will turn green if the entry is valid
+
+5) Press "Add Data" to add the information to the database, the window should close and the table should automatically update
 
 \subsubsection{How do I edit data in the database?}
 
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) Press the "Edit Database" button 
+
+4) You may now change any fields of your choice, make sure the foreign keys (See \ref{keys}) (digits under certain 'ID Fields') are changed only to reference primary keys of other tables.
+
+5) After a field has been changed press the "Enter" button on your keyboard to exit the field.
+
+6) After all desired fields have been changed you can either press the "Cancel" button to revert back to read only view without saving. Or the "Save Changes" button to save all changes and revert back to read only view.
+
 \subsubsection{How do I delete data from the database?}
+
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) Press the "Remove Data" button
+
+4) To delete a record you may click the "Delete" button, this will delete the entire record of data
+
+5) A warning message will appear, to confirm deletion. Click "Yes" to confirm deletion
+
+6) To revert back to read only view click the "Remove Data" button again
 
 \subsubsection{How do I quick search for data in the database?}
 
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) To search for a field, enter text into the search box 
+
+4) The table will automatically filter to show the text input
+
+5) To show the whole table again, remove the text in the search box
+
+\subsubsection{How do I search for staff by department?}
+
+1) From the main menu press the "Search Staff" button
+
+2) Select the department using the drop down box, this will display all staff from the specified department
+
+3) To search for staff member enter their first name in the search box
+
 \subsubsection{How do I generate a graph?}
+
+1) From anywhere in the Admin interface locate the toolbar
+
+2) Press the "Generate Hardware Graph"
+
+3) The graph should open, you may save the image as .png
+
+4) Close the graph by pressing the "X" button on the window
 
 \subsubsection{How do I add new accounts to the system?}
 
-\subsubsection{How do I change my password?}
+1) From anywhere in the Admin interface locate the toolbar
+
+2) Press the "Create User Accounts"
+
+3) To add an account, the staff member must first be added to the staff table (see \ref{adddata})
+
+4) Using the drop down box, fill in the staff details. The "Access Level" will provide access to different parts of the system so make sure it is correct! 
+
+5) Press "Create Account". This will generate login details
+
+6) You may change the details, however it is recommended that the password is kept the same since it is secure and randomly generated
+
+7) Press "Add Account" to add the user to the system
+
+8) The user can now login with their details, make sure to tell the user to change their password when they first access the system
 
 \subsubsection{How do I close the system?}
 
-\subsubsection{How do I search for staff by department?}
+\subsubsection{What are primary and foreign keys and how do I use them?}\label{keys}
 
 Manager and Staff Interface Tutorial
 
