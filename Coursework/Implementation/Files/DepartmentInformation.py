@@ -62,7 +62,9 @@ class DepartmentInformation(QWidget):
 
         self.CreateTable()
 
-    def CreateTable(self): 
+    def CreateTable(self):
+
+        self.table.deleteLater()
 
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
@@ -72,7 +74,6 @@ class DepartmentInformation(QWidget):
         for self.row, form in enumerate(self.cursor): #adds counter to for loop with iterable
                 for self.column, item in enumerate(form):
                     self.DepartmentID = item
-                    print(self.DepartmentID)
 
         with sqlite3.connect("Volac.db") as db:
             self.cursor = db.cursor()
@@ -83,77 +84,77 @@ class DepartmentInformation(QWidget):
                 for self.column, item in enumerate(form):
                     self.StaffID = item
 
-        print(self.StaffID)    
             
-        self.table.deleteLater()
 
-        with sqlite3.connect("Volac.db") as db:
-            self.cursor = db.cursor()
-            self.cursor.execute("SELECT StaffHardware.* FROM StaffHardware WHERE StaffHardware.StaffID =?",(self.StaffID,))
-            
-        col = [tuple[0] for tuple in self.cursor.description]
-        self.table = QTableWidget(2,len(col))
+                    print(self.StaffID)
+
+                    with sqlite3.connect("Volac.db") as db:
+                        self.cursor = db.cursor()
+                        self.cursor.execute("SELECT StaffHardware.* FROM StaffHardware WHERE StaffHardware.StaffID =?",(self.StaffID,))
                         
-        self.table.setHorizontalHeaderLabels(col)
-        self.table.setRowCount(0)
-
-        for self.row, form in enumerate(self.cursor): ##Inserts amount of rows needed, gets from database
-                self.table.insertRow(self.row)
-                for self.column, item in enumerate(form): ##Inserts amount of columns needed
-                    CurrentHeader = (self.table.horizontalHeaderItem(self.column).text())
-                    if CurrentHeader == 'StaffID' and self.column != 0: ##Wont run if statement if the header is primary key
-                                with sqlite3.connect("Volac.db") as db:
-                                    cursor = db.cursor()
-                                    cursor.execute("SELECT FirstName,Surname from Staff WHERE StaffID =?",(item,))
-                                    db.commit()
-                                Foreign_Item = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
-                                
-                                b = "[]'',"
-                                for i in range(0,len(b)):
-                                    Foreign_Item = Foreign_Item.replace(b[i],"") 
-                                
-                                self.item = QTableWidgetItem(Foreign_Item)
-                                self.item.setTextAlignment(Qt.AlignCenter)
-                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
-                                self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
-                                continue
-                                
-                    elif CurrentHeader == 'HardwareID' and self.column != 0:
-                                with sqlite3.connect("Volac.db") as db:
-                                    cursor = db.cursor()
-                                    cursor.execute("SELECT HardwareModelID from Hardware WHERE HardwareID =?",(item,))
-                                    ModelID = list(cursor.fetchone())
-                                    db.commit()
+                    col = [tuple[0] for tuple in self.cursor.description]
+                    self.table = QTableWidget(2,len(col))
                                     
-                                with sqlite3.connect("Volac.db") as db:
-                                    cursor = db.cursor()
-                                    cursor.execute("SELECT HardwareMakeID from HardwareModel WHERE HardwareModelID =?",(ModelID[0],))
-                                    MakeID = list(cursor.fetchone())
-                                    db.commit()
+                    self.table.setHorizontalHeaderLabels(col)
+                    self.table.setRowCount(0)
 
-                                with sqlite3.connect("Volac.db") as db:
-                                    cursor = db.cursor()
-                                    cursor.execute("SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID =? AND HardwareMake.HardwareMakeID =?",(ModelID[0],MakeID[0],))
-                                    db.commit()
+                    for self.row, form in enumerate(self.cursor): ##Inserts amount of rows needed, gets from database
+                            self.table.insertRow(self.row)
+                            for self.column, item in enumerate(form): ##Inserts amount of columns needed
+                                CurrentHeader = (self.table.horizontalHeaderItem(self.column).text())
+                                if CurrentHeader == 'StaffID' and self.column != 0: ##Wont run if statement if the header is primary key
+                                            with sqlite3.connect("Volac.db") as db:
+                                                cursor = db.cursor()
+                                                cursor.execute("SELECT FirstName,Surname from Staff WHERE StaffID =?",(item,))
+                                                db.commit()
+                                            Foreign_Item = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
+                                            
+                                            b = "[]'',"
+                                            for i in range(0,len(b)):
+                                                Foreign_Item = Foreign_Item.replace(b[i],"") 
+                                            
+                                            self.item = QTableWidgetItem(Foreign_Item)
+                                            self.item.setTextAlignment(Qt.AlignCenter)
+                                            self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                            self.table.setItem(self.row, self.column,self.item)
+                                            self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+                                            continue
+                                            
+                                elif CurrentHeader == 'HardwareID' and self.column != 0:
+                                            with sqlite3.connect("Volac.db") as db:
+                                                cursor = db.cursor()
+                                                cursor.execute("SELECT HardwareModelID from Hardware WHERE HardwareID =?",(item,))
+                                                ModelID = list(cursor.fetchone())
+                                                db.commit()
+                                                
+                                            with sqlite3.connect("Volac.db") as db:
+                                                cursor = db.cursor()
+                                                cursor.execute("SELECT HardwareMakeID from HardwareModel WHERE HardwareModelID =?",(ModelID[0],))
+                                                MakeID = list(cursor.fetchone())
+                                                db.commit()
 
-                                HardwareForeignKey = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
+                                            with sqlite3.connect("Volac.db") as db:
+                                                cursor = db.cursor()
+                                                cursor.execute("SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID =? AND HardwareMake.HardwareMakeID =?",(ModelID[0],MakeID[0],))
+                                                db.commit()
 
-                                
-                                b = "[]'',"
-                                for i in range(0,len(b)):
-                                    HardwareForeignKey = HardwareForeignKey.replace(b[i],"") 
-                                    
-                                self.item = QTableWidgetItem(HardwareForeignKey)
-                                self.item.setTextAlignment(Qt.AlignCenter)
-                                self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
-                                self.table.setItem(self.row, self.column,self.item)
-                                self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
-                                continue
-                    self.item = QTableWidgetItem(str(item))
-                    self.item.setFlags(Qt.ItemIsEnabled)
-                    self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
-                    self.table.horizontalHeader().setStretchLastSection(True)
+                                            HardwareForeignKey = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
+
+                                            
+                                            b = "[]'',"
+                                            for i in range(0,len(b)):
+                                                HardwareForeignKey = HardwareForeignKey.replace(b[i],"") 
+                                                
+                                            self.item = QTableWidgetItem(HardwareForeignKey)
+                                            self.item.setTextAlignment(Qt.AlignCenter)
+                                            self.item.setFlags(Qt.ItemIsEnabled) ##Item is no longer enabled (Toggled off) 
+                                            self.table.setItem(self.row, self.column,self.item)
+                                            self.table.horizontalHeader().setResizeMode(QHeaderView.Stretch)
+                                            continue
+                                self.item = QTableWidgetItem(str(item))
+                                self.item.setFlags(Qt.ItemIsEnabled)
+                                self.table.setItem(self.row, self.column,self.item) ##Each item is added to a the table
+                                self.table.horizontalHeader().setStretchLastSection(True)
 
         self.vertical.addWidget(self.table)
 

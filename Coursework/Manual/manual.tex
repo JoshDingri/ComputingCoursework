@@ -238,115 +238,6 @@ If you have data but do not know your account. See section ----
 \subsubsection{How do I change my password?}
 
 
-
-Admin Interface Tutorial
-
-\subsubsection{How do I open the database?}\label{opendb}
-
-1) From the main menu click the "Open Database" button
-
-2) Click the "Open Database"  button (next to the "Select Table" dropdown box)
-
-3) Choose the correct database file, it will be named "Volac.db". 
-
-4) The database is now open
-
-\subsubsection{How do I view the different tables in the database?}\label{viewdb}
-
-1) Open the database (follow the above tutorial \ref{opendb} if you need help doing this)
-
-2) Press the dropdown box named "Select Table" 
-
-3) Select the desired table to view it
-
-\subsubsection{How do I add data to the database?}\label{adddata}
-
-1) Open the database (\ref{opendb})
-
-2) Select the table of your choice (\ref{viewdb})
-
-3) Press the "Add Data" button
-
-4) Fill out all the required fields, the fields will turn green if the entry is valid
-
-5) Press "Add Data" to add the information to the database, the window should close and the table should automatically update
-
-\subsubsection{How do I edit data in the database?}
-
-1) Open the database (\ref{opendb})
-
-2) Select the table of your choice (\ref{viewdb})
-
-3) Press the "Edit Database" button 
-
-4) You may now change any fields of your choice, make sure the foreign keys (See \ref{keys}) (digits under certain 'ID Fields') are changed only to reference primary keys of other tables.
-
-5) After a field has been changed press the "Enter" button on your keyboard to exit the field.
-
-6) After all desired fields have been changed you can either press the "Cancel" button to revert back to read only view without saving. Or the "Save Changes" button to save all changes and revert back to read only view.
-
-\subsubsection{How do I delete data from the database?}
-
-1) Open the database (\ref{opendb})
-
-2) Select the table of your choice (\ref{viewdb})
-
-3) Press the "Remove Data" button
-
-4) To delete a record you may click the "Delete" button, this will delete the entire record of data
-
-5) A warning message will appear, to confirm deletion. Click "Yes" to confirm deletion
-
-6) To revert back to read only view click the "Remove Data" button again
-
-\subsubsection{How do I quick search for data in the database?}
-
-1) Open the database (\ref{opendb})
-
-2) Select the table of your choice (\ref{viewdb})
-
-3) To search for a field, enter text into the search box 
-
-4) The table will automatically filter to show the text input
-
-5) To show the whole table again, remove the text in the search box
-
-\subsubsection{How do I search for staff by department?}
-
-1) From the main menu press the "Search Staff" button
-
-2) Select the department using the drop down box, this will display all staff from the specified department
-
-3) To search for staff member enter their first name in the search box
-
-\subsubsection{How do I generate a graph?}
-
-1) From anywhere in the Admin interface locate the toolbar
-
-2) Press the "Generate Hardware Graph"
-
-3) The graph should open, you may save the image as .png
-
-4) Close the graph by pressing the "X" button on the window
-
-\subsubsection{How do I add new accounts to the system?}
-
-1) From anywhere in the Admin interface locate the toolbar
-
-2) Press the "Create User Accounts"
-
-3) To add an account, the staff member must first be added to the staff table (see \ref{adddata})
-
-4) Using the drop down box, fill in the staff details. The "Access Level" will provide access to different parts of the system so make sure it is correct! 
-
-5) Press "Create Account". This will generate login details
-
-6) You may change the details, however it is recommended that the password is kept the same since it is secure and randomly generated
-
-7) Press "Add Account" to add the user to the system
-
-8) The user can now login with their details, make sure to tell the user to change their password when they first access the system
-
 \subsubsection{How do I close the system?}
 
 You may close the system at any time in three different ways:
@@ -359,11 +250,250 @@ You may close the system at any time in three different ways:
 
 Please bare in mind that the system does not have an autosave feature, make sure all data is saved before closing.
 
+Admin Interface Tutorial
+
+\subsubsection{How do I open the database?}\label{opendb}
+
+1) From the main menu click the "Open Database" button
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/opendb1.png}
+\end{figure}
+
+
+2) Click the "Open Database"  button (next to the "Select Table" dropdown box)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/opendb2.png}
+\end{figure}
+
+
+3) Choose the correct database file, it will be named "Volac.db". 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/opendb3.png}
+\end{figure}
+
+4) The database is now open
+
+
+\subsubsection{How do I view the different tables in the database?}\label{viewdb}
+
+1) Open the database (follow the above tutorial \ref{opendb} if you need help doing this)
+
+2) Press the dropdown box named "Select Table" 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/table1.png}
+\end{figure}
+
+3) Select the desired table to view it
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/tabl2.png}
+\end{figure}
+
+\subsubsection{How do I add data to the database?}\label{adddata}
+
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) Press the "Add Data" button
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/adddata.png}
+\end{figure}
+
+4) Fill out all the required fields, the fields will turn green if the entry is valid
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/adddata2.png}
+\end{figure}
+
+5) Press "Add Data" to add the information to the database, the window should close and the table should automatically update
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/adddata3.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/adddata4.png}
+\end{figure}
+
+\subsubsection{How do I edit data in the database?}
+
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) Press the "Edit Database" button 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/editdata.png}
+\end{figure}
+
+4) You may now change any fields of your choice, make sure the foreign keys (See \ref{keys}) (digits under certain 'ID Fields') are changed only to reference primary keys of other tables.
+
+5) After a field has been changed press the "Enter" button on your keyboard to exit the field.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/editdata2.png}
+\end{figure}
+
+6) After all desired fields have been changed you can either press the "Cancel" button to revert back to read only view without saving. Or the "Save Changes" button to save all changes and revert back to read only view.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/editdata3.png}
+\end{figure}
+
+\subsubsection{How do I delete data from the database?}
+
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) Press the "Remove Data" button
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/deletedata.png}
+\end{figure}
+
+4) To delete a record you may click the "Delete" button, this will delete the entire record of data
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/deletedata2.png}
+\end{figure}
+
+5) A warning message will appear, to confirm deletion. Click "Yes" to confirm deletion
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/deletedata3.png}
+\end{figure}
+
+6) To revert back to read only view click the "Remove Data" button again
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/deletedata4.png}
+\end{figure}
+
+
+\subsubsection{How do I quick search for data in the database?}
+
+1) Open the database (\ref{opendb})
+
+2) Select the table of your choice (\ref{viewdb})
+
+3) To search for a field, enter text into the search box 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/search1.png}
+\end{figure}
+
+4) The table will automatically filter to show the text input
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/search.png}
+\end{figure}
+
+5) To show the whole table again, remove the text in the search box
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/search2.png}
+\end{figure}
+
+
+\subsubsection{How do I search for staff by department?}
+
+1) From the main menu press the "Search Staff" button
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/searchdep.png}
+\end{figure}
+
+2) Select the department using the drop down box, this will display all staff from the specified department
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/searchdep2.png}
+\end{figure}
+
+3) To search for staff member enter their first name in the search box
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/searchdep3.png}
+\end{figure}
+
+4) To get further information about the staff member click their button
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/searchdep4.png}
+\end{figure}
+
+\subsubsection{How do I generate a graph?}
+
+1) From anywhere in the Admin interface locate the toolbar
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/graph1.png}
+\end{figure}
+
+2) Press the "Generate Hardware Graph"
+
+3) The graph should open, you may also save the image as .png
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/graph2.png}
+\end{figure}
+
+4) Close the graph by pressing the "X" button on the window
+
+\subsubsection{How do I add new accounts to the system?}
+
+1) From anywhere in the Admin interface locate the toolbar
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/graph1.png}
+\end{figure}
+
+2) Press the "Create User Accounts"
+
+3) To add an account, the staff member must first be added to the staff table (see \ref{adddata})
+
+4) Using the drop down box, fill in the staff details. The "Access Level" will provide access to different parts of the system so make sure it is correct! 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/account2.png}
+\end{figure}
+
+5) Press "Create Account". This will generate login details
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/account3.png}
+\end{figure}
+
+6) You may change the details, however it is recommended that the password is kept the same since it is secure and randomly generated
+
+7) Press "Add Account" to add the user to the system
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/account4.png}
+\end{figure}
+
+8) The user can now login with their details, make sure to tell the user to change their password when they first access the system
+
 \subsubsection{What are primary and foreign keys and how do I use them?}\label{keys}
 
 For the most part you will not have to worry about using primary and foreign keys. However when editing and deleting data it may be important to understand their use. Foreign keys will be presented when editing or deleting data, you will notice that under the "ID" fields there are numbers.
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/foreign.png}
+\end{figure}
+
 These numbers reference primary keys of other tables (which are basically unique identifiers for a record in that table). Therefore if you would like to edit a foreign key (to reference a different record) you will need to change the number to the primary key of your choice.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/foreign2.png}
+\end{figure}
 
 You may not delete a record if it is referenced by a foreign key somewhere else.
 
@@ -373,7 +503,15 @@ Manager and Staff Interface Tutorial
 
 1) On the login screen press the "Forgot username/password" button
 
-2) Fill out all the details, make sure the email address is correct so that IT Staff can reply to your email
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/forgot.png}
+\end{figure}
+
+2) Fill out all the details, make sure the email address is correct so that IT Staff can reply to your email, then click "Submit" (Press "Cancel" to close window)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/forgot2.png}
+\end{figure}
 
 3) Await a response, the IT Staff will email you back with new account details over the next few days. If they do not reply within a week, email them directly.
 
@@ -385,7 +523,15 @@ This tutorial will only apply for managers.
 
 2) Click the "Department Information" button
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/department.png}
+\end{figure}
+
 3) From here you can view all staff in your department
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/department2.png}
+\end{figure}
 
 \subsubsection{How do I quick search for data when viewing Department Information?}
 
@@ -407,13 +553,25 @@ Managers:
 
 2) Click the "My Information" button 
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/myinfo.png}
+\end{figure}
+
 3) From here you can view your own devices stored in the database
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/myinfp2.png}
+\end{figure}
 
 Staff:
 
 1) Login to the staff interface
 
 2) The initial screen will be your own information
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/myinfostaff.png}
+\end{figure}
 
 3) From here you can view your own devices stored in the database
 
@@ -423,9 +581,25 @@ The quick search function is present on both layouts and you can use the search 
 
 1) Press the "Help" menu on the menubar
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/bugreport.png}
+\end{figure}
+
 2) Select "Report Bug"
 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/bugreport2.png}
+\end{figure}
+
+
 3) Fill out all fields and press "Send"
+
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/bugreport3.png}
+\end{figure}
+
 
 4) The IT Staff will look into the problem and resolve it as soon as possible
 
@@ -433,13 +607,27 @@ The quick search function is present on both layouts and you can use the search 
 
 1) Press the "Help" menu on the menubar
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/bugreport.png}
+\end{figure}
+
 2) Select "Report Incorrect Information"
 
-3) Fill out all fields and press "Send"
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/errorreport.png}
+\end{figure}
+
+3) Fill out all fields and press "Submit"
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/errorreport2.png}
+\end{figure}
 
 4) The IT Staff will look into the problem and resolve it as soon as possible
 
 \subsection{Saving}
+
+Editing data is the only situation where you will be required to save changes to the database manually, this is because it is a way of confirming that you want your edits to be committed to the database. You may also save graphs as .png in case you would like to use them in the future. Other than this, all saving is done automatically by the system (such as adding data and deleting data). This means that if the system was to crash, all data will still be saved to the database (as long as the user was not in the middle of editing data).
 
 \subsection{Limitations}
 
