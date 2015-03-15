@@ -208,12 +208,60 @@ I will assume that there is no prior knowledge of using computers since staff me
 
 \subsection{Tutorial Questions}
 
-The following tutorials are split into a question and answer format.
+The following tutorials are split into a question and answer format. They are also split up to help specific access levels.
+
+\textbf{General Questions}
+
+\begin{center}
+    \begin{longtable}{|p{5cm}|p{2cm}|p{2cm}|}
+        \hline
+        \textbf{Question} & \textbf{Question Number} & \textbf{Page Number} \\ \hline
+How do I login to the system? & \ref{howlogin} & \pageref{howlogin} \\ \hline
+How do I change my password? & \ref{changepass} & \pageref{changepass}\\ \hline
+How do I close the system? & \ref{closesys} & \pageref{closesys}\\ \hline
+	\end{longtable}
+\end{center}
+
+\textbf{Admin Questions}
+
+\begin{center}
+    \begin{longtable}{|p{5cm}|p{2cm}|p{2cm}|}
+        \hline
+        \textbf{Question} & \textbf{Question Number} & \textbf{Page Number} \\ \hline
+How do I open the database? & \ref{opendb} & \pageref{opendb}\\ \hline
+How do I view the different tables in the database? & \ref{viewdb} & \pageref{viewdb}\\ \hline
+How do I add data to the database? & \ref{adddata} & \pageref{adddata}\\ \hline
+How do I edit data in the database? & \ref{editdata} & \pageref{editdata}\\ \hline
+How do I delete data from the database?  & \ref{deletedata} & \pageref{deletedata}\\ \hline
+How do I quick search for data in the database? & \ref{quicksearch} & \pageref{quicksearch}\\ \hline
+How do I search for staff by department? & \ref{departsearch} & \pageref{departsearch}\\ \hline
+How do I generate a graph? & \ref{graph} & \pageref{graph}\\ \hline
+How do I add new accounts to the system? & \ref{accountcreate} & \pageref{accountcreate}\\ \hline
+What are primary and foreign keys and how do I use them? & \ref{keys} & \pageref{keys}\\ \hline
+
+	\end{longtable}
+\end{center}
+
+\textbf{Manager and Staff Questions}
+
+\begin{center}
+    \begin{longtable}{|p{5cm}|p{2cm}|p{2cm}|}
+        \hline
+        \textbf{Question} & \textbf{Question Number} & \textbf{Page Number} \\ \hline
+I forgot my password, how do I recover it? & \ref{recoveraccount} & \pageref{recoveraccount}\\ \hline
+How do I view staff in my department? & \ref{department} & \pageref{department}\\ \hline
+How do I quick search for data when viewing Department Information? & \ref{departquicksearch} & \pageref{departquicksearch}\\ \hline
+How do I view my own information?  & \ref{owninfo} & \pageref{owninfo}\\ \hline
+How do I report a bug? & \ref{bugreport} & \pageref{bugreport}\\ \hline
+How do I report incorrect information? & \ref{incorrectinfo} & \pageref{incorrectinfo}\\ \hline
+
+	\end{longtable}
+\end{center}
 
 %include as many subsubsections as necessary for each question in your list
-General Tutorial
+\paragraph{General Tutorial}
 
-\subsubsection{How do I login to the system?}
+\subsubsection{How do I login to the system?}\label{howlogin}
 
 To log in to the system you will first be required to have a user account. If you have data in the database then the IT Staff should have provided you with a login.
 
@@ -232,25 +280,59 @@ To log in to the system you will first be required to have a user account. If yo
 \end{figure}
 
 
+If you have data but do not know your account. See section \ref{recoveraccount}
 
-If you have data but do not know your account. See section ----
+\subsubsection{How do I change my password?}\label{changepass}
 
-\subsubsection{How do I change my password?}
+1) Login to your interface
+
+2) Locate and press the account menu on the menubar
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/changepass.png}
+\end{figure}
+
+3) Click "Change Password"
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/changepass2.png}
+\end{figure}
+
+4) Fill out the fields and click "Change", if done successfully, the confirmation message will appear under the buttons (shown below)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/changepass3.png}
+\end{figure}
 
 
-\subsubsection{How do I close the system?}
+\subsubsection{How do I close the system?}\label{closesys}
 
 You may close the system at any time in three different ways:
 
 \begin{itemize}
 \item{Pressing the "X" button on the window}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/close2.png}
+\end{figure}
+
 \item{Going to the account menu and pressing "Log Out"}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/close1.png}
+\end{figure}
+
 \item{Using the keyboard shortcut "CTRL+W}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/close3.png}
+\end{figure}
+
 \end{itemize}
 
 Please bare in mind that the system does not have an autosave feature, make sure all data is saved before closing.
 
-Admin Interface Tutorial
+\paragraph{Admin Interface Tutorial}
 
 \subsubsection{How do I open the database?}\label{opendb}
 
@@ -321,7 +403,7 @@ Admin Interface Tutorial
     \includegraphics[width=\textwidth]{./Manual/Images/adddata4.png}
 \end{figure}
 
-\subsubsection{How do I edit data in the database?}
+\subsubsection{How do I edit data in the database?}\label{editdata}
 
 1) Open the database (\ref{opendb})
 
@@ -347,7 +429,7 @@ Admin Interface Tutorial
     \includegraphics[width=\textwidth]{./Manual/Images/editdata3.png}
 \end{figure}
 
-\subsubsection{How do I delete data from the database?}
+\subsubsection{How do I delete data from the database?}\label{deletedata}
 
 1) Open the database (\ref{opendb})
 
@@ -378,7 +460,7 @@ Admin Interface Tutorial
 \end{figure}
 
 
-\subsubsection{How do I quick search for data in the database?}
+\subsubsection{How do I quick search for data in the database?}\label{quicksearch}
 
 1) Open the database (\ref{opendb})
 
@@ -403,7 +485,7 @@ Admin Interface Tutorial
 \end{figure}
 
 
-\subsubsection{How do I search for staff by department?}
+\subsubsection{How do I search for staff by department?}\label{departsearch}
 
 1) From the main menu press the "Search Staff" button
 
@@ -429,7 +511,7 @@ Admin Interface Tutorial
     \includegraphics[width=\textwidth]{./Manual/Images/searchdep4.png}
 \end{figure}
 
-\subsubsection{How do I generate a graph?}
+\subsubsection{How do I generate a graph?}\label{graph}
 
 1) From anywhere in the Admin interface locate the toolbar
 
@@ -447,7 +529,7 @@ Admin Interface Tutorial
 
 4) Close the graph by pressing the "X" button on the window
 
-\subsubsection{How do I add new accounts to the system?}
+\subsubsection{How do I add new accounts to the system?}\label{accountcreate}
 
 1) From anywhere in the Admin interface locate the toolbar
 
@@ -497,9 +579,9 @@ These numbers reference primary keys of other tables (which are basically unique
 
 You may not delete a record if it is referenced by a foreign key somewhere else.
 
-Manager and Staff Interface Tutorial
+\paragraph{Manager and Staff Interface Tutorial}
 
-\subsubsection{I forgot my password, how do I recover it?}
+\subsubsection{I forgot my password, how do I recover it?}\label{recoveraccount}
 
 1) On the login screen press the "Forgot username/password" button
 
@@ -533,7 +615,7 @@ This tutorial will only apply for managers.
     \includegraphics[width=\textwidth]{./Manual/Images/department1.png}
 \end{figure}
 
-\subsubsection{How do I quick search for data when viewing Department Information?}
+\subsubsection{How do I quick search for data when viewing Department Information?}\label{departquicksearch}
 
 1) Enter the "Department Information" interface (see \ref{department})
 
@@ -541,9 +623,13 @@ This tutorial will only apply for managers.
 
 3) The table will automatically filter to show the text input
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/quicksearchdept.png}
+\end{figure}
+
 4) To show the whole table again, remove the text in the search box
 
-\subsubsection{How do I view my own information?}
+\subsubsection{How do I view my own information?}\label{owninfo}
 
 Both Managers and Staff can do this.
 
@@ -577,7 +663,7 @@ Staff:
 
 The quick search function is present on both layouts and you can use the search box to filter information. Simply enter text in the search box to filter the table.
 
-\subsubsection{How do I report a bug?}
+\subsubsection{How do I report a bug?}\label{bugreport}
 
 1) Press the "Help" menu on the menubar
 
@@ -603,7 +689,7 @@ The quick search function is present on both layouts and you can use the search 
 
 4) The IT Staff will look into the problem and resolve it as soon as possible
 
-\subsubsection{How do I report incorrect information?}
+\subsubsection{How do I report incorrect information?}\label{incorrectinfo}
 
 1) Press the "Help" menu on the menubar
 
@@ -631,15 +717,124 @@ Editing data is the only situation where you will be required to save changes to
 
 \subsection{Limitations}
 
+The main limitation is the fact that the system is not online which means other colleagues cannot use the database at the same time, the client may expect this to have been completed but it can be done when I have more time to research this further. The client also may have expected that automatic emails work in a better way then they do currently, the fact that the user has to restart the system every day for the automated email to send may cause an inconvenience and they will want this fixed. Validation when editing data does not work at this point in time but it was not expected by the client so it may not be a problem of high priority.
+
 \section{Error Recovery}
 
-%include as many subsections as necessary for each error
-\subsection{Error 1}
+Certain problems may occur when using the system that will not display an error message, below I have stated how to recover from these errors so you may carry on using the program effectively. 
 
-\subsection{Error 2}
+%include as many subsections as necessary for each error
+\subsection{Problems Adding Accounts}
+
+If you try and create a new account and then can't login with this new account it may be because the system has recognized that the username already exists. The system will not show an error but will not add this account in the database therefore it will not work. \newline
+
+To solve the error simply try generating a new account with a different username. This should solve the problem. (see \ref{accountcreate} to create an account)
+
+\subsection{Problems Adding Data}
+
+Adding data should be work well but one problem that may arise is with inputs with combo boxes (drop-down boxes). If the default value is not changed in combo boxes, the field data will not be acknowledged. Solving this can be done easily:
+\newline
+1) Simply click the drop-down arrow and select an option
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/dropdownfix.png}
+\end{figure}
+
+2) If it was the default option that you wanted to select, click this item while in the drop-down list
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/dropdownfix2.png}
+\end{figure}
+
+
+3) Data should now add effectively
 
 \section{System Recovery}
 
-\subsection{Backing-up Data}
+\subsection{Backing-up Data}\label{backup}
 
-\subsection{Restoring Data}
+Backing up the system is fairly simple, but it is important to note the system has no inbuilt back up system, therefore you will have to do this manually using the following steps below:
+
+1) Navigate to where the system folder is located
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/backup1.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/backup2.png}
+\end{figure}
+
+
+2) Make sure the program has been closed and any saving has been made
+
+3) Right click the system folder and press "Copy" (alternatively you may click the system folder and press "CTRL+C" on the keyboard)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/backup3.png}
+\end{figure}
+
+4) Choose a location to back up the system to, the best option would be to save the folder on a removable flash drive or external hard drive. This way if the computer breaks, there is still a backup of the system
+
+
+5) Right click any blank space inside the back up location and press "Paste" (alternatively you may press "CTRL+V" on the keyboard)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/backup4.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/backup5.png}
+\end{figure}
+
+6) The system is now backed up, please see the below section on how to restore the system (\ref{restore})
+
+\subsection{Restoring Data}\label{restore}
+
+1) Navigate to where the backed up system folder is located (see (\ref{backup} for the backup tutorial)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/restore1.png}
+\end{figure}
+
+2) Right click the folder and press "Copy" (alternatively you may click the system folder and press "CTRL+C" on the keyboard)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/restore2.png}
+\end{figure}
+
+3) Navigate to where the system folder is located
+
+4) You may now do one of two things:
+\newline
+\textbf{Method 1:}
+
+1) Delete the system folder
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/restore1delete.png}
+\end{figure}
+
+2) Right click any blank space and press "Paste" (alternatively you may press "CTRL+V" on the keyboard)
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/restore1delete2.png}
+\end{figure}
+
+3) The new system will now replace the old system
+
+\textbf{Method 2: (Preferred Option)}
+
+1) Right click any blank space and press "Paste" (alternatively you may press "CTRL+V" on the keyboard)
+
+2) You will now be asked to merge folders and overwrite files, select "Copy and Replace" and "Do this for the next X conflicts"
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/restore3.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Manual/Images/restore4.png}
+\end{figure}
+
+3) The new system will now replace the old system. 
