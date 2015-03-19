@@ -59,7 +59,7 @@ be used to run my system in its GUI form for my client.
 
 \subsection{Logins}
 
-This part of the system will prevent any unauthorised access to the system. It will check the username and password input and compare it with usernames (primary keys in the database) and passwords stored in a database file. If the details match, the user will gain access to the relevant part of the system. The system runs with access restrictions therefore usernames will have certain access levels attached to them which are (in order of access rights) Admin, Manager or Staff. If the username/password combination does not match a error will appear asking the user to re-enter the information until it is correct. There is also a "forgotten username or password" button to allow users to send emails to IT staff from inside the system which will request a password retrieval. All staff have the same email host (Volac.com) therfore I will be able to use the correct SMTP server when the system is given to my client. Currently, for testing purposes, the SMTP sever is "Live.com" this can easily be changed when the client uses the system.
+This part of the system will prevent any unauthorised access to the system. It will check the username and password input and compare it with usernames (primary keys in the database) and passwords stored in a database file. If the details match, the user will gain access to the relevant part of the system and the correct QMainWindow will appear. The system runs with access restrictions therefore usernames will have certain access levels attached to them which are (in order of access rights) Admin, Manager or Staff. If the username/password combination does not match a error will appear asking the user to re-enter the information until it is correct. There is also a "forgotten username or password" button to allow users to send emails to IT staff from inside the system which will request a password retrieval. All staff have the same email host (Volac.com) therfore I will be able to use the correct SMTP server when the system is given to my client. Currently, for testing purposes, the SMTP sever is "Live.com" this can easily be changed when the client uses the system.
 
 \subsection{The Graphical User Interface}
 
@@ -141,6 +141,44 @@ Menu bars are used on every interface in the system, therefore it was important 
     \caption{This above example shows how to menubar is called.} \label{fig:Dialog Class}
 \end{figure}
 
+\subsection{Method Structure In Classes \ref{MP} and \ref{LW}}
+ 
+ \begin{figure}[H]
+	\begin{scriptsize}
+    \pythonfile[firstline=92,lastline=102]{./Implementation/Files/MainProgram.py}
+	 \end{scriptsize}
+    \caption{The methods of classes are structured so they can all do different functions and be called individually in any order specified. For example the above method holds all the connections for buttons. Full code at \ref{MP}} \label{fig:Dialog Class}
+\end{figure}
+
+ \begin{figure}[H]
+    \pythonfile[firstline=104,lastline=113]{./Implementation/Files/MainProgram.py}
+    \caption{This method simply stores the toolbar buttons. It can be called whenever the menubar needs to be displayed. Full code at \ref{MP}} \label{fig:Dialog Class}
+\end{figure}
+
+ \begin{figure}[H]
+    \pythonfile[firstline=42,lastline=55]{./Implementation/Files/LoginWindow.py}
+    \caption{Another reason why using methods is beneficial is that they can be called or ignored while testing the code. The example above shows my splashscreen, I made the method but didn't want it to run every time I tested the program. Therefore I could simply comment out when the method is called at line 1. Full code at \ref{LW}} \label{fig:Dialog Class}
+\end{figure}
+
+\subsection{Access Levels and Login Structure \ref{LW}}
+
+In order to provide different access levels for the different staff members I created a new table in a database to store account details. When logging into the system the user will enter their account details, the code below shows how the system matches the entered details to the login details in the database.
+
+ \begin{figure}[H]
+    \pythonfile[firstline=136,lastline=143]{./Implementation/Files/LoginWindow.py}
+    \caption{This piece of code is checking whether the username entered matches a username in the database and will attempt to gather all the details from that record where the username is the primary key.}\label{fig:Dialog Class}
+\end{figure}
+
+ \begin{figure}[H]
+    \pythonfile[firstline=146,lastline=166]{./Implementation/Files/LoginWindow.py}
+    \caption{If the entered username does match a record in the database, the system will run the "Try" statement. From here the IF statement will check if the username entered matches the database username and if the password entered matches the database password. If this statement fails to work then the "ELSE" statement will display a error message on the user interface.}\label{fig:Dialog Class}
+\end{figure}
+
+ \begin{figure}[H]
+    \pythonfile[firstline=168,lastline=170]{./Implementation/Files/LoginWindow.py}
+    \caption{If the username does not match any record in the database the above "Except" statement will run and will display an error message on the user interface. }\label{fig:Dialog Class}
+\end{figure}
+
 \subsection{Module Main Function \ref{MP}}
  
  \begin{figure}[H]
@@ -157,62 +195,62 @@ My system has hundreds of variables and it would be unnecessary to display them 
     \hline
 	\textbf{Variable Name} & \textbf{Purpose} & \textbf{Reference}&  \textbf{Line Numbers} \\ \hline
 
-PurchaseDateExist & Boolean to check if the PurchaseDate exists as a label on the add data screen  & \ref{ADGUI} & 40, 78, 97, 356  \\ \hline
-\verb DepartmentID_CB & Boolean to check if the DepartmentID exists as a label on the add data screen  & \ref{ADGUI} &42, 120, 140, 409  \\ \hline
-\verb LocationID_CB & Boolean to check if the LocationID exists as a label on the add data screen  & \ref{ADGUI} &44, 143, 163, 421 \\ \hline
-\verb HardwareModelID_CB & Boolean to check if the HardwareModelID exists as a label on the add data screen & \ref{ADGUI} &45, 210, 231, 433   \\ \hline
-\verb HardwareMakeID_CB & Boolean to check if the HardwareMakeID exists as a label on the add data screen  & \ref{ADGUI} & 46, 167, 186, 445    \\ \hline
-\verb StaffID_CB & Boolean to check if the StaffID exists as a label on the add data screen & \ref{ADGUI} & 47, 188, 208, 457  \\ \hline
-\verb HardwareID_CB & Boolean to check if the HardwareID exists as a label on the add data screen  & \ref{ADGUI} & 48, 233, 276, 469 \\ \hline
-\verb DeviceID_CB & Boolean to check if the DeviceID exists as a label on the add data screen & \ref{ADGUI} & 49, 280, 299, 481   \\ \hline
-CostValidation & Boolean to check if the Purchase Date exists as a label on the add data screen & \ref{ADGUI} &51, 312, 315, 380 \\ \hline
-PhoneNumberValidation & Boolean to check if the Purchase Date exists as a label on the add data screen & \ref{ADGUI} & 52, 317, 325, 388 \\ \hline
-self.CostExists & Boolean to check if Cost exists as a label on the add data screen  & \ref{ADGUI} & 53, 382, 747  \\ \hline
-SerialValidation & Boolean to check if the Serial Number exists as a label on the add data screen  & \ref{ADGUI} &54, 327, 332, 368  \\ \hline
-IMEIValidation & Boolean to check if the IMEI number exists as a label on the add data screen  & \ref{ADGUI} &55, 334, 341, 362 \\ \hline
-WarrantyDate &  Boolean to check if the WarrantyExpirationDate exists as a label on the add data screen & \ref{ADGUI} &56, 99, 118, 350  \\ \hline
-cursor & Allows execution of sql queries using cursor.execute()& \ref{ADGUI} & Referenced at every SQL statement in the section eg. 126,149, 173  \\ \hline
+PurchaseDateExist & Boolean to check if the PurchaseDate exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI} & 40, 78, 97, 356  \\ \hline
+\verb DepartmentID_CB & Boolean to check if the DepartmentID exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI} &42, 120, 140, 409  \\ \hline
+\verb LocationID_CB & Boolean to check if the LocationID exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI}  &44, 143, 163, 421 \\ \hline
+\verb HardwareModelID_CB & Boolean to check if the HardwareModelID exists as a label on the add data screen & \ref{ADGUI} Page: \pageref{ADGUI} &45, 210, 231, 433   \\ \hline
+\verb HardwareMakeID_CB & Boolean to check if the HardwareMakeID exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI} & 46, 167, 186, 445    \\ \hline
+\verb StaffID_CB & Boolean to check if the StaffID exists as a label on the add data screen & \ref{ADGUI} Page: \pageref{ADGUI} & 47, 188, 208, 457  \\ \hline
+\verb HardwareID_CB & Boolean to check if the HardwareID exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI}  & 48, 233, 276, 469 \\ \hline
+\verb DeviceID_CB & Boolean to check if the DeviceID exists as a label on the add data screen & \ref{ADGUI} Page: \pageref{ADGUI} & 49, 280, 299, 481   \\ \hline
+CostValidation & Boolean to check if the Purchase Date exists as a label on the add data screen & \ref{ADGUI} Page: \pageref{ADGUI} &51, 312, 315, 380 \\ \hline
+PhoneNumberValidation & Boolean to check if the Purchase Date exists as a label on the add data screen & \ref{ADGUI} Page: \pageref{ADGUI} & 52, 317, 325, 388 \\ \hline
+self.CostExists & Boolean to check if Cost exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI} & 53, 382, 747  \\ \hline
+SerialValidation & Boolean to check if the Serial Number exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI}  &54, 327, 332, 368  \\ \hline
+IMEIValidation & Boolean to check if the IMEI number exists as a label on the add data screen  & \ref{ADGUI} Page: \pageref{ADGUI} &55, 334, 341, 362 \\ \hline
+WarrantyDate &  Boolean to check if the WarrantyExpirationDate exists as a label on the add data screen & \ref{ADGUI} Page: \pageref{ADGUI} &56, 99, 118, 350  \\ \hline
+cursor & Allows execution of sql queries using cursor.execute()& \ref{ADGUI} Page: \pageref{ADGUI} & Referenced at every SQL statement in the section eg. 126,149, 173  \\ \hline
 
-self.LE & Adds a line edit to position in window & \ref{ADGUI} &68, 69, 83, 124, 135, 147, 158, 171, 181, 192, 203, 214, 225, 237, 270, 284, 294,     \\ \hline
-self.LineEditList & List to hold all line edits in the add data window which means the input can later be called & \ref{ADGUI} & Referenced all over this section so I have mainly only listed the important times when values are appended, changed or set to read only: 69, 75, 76, 91, 96, 97, 135, 158, 181, 203, 225, 270, 294, 304, 305, 314, 321, 322, 338, 556, 559, 567, 734, 725, 73,       \\ \hline
-name & Used in a for loop to temporarily hold the label name. if there is no label a line edit will be inserted, this is how to add data window is created. & \ref{ADGUI} &  Again, mention a lot in the section and if the variable is doing the same kind of thing it will not be listed: 66, 80, 346, 347, 405, 406\\ \hline
-data & Holds data from line edits to be committed to the database  & \ref{ADGUI} & 720, 739, 740, 741, 742, 743, 762, 778   \\ \hline
-values & Creates '?' as placeholders to use the correct SQL query format  & \ref{ADGUI} & 721, 763, 767,768,769, 776  \\ \hline
-self.col & Holds column names & \ref{ADGUI} &29, 31, 33, 66, 502,506, 508, 514, 518, 522, 524,525,776    \\ \hline
-positions & Creates the correct sized grid layout & \ref{ADGUI} &31, 66   \\ \hline
-text & Used to retrieve text in certain line edits  & \ref{ADGUI} & 541, 542, 544, 570 \\ \hline
+self.LE & Adds a line edit to position in window & \ref{ADGUI} Page: \pageref{ADGUI} &68, 69, 83, 124, 135, 147, 158, 171, 181, 192, 203, 214, 225, 237, 270, 284, 294,     \\ \hline
+self.LineEditList & List to hold all line edits in the add data window which means the input can later be called & \ref{ADGUI} Page: \pageref{ADGUI} & Referenced all over this section so I have mainly only listed the important times when values are appended, changed or set to read only: 69, 75, 76, 91, 96, 97, 135, 158, 181, 203, 225, 270, 294, 304, 305, 314, 321, 322, 338, 556, 559, 567, 734, 725, 73,       \\ \hline
+name & Used in a for loop to temporarily hold the label name. if there is no label a line edit will be inserted, this is how to add data window is created. & \ref{ADGUI} Page: \pageref{ADGUI} &  Again, mention a lot in the section and if the variable is doing the same kind of thing it will not be listed: 66, 80, 346, 347, 405, 406\\ \hline
+data & Holds data from line edits to be committed to the database  & \ref{ADGUI} Page: \pageref{ADGUI} & 720, 739, 740, 741, 742, 743, 762, 778   \\ \hline
+values & Creates '?' as placeholders to use the correct SQL query format  & \ref{ADGUI} Page: \pageref{ADGUI} & 721, 763, 767,768,769, 776  \\ \hline
+self.col & Holds column names & \ref{ADGUI} Page: \pageref{ADGUI}&29, 31, 33, 66, 502,506, 508, 514, 518, 522, 524,525,776    \\ \hline
+positions & Creates the correct sized grid layout & \ref{ADGUI} Page: \pageref{ADGUI} &31, 66   \\ \hline
+text & Used to retrieve text in certain line edits  & \ref{ADGUI} Page: \pageref{ADGUI} & 541, 542, 544, 570 \\ \hline
 
-\verb Password_chars & holds random uppercase,lowercase letters and digits & \ref{AAI} & 133 \\ \hline
-Password & chooses 7 random characters from  $Password_chars$& \ref{AAI} & 136 \\ \hline
+\verb Password_chars & holds random uppercase,lowercase letters and digits & \ref{AAI} Page: \pageref{AAI} & 133 \\ \hline
+Password & chooses 7 random characters from  $Password_chars$& \ref{AAI} Page: \pageref{AAI} & 136 \\ \hline
 
-self.mail & connects to correct SMTP server and port number& \ref{BR} & 99  \\ \hline
+self.mail & connects to correct SMTP server and port number& \ref{BR} Page: \pageref{BR} & 99  \\ \hline
 
 
-self.table & creates QTableWidget& \ref{ODW} & 96, 155, 157, 158 \\ \hline
-CurrentHeader & holds the current column header string& \ref{ODW} & 198, 202 \\ \hline
-db & Allows connection to the database with 'db' as a reference& \ref{ODW}& Referenced at every SQL statement: eg. 217\\ \hline
+self.table & creates QTableWidget& \ref{ODW}  Page: \pageref{ODW} & 96, 155, 157, 158 \\ \hline
+CurrentHeader & holds the current column header string& \ref{ODW} Page: \pageref{ODW} & 198, 202 \\ \hline
+db & Allows connection to the database with 'db' as a reference& \ref{ODW} Page: \pageref{ODW}& Referenced at every SQL statement: eg. 217\\ \hline
 
-d & A dictionary to hold department names and amount of departments& \ref{G} & 60, 63, 67,  \\ \hline 
+d & A dictionary to hold department names and amount of departments& \ref{G} Page: \pageref{G} & 60, 63, 67,  \\ \hline 
 
-currentdate & retreives today's date& \ref{MP} & 141, 146  \\ \hline
-daysleft & works out days left until warranty expiration& \ref{MP} & 146, 147  \\ \hline
+currentdate & retreives today's date& \ref{MP} Page: \pageref{MP} & 141, 146  \\ \hline
+daysleft & works out days left until warranty expiration& \ref{MP} Page: \pageref{MP} & 146, 147  \\ \hline
 
-\verb name_lbl & holds title with user's name as string& \ref{MI} & 45, 46  \\ \hline
-\verb Foreign_Item & holds foreign key as a text string not an integer & \ref{MI} & 70\\ \hline
-HardwareForeignKey & holds foreign key as a text string not an integer & \ref{MI} & 104 \\ \hline
+\verb name_lbl & holds title with user's name as string& \ref{MI} Page: \pageref{MI} & 45, 46  \\ \hline
+\verb Foreign_Item & holds foreign key as a text string not an integer & \ref{MI} Page: \pageref{MI} & 70\\ \hline
+HardwareForeignKey & holds foreign key as a text string not an integer & \ref{MI} Page: \pageref{MI} & 104 \\ \hline
 
-space & used to set spacing between objects& \ref{ODW} & 65, 74  \\ \hline
-rspacer & used to push widgets to center (along with lspacer)& \ref{ODW} & 109, 110, 123 \\ \hline
-lspacer & used to push widgets to center (along with rspacer)& \ref{ODW} & 112,113, 120 \\ \hline
-self.item & holds QTableWidgetItem as a string & \ref{ODW} & 166, 178, 209 \\ \hline
-b &holds characters that will be replaced/removed in a .replace function& \ref{ODW} &284,285,286,320,321,322 \\ \hline
+space & used to set spacing between objects& \ref{ODW} Page: \pageref{ODW} & 65, 74  \\ \hline
+rspacer & used to push widgets to center (along with lspacer)& \ref{ODW} Page: \pageref{ODW} & 109, 110, 123 \\ \hline
+lspacer & used to push widgets to center (along with rspacer)& \ref{ODW} Page: \pageref{ODW} & 112,113, 120 \\ \hline
+self.item & holds QTableWidgetItem as a string & \ref{ODW}  Page: \pageref{ODW}& 166, 178, 209 \\ \hline
+b &holds characters that will be replaced/removed in a .replace function& \ref{ODW} Page: \pageref{ODW} &284,285,286,320,321,322 \\ \hline
 
-EmailRegExp & Holds regular expression for email addresses& \ref{RE} & 17, 18  \\ \hline
+EmailRegExp & Holds regular expression for email addresses& \ref{RE} Page: \pageref{RE} & 17, 18  \\ \hline
 
-\verb field_names & holds departments in a list& \ref{SSA} &  60, 64, 66  \\ \hline
-self.pushbuttons & holds list of pushbuttons & \ref{SSA} & 148, 166, 167\\ \hline
-self.names & holds first name and surnames in list& \ref{SSA} & 207, 149,211, 252  \\ \hline
-index & retreives button position in table& \ref{SSA} & 246, 247 \\ \hline
+\verb field_names & holds departments in a list& \ref{SSA} Page: \pageref{SSA} &  60, 64, 66  \\ \hline
+self.pushbuttons & holds list of pushbuttons & \ref{SSA} Page: \pageref{SSA} & 148, 166, 167\\ \hline
+self.names & holds first name and surnames in list& \ref{SSA} Page: \pageref{SSA} & 207, 149,211, 252  \\ \hline
+index & retreives button position in table& \ref{SSA} Page: \pageref{SSA} & 246, 247 \\ \hline
 
 
 
@@ -445,7 +483,7 @@ The below is the SQL code which created each entity in the database.
     \hline
 	\textbf{Functionality/Description} & \textbf{SQL Query} \\ \hline
 
-Retreives all fields for one user & "SELECT * FROM Accounts WHERE Username=? ",(self.username,) \\ \hline
+Retreives all fields for one user & "SELECT * FROM Accounts WHERE Username=? " ,(self.username,)\\ \hline
 Retrieves all fields for specified table & "SELECT * FROM {}".format(CurrentCBValue) \\ \hline
 Retrieves all department names from database & "SELECT DepartmentName FROM Department" \\ \hline
 Retrieves all address line 3 fields from database & "SELECT AddressLine3 FROM Location" \\ \hline
@@ -486,15 +524,17 @@ Statement ran when delete button is clicked, it will delete the whole record tha
 
 \subsection{Summary of Results}
 
-Testing largely proved that my system was reliable and robust as there were only a few errors that were found with the system. The full testing table can be found at 3.1.4 on page 179.
+Testing largely proved that my system was reliable and robust as there were only a few errors that were found with the system. Overall the system meets most of the original objectives and when implementing these objectives I made sure I started with the most desired first. All of the necessary objectives have been met however the additional objectives the client would have liked to have, for example having an on line database, have been left out which was mainly due to lack of time. There have also been quite a few additional features that were implemented that will benefit the user in different ways such as the generation of graphs. The additional features along with the full testing table can be found at 3.1.4 on page 179.
 
 \subsection{Known Issues}
 
-There is only a couple of known issues with my current code. When viewing the database tables in any interface the foreign keys are presented as text and are user friendly like the client requested. However if the user clicks the "Edit Data" button (\ref{fig:EditingData}) or "Remove Data" button (\ref{fig:deletingdata}) the foreign keys will switch back to integers which make it hard for the user to understand what is going on. This can be fixed with drop down boxes at a later date. Another problem that I will need to fix is the fact that in order for the automatic warranty expiration email to send the program will need to be restarted every day. This is obviously not ideal since the client may want to leave the system running on a server at some point. It also means every time the system is reopened 90 days before expiration of an item they will get an email.
+There is only a couple of known issues with my current code. When viewing the database tables in any interface the foreign keys are presented as text and are user friendly like the client requested. However if the user clicks the "Edit Data" button (\ref{fig:EditingData}) or "Remove Data" button (\ref{fig:deletingdata}) the foreign keys will switch back to integers which make it hard for the user to understand what is going on. This can be fixed with drop down boxes at a later date. Another problem that I will need to fix is the fact that in order for the automatic warranty expiration email to send the program will need to be restarted every day. This is obviously not ideal since the client may want to leave the system running on a server at some point. It also means every time the system is reopened 90 days before expiration of an item they will get an email. Validation when editing data does not currently work, this is not a huge issue since the data would have already been validated during input, the fix for this issue should be fairly straight forward as it just relies on copying the same validation from the input screen.
 
 \section{Code Explanations}
 
 \subsection{Difficult Sections}
+
+\subsubsection{Adding Data}
 
 The method of adding data may be complicated to understand to a programmer viewing my code. I have added comments to aid anyone who is maintaining the code.
 
@@ -524,6 +564,34 @@ The full section that I will be annotating can be found here: \ref{ADGUI}
     \pythonfile[firstline=435,lastline=442]{./Implementation/Files/AddDataGui.py}
     \caption{When a identifier is used as a label the program will strip the last 2 letters off the end making it more user friendly. For example HardwareMakeID becomes HardwareMake}  
 \end{figure}
+
+
+\subsubsection{Foreign Key Management and Table Structure}
+
+Since I have used QTableWidget for my tables in the system, I had a different method of refrencing foreigns keys using text  than models with QTableView. Because of this it may be quite difficult for a programmer to understand how it works.
+
+The full section that I will be annotating can be found here: \ref{ODW}
+
+\begin{figure}[H]
+    \pythonfile[firstline=195,lastline=198]{./Implementation/Files/OpenDatabaseWindow.py}
+    \caption{This section adds data to the table, all foreign keys at this point are integer values.}  
+\end{figure}
+
+\begin{figure}[H]
+\begin{small}
+    \pythonfile[firstline=200,lastline=215]{./Implementation/Files/OpenDatabaseWindow.py}
+\end{small}
+    \caption{To created user friendly foreign keys I have hard coded in the different headers that require foreign keys (eg. DepartmentID, LocationID, DeviceID). The code section above will look at if the current header is "DepartmentID" and if it is the correct foreign key value will be displayed based on the integer value of the cell (see above section).\newline Line 7 will take the integer value and convert it into a text value. This is where the text based foreign keys created.}  
+\end{figure}
+
+\begin{figure}[H]
+\begin{small}
+    \pythonfile[firstline=216,lastline=229]{./Implementation/Files/OpenDatabaseWindow.py}
+\end{small}
+    \caption{This is another example showing a different column heading. On line 5 it will take the LocationID (integer value) and find the Location (text value) and add it to the table on line 12.}  
+\end{figure}
+
+The sections are repeated for every column header. Although this method works, it is not very efficient. This problem exists because I initially started to use QTableWidget not QTableView. Using QTableView would have been much easier and more efficient since I could have used sql models to view foreign keys more efficiently.
 
 
 \subsection{Self-created Algorithms}
@@ -724,6 +792,8 @@ In my program I used a number of images which were taken from different sources 
 \subsection{Login Window}
 %the code below can be uncommented and used to get a code section from a particular file
 
+\begin{scriptsize}
+
 \pythonfile[firstline=1]{./Implementation/Files/LoginWindow.py}
 
 \newpage
@@ -761,6 +831,10 @@ In my program I used a number of images which were taken from different sources 
 \newpage
 \subsection{Manager Main Program (ManagerMainProgram.py)}\label{MMP}
 \pythonfile[firstline=1]{./Implementation/Files/ManagerMainProgram.py}
+
+\newpage
+\subsection{Manager Main Menu (ManagerMainMenu.py)}\label{MMM}
+\pythonfile[firstline=1]{./Implementation/Files/ManagerMainMenu.py}
 
 \newpage
 \subsection{Department Information Interface (DepartmentInformation.py)}\label{SI}
@@ -808,7 +882,7 @@ In my program I used a number of images which were taken from different sources 
 
 \newpage
 \subsection{Add Account Interface (AddingAccounts.py)}\label{AAI}
-\pythonfile[firstline=1]]{./Implementation/Files/AddingAccounts.py}
+\pythonfile[firstline=1]{./Implementation/Files/AddingAccounts.py}
 
 \newpage
 \subsection{Change Password Interface (ChangePassword.py)}\label{CP}
@@ -819,7 +893,14 @@ In my program I used a number of images which were taken from different sources 
 \pythonfile[firstline=1]{./Implementation/Files/EditData.py}
 
 \newpage
+\subsection{Creating Logins Table (Logins.py)}\label{MMM}
+\pythonfile[firstline=1]{./Implementation/Files/Logins.py}
+
+
+\newpage
 \subsection{Creation of the database tables (StaffDatabase.py)}\label{SDB}
 \pythonfile[firstline=1]{./Implementation/Files/StaffDatabase.py}
+
+\end{scriptsize}
 
 \end{landscape}

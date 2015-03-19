@@ -127,7 +127,7 @@ def StaffTable():
 
 def HardwareTable():
     table_name = "Hardware"
-    field_names = ["Cost=?","Warranty=?","WarrantyExpirationDate=?","SerialNumber=?","IMEINumber=?","PhoneNumber=?","DeviceID=?","HardwareModelID=?"]
+    field_names = ["Cost=?", "Warranty=?", "WarrantyExpirationDate=?", "SerialNumber=?", "IMEINumber=?", "PhoneNumber=?", "DeviceID=?", "HardwareModelID=?"]
     ID = "HardwareID"
     
     fields = "Hardware (Cost, Warranty, WarrantyExpirationDate, SerialNumber, IMEINumber, PhoneNumber, DeviceID, HardwareModelID)"

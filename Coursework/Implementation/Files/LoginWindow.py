@@ -153,7 +153,7 @@ class LoginWindow(QDialog):
                 elif self.account[2] == 'Manager':
                     self.departmentsave = self.account[3]
                     account_details = self.account
-                    self.OpenManagerSystem = CurrentLayoutManager(self.departmentsave,account_details)
+                    self.OpenManagerSystem = CurrentLayoutManager(self.departmentsave, account_details)
                     self.OpenManagerSystem.show()
                     self.hide()
                 elif self.account[2] == 'Staff':

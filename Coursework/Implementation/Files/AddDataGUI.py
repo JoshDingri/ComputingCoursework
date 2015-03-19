@@ -316,7 +316,7 @@ class AddDataWindow(QDialog):
 
                     if PhoneNumberValidation == True:
                         if name == '':   ##This replaces all the spaces with line edits
-                            PhoneNumberRegExp = QRegExp("/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/")
+                            PhoneNumberRegExp = QRegExp("^[0-9]{10,12}$")
                             self.PhoneNumberLineEdit = count-1
                             self.LineEditList[count-1].setText('-')
                             self.LineEditList[count-1].setEnabled(False)
@@ -790,7 +790,7 @@ class AddDataWindow(QDialog):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    launcher = AddDataWindow('StaffHardware')
+    launcher = AddDataWindow('Hardware')
     launcher.show()
     launcher.raise_()
     app.exec_()
