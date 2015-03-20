@@ -479,43 +479,43 @@ The below is the SQL code which created each entity in the database.
 \subsection{SQL Queries}
 
 \begin{center}
-    \begin{longtable}{|p{5cm}|p{7cm}|}
+    \begin{longtable}{|p{3cm}|p{7cm}|p{2cm}|}
     \hline
-	\textbf{Functionality/Description} & \textbf{SQL Query} \\ \hline
+	\textbf{Functionality/ Description} & \textbf{SQL Query} & \textbf{Reference} \\ \hline
 
-Retreives all fields for one user & "SELECT * FROM Accounts WHERE Username=? " ,(self.username,)\\ \hline
-Retrieves all fields for specified table & "SELECT * FROM {}".format(CurrentCBValue) \\ \hline
-Retrieves all department names from database & "SELECT DepartmentName FROM Department" \\ \hline
-Retrieves all address line 3 fields from database & "SELECT AddressLine3 FROM Location" \\ \hline
-Retrieves all hardware make name fields  from database & "SELECT HardwareMakeName FROM HardwareMake" \\ \hline
-Retrieves First Name and Surname from database & "SELECT FirstName,Surname FROM Staff" \\ \hline
-Retrieves all HardwareMakeName fields from database & "SELECT HardwareMakeName FROM HardwareMake"  \\ \hline
-Retrieves all HardwareMakeIDs that have the specified HardwareModelID & "SELECT HardwareMakeID FROM HardwareModel WHERE HardwareModelID IN {}".format(self.hardwaremodelid) \\ \hline
-Retrieves all HardwareMakeNames that have specified HardwareMakeIDs & "SELECT HardwareMakeName FROM HardwareMake WHERE HardwareMakeID IN {}".format(self.MakeID) \\ \hline
-Retrieves all Device Names from database & "SELECT DeviceName FROM DeviceType" \\ \hline
-Retrieves a DepartmentID & "SELECT DepartmentID FROM Department WHERE DepartmentName=?",(text,) \\ \hline
-Retrieves a LocationID & "SELECT LocationID FROM Location WHERE AddressLine3=?",(text,) \\ \hline
-Retrieves a HardwareModelID &"SELECT HardwareModelID FROM HardwareModel WHERE HardwareModelName=?",(text,) \\ \hline
-Retrieves a HardwareMakeID & "SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName=?",(text,) \\ \hline
-Retrieves a StaffID & "SELECT StaffID FROM Staff WHERE Surname =? AND FirstName =?",(split[1],split[0],) \\ \hline
-Retrieves a HardwareMakeID & "SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName =?",(text,) \\ \hline
-Retrieves a HardwareModelName & "SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID=?",(HardwareID[0],) \\ \hline
-Retrieves a HardwareModelID from database & "SELECT HardwareModelID FROM Hardware" \\ \hline
-Retrieves a HardwareModelName & "SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID = '{}' AND HardwareModelID IN {}".format(HardwareMakeID[0],HardwareModels) \\ \hline
-Retrieves a HardwareModelID & "SELECT HardwareModel.HardwareModelID FROM HardwareMake,HardwareModel WHERE HardwareMake.HardwareMakeName =? AND HardwareModel.HardwareModelName =?",(MakeName,ModelName,) \\ \hline
-Retrieves a HardwareMakeID & "SELECT HardwareModel.HardwareMakeID,HardwareModel .HardwareModelID FROM HardwareModel,HardwareMake WHERE HardwareMake.HardwareMakeName =? AND HardwareModelName =?",(MakeName,ModelName,) \\ \hline
-Retrieves a HardwareMakeID & SELECT Hardware.HardwareID FROM Hardware,HardwareModel WHERE Hardware.HardwareModelID =? AND HardwareModel.HardwareMakeID=?" ,(HardwareModelIDs[1],HardwareModelIDs[0],)  \\ \hline
-Retrieves a DeviceID & "SELECT DeviceID FROM DeviceType WHERE DeviceName=?",(text,) \\ \hline
-Retrieves all HardwareID fields with the specified WarrantyExpirationDate & "SELECT HardwareID FROM Hardware WHERE WarrantyExpirationDate=?",(self.purchasedate,) \\ \hline
-Retrieves a list of all the table names in the database &  "SELECT name FROM $sqlite_master$ WHERE type = 'table';" \\ \hline
+Retreives all fields for one user & \sqlinline{SELECT * FROM Accounts WHERE Username=?} & Full Code: \ref{LW} Page: \pageref{LW} \\ \hline
+Retrieves all fields for specified table &  \sqlinline{"SELECT * FROM \{\}".format(CurrentCBValue)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves all department names from database &  \sqlinline{SELECT DepartmentName FROM Department}& Full Code: \ref{} Page: \pageref{} \\ \hline
+Retrieves all address line 3 fields from database &  \sqlinline{SELECT AddressLine3 FROM Location}& Full Code: \ref{} Page: \pageref{} \\ \hline
+Retrieves all hardware make name fields  from database &  \sqlinline{SELECT HardwareMakeName FROM HardwareMake}& Full Code: \ref{} Page: \pageref{} \\ \hline
+Retrieves First Name and Surname from database &  \sqlinline{SELECT FirstName,Surname FROM Staff}& \\ \hline
+Retrieves all HardwareMakeName fields from database &  \sqlinline{SELECT HardwareMakeName FROM HardwareMake}&  \\ \hline
+Retrieves all HardwareMakeIDs that have the specified HardwareModelID &  \sqlinline{SELECT HardwareMakeID FROM HardwareModel WHERE HardwareModelID IN \{\}".format(self.hardwaremodelid)}& \\ \hline
+Retrieves all HardwareMakeNames that have specified HardwareMakeIDs & \sqlinline{SELECT HardwareMakeName FROM HardwareMake WHERE HardwareMakeID IN \{\}".format(self.MakeID)}& \\ \hline
+Retrieves all Device Names from database & \sqlinline{SELECT DeviceName FROM DeviceType}& \\ \hline
+Retrieves a DepartmentID & \sqlinline{SELECT DepartmentID FROM Department WHERE DepartmentName=?",(text,)}& \\ \hline
+Retrieves a LocationID & \sqlinline{SELECT LocationID FROM Location WHERE AddressLine3=?",(text,)}& \\ \hline
+Retrieves a HardwareModelID &\sqlinline{SELECT HardwareModelID FROM HardwareModel WHERE HardwareModelName=?",(text,)}& \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName=?",(text,)}& \\ \hline
+Retrieves a StaffID & \sqlinline{SELECT StaffID FROM Staff WHERE Surname =? AND FirstName =?",(split[1],split[0],)}& \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName =?",(text,)}& \\ \hline
+Retrieves a HardwareModelName & \sqlinline{SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID=?",(HardwareID[0],)}& \\ \hline
+Retrieves a HardwareModelID from database & \sqlinline{SELECT HardwareModelID FROM Hardware}& \\ \hline
+Retrieves a HardwareModelName & \sqlinline{SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID = '\{\}' AND HardwareModelID IN \{\}".format(HardwareMakeID[0], HardwareModels)}& \\ \hline
+Retrieves a HardwareModelID & \sqlinline{SELECT HardwareModel.HardwareModelID FROM HardwareMake,HardwareModel WHERE HardwareMake.HardwareMakeName =? AND HardwareModel.HardwareModelName =?",(MakeName,ModelName,)}& \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareModel.HardwareMakeID, HardwareModel .HardwareModelID FROM HardwareModel,HardwareMake WHERE HardwareMake.HardwareMakeName =? AND HardwareModelName =?",(MakeName,ModelName,)}& \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT Hardware.HardwareID FROM Hardware,HardwareModel WHERE Hardware.HardwareModelID =? AND HardwareModel.HardwareMakeID=?" , (HardwareModelIDs[1], HardwareModelIDs[0],)}&  \\ \hline
+Retrieves a DeviceID & \sqlinline{SELECT DeviceID FROM DeviceType WHERE DeviceName=?",(text,)}& \\ \hline
+Retrieves all HardwareID fields with the specified WarrantyExpirationDate & \sqlinline{SELECT HardwareID FROM Hardware WHERE WarrantyExpirationDate=?", (self.purchasedate,)}& \\ \hline
+Retrieves a list of all the table names in the database &  \sqlinline{SELECT name FROM $sqlite_master$ WHERE type = 'table';}& \\ \hline
 
 
-Inserts data (values) into fields (self.col) & "insert into {0} values {1}".format(self.col,values) \\ \hline
-Inserts the placeholder values into the Accounts table with the fields shown & "insert into Accounts(Username, Password, $Access_Leve$l, Department, FirstName,LastName) values (?,?,?,?,?,?)" \\ \hline
-Overwrites original password with new password for the specified user &  "UPDATE Accounts SET Password=? WHERE Username=?",($new_password$,self.username,) \\ \hline
-Statement is ran when a cell value is changed and will update original text with current text entered & "update {0} set {1} where {2}={3}".format(self.currentcbvalue,self.Columnname, self.ID, self.IDtoChange) \\ \hline
+Inserts data (values) into fields (self.col) & \sqlinline{insert into \{0\} values \{1\}".format(self.col,values)}& \\ \hline
+Inserts the placeholder values into the Accounts table with the fields shown & \sqlinline{insert into Accounts(Username, Password, Access_Level, Department, FirstName,LastName) values (?,?,?,?,?,?)}& \\ \hline
+Overwrites original password with new password for the specified user &  \sqlinline{UPDATE Accounts SET Password=? WHERE Username=?",(new_password, self.username,)}& \\ \hline
+Statement is ran when a cell value is changed and will update original text with current text entered & \sqlinline{update \{0\} set \{1\} where \{2\}=\{3\}".format(self.currentcbvalue, self.Columnname, self.ID, self.IDtoChange)}& \\ \hline
 
-Statement ran when delete button is clicked, it will delete the whole record that the button was in & "delete from {0} where {1}={2}".format(self.currentcbvalue,self.ID, self.IDtoChange) \\ \hline
+Statement ran when delete button is clicked, it will delete the whole record that the button was in & \sqlinline{delete from \{0\} where \{1\}=\{2\}".format(self.currentcbvalue, self.ID, self.IDtoChange)}& \\ \hline
 
 \end{longtable}
 \end{center}
