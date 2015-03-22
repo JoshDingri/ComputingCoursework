@@ -15,6 +15,7 @@ The following is the software used during my implementation.
 \item SQLite Database Browser
 \item Matplotlib
 \item Adobe Photoshop CS5
+\item cx\_Freeze
 \end{itemize}
 
 \subsection{Usage Explanation}
@@ -31,12 +32,9 @@ The following is the software used during my implementation.
         SQLite Database Browser & This program is similar to the inspector but was downloaded when I was working on my Macbook (rather than my computer). It performs the exact same task of viewing data in the database file. \\ \hline
         Matplotlib & This allows for extracting data from the database to produce graphs \\ \hline
         Adobe Photoshop CS5 & Used for creating the splash screen and adding transparency to arrows \\ \hline
+        cx\_Freeze & Used in order to compile my system into an executable file (and windows installer) so it can be run by the user easily \\ \hline
     \end{tabular}
 \end{center}
-
-Python features allowed me to run my system which let me
-implement and test my system in a CLI or GUI form. This will
-be used to run my system in its GUI form for my client.
 
 \subsection{Features Used}
 
@@ -52,6 +50,7 @@ be used to run my system in its GUI form for my client.
         SQLite Database Browser & I used this program for the same features as the Inspector shown above.   \\ \hline
         Matplotlib & The module from marplotlib known as 'Pylab' was used to create my graph, more specifically it was used to create a bar chart with axes titles.  \\ \hline
         Adobe Photoshop CS5 & The magic wand tool was used to remove image backgrounds (making them transparent), layering and selection tools were also used to create and edit images. \\ \hline
+        cx\_Freeze & This software allowed me to compile my final system into a executable which will allow the user to simply double click the file to run the program. However I also used cx\_Freeze to produce an installer that will take the user through a step-by-step installation process and create a directory that the executable is stored in, this will also include all the extra files (pictures and database) \\ \hline
     \end{tabular}
 \end{center}
 
@@ -147,17 +146,17 @@ Menu bars are used on every interface in the system, therefore it was important 
 	\begin{scriptsize}
     \pythonfile[firstline=92,lastline=102]{./Implementation/Files/MainProgram.py}
 	 \end{scriptsize}
-    \caption{The methods of classes are structured so they can all do different functions and be called individually in any order specified. For example the above method holds all the connections for buttons. Full code at \ref{MP}} \label{fig:Dialog Class}
+    \caption{The methods of classes are structured so they can all do different functions and be called individually in any order specified. For example the above method holds all the connections for buttons. Full code at \ref{MP} on page \pageref{MP}} \label{fig:Dialog Class}
 \end{figure}
 
  \begin{figure}[H]
     \pythonfile[firstline=104,lastline=113]{./Implementation/Files/MainProgram.py}
-    \caption{This method simply stores the toolbar buttons. It can be called whenever the menubar needs to be displayed. Full code at \ref{MP}} \label{fig:Dialog Class}
+    \caption{This method simply stores the toolbar buttons. It can be called whenever the menubar needs to be displayed. Full code at \ref{MP} on page \pageref{MP}} \label{fig:Dialog Class}
 \end{figure}
 
  \begin{figure}[H]
     \pythonfile[firstline=42,lastline=55]{./Implementation/Files/LoginWindow.py}
-    \caption{Another reason why using methods is beneficial is that they can be called or ignored while testing the code. The example above shows my splashscreen, I made the method but didn't want it to run every time I tested the program. Therefore I could simply comment out when the method is called at line 1. Full code at \ref{LW}} \label{fig:Dialog Class}
+    \caption{Another reason why using methods is beneficial is that they can be called or ignored while testing the code. The example above shows my splashscreen, I made the method but didn't want it to run every time I tested the program. Therefore I could simply comment out when the method is called at line 1. Full code at \ref{LW} on page \pageref{LW} } \label{fig:Dialog Class}
 \end{figure}
 
 \subsection{Access Levels and Login Structure \ref{LW}}
@@ -221,7 +220,7 @@ positions & Creates the correct sized grid layout & \ref{ADGUI} Page: \pageref{A
 text & Used to retrieve text in certain line edits  & \ref{ADGUI} Page: \pageref{ADGUI} & 541, 542, 544, 570 \\ \hline
 
 \verb Password_chars & holds random uppercase,lowercase letters and digits & \ref{AAI} Page: \pageref{AAI} & 133 \\ \hline
-Password & chooses 7 random characters from  $Password_chars$& \ref{AAI} Page: \pageref{AAI} & 136 \\ \hline
+Password & chooses 7 random characters from  Password\_chars & \ref{AAI} Page: \pageref{AAI} & 136 \\ \hline
 
 self.mail & connects to correct SMTP server and port number& \ref{BR} Page: \pageref{BR} & 99  \\ \hline
 
@@ -243,7 +242,7 @@ space & used to set spacing between objects& \ref{ODW} Page: \pageref{ODW} & 65,
 rspacer & used to push widgets to center (along with lspacer)& \ref{ODW} Page: \pageref{ODW} & 109, 110, 123 \\ \hline
 lspacer & used to push widgets to center (along with rspacer)& \ref{ODW} Page: \pageref{ODW} & 112,113, 120 \\ \hline
 self.item & holds QTableWidgetItem as a string & \ref{ODW}  Page: \pageref{ODW}& 166, 178, 209 \\ \hline
-b &holds characters that will be replaced/removed in a .replace function& \ref{ODW} Page: \pageref{ODW} &284,285,286,320,321,322 \\ \hline
+b &holds characters that will be replaced/removed in a .replace function& \ref{ODW} Page: \pageref{ODW} &284,285,286,320, 321, 322 \\ \hline
 
 EmailRegExp & Holds regular expression for email addresses& \ref{RE} Page: \pageref{RE} & 17, 18  \\ \hline
 
@@ -485,37 +484,37 @@ The below is the SQL code which created each entity in the database.
 
 Retreives all fields for one user & \sqlinline{SELECT * FROM Accounts WHERE Username=?} & Full Code: \ref{LW} Page: \pageref{LW} \\ \hline
 Retrieves all fields for specified table &  \sqlinline{"SELECT * FROM \{\}".format(CurrentCBValue)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
-Retrieves all department names from database &  \sqlinline{SELECT DepartmentName FROM Department}& Full Code: \ref{} Page: \pageref{} \\ \hline
-Retrieves all address line 3 fields from database &  \sqlinline{SELECT AddressLine3 FROM Location}& Full Code: \ref{} Page: \pageref{} \\ \hline
-Retrieves all hardware make name fields  from database &  \sqlinline{SELECT HardwareMakeName FROM HardwareMake}& Full Code: \ref{} Page: \pageref{} \\ \hline
-Retrieves First Name and Surname from database &  \sqlinline{SELECT FirstName,Surname FROM Staff}& \\ \hline
-Retrieves all HardwareMakeName fields from database &  \sqlinline{SELECT HardwareMakeName FROM HardwareMake}&  \\ \hline
-Retrieves all HardwareMakeIDs that have the specified HardwareModelID &  \sqlinline{SELECT HardwareMakeID FROM HardwareModel WHERE HardwareModelID IN \{\}".format(self.hardwaremodelid)}& \\ \hline
-Retrieves all HardwareMakeNames that have specified HardwareMakeIDs & \sqlinline{SELECT HardwareMakeName FROM HardwareMake WHERE HardwareMakeID IN \{\}".format(self.MakeID)}& \\ \hline
-Retrieves all Device Names from database & \sqlinline{SELECT DeviceName FROM DeviceType}& \\ \hline
-Retrieves a DepartmentID & \sqlinline{SELECT DepartmentID FROM Department WHERE DepartmentName=?",(text,)}& \\ \hline
-Retrieves a LocationID & \sqlinline{SELECT LocationID FROM Location WHERE AddressLine3=?",(text,)}& \\ \hline
-Retrieves a HardwareModelID &\sqlinline{SELECT HardwareModelID FROM HardwareModel WHERE HardwareModelName=?",(text,)}& \\ \hline
-Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName=?",(text,)}& \\ \hline
-Retrieves a StaffID & \sqlinline{SELECT StaffID FROM Staff WHERE Surname =? AND FirstName =?",(split[1],split[0],)}& \\ \hline
-Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName =?",(text,)}& \\ \hline
-Retrieves a HardwareModelName & \sqlinline{SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID=?",(HardwareID[0],)}& \\ \hline
-Retrieves a HardwareModelID from database & \sqlinline{SELECT HardwareModelID FROM Hardware}& \\ \hline
-Retrieves a HardwareModelName & \sqlinline{SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID = '\{\}' AND HardwareModelID IN \{\}".format(HardwareMakeID[0], HardwareModels)}& \\ \hline
-Retrieves a HardwareModelID & \sqlinline{SELECT HardwareModel.HardwareModelID FROM HardwareMake,HardwareModel WHERE HardwareMake.HardwareMakeName =? AND HardwareModel.HardwareModelName =?",(MakeName,ModelName,)}& \\ \hline
-Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareModel.HardwareMakeID, HardwareModel .HardwareModelID FROM HardwareModel,HardwareMake WHERE HardwareMake.HardwareMakeName =? AND HardwareModelName =?",(MakeName,ModelName,)}& \\ \hline
-Retrieves a HardwareMakeID & \sqlinline{SELECT Hardware.HardwareID FROM Hardware,HardwareModel WHERE Hardware.HardwareModelID =? AND HardwareModel.HardwareMakeID=?" , (HardwareModelIDs[1], HardwareModelIDs[0],)}&  \\ \hline
-Retrieves a DeviceID & \sqlinline{SELECT DeviceID FROM DeviceType WHERE DeviceName=?",(text,)}& \\ \hline
-Retrieves all HardwareID fields with the specified WarrantyExpirationDate & \sqlinline{SELECT HardwareID FROM Hardware WHERE WarrantyExpirationDate=?", (self.purchasedate,)}& \\ \hline
-Retrieves a list of all the table names in the database &  \sqlinline{SELECT name FROM $sqlite_master$ WHERE type = 'table';}& \\ \hline
+Retrieves all department names from database &  \sqlinline{SELECT DepartmentName FROM Department}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves all address line 3 fields from database &  \sqlinline{SELECT AddressLine3 FROM Location}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves all hardware make name fields  from database &  \sqlinline{SELECT HardwareMakeName FROM HardwareMake}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves First Name and Surname from database &  \sqlinline{SELECT FirstName,Surname FROM Staff}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI}  \\ \hline
+Retrieves all HardwareMakeName fields from database &  \sqlinline{SELECT HardwareMakeName FROM HardwareMake}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI}   \\ \hline
+Retrieves all HardwareMakeIDs that have the specified HardwareModelID &  \sqlinline{SELECT HardwareMakeID FROM HardwareModel WHERE HardwareModelID IN \{\}".format(self.hardwaremodelid)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI}  \\ \hline
+Retrieves all HardwareMakeNames that have specified HardwareMakeIDs & \sqlinline{SELECT HardwareMakeName FROM HardwareMake WHERE HardwareMakeID IN \{\}".format(self.MakeID)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves all Device Names from database & \sqlinline{SELECT DeviceName FROM DeviceType}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a DepartmentID & \sqlinline{SELECT DepartmentID FROM Department WHERE DepartmentName=?",(text,)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a LocationID & \sqlinline{SELECT LocationID FROM Location WHERE AddressLine3=?",(text,)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a HardwareModelID &\sqlinline{SELECT HardwareModelID FROM HardwareModel WHERE HardwareModelName=?",(text,)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName=?",(text,)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a StaffID & \sqlinline{SELECT StaffID FROM Staff WHERE Surname =? AND FirstName =?",(split[1],split[0],)}&Full Code: \ref{ADGUI} Page: \pageref{ADGUI}  \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareMakeID FROM HardwareMake WHERE HardwareMakeName =?",(text,)}&Full Code: \ref{ADGUI} Page: \pageref{ADGUI}  \\ \hline
+Retrieves a HardwareModelName & \sqlinline{SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID=?",(HardwareID[0],)}&Full Code: \ref{ADGUI} Page: \pageref{ADGUI}  \\ \hline
+Retrieves a HardwareModelID from database & \sqlinline{SELECT HardwareModelID FROM Hardware}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a HardwareModelName & \sqlinline{SELECT HardwareModelName FROM HardwareModel WHERE HardwareMakeID = '\{\}' AND HardwareModelID IN \{\}".format(HardwareMakeID[0], HardwareModels)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a HardwareModelID & \sqlinline{SELECT HardwareModel.HardwareModelID FROM HardwareMake,HardwareModel WHERE HardwareMake.HardwareMakeName =? AND HardwareModel.HardwareModelName =?",(MakeName,ModelName,)}&Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT HardwareModel.HardwareMakeID, HardwareModel .HardwareModelID FROM HardwareModel,HardwareMake WHERE HardwareMake.HardwareMakeName =? AND HardwareModelName =?",(MakeName,ModelName,)}&Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves a HardwareMakeID & \sqlinline{SELECT Hardware.HardwareID FROM Hardware,HardwareModel WHERE Hardware.HardwareModelID =? AND HardwareModel.HardwareMakeID=?" , (HardwareModelIDs[1], HardwareModelIDs[0],)}&Full Code: \ref{ADGUI} Page: \pageref{ADGUI}  \\ \hline
+Retrieves a DeviceID & \sqlinline{SELECT DeviceID FROM DeviceType WHERE DeviceName=?",(text,)}&Full Code: \ref{ADGUI} Page: \pageref{ADGUI} \\ \hline
+Retrieves all HardwareID fields with the specified WarrantyExpirationDate & \sqlinline{SELECT HardwareID FROM Hardware WHERE WarrantyExpirationDate=?", (self.purchasedate,)}& Full Code: \ref{MP} Page: \pageref{MP}\\ \hline
+Retrieves a list of all the table names in the database &  \sqlinline{SELECT name FROM sqlite\_master WHERE type = 'table';}& Full Code: \ref{MP} Page: \pageref{MP}\\ \hline
 
 
-Inserts data (values) into fields (self.col) & \sqlinline{insert into \{0\} values \{1\}".format(self.col,values)}& \\ \hline
-Inserts the placeholder values into the Accounts table with the fields shown & \sqlinline{insert into Accounts(Username, Password, Access_Level, Department, FirstName,LastName) values (?,?,?,?,?,?)}& \\ \hline
-Overwrites original password with new password for the specified user &  \sqlinline{UPDATE Accounts SET Password=? WHERE Username=?",(new_password, self.username,)}& \\ \hline
-Statement is ran when a cell value is changed and will update original text with current text entered & \sqlinline{update \{0\} set \{1\} where \{2\}=\{3\}".format(self.currentcbvalue, self.Columnname, self.ID, self.IDtoChange)}& \\ \hline
+Inserts data (values) into fields (self.col) & \sqlinline{insert into \{0\} values \{1\}".format(self.col,values)}& Full Code: \ref{ADGUI} Page: \pageref{ADGUI}\\ \hline
+Inserts the placeholder values into the Accounts table with the fields shown & \sqlinline{insert into Accounts(Username, Password, Access_Level, Department, FirstName,LastName) values (?,?,?,?,?,?)}& Full Code: \ref{AAI} Page: \pageref{AAI} \\ \hline
+Overwrites original password with new password for the specified user &  \sqlinline{UPDATE Accounts SET Password=? WHERE Username=?",(new_password, self.username,)}&  Full Code: \ref{CP} Page: \pageref{CP} \\ \hline
+Statement is ran when a cell value is changed and will update original text with current text entered & \sqlinline{update \{0\} set \{1\} where \{2\}=\{3\}".format(self.currentcbvalue, self.Columnname, self.ID, self.IDtoChange)}&  Full Code: \ref{ODW} Page: \pageref{ODW} \\ \hline
 
-Statement ran when delete button is clicked, it will delete the whole record that the button was in & \sqlinline{delete from \{0\} where \{1\}=\{2\}".format(self.currentcbvalue, self.ID, self.IDtoChange)}& \\ \hline
+Statement ran when delete button is clicked, it will delete the whole record that the button was in & \sqlinline{delete from \{0\} where \{1\}=\{2\}".format(self.currentcbvalue, self.ID, self.IDtoChange)}& Full Code: \ref{ODW} Page: \pageref{ODW}  \\ \hline
 
 \end{longtable}
 \end{center}
@@ -540,7 +539,7 @@ The method of adding data may be complicated to understand to a programmer viewi
 
 The overall idea behind the module is to get the current table that is selected from the  "Open Database" interface and find the headings for that table. The program will then use these headings as the labels for the GUI, the line edits are generated by adding a space after every label which are later converted into line edits. This approach was perfect in the short term but as I was adding validation and combo boxes the generic method no longer worked as intended as specific validations needed to be given to line edits. This is why there are boolean statements so if a certain label exists a validation function can be ran.
 
-The full section that I will be annotating can be found here: \ref{ADGUI}
+The full section that I will be annotating can be found here: \ref{ADGUI} on page \pageref{ADGUI}
 \begin{landscape}
 
 \begin{figure}[H]
@@ -570,7 +569,7 @@ The full section that I will be annotating can be found here: \ref{ADGUI}
 
 Since I have used QTableWidget for my tables in the system, I had a different method of refrencing foreigns keys using text  than models with QTableView. Because of this it may be quite difficult for a programmer to understand how it works.
 
-The full section that I will be annotating can be found here: \ref{ODW}
+The full section that I will be annotating can be found here: \ref{ODW} on page \pageref{ODW}
 
 \begin{figure}[H]
     \pythonfile[firstline=195,lastline=198]{./Implementation/Files/OpenDatabaseWindow.py}
@@ -592,6 +591,17 @@ The full section that I will be annotating can be found here: \ref{ODW}
 \end{figure}
 
 The sections are repeated for every column header. Although this method works, it is not very efficient. This problem exists because I initially started to use QTableWidget not QTableView. Using QTableView would have been much easier and more efficient since I could have used sql models to view foreign keys more efficiently.
+\newpage
+\subsubsection{Changing Passwords}
+
+The code for this section may be confusing as it references the database table quite a lot with indexing. Therefore it is important to explain how this works. This module is used for all interfaces to change their current password (for logging into the system) and is activated through the menubar.
+
+Full code can be found here: \ref{CP} on page \pageref{CP}
+
+\begin{figure}[H]
+    \pythonfile[firstline=63,lastline=83]{./Implementation/Files/ChangePassword.py}
+    \caption{This method (part of the "ChangePassword" class) is ran in order to get the text input from the change password GUI and use these details to change the user's password.\newline Line 5 gets the username from the database for the specific user, the variable (new\_password) is then referenced on line 11. \newline Line 7 references the password field in the database table for the specific user. It will check if the old password entered into the line edit matches the password in the database. \newline Lines 15,18,21 change the label to visible, by default this label is hidden but is made visible again to display an error or confirmation of changed passwords.}  
+\end{figure}
 
 
 \subsection{Self-created Algorithms}
@@ -642,6 +652,8 @@ However if someone was to continuing with the maintenance of my system they will
 \section{Acknowledgements}
 
 \subsection{Calendar}
+
+Code at \ref{C} on page \pageref{C}
 
 Since I had never built a calendar before I did not know if it was a built in function or not. After browsing the Internet I found a calendar example on ZetCode which was the exact design I was looking for. 
 
@@ -708,6 +720,8 @@ if __name__ == '__main__':
 
 \subsection{Populating a QTableWidget}
 
+Code at \ref{ODW} on page \pageref{ODW}
+
 My program displayed tables using a QTableWidgets however I needed help learning how to populate these tables with data from my database. I came across a Stackoverflow answer explaining in detail the code needed to do this. It also included a function that was new to me called 'enumerate'. I researched and understood this function before I used the code otherwise it may have been confusing when it came to bug testing.
 
 \textbf{Link:} http://stackoverflow.com/questions/11754825/inserting-data-from-sqlite-database-to-qtablewidget-using-pyqt-in-python
@@ -726,6 +740,8 @@ for row, form in enumerate(cursor):
 
 When I was producing my add data GUI it was necessary to use the database column names as labels for the line edits so the user knew what information to enter. I needed a way of extracting these column names into a list and using these names as labels. After searching the Internet I came across many Stackoverflow answers that showed the same kind of code. The specific answer I used is shown below.
 
+Code at \ref{ADGUI} on page \pageref{ADGUI}
+
 \textbf{Link:} http://stackoverflow.com/questions/9752372/how-do-i-get-the-column-names-from-a-row-returned-from-an-adodbapi-query
 
 \textbf{Original Code:}
@@ -737,6 +753,7 @@ col_names = [i[0] for i in cur.description]
 \subsection{Positioning line edits on grid layout}
 
 Before I started the Implementation I used a Zetcode code example to help create a calculator. One of the lines of code that I used was relevant for the task of positioning my line edits on a grid layout for the Add Data GUI. 
+Code at \ref{ADGUI} on page \pageref{ADGUI}
 
 \textbf{Link}: http://zetcode.com/gui/pyqt4/layoutmanagement/
 
@@ -745,6 +762,51 @@ Before I started the Implementation I used a Zetcode code example to help create
 positions = [(i,j) for i in range(5) for j in range(4)]
 \end{python}
 
+\subsection{Regular Expressions}
+
+
+Some of the regular expressions used in my system were researched on the Internet first in order to get the bet working design. Some of the results found have been directly taken from the sources.
+
+\paragraph{Phone Number Regular Expression}
+\
+Code at \ref{ADGUI} on page \pageref{ADGUI}
+\
+
+ \textbf{Link}: http://stackoverflow.com/questions/3968049/regex-allow-a-string-to-only-contain-numbers-0-9-and-limit-length-to-45
+
+\textbf{Original Code:}
+\begin{python}
+^[0-9]{10,12}$
+\end{python}
+
+\paragraph{Email Address Regular Expression}
+\
+Code at \ref{BR} on page \pageref{BR}
+\
+
+\textbf{Link}: http://stackoverflow.com/questions/8022530/python-check-for-valid-email-address
+
+\textbf{Original Code:}
+\begin{python}
+[^@]+@[^@]+\.[^@]+
+\end{python}
+
+\subsection{Buttons in table rows}
+
+When allowing users to press buttons at the end of each row I found it hard to track which row was being selected. After researching on the Internet I found someone with a very similar design so I used the code they gave as an example to help my problem. 
+
+Code at \ref{ODW} on page \pageref{ODW} 
+
+\textbf{Link}: http://stackoverflow.com/questions/24148968/how-to-add-multiple-qpushbuttons-to-a-qtableview
+
+\textbf{Original Code:}
+
+\begin{python}
+ button = QtGui.qApp.focusWidget()
+        # or button = self.sender()
+        index = self.table.indexAt(button.pos())
+        if index.isValid():
+\end{python}
 \newpage
 
 \subsection{Images}
@@ -789,12 +851,9 @@ In my program I used a number of images which were taken from different sources 
 \section{Code Listing}
 \begin{landscape}
 %include as many subsections as you have modules
-\subsection{Login Window}
 %the code below can be uncommented and used to get a code section from a particular file
 
-\begin{scriptsize}
-
-\pythonfile[firstline=1]{./Implementation/Files/LoginWindow.py}
+\begin{footnotesize}
 
 \newpage
 \subsection{Admin Main Program (MainProgram.py)} \label{MP}
@@ -901,6 +960,10 @@ In my program I used a number of images which were taken from different sources 
 \subsection{Creation of the database tables (StaffDatabase.py)}\label{SDB}
 \pythonfile[firstline=1]{./Implementation/Files/StaffDatabase.py}
 
-\end{scriptsize}
+\newpage
+\subsection{Creation of the default login details (DefaultLogin.py)}\label{DL}
+\pythonfile[firstline=1]{./Implementation/Files/DefaultLogin.py}
+
+\end{footnotesize}
 
 \end{landscape}

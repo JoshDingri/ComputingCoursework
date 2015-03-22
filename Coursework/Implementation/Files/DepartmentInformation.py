@@ -135,7 +135,7 @@ class DepartmentInformation(QWidget):
 
                                             with sqlite3.connect("Volac.db") as db:
                                                 cursor = db.cursor()
-                                                cursor.execute("SELECT HardwareMake.HardwareMakeName,HardwareModel.HardwareModelName FROM HardwareModel,HardwareMake WHERE HardwareModel.HardwareModelID =? AND HardwareMake.HardwareMakeID =?",(ModelID[0],MakeID[0],))
+                                                cursor.execute("SELECT HardwareMake.HardwareMakeName, HardwareModel.HardwareModelName FROM HardwareModel, HardwareMake WHERE HardwareModel.HardwareModelID =? AND HardwareMake.HardwareMakeID =?",(ModelID[0],MakeID[0],))
                                                 db.commit()
 
                                             HardwareForeignKey = str([item[0] + ', ' + item[1] for item in cursor.fetchall()])
