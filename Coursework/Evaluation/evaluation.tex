@@ -706,6 +706,56 @@ The below screenshots show querying by department.
 
 \textbf{Judgment and Evidence:}
 
+Admins may add user accounts at any time by clicking the "Create User Accounts" toolbar button on any screen on the admin interface. From here they may allocate a username and password as well as setting the access restrictions for the specific member of staff. Usernames and passwords are automatically generated but can be manually changed by the admin. I have successfully created three different access levels for Staff, Managers and Admins. Each have their own interfaces with different access levels, the Staff and Managers have read-only access to the system to view their own data (mangers can also view department data). Admins have full access to the system so they can add, edit and remove data from any table.
+
+According to question 10 of the questionnaire (\ref{qs}) my client was happy with the username/password format and agreed the randomly generated passwords were secure. As said in other sections above, question 10 of the questionnaire shows that my client was happy with the different access levels given to staff.
+
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login1.png}
+    \caption{Admin Interface showing account creation, from here they can choose access levels for other staff members to use.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login2.png}
+    \caption{Example of admin login.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login3.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login4.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login5.png}
+\end{figure}
+
+
+\subsection{Automatic Email}
+
+\textbf{Objective:}The system will also have an automatic email sent to IT staff members reminding them that a warranty is running out on a particular device, this email will be sent about 3 months before the end of the warranty period.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Must send an email when hardware device is running out of warranty}
+\item{Must only send the email when there is 90 days left}
+\item{Should send when the program is left running}
+\item{Should only send once}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The automatic email sends successfully when there is 90 days left before the device runs out of warranty. However there are quite a few known problems that will need to be fixed. For example the email will not send if the program is left running, in order to calculate the amount of days left the program must be restarted. Obviously if this system was to be put on a server it would need to continually run, therefore the system would need to update the current date in real-time. If the program is restarted multiple times on the day that the email is being sent out it will send the email multiple times, again this is a problem.
+
+Question 9 of the questionnaire (\ref{qs}) shows how my client wants the automatic email improving. Originally my client ticked the "strongly agreed" box until I explained the issues with it, it was then replaced with the "needs improving" box.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/EmailExpiredHardware.png}
+    \caption{This is the email received when a hardware item is about to run out of warranty.} 
+\end{figure}
 
 
 \section{Learnability}
@@ -745,6 +795,8 @@ The below screenshots show querying by department.
     \includegraphics[width=\textwidth]{./Evaluation/EvaluationQuestionnaire/Scan14.jpeg}
     \caption{Questionnaire Open Questions: Page 3} 
 \end{figure}
+
+
 
 \subsection{Graphs}
 
