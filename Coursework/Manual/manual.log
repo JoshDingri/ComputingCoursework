@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.21)  13 MAR 2015 22:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.21)  24 MAR 2015 13:27
 entering extended mode
 **C:/Users/JD/git/ComputingCoursework/Coursework/Manual/manual.tex
 (C:/Users/JD/git/ComputingCoursework/Coursework/Manual/manual.tex
@@ -14,11 +14,11 @@ ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
 an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
 ishmax, welsh, loaded.
 ! Undefined control sequence.
-l.1 \chapter
+l.2 \chapter
             {User Manual}
 ? 
 ! Emergency stop.
-l.1 \chapter
+l.2 \chapter
             {User Manual}
 End of file on the terminal!
 

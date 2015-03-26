@@ -15,7 +15,7 @@ The objectives have been split into:
 %include as many subsections as necessary for your objectives
 \paragraph{General Objectives}
 
-\subsection{Database Functionality}
+\subsection{Database Functionality}\label{staffhardware}
 
 \textbf{Objective:} A database to show all current staff (with details such as their job title) and the hardware devices they are assigned to.
 
@@ -38,7 +38,7 @@ Below are the different interfaces that will present the database that shows cur
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{./Evaluation/Images/database3.png}
+    \includegraphics[width=\textwidth]{./Evaluation/Images/database2.png}
     \caption{The Manager (and staff) interface, viewing their current hardware devices.} \label{fig:db3}
 \end{figure}
 
@@ -52,6 +52,21 @@ The objective has been met. The database includes all the needed fields from the
 
 \textbf{Evidence}
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/cleardb1.png}
+    \caption{Easily readable font size with clear headers for the fields.}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/cleardb2.png}
+    \caption{The dropdown box allows the user to choose which table to view which shows its organisation} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/cleardb3.png}
+    \caption{The table (with the application) can be resized to view all fields. It can only be resized to a certain point because otherwise the layout of the application becomes stretched and there is no real need to stretch it past the maximum point.} 
+\end{figure}
+
 
 \subsection{Easy to use Data Input and Keyboard Shortcuts}
 
@@ -63,8 +78,18 @@ The objective has been fulfilled. There are toolbar buttons on the admin interfa
 
 \textbf{Evidence}
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/shortcuts1.png}
+    \caption{The menu buttons can be activated by using the menubar or some (such as the above) have keyboard shortcuts attached to them.} 
+\end{figure}
 
-\subsection{Simple Interface Structure}
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/shortcuts2.png}
+    \caption{This menu is part of the Manager interface showing F1 and F2 shortcuts which are attached to the menu buttons.} 
+\end{figure}
+
+
+\subsection{Simple Interface Structure}\label{interface}
 
 \textbf{Objective:} The layout for colleagues to see their hardware allocations will be clear and to the point, missing out any unnecessary buttons and menus.
 
@@ -73,6 +98,16 @@ The objective has been fulfilled. There are toolbar buttons on the admin interfa
 The objective has been fulfilled. I have ensured that there is not too many buttons on the system and that all buttons are clearly labeled. I did not include a menu from the design because it was unnecessary. For the staff interface they have a simply table showing their devices  since they do not need any extra features. 
 
 \textbf{Evidence}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/staffhardwaredevice.png}
+    \caption{A simple view of the Staff interface showing a user's hardware items.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/clearlabels.png}
+    \caption{A view of the Admin interface before a database is selected. All buttons are clearly labelled and the screen is not cluttered.} 
+\end{figure}
 
 
 \subsection{Search Functionality}\label{search}
@@ -84,6 +119,50 @@ The objective has been fulfilled. I have ensured that there is not too many butt
 The objective has been fulfilled. There are search functions on every interface which enables staff to easily search the table. The admin interface also has a more advanced search which allows them to search for staff members by department and then click to view more information about their colleague. The basic search function on each table allows users to search for any field in the table, simply by entering text into the search box the table will automatically search for the data.
 
 \textbf{Evidence}
+
+\textbf{Admin Database Screen}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/beforeadminsearch.png}
+    \caption{A view of the admin database screen before any data is searched.} 
+\end{figure}
+
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradminsearch.png}
+    \caption{A view of the admin database screen after data is searched.} 
+\end{figure}
+
+\textbf{Admin Staff Search Screen}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/beforeadv.png}
+    \caption{A view of the admin "search staff" screen before member is searched.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradv.png}
+    \caption{A view of the admin "search staff" screen after member is searched.} 
+\end{figure}
+
+\textbf{Manager Search}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/managersearch.png}
+    \caption{A view of the manager table when data is searched.} 
+\end{figure}
+
+\textbf{Staff Search}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/staffsearch.png}
+    \caption{A view of the staff table when data is searched.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/staffsearch2.png}
+    \caption{A view of the staff table when data is searched but no fields match.} 
+\end{figure}
 
 
 
@@ -100,6 +179,13 @@ The objective has been met. All relationships have been made successfully which 
 
 \textbf{Evidence}
 
+See \ref{staffhardware} for StaffHardware tables.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/dropdown.png}
+    \caption{A dropdown box showing how data duplication is avoided. This also shows the link to the department table.} 
+\end{figure}
+
 
 
 \subsection{How the System will Search for Data}
@@ -112,6 +198,8 @@ This specific objective has not been met, but has instead been improved. The rea
 
 \textbf{Evidence}
 
+See \ref{search} for evidence of the search function.
+
 
 \subsection{Read-Only access for staff}
 
@@ -122,6 +210,11 @@ This specific objective has not been met, but has instead been improved. The rea
 This objective has been met. The lowest access level (for normal staff use) displays the "StaffHardware" table in read only format, which means no data can be modified. The login system allows the staff to log in to their interface, each interface has its own access restrictions. In order of how much access received, the interfaces are Admin, Manager and Staff.
 
 \textbf{Evidence}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/readonlystaff.png}
+    \caption{The grey box around the field shows up meaning that the field cannot be modified.} 
+\end{figure}
 
 
 
@@ -135,9 +228,15 @@ This objective has been fulfilled. Managers have read only access to the table w
 
 \textbf{Evidence}
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/readonlymanager.png}
+    \caption{The grey box around the field shows up meaning that the field cannot be modified.} 
+\end{figure}
 
 
-\subsection{Admin access for IT Staff}
+
+
+\subsection{Admin access for IT Staff}\label{admin}
 
 \textbf{Objective:}Admin rights for IT staff so they are able to view and edit all data on the database.
 
@@ -147,6 +246,21 @@ Objective has been fulfilled. Admin access allow the user to  view all of the ta
 
 \textbf{Evidence}
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin1.png}
+    \caption{Admin Interface showing that all tables can be viewed in the database.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin2.png}
+    \caption{Admin Interface showing that data can be edited.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin3.png}
+    \caption{Admin Interface showing that data can be deleted.} 
+\end{figure}
+
 
 
 \subsection{Querying Data}
@@ -155,9 +269,23 @@ Objective has been fulfilled. Admin access allow the user to  view all of the ta
 
 \textbf{Has the objective been fulfilled?}
 
-The objective has been met by using the search functions on each table but there is no advanced way to query data, apart from using the admin interface to search for staff by department. (Referenced also in section \ref{search})
+The objective has been met by using the search functions on each table but there is no advanced way to query data, apart from using the admin interface to search for staff by department. 
 
 \textbf{Evidence}
+
+The search function shown in section \ref{search})
+
+The below screenshots show querying by department.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/beforeadv.png}
+    \caption{A view of the admin "search staff" screen before member is searched.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradv.png}
+    \caption{A view of the admin "search staff" screen after member is searched.} 
+\end{figure}
 
 
 
@@ -173,6 +301,36 @@ Objective has been fulfilled. IT Staff (or admins) can successfully create usern
 
 \textbf{Evidence}
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login1.png}
+    \caption{Admin Interface showing account creation, from here they can choose access levels for other staff members to use.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login2.png}
+    \caption{Example of admin login.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin1.png}
+    \caption{Admin Interface showing that all tables can be viewed in the database. (see \ref{admin} for editing and removing data)}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login3.png}
+    \caption{A view of the admin "search staff" screen after member is searched.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login4.png}
+    \caption{A view of the admin "search staff" screen after member is searched.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/login5.png}
+    \caption{A view of the admin "search staff" screen after member is searched.} 
+\end{figure}
+
 
 
 \subsection{Automatic Email}
@@ -185,6 +343,11 @@ The objective has been fulfilled. When the system has been started it will check
 
 \textbf{Evidence}
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/EmailExpiredHardware.png}
+    \caption{This is the email received when a hardware item is about to run out of warranty.} 
+\end{figure}
+
 
 
 \subsection{Search Function}
@@ -193,49 +356,357 @@ The objective has been fulfilled. When the system has been started it will check
 
 \textbf{Has the objective been fulfilled?}
 
-Objective has been fulfilled. 
+Objective has been fulfilled. There are search functions on every interface which enables staff to easily search the table, the user will enter text into the search box and only those fields matching the text will be shown in the table.
 
 \textbf{Evidence}
 
+Evidence at \ref{search}
 
 
-\subsection{--}
+\subsection{Querying Data}
 
-\textbf{Objective:}The system must have a way to query information so that a user can filter or catergorise information (such as by department or location)
+\textbf{Objective:}The system must have a way to query information so that a user can filter or categorize information (such as by department or location)
 
 \textbf{Has the objective been fulfilled?}
 
+The objective has not been met entirely. The user can search for information (referenced in \ref{search}) and can query staff by department. However other queries such as by location were left out, this was an optional modification to the program as there was no real need for any further queries since staff may just use the search function.
+
 \textbf{Evidence}
+
+Search function at \ref{search}
 
 
 \paragraph{Other Objectives}
 
-\subsection{--}
+\subsection{Electronic Hardware Request Forms}
 
-\textbf{Objective:}It will be nice to include a method of sending hardware request forms electronically to elimate the need for physical copies. However this will only be considered if everything else is completed as it is not essential.
+\textbf{Objective:}It will be nice to include a method of sending hardware request forms electronically to eliminate the need for physical copies. However this will only be considered if everything else is completed as it is not essential.
 
 \textbf{Has the objective been fulfilled?}
 
-\textbf{Evidence}
+Objective has not been met. This would be a nice addition but only when the system has been fully developed, it was important to focus on the core components of the system to ensure they were developed before the deadline. Therefore additional features, such as this, were left out of the final implementation.
 
 
 
-\subsection{--}
+\subsection{Online Database}
 
 \textbf{Objective:}A great feature to have is the database being available online using the server the company owns. If the database was online it will be available to use from anywhere with internet connection.
 
 \textbf{Has the objective been fulfilled?}
 
-\textbf{Evidence}
-
-
-
+Objective has not been met. During lesson there was no introduction for creating online sql tables therefore I would have needed to learn this from scratch. GUI design on desktop applications is what I have been using at home and in class, therefore this was the most sensible approach. To add this online feature I would need to research further and may implement this at a later date.
 
 
 \section{Effectiveness}
 
 %include as many subsections as necessary for your objectives
-\subsection{Objective Evaluation}
+\paragraph{General Objectives}
+
+\subsection{Database Functionality}\label{staffhardware}
+
+\textbf{Objective:} A database to show all current staff (with details such as their job title) and the hardware devices they are assigned to.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Correct devices are shown}
+\item{Staff can check which hardware devices they have allocated to them}
+\item{Table to store staff details}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+The system has an effective way of presenting staff with their current hardware devices, the table that shows this is present of every access level since it is the core reason for the system. My client agrees that this has been effective as shown in section \ref{qs} question 4 and 14. The tables are organised (on the admin interface) in a drop down box and can be chosen in order to view them.
+
+Below are the different interfaces that will present the database that shows current staff and their assigned hardware devices.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/Database1.png}
+    \caption{The Admin interface, viewing the StaffHardware Table.} \label{fig:db1}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/database3.png}
+    \caption{The Admin interface: When searching for data and clicking to view more information, the StaffHardware table will appear.} \label{fig:db2}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/database2.png}
+    \caption{The Manager (and staff) interface, viewing their current hardware devices.} \label{fig:db3}
+\end{figure}
+
+\subsection{Clear Database Structure}
+
+\textbf{Objective:} The database will replace the current spreadsheet and be easy to read as information will be clear and organized.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Tables organized and easy to read}
+\item{Only necessary information shown}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The system has all the correct fields that the original spreadsheet had (as agreed by my client \ref{qs} question 4) and includes more features than the current spreadsheet, therefore it will most likely replace it. Referring to question 16 of the questionnaire (\ref{qs}) the client has strongly agreed that the drop down box makes it easy to choose tables which shows the organisation of the system. The system is not cluttered and the buttons that are most important are large and labeled well.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/cleardb2.png}
+    \caption{Evidence of the dropdown box to choose tables} 
+\end{figure}
+
+\subsection{Easy to use Data Input and Keyboard Shortcuts}
+
+\textbf{Objective:} An easy to use database for IT staff to enter colleague data with toolbar buttons and keyboard shortcuts as they are advanced computer users and will want an quicker way of doing things.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Simple keyboard shortcuts to complete tasks quicker}
+\item{Use of toolbar buttons}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The system has a number of keyboard shortcuts on the different interface, for example "CTRL+C" for changing password and "CTRL+W" to close program. According to question 5 of the questionnaire (\ref{qs}) my client has strongly agreed that the keyboard shortcuts allow users to complete tasks quicker. On the admin interface there are toolbar buttons to create user accounts and generate hardware graphs. However there are no toolbar buttons on the other interfaces which may have been good to include.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/shortcuts1.png}
+    \caption{The menu buttons can be activated by using the menubar or some (such as the above) have keyboard shortcuts attached to them.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/toolbarbtns.png}
+    \caption{Example of the toolbar buttons shown on the admin interface.} 
+\end{figure}
+
+\subsection{Simple Interface Structure}
+
+\textbf{Objective:} The layout for colleagues to see their hardware allocations will be clear and to the point, missing out any unnecessary buttons and menus.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Simple table format for hardware allocations}
+\item{Only necessary information shown}
+\item{StaffHardware table (the table showing allocations) present on all interfaces}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The table for hardware allocations to staff (staffhardware table) only has the fields: StaffHardwareID, PurchaseDate, StaffID, HardwareID. This shows that the table only shows relevant and important information and from this table staff can easily see their hardware devices. I did not include a menu from the design because it was unnecessary. For the staff interface they have a simply table showing their devices  since they do not need any extra features (as explained in \ref{interface}).
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/staffhardwaredevice.png}
+    \caption{A simple view of the Staff interface showing a user's hardware items.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/clearlabels.png}
+    \caption{A view of the Admin interface before a database is selected. All buttons are clearly labelled and the screen is not cluttered.} 
+\end{figure}
+
+\subsection{Search Functionality}\label{searchf}
+
+\textbf{Objective:} A search function will be in place to make searching for a field (such as staff member or hardware device) easy.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Automatically updating search function}
+\item{Easy to use and clearly labeled search box}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The system provides an effective simple search function on all tables. It allows anything to be typed into the box and the table will instantly update showing only fields matching the search criteria. The search box also has a place holder saying "search" for the user's convenience. My client found the search function to be very effective shown in the questionnaire (\ref{qs}), question 17 where he strongly agreed that the search function was clear and easy to use. The advanced search (part of the admin interface, referenced at \ref{advsearch}) is done effectively but it could have improvements, during the interview for the questionnaire my client asked if it would be possible to "show all staff before selecting a specific department" (although he did not write this down on the improvements which may mean it is not essential).
+
+Below are some examples of using the search function:
+
+\textbf{Admin Database Screen}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradminsearch.png}
+    \caption{A view of the admin database screen after data is searched.} 
+\end{figure}
+
+\textbf{Admin Staff Search Screen}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradv.png}
+    \caption{A view of the admin "search staff" screen after member is searched.} \label{advsearch}
+\end{figure}
+
+\textbf{Manager Search}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/managersearch.png}
+    \caption{A view of the manager table when data is searched.} 
+\end{figure}
+
+\textbf{Staff Search}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/staffsearch.png}
+    \caption{A view of the staff table when data is searched.} 
+\end{figure}
+
+\paragraph{Specific Objectives}
+
+\subsection{Tables}
+
+\textbf{Objective:}The database will have one table with staff and a relationship to the table with their hardware device. This will show which hardware devices the staff are allocated and all the details of that hardware device. Staff details including department and location will be linked to the Department and Location tables.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Effective relational database}
+\item{Table showing hardware allocations}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The StaffHardware table is what all staff will be using to check their hardware devices and is shown on every interface. The database has links between each table making it a "relational database", the "staff table" links with the "location table" and the "department table". However since it is a relational database it has foreign key IDs that can be confusing for users. In most cases I have made these IDs into actual text to make it more user friendly but when editing or deleting data these foreign IDs still appear. The client has noticed this and says in question 3  (open question) of the questionnaire \ref{qs} that "Record IDs would be better shown as the text associated with them".
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/RemoveDataButtons.png}
+    \caption{Example of foreign keys being shown, which is not the most effective way to present tables.} 
+\end{figure}
+
+\subsection{How the System will Search for Data}
+
+\textbf{Objective:}The search function will allow a user to enter text and will highlight where on the page that text is.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Matching fields will be highlighted}
+\item{Automatically updating table}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The system improves on the objective, instead of highlighting the fields in the table, it instead will hide all records with fields not matching the search input. When I implemented the highlighted search I noticed it is very inefficient since if there were a lot of items in the table it would still take the user a while to find all the highlighted fields. Simply showing only those records that match is much easier for the user. The table will instantly updated as soon as something is typed into the search box which eliminates the need for a button. According to question 17 of the questionnaire my client strong agreed that the search function was effective and easy to use. (For more information please read \ref{searchf})
+
+\textbf{Admin Database Screen}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/beforeadminsearch.png}
+    \caption{A view of the admin database screen before any data is searched.} 
+\end{figure}
+
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradminsearch.png}
+    \caption{A view of the admin database screen after data is searched.} 
+\end{figure}
+
+\subsection{Read-Only access for staff}
+
+\textbf{Objective:} Read-Only access for staff viewing their own information (with a log-in system to allow this).
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Staff must login to access their interface}
+\item{Table must be read only}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+Staff only have the StaffHardware table to view (showing allocations) and it has been set to read-only which means they can not modify the data. Admin's will create the login details for each staff member and set their access levels. My client approved of the access levels in the system as shown by question 11 in the questionnaire (\ref{qs}).
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/readonlymanager.png}
+    \caption{The grey box around the field shows up meaning that the field cannot be modified.} 
+\end{figure}
+
+\subsection{Read-Only access for managers}
+
+\textbf{Objective:}Read-Only access for line managers wanting to see all data about staff in their department.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Staff must login to access their interface}
+\item{Tables (including department table) must be read only}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+Managers can see their own hardware in the "My Information" screen of their interface, they can also view all hardware allocated to members of staff in their own department. Neither of these tables can be modified in any way. Again, admin's will create the login details for each manager and set their access levels.
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/readonlymanager.png}
+    \caption{The grey box around the field shows up meaning that the field cannot be modified.} 
+\end{figure}
+
+\subsection{Admin access for IT Staff}\label{admin}
+
+\textbf{Objective:}Admin rights for IT staff so they are able to view and edit all data on the database.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Must be able to add, edit and remove data}
+\item{Must be able to view all tables}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+Admin's can view all tables by selecting them from the dropdown box on the "Open Database" screen. User's can add data to any table as well as being able to remove and edit data. If an admin was to edit data in the database this is updated in the sql table so other staff can see the updated version in their interfaces. During implementation I also added the method to create user accounts which other users can log in with. Referring to question 18 of the questionnaire (\ref{qs}) the client has strongly agreed that data can be edited easily. Also question 19 shows that deleting data is also very easy to do for the client. When adding data I have made sure that validation and dropdown boxes make this as simple as possible, question 13 shows that I have done this successfully as my client has strongly agreed that these methods reduce human errors.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin1.png}
+    \caption{Admin Interface showing that all tables can be viewed in the database.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin2.png}
+    \caption{Admin Interface showing that data can be edited.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin3.png}
+    \caption{Admin Interface showing that data can be deleted.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Testing/Images/AddDataDataExample.png}
+    \caption{Admin Interface showing the adding of data.} 
+\end{figure}
+
+\subsection{Querying Data}
+
+\textbf{Objective:} Users will be able to query information, for example if they wanted to show only mobile phones or if they wanted to show only specific departments.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Must have different ways to query data}
+\item{Must be able to query by department}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+The system does not have a lot of ways to query data, however the client did not seem to mention anything about this, but did mentioned that the search function is very effective (question 17 \ref{qs}). The only query I implemented was the search by department, this was an optional choice since any more would not have been necessary for the client since the search function is adequate. For a future update it would probably be convenient to add more ways of querying data.
+
+The below screenshots show querying by department.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/beforeadv.png}
+    \caption{A view of the admin "search staff" screen before member is searched.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradv.png}
+    \caption{A view of the admin "search staff" screen after member is searched.} 
+\end{figure}
+
+\paragraph{Core Objectives}
+
+\subsection{The Login System}
+
+\textbf{Objective:}The system will provide a login system where IT staff can assign usernames to all staff and have admin rights to view all data. The database will have read-only access for colleagues viewing their own information. Managers will be able to view their departments hardware devices.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Must have a way of admins to add user accounts}
+\item{Must have three different access levels}
+\item{Must have read-only access for managers and staff}
+\item{managers and staff must be able to view their own hardware devices}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+
 
 \section{Learnability}
 
@@ -246,8 +717,34 @@ Objective has been fulfilled.
 \section{Suggestions for Improvement}
 
 \section{End User Evidence}
+\newpage
 
-\subsection{Questionnaires}
+\subsection{Questionnaires}\label{qs}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/EvaluationQuestionnaire/Scan9.jpeg}
+    \caption{Questionnaire Closed Questions: Page 1} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/EvaluationQuestionnaire/Scan11.jpeg}
+    \caption{Questionnaire Closed Questions: Page 2} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/EvaluationQuestionnaire/Scan12.jpeg}
+    \caption{Questionnaire Open Questions: Page 1} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/EvaluationQuestionnaire/Scan13.jpeg}
+    \caption{Questionnaire Open Questions: Page 2} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/EvaluationQuestionnaire/Scan14.jpeg}
+    \caption{Questionnaire Open Questions: Page 3} 
+\end{figure}
 
 \subsection{Graphs}
 
