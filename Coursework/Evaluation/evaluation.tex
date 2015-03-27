@@ -384,7 +384,7 @@ Search function at \ref{search}
 
 \textbf{Has the objective been fulfilled?}
 
-Objective has not been met. This would be a nice addition but only when the system has been fully developed, it was important to focus on the core components of the system to ensure they were developed before the deadline. Therefore additional features, such as this, were left out of the final implementation.
+Objective has not been met. This would be a nice addition but only when the system has been fully developed.
 
 
 
@@ -394,7 +394,7 @@ Objective has not been met. This would be a nice addition but only when the syst
 
 \textbf{Has the objective been fulfilled?}
 
-Objective has not been met. During lesson there was no introduction for creating online sql tables therefore I would have needed to learn this from scratch. GUI design on desktop applications is what I have been using at home and in class, therefore this was the most sensible approach. To add this online feature I would need to research further and may implement this at a later date.
+Objective has not been met. The system will not be automatically updated if it was stored on a server, also if multiple people tried to use the same system the database would be "locked" whilst in use by somebody else.
 
 
 \section{Effectiveness}
@@ -664,7 +664,7 @@ Admin's can view all tables by selecting them from the dropdown box on the "Open
     \caption{Admin Interface showing the adding of data.} 
 \end{figure}
 
-\subsection{Querying Data}
+\subsection{Querying Data}\label{queryf}
 
 \textbf{Objective:} Users will be able to query information, for example if they wanted to show only mobile phones or if they wanted to show only specific departments.
 
@@ -757,10 +757,201 @@ Question 9 of the questionnaire (\ref{qs}) shows how my client wants the automat
     \caption{This is the email received when a hardware item is about to run out of warranty.} 
 \end{figure}
 
+\subsection{Search Function}
+
+\textbf{Objective:}The system must have a search function to allow a user to find a specific field.
+
+See \ref{searchf} for criteria and judgement for the search function.
+
+\subsection{Querying Data}
+
+\textbf{Objective:}The system must have a way to query information so that a user can filter or categorize information (such as by department or location)
+
+See \ref{queryf} for criteria and judgement for querying data.
+
+
+
+\paragraph{Other Objectives}
+
+\subsection{Electronic Hardware Request Forms}
+
+\textbf{Objective:}It will be nice to include a method of sending hardware request forms electronically to eliminate the need for physical copies. However this will only be considered if everything else is completed as it is not essential.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{Allow sending of hardware request forms electronically}
+\item{Allow admins to receive and be able to sign off forms electronically}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+I did not manage to add this feature due to time constraints. It was important to focus on the core components of the system to ensure they were developed before the deadline. Therefore additional features, such as this, were left out of the final implementation. My client did not originally ask for this feature therefore it would have been added for convenience, he did not mention anything about this feature in the interview.
+
+\subsection{Online Database}
+
+\textbf{Objective:}A great feature to have is the database being available online using the server the company owns. If the database was online it will be available to use from anywhere with Internet connection.
+
+\textbf{Evaluation Criteria:}
+\begin{itemize}
+\item{System should continually run on company server}
+\item{Automatic emails should send without the system being restarted}
+\item{Database should update whenever someone modifies data on it}
+\end{itemize}
+
+\textbf{Judgment and Evidence:}
+
+Unfortunately the system has not been implemented to be used on a server.  During lesson there was no introduction for creating online sql tables therefore I would have needed to learn this from scratch. GUI design on desktop applications is what I have been using at home and in class, therefore this was the most sensible approach. To add this online feature I would need to research further and may implement this at a later date. My client has commented on this in the questionnaire \ref{qs} (question 3 of the open questions) and said he would have preferred the database to be online.
 
 \section{Learnability}
 
+Since my client is my father I had a good idea of his knowledge of working with IT systems and database. I also have good understanding of his colleagues knowledge since I have been to this company for work experience prior to developing this system. Since my client works as a Systems Administrator in the IT department of Volac his knowledge of using computers is very high therefore I did not need to add additional instructions to the system such as tooltips. The whole company works with computer systems, working on spreadsheets and databases on a daily basis. Again, this meant when developing the Manager and Staff interfaces there did not need to be basic instructions, I added shortcuts to every interface because I feel that all staff members would like quicker ways to complete tasks.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/shortcuts2.png}
+    \caption{This menu is part of the Manager interface showing F1 and F2 shortcuts which are attached to the menu buttons.} 
+\end{figure}
+
+
+The current spreadsheet that the IT staff use to keep track of hardware devices is much more complicated than my system, it has a lot of data duplication since it is not a relational database. Since the users would be used to this current spreadsheet I ensured that all of the important fields were copied over such as "Device Type" as well as "Location" and "Department". This has been effective since question 4 of the questionnaire (\ref{qs}) states that my client strongly agrees that the new system has all the correct fields needed.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/spreadsheet.png}
+    \caption{This is an example of the fields on the original spreadsheet. I have made sure to include these important fields as well as improving their names to make it more organized (Description became Device)} 
+\end{figure}
+
+When producing the search functions I researched into how searches are used in professional software. Initially I had a search button that the users had to click in order to update the table, but soon realized that it is much easier and quicker to automatically update the table whenever something is typed in. Windows 7 uses the same system in the search menu as well as Google using this autosearch in their web browser. Staff will be very used to this method so using my search function should be very straightforward.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/afteradv.png}
+    \caption{A view of the admin "search staff" screen after member is searched.}
+\end{figure}
+
+I ensured I used as many error messages as possible when designing my system, this is so users can identify that they have done something wrong and correct it instead of continually trying. However my client chose to tick "Agree" on question 20 of the questionnaire (\ref{qs}) instead of "Strongly Agree" this may be because he wants there to be more error messages, or to make them more obvious.
+
+After completing the staff and manager interfaces I realized it was quite hard to tell which screen the user is currently on while navigating through these interfaces, therefore I chose to add labels to the top of each interface explaining what the screen currently shows.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/readonlystaff.png}
+    \caption{Example showing that labels on the different screens.}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/managersearch.png}
+    \caption{Example showing that labels on the different screens.} 
+\end{figure}
+
+Overall referring to my above points and the client feedback it seems that my system has a fairly gradual learning curve. All users should have no problem using the system and there are labels, placeholder texts and error messages to aid the user. If someone was to use the admin interface on the system for the first time, without working on any form of database before, it may be fairly hard to grasp the relational database structure.
+
 \section{Usability}
+
+The usability refers to how easy the system is to use, since the system has been designed with a user interface this will be the focus for the section. 
+
+The usability can be classified by several criteria:
+\begin{itemize}
+\item{Target acquisition time}
+\item{Latency}
+\item{Readability}
+\item{Use of metaphors}
+\item{Navigability}
+\end{itemize}
+
+\subsection{Target acquisition time}
+
+This refers to how long it takes to navigate around the user interface, for example how long it takes to click a certain button or choose an option from a dropdown box.
+
+With the use of "main menus" on the manager and admin interface the target acquisition time is very low as there are two large buttons that fill the screen.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/ManagerMM.png}
+    \caption{A view of the manager main menu, showing low target acquisition time} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Maintenance/Images/adminmainmenu.png}
+    \caption{A view of the admin main menu, showing low target acquisition time} 
+\end{figure}
+
+Most of the system has very low target acquisition time, I have made sure that buttons and font is large and easily readable. 
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/beforeadv.png}
+    \caption{The admin advanced search also has low target acquisition time. The buttons to view more info (with arrows) are very large with bold text making them easily readable.} 
+\end{figure}
+
+There is however one part of the system that has higher target acquisition time. When editing data the font is smaller and may be hard to select fields (shown below).
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin2.png}
+\end{figure}
+
+\subsection{Latency}
+
+Latency refers to how long after an action has been initiated the system takes to complete it. Latency seems to be a problem when first starting the program, there is around a three second pause before the splashscreen is shown. However every action is performed almost instantly on the rest of the system.
+
+\subsection{Readability}
+
+Readability refers to how easy is it for a user to read commands or guidance. The readability of my system is generally very good, the system has been designed with the company colours of green/white with black text. The black text stands out very well on the white background. The font is large so it can be read easily and for important text, bold is used.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/managersearch.png}
+    \caption{Example of bold, large labels on the manager interface.} 
+\end{figure}
+
+However has referenced in target acquisition time, the readability of the fields when editing data is very low as the font size is much smaller.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/admin2.png}
+\end{figure}
+
+\subsection{Use of metaphors}
+
+The use of metaphors is if there are visual pictures or icons to help users understand what can be done. I have included a variety of icons and pictures in my system, for some this was simply added to make the system more appealing and nicer to use. However the calendar icon has a button attached to it that will be clicked in order to choose a date. Below are some examples of where pictures and icons are used in my system.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/toolbaricons.png}
+    \caption{These icons are linked with the toolbar button and provide a visual aid as well as the text format, this should help the user work out what the buttons do.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/arrowicon.png}
+    \caption{The arrow picture was used here because it shows that clicking the button will open a new interface.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/calandericon.png}
+    \caption{The calendar icon on this screen will need to be clicked to choose a date.} 
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/calandericon2.png}
+    \caption{The calendar after the icon has been clicked.} 
+\end{figure}
+
+There are also icons and pictures that help with the design of the system. For example the splash screen shown below does not change how the system functions but makes it look much more professional.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/splashscreen.png}
+\end{figure}
+
+I have also added an icon for the system that will show on the taskbar on windows as well as the executable file and the top left corner of the application.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/volacicon.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/volacicon2.png}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{./Evaluation/Images/volacicon3.png}
+\end{figure}
+
+Overall the use of metaphors is a very large part of my system as I believe that it should look as professional as possible, and be appealing to use for staff since they will be using it a lot.
+
+\subsection{Navigability}
+
+This section is looking at how easy it is to navigate the user interface%%%%%%%%%%%%%%%%%%%%
 
 \section{Maintainability}
 

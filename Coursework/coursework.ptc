@@ -1,279 +1,289 @@
-\contentsline {chapter}{\numberline {1}Analysis}{2}{chapter.1}
-\contentsline {section}{\numberline {1.1}Introduction}{2}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}Client Identification}{2}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}Define the current system}{3}{subsection.1.1.2}
-\contentsline {subsection}{\numberline {1.1.3}Describe the problems}{3}{subsection.1.1.3}
-\contentsline {subsection}{\numberline {1.1.4}Section appendix}{5}{subsection.1.1.4}
-\contentsline {section}{\numberline {1.2}Investigation}{7}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}The current system}{7}{subsection.1.2.1}
-\contentsline {subsubsection}{Data sources and destinations}{7}{section*.2}
-\contentsline {subsubsection}{Algorithms}{9}{section*.3}
-\contentsline {subsubsection}{Data flow diagram}{12}{section*.4}
-\contentsline {subsubsection}{Input Forms, Output Forms, Report Formats}{16}{section*.5}
-\contentsline {subsection}{\numberline {1.2.2}The proposed system}{20}{subsection.1.2.2}
-\contentsline {subsubsection}{Data sources and destinations}{20}{section*.6}
-\contentsline {subsubsection}{Data flow diagram}{23}{section*.7}
-\contentsline {subsubsection}{Data dictionary}{29}{section*.8}
-\contentsline {subsubsection}{Volumetrics}{30}{section*.9}
-\contentsline {section}{\numberline {1.3}Objectives}{32}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}General Objectives}{32}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Specific Objectives}{32}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}Core Objectives}{33}{subsection.1.3.3}
-\contentsline {subsection}{\numberline {1.3.4}Other Objectives}{33}{subsection.1.3.4}
-\contentsline {section}{\numberline {1.4}ER Diagrams and Descriptions}{34}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}ER Diagram}{34}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Entity Descriptions}{35}{subsection.1.4.2}
-\contentsline {section}{\numberline {1.5}Object Analysis}{35}{section.1.5}
-\contentsline {subsection}{\numberline {1.5.1}Object Listing}{35}{subsection.1.5.1}
-\contentsline {subsection}{\numberline {1.5.2}Relationship diagrams}{36}{subsection.1.5.2}
-\contentsline {subsection}{\numberline {1.5.3}Class definitions}{37}{subsection.1.5.3}
-\contentsline {section}{\numberline {1.6}Other Abstractions and Graphs}{38}{section.1.6}
-\contentsline {section}{\numberline {1.7}Constraints}{39}{section.1.7}
-\contentsline {subsection}{\numberline {1.7.1}Hardware}{39}{subsection.1.7.1}
-\contentsline {subsection}{\numberline {1.7.2}Software}{39}{subsection.1.7.2}
-\contentsline {subsection}{\numberline {1.7.3}Time}{39}{subsection.1.7.3}
-\contentsline {subsection}{\numberline {1.7.4}User Knowledge}{39}{subsection.1.7.4}
-\contentsline {subsection}{\numberline {1.7.5}Access restrictions}{40}{subsection.1.7.5}
-\contentsline {section}{\numberline {1.8}Limitations}{40}{section.1.8}
-\contentsline {subsection}{\numberline {1.8.1}Areas which will not be included in computerisation}{40}{subsection.1.8.1}
-\contentsline {subsection}{\numberline {1.8.2}Areas considered for future computerisation}{41}{subsection.1.8.2}
-\contentsline {section}{\numberline {1.9}Solutions}{42}{section.1.9}
-\contentsline {subsection}{\numberline {1.9.1}Alternative solutions}{42}{subsection.1.9.1}
-\contentsline {subsection}{\numberline {1.9.2}Justification of chosen solution}{46}{subsection.1.9.2}
-\contentsline {chapter}{\numberline {2}Design}{47}{chapter.2}
-\contentsline {section}{\numberline {2.1}Overall System Design}{47}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Short description of the main parts of the system}{47}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2}System flowcharts showing an overview of the complete system}{51}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2}User Interface Designs}{57}{section.2.2}
-\contentsline {section}{\numberline {2.3}Hardware Specification}{70}{section.2.3}
-\contentsline {section}{\numberline {2.4}Program Structure}{72}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Top-down design structure charts}{72}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Algorithms in pseudo-code for each data transformation process}{80}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Object Diagrams}{83}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Class Definitions}{84}{subsection.2.4.4}
-\contentsline {section}{\numberline {2.5}Prototyping}{85}{section.2.5}
-\contentsline {section}{\numberline {2.6}Definition of Data Requirements}{89}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Identification of all data input items}{89}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Identification of all data output items}{90}{subsection.2.6.2}
-\contentsline {subsection}{\numberline {2.6.3}Explanation of how data output items are generated}{91}{subsection.2.6.3}
-\contentsline {subsection}{\numberline {2.6.4}Data Dictionary}{94}{subsection.2.6.4}
-\contentsline {subsection}{\numberline {2.6.5}Identification of appropriate storage media}{96}{subsection.2.6.5}
-\contentsline {section}{\numberline {2.7}Database Design}{96}{section.2.7}
-\contentsline {subsection}{\numberline {2.7.1}Normalisation}{96}{subsection.2.7.1}
-\contentsline {subsubsection}{ER Diagrams}{97}{section*.10}
-\contentsline {subsubsection}{Entity Descriptions}{98}{section*.11}
-\contentsline {subsubsection}{1NF to 3NF}{99}{section*.12}
-\contentsline {subsection}{\numberline {2.7.2}SQL Queries}{102}{subsection.2.7.2}
-\contentsline {section}{\numberline {2.8}Security and Integrity of the System and Data}{103}{section.2.8}
-\contentsline {subsection}{\numberline {2.8.1}Security and Integrity of Data}{103}{subsection.2.8.1}
-\contentsline {subsection}{\numberline {2.8.2}System Security}{103}{subsection.2.8.2}
-\contentsline {section}{\numberline {2.9}Validation}{104}{section.2.9}
-\contentsline {section}{\numberline {2.10}Testing}{108}{section.2.10}
-\contentsline {subsection}{\numberline {2.10.1}Outline Plan}{108}{subsection.2.10.1}
-\contentsline {subsection}{\numberline {2.10.2}Detailed Plan}{109}{subsection.2.10.2}
-\contentsline {chapter}{\numberline {3}Testing}{140}{chapter.3}
-\contentsline {section}{\numberline {3.1}Test Plan}{140}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Original Outline Plan}{142}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Changes to Outline Plan}{143}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Original Detailed Plan}{145}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Changes to Detailed Plan}{175}{subsection.3.1.4}
-\contentsline {section}{\numberline {3.2}Test Data}{216}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Original Test Data}{216}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Changes to Test Data}{216}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Annotated Samples}{216}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Actual Results}{216}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Evidence}{217}{subsection.3.3.2}
-\contentsline {section}{\numberline {3.4}Evaluation}{259}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Approach to Testing}{259}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Problems Encountered}{259}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Strengths of Testing}{260}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Weaknesses of Testing}{260}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Reliability of Application}{260}{subsection.3.4.5}
-\contentsline {subsection}{\numberline {3.4.6}Robustness of Application}{261}{subsection.3.4.6}
-\contentsline {chapter}{\numberline {4}System Maintenance}{262}{chapter.4}
-\contentsline {section}{\numberline {4.1}Environment}{262}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Software}{262}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Usage Explanation}{263}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Features Used}{265}{subsection.4.1.3}
-\contentsline {section}{\numberline {4.2}System Overview}{266}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Logins}{266}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}The Graphical User Interface}{266}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Open Database Interface}{266}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Adding Data}{267}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}Searching Staff}{267}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Graph Representation}{267}{subsection.4.2.6}
-\contentsline {subsection}{\numberline {4.2.7}Department Information for Managers}{267}{subsection.4.2.7}
-\contentsline {subsection}{\numberline {4.2.8}Personal Information}{268}{subsection.4.2.8}
-\contentsline {subsection}{\numberline {4.2.9}Adding Accounts}{268}{subsection.4.2.9}
-\contentsline {section}{\numberline {4.3}Code Structure}{268}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Admin - Main Window \ref {MP}}{269}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Dialog Box Class \ref {ADGUI}}{270}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Manager Menu Bar \ref {MMB}}{271}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Method Structure In Classes \ref {MP} and \ref {LW}}{272}{subsection.4.3.4}
-\contentsline {subsection}{\numberline {4.3.5}Access Levels and Login Structure \ref {LW}}{273}{subsection.4.3.5}
-\contentsline {subsection}{\numberline {4.3.6}Module Main Function \ref {MP}}{276}{subsection.4.3.6}
-\contentsline {section}{\numberline {4.4}Variable Listing}{276}{section.4.4}
-\contentsline {section}{\numberline {4.5}System Evidence}{281}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}User Interface}{281}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}ER Diagram}{294}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Database Table Views}{295}{subsection.4.5.3}
-\contentsline {subsection}{\numberline {4.5.4}Database SQL}{303}{subsection.4.5.4}
-\contentsline {subsubsection}{Staff Entity}{303}{section*.13}
-\contentsline {subsubsection}{Hardware Entity}{304}{section*.14}
-\contentsline {subsubsection}{HardwareMake Entity}{304}{section*.15}
-\contentsline {subsubsection}{HardwareModel Entity}{304}{section*.16}
-\contentsline {subsubsection}{DeviceType Entity}{305}{section*.17}
-\contentsline {subsubsection}{StaffHardware Entity}{305}{section*.18}
-\contentsline {subsubsection}{Department Entity}{305}{section*.19}
-\contentsline {subsubsection}{Location Entity}{305}{section*.20}
-\contentsline {subsubsection}{Creation of all the tables}{306}{section*.21}
-\contentsline {subsubsection}{Creation of accounts table}{306}{section*.22}
-\contentsline {subsection}{\numberline {4.5.5}SQL Queries}{307}{subsection.4.5.5}
-\contentsline {section}{\numberline {4.6}Testing}{310}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Summary of Results}{310}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Known Issues}{310}{subsection.4.6.2}
-\contentsline {section}{\numberline {4.7}Code Explanations}{311}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}Difficult Sections}{311}{subsection.4.7.1}
-\contentsline {subsubsection}{Adding Data}{311}{section*.23}
-\contentsline {subsubsection}{Foreign Key Management and Table Structure}{315}{section*.24}
-\contentsline {subsubsection}{Changing Passwords}{319}{section*.25}
-\contentsline {subsection}{\numberline {4.7.2}Self-created Algorithms}{322}{subsection.4.7.2}
-\contentsline {subsubsection}{Creating efficient and complex account details (Original (\ref {AAI})}{322}{section*.26}
-\contentsline {subsubsection}{Automatic Expiration Email (Original (\ref {MP})}{323}{section*.27}
-\contentsline {subsubsection}{Creating Graphs (Original (\ref {G})}{325}{section*.28}
-\contentsline {section}{\numberline {4.8}Settings}{328}{section.4.8}
-\contentsline {section}{\numberline {4.9}Acknowledgements}{328}{section.4.9}
-\contentsline {subsection}{\numberline {4.9.1}Calendar}{328}{subsection.4.9.1}
-\contentsline {subsection}{\numberline {4.9.2}Populating a QTableWidget}{329}{subsection.4.9.2}
-\contentsline {subsection}{\numberline {4.9.3}Getting column names}{330}{subsection.4.9.3}
-\contentsline {subsection}{\numberline {4.9.4}Positioning line edits on grid layout}{330}{subsection.4.9.4}
-\contentsline {subsection}{\numberline {4.9.5}Regular Expressions}{331}{subsection.4.9.5}
-\contentsline {paragraph}{Phone Number Regular Expression}{331}{section*.29}
-\contentsline {paragraph}{Email Address Regular Expression}{331}{section*.30}
-\contentsline {subsection}{\numberline {4.9.6}Buttons in table rows}{331}{subsection.4.9.6}
-\contentsline {subsection}{\numberline {4.9.7}Images}{332}{subsection.4.9.7}
-\contentsline {section}{\numberline {4.10}Code Listing}{333}{section.4.10}
-\contentsline {subsection}{\numberline {4.10.1}Admin Main Program (MainProgram.py)}{334}{subsection.4.10.1}
-\contentsline {subsection}{\numberline {4.10.2}Admin Main Menu (AdminMainMenu.py)}{343}{subsection.4.10.2}
-\contentsline {subsection}{\numberline {4.10.3}Admin Database Interface (OpenDatabaseWindow.py)}{345}{subsection.4.10.3}
-\contentsline {subsection}{\numberline {4.10.4}Admin Search Staff Interface (SearchStaffAdmin.py)}{360}{subsection.4.10.4}
-\contentsline {subsection}{\numberline {4.10.5}Add Data Window (AddDataGUI.py)}{371}{subsection.4.10.5}
-\contentsline {subsection}{\numberline {4.10.6}Admin Menubar (MenuBarAdmin.py)}{395}{subsection.4.10.6}
-\contentsline {subsection}{\numberline {4.10.7}Staff Interface (StaffProgram.py)}{398}{subsection.4.10.7}
-\contentsline {subsection}{\numberline {4.10.8}Staff Menu Bar (StaffMenuBar.py)}{405}{subsection.4.10.8}
-\contentsline {subsection}{\numberline {4.10.9}Manager Main Program (ManagerMainProgram.py)}{407}{subsection.4.10.9}
-\contentsline {subsection}{\numberline {4.10.10}Manager Main Menu (ManagerMainMenu.py)}{412}{subsection.4.10.10}
-\contentsline {subsection}{\numberline {4.10.11}Department Information Interface (DepartmentInformation.py)}{414}{subsection.4.10.11}
-\contentsline {subsection}{\numberline {4.10.12}Manager - My Information (MyInformation.py)}{420}{subsection.4.10.12}
-\contentsline {subsection}{\numberline {4.10.13}Manager Menubar (ManagerMenuBar.py)}{424}{subsection.4.10.13}
-\contentsline {subsection}{\numberline {4.10.14}Forgotten Account Interface (ForgottenAccount.py)}{426}{subsection.4.10.14}
-\contentsline {subsection}{\numberline {4.10.15}Graph Creation (Graph.py)}{429}{subsection.4.10.15}
-\contentsline {subsection}{\numberline {4.10.16}Dialog Warning Box (PopupDialog.py)}{432}{subsection.4.10.16}
-\contentsline {subsection}{\numberline {4.10.17}Calendar (Calender.py)}{434}{subsection.4.10.17}
-\contentsline {subsection}{\numberline {4.10.18}Confirm Deletion Dialog (ConfirmDialog.py)}{436}{subsection.4.10.18}
-\contentsline {subsection}{\numberline {4.10.19}Report Data Error (Reporterror.py)}{438}{subsection.4.10.19}
-\contentsline {subsection}{\numberline {4.10.20}Report Bug (BugReport.py)}{441}{subsection.4.10.20}
-\contentsline {subsection}{\numberline {4.10.21}Login Window (LoginWindow.py)}{445}{subsection.4.10.21}
-\contentsline {subsection}{\numberline {4.10.22}Add Account Interface (AddingAccounts.py)}{451}{subsection.4.10.22}
-\contentsline {subsection}{\numberline {4.10.23}Change Password Interface (ChangePassword.py)}{456}{subsection.4.10.23}
-\contentsline {subsection}{\numberline {4.10.24}CLI to add/edit/remove (EditData.py)}{459}{subsection.4.10.24}
-\contentsline {subsection}{\numberline {4.10.25}Creating Logins Table (Logins.py)}{465}{subsection.4.10.25}
-\contentsline {subsection}{\numberline {4.10.26}Creation of the database tables (StaffDatabase.py)}{466}{subsection.4.10.26}
-\contentsline {subsection}{\numberline {4.10.27}Creation of the default login details (DefaultLogin.py)}{470}{subsection.4.10.27}
-\contentsline {chapter}{\numberline {5}User Manual}{471}{chapter.5}
+\contentsline {chapter}{\numberline {1}Analysis}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introduction}{7}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Client Identification}{7}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Define the current system}{8}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Describe the problems}{8}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}Section appendix}{10}{subsection.1.1.4}
+\contentsline {section}{\numberline {1.2}Investigation}{12}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}The current system}{12}{subsection.1.2.1}
+\contentsline {subsubsection}{Data sources and destinations}{12}{section*.2}
+\contentsline {subsubsection}{Algorithms}{14}{section*.3}
+\contentsline {subsubsection}{Data flow diagram}{17}{section*.4}
+\contentsline {subsubsection}{Input Forms, Output Forms, Report Formats}{21}{section*.5}
+\contentsline {subsection}{\numberline {1.2.2}The proposed system}{25}{subsection.1.2.2}
+\contentsline {subsubsection}{Data sources and destinations}{25}{section*.6}
+\contentsline {subsubsection}{Data flow diagram}{28}{section*.7}
+\contentsline {subsubsection}{Data dictionary}{34}{section*.8}
+\contentsline {subsubsection}{Volumetrics}{35}{section*.9}
+\contentsline {section}{\numberline {1.3}Objectives}{37}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}General Objectives}{37}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Specific Objectives}{37}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Core Objectives}{38}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}Other Objectives}{38}{subsection.1.3.4}
+\contentsline {section}{\numberline {1.4}ER Diagrams and Descriptions}{39}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}ER Diagram}{39}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}Entity Descriptions}{40}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}Object Analysis}{40}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Object Listing}{40}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}Relationship diagrams}{41}{subsection.1.5.2}
+\contentsline {subsection}{\numberline {1.5.3}Class definitions}{42}{subsection.1.5.3}
+\contentsline {section}{\numberline {1.6}Other Abstractions and Graphs}{43}{section.1.6}
+\contentsline {section}{\numberline {1.7}Constraints}{44}{section.1.7}
+\contentsline {subsection}{\numberline {1.7.1}Hardware}{44}{subsection.1.7.1}
+\contentsline {subsection}{\numberline {1.7.2}Software}{44}{subsection.1.7.2}
+\contentsline {subsection}{\numberline {1.7.3}Time}{44}{subsection.1.7.3}
+\contentsline {subsection}{\numberline {1.7.4}User Knowledge}{44}{subsection.1.7.4}
+\contentsline {subsection}{\numberline {1.7.5}Access restrictions}{45}{subsection.1.7.5}
+\contentsline {section}{\numberline {1.8}Limitations}{45}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}Areas which will not be included in computerisation}{45}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.8.2}Areas considered for future computerisation}{46}{subsection.1.8.2}
+\contentsline {section}{\numberline {1.9}Solutions}{47}{section.1.9}
+\contentsline {subsection}{\numberline {1.9.1}Alternative solutions}{47}{subsection.1.9.1}
+\contentsline {subsection}{\numberline {1.9.2}Justification of chosen solution}{51}{subsection.1.9.2}
+\contentsline {chapter}{\numberline {2}Design}{52}{chapter.2}
+\contentsline {section}{\numberline {2.1}Overall System Design}{52}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Short description of the main parts of the system}{52}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}System flowcharts showing an overview of the complete system}{56}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}User Interface Designs}{62}{section.2.2}
+\contentsline {section}{\numberline {2.3}Hardware Specification}{75}{section.2.3}
+\contentsline {section}{\numberline {2.4}Program Structure}{77}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Top-down design structure charts}{77}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Algorithms in pseudo-code for each data transformation process}{85}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Object Diagrams}{88}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Class Definitions}{89}{subsection.2.4.4}
+\contentsline {section}{\numberline {2.5}Prototyping}{90}{section.2.5}
+\contentsline {section}{\numberline {2.6}Definition of Data Requirements}{94}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Identification of all data input items}{94}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Identification of all data output items}{95}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Explanation of how data output items are generated}{96}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Data Dictionary}{99}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}Identification of appropriate storage media}{101}{subsection.2.6.5}
+\contentsline {section}{\numberline {2.7}Database Design}{101}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Normalisation}{101}{subsection.2.7.1}
+\contentsline {subsubsection}{ER Diagrams}{102}{section*.10}
+\contentsline {subsubsection}{Entity Descriptions}{103}{section*.11}
+\contentsline {subsubsection}{1NF to 3NF}{104}{section*.12}
+\contentsline {subsection}{\numberline {2.7.2}SQL Queries}{107}{subsection.2.7.2}
+\contentsline {section}{\numberline {2.8}Security and Integrity of the System and Data}{108}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Security and Integrity of Data}{108}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}System Security}{108}{subsection.2.8.2}
+\contentsline {section}{\numberline {2.9}Validation}{109}{section.2.9}
+\contentsline {section}{\numberline {2.10}Testing}{113}{section.2.10}
+\contentsline {subsection}{\numberline {2.10.1}Outline Plan}{113}{subsection.2.10.1}
+\contentsline {subsection}{\numberline {2.10.2}Detailed Plan}{114}{subsection.2.10.2}
+\contentsline {chapter}{\numberline {3}Testing}{145}{chapter.3}
+\contentsline {section}{\numberline {3.1}Test Plan}{145}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Original Outline Plan}{147}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Changes to Outline Plan}{148}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Original Detailed Plan}{150}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Changes to Detailed Plan}{180}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}Test Data}{221}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Original Test Data}{221}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Changes to Test Data}{221}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Annotated Samples}{221}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Actual Results}{221}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Evidence}{222}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Evaluation}{264}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Approach to Testing}{264}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Problems Encountered}{264}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Strengths of Testing}{265}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Weaknesses of Testing}{265}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}Reliability of Application}{265}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.6}Robustness of Application}{266}{subsection.3.4.6}
+\contentsline {chapter}{\numberline {4}System Maintenance}{267}{chapter.4}
+\contentsline {section}{\numberline {4.1}Environment}{267}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Software}{267}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Usage Explanation}{268}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Features Used}{270}{subsection.4.1.3}
+\contentsline {section}{\numberline {4.2}System Overview}{271}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Logins}{271}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}The Graphical User Interface}{271}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Open Database Interface}{271}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Adding Data}{272}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Searching Staff}{272}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Graph Representation}{272}{subsection.4.2.6}
+\contentsline {subsection}{\numberline {4.2.7}Department Information for Managers}{272}{subsection.4.2.7}
+\contentsline {subsection}{\numberline {4.2.8}Personal Information}{273}{subsection.4.2.8}
+\contentsline {subsection}{\numberline {4.2.9}Adding Accounts}{273}{subsection.4.2.9}
+\contentsline {section}{\numberline {4.3}Code Structure}{273}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Admin - Main Window \ref {MP}}{274}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Dialog Box Class \ref {ADGUI}}{275}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Manager Menu Bar \ref {MMB}}{276}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Method Structure In Classes \ref {MP} and \ref {LW}}{277}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Access Levels and Login Structure \ref {LW}}{278}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.6}Module Main Function \ref {MP}}{281}{subsection.4.3.6}
+\contentsline {section}{\numberline {4.4}Variable Listing}{281}{section.4.4}
+\contentsline {section}{\numberline {4.5}System Evidence}{286}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}User Interface}{286}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}ER Diagram}{299}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Database Table Views}{300}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}Database SQL}{308}{subsection.4.5.4}
+\contentsline {subsubsection}{Staff Entity}{308}{section*.13}
+\contentsline {subsubsection}{Hardware Entity}{309}{section*.14}
+\contentsline {subsubsection}{HardwareMake Entity}{309}{section*.15}
+\contentsline {subsubsection}{HardwareModel Entity}{309}{section*.16}
+\contentsline {subsubsection}{DeviceType Entity}{310}{section*.17}
+\contentsline {subsubsection}{StaffHardware Entity}{310}{section*.18}
+\contentsline {subsubsection}{Department Entity}{310}{section*.19}
+\contentsline {subsubsection}{Location Entity}{310}{section*.20}
+\contentsline {subsubsection}{Creation of all the tables}{311}{section*.21}
+\contentsline {subsubsection}{Creation of accounts table}{311}{section*.22}
+\contentsline {subsection}{\numberline {4.5.5}SQL Queries}{312}{subsection.4.5.5}
+\contentsline {section}{\numberline {4.6}Testing}{315}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Summary of Results}{315}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Known Issues}{315}{subsection.4.6.2}
+\contentsline {section}{\numberline {4.7}Code Explanations}{316}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Difficult Sections}{316}{subsection.4.7.1}
+\contentsline {subsubsection}{Adding Data}{316}{section*.23}
+\contentsline {subsubsection}{Foreign Key Management and Table Structure}{320}{section*.24}
+\contentsline {subsubsection}{Changing Passwords}{324}{section*.25}
+\contentsline {subsection}{\numberline {4.7.2}Self-created Algorithms}{327}{subsection.4.7.2}
+\contentsline {subsubsection}{Creating efficient and complex account details (Original (\ref {AAI})}{327}{section*.26}
+\contentsline {subsubsection}{Automatic Expiration Email (Original (\ref {MP})}{328}{section*.27}
+\contentsline {subsubsection}{Creating Graphs (Original (\ref {G})}{330}{section*.28}
+\contentsline {section}{\numberline {4.8}Settings}{333}{section.4.8}
+\contentsline {section}{\numberline {4.9}Acknowledgements}{333}{section.4.9}
+\contentsline {subsection}{\numberline {4.9.1}Calendar}{333}{subsection.4.9.1}
+\contentsline {subsection}{\numberline {4.9.2}Populating a QTableWidget}{334}{subsection.4.9.2}
+\contentsline {subsection}{\numberline {4.9.3}Getting column names}{335}{subsection.4.9.3}
+\contentsline {subsection}{\numberline {4.9.4}Positioning line edits on grid layout}{335}{subsection.4.9.4}
+\contentsline {subsection}{\numberline {4.9.5}Regular Expressions}{336}{subsection.4.9.5}
+\contentsline {paragraph}{Phone Number Regular Expression}{336}{section*.29}
+\contentsline {paragraph}{Email Address Regular Expression}{336}{section*.30}
+\contentsline {subsection}{\numberline {4.9.6}Buttons in table rows}{336}{subsection.4.9.6}
+\contentsline {subsection}{\numberline {4.9.7}Images}{337}{subsection.4.9.7}
+\contentsline {section}{\numberline {4.10}Code Listing}{338}{section.4.10}
+\contentsline {subsection}{\numberline {4.10.1}Admin Main Program (MainProgram.py)}{339}{subsection.4.10.1}
+\contentsline {subsection}{\numberline {4.10.2}Admin Main Menu (AdminMainMenu.py)}{348}{subsection.4.10.2}
+\contentsline {subsection}{\numberline {4.10.3}Admin Database Interface (OpenDatabaseWindow.py)}{350}{subsection.4.10.3}
+\contentsline {subsection}{\numberline {4.10.4}Admin Search Staff Interface (SearchStaffAdmin.py)}{365}{subsection.4.10.4}
+\contentsline {subsection}{\numberline {4.10.5}Add Data Window (AddDataGUI.py)}{376}{subsection.4.10.5}
+\contentsline {subsection}{\numberline {4.10.6}Admin Menubar (MenuBarAdmin.py)}{400}{subsection.4.10.6}
+\contentsline {subsection}{\numberline {4.10.7}Staff Interface (StaffProgram.py)}{403}{subsection.4.10.7}
+\contentsline {subsection}{\numberline {4.10.8}Staff Menu Bar (StaffMenuBar.py)}{410}{subsection.4.10.8}
+\contentsline {subsection}{\numberline {4.10.9}Manager Main Program (ManagerMainProgram.py)}{412}{subsection.4.10.9}
+\contentsline {subsection}{\numberline {4.10.10}Manager Main Menu (ManagerMainMenu.py)}{417}{subsection.4.10.10}
+\contentsline {subsection}{\numberline {4.10.11}Department Information Interface (DepartmentInformation.py)}{419}{subsection.4.10.11}
+\contentsline {subsection}{\numberline {4.10.12}Manager - My Information (MyInformation.py)}{425}{subsection.4.10.12}
+\contentsline {subsection}{\numberline {4.10.13}Manager Menubar (ManagerMenuBar.py)}{429}{subsection.4.10.13}
+\contentsline {subsection}{\numberline {4.10.14}Forgotten Account Interface (ForgottenAccount.py)}{431}{subsection.4.10.14}
+\contentsline {subsection}{\numberline {4.10.15}Graph Creation (Graph.py)}{434}{subsection.4.10.15}
+\contentsline {subsection}{\numberline {4.10.16}Dialog Warning Box (PopupDialog.py)}{437}{subsection.4.10.16}
+\contentsline {subsection}{\numberline {4.10.17}Calendar (Calender.py)}{439}{subsection.4.10.17}
+\contentsline {subsection}{\numberline {4.10.18}Confirm Deletion Dialog (ConfirmDialog.py)}{441}{subsection.4.10.18}
+\contentsline {subsection}{\numberline {4.10.19}Report Data Error (Reporterror.py)}{443}{subsection.4.10.19}
+\contentsline {subsection}{\numberline {4.10.20}Report Bug (BugReport.py)}{446}{subsection.4.10.20}
+\contentsline {subsection}{\numberline {4.10.21}Login Window (LoginWindow.py)}{450}{subsection.4.10.21}
+\contentsline {subsection}{\numberline {4.10.22}Add Account Interface (AddingAccounts.py)}{456}{subsection.4.10.22}
+\contentsline {subsection}{\numberline {4.10.23}Change Password Interface (ChangePassword.py)}{461}{subsection.4.10.23}
+\contentsline {subsection}{\numberline {4.10.24}CLI to add/edit/remove (EditData.py)}{464}{subsection.4.10.24}
+\contentsline {subsection}{\numberline {4.10.25}Creating Logins Table (Logins.py)}{470}{subsection.4.10.25}
+\contentsline {subsection}{\numberline {4.10.26}Creation of the database tables (StaffDatabase.py)}{471}{subsection.4.10.26}
+\contentsline {subsection}{\numberline {4.10.27}Creation of the default login details (DefaultLogin.py)}{475}{subsection.4.10.27}
+\contentsline {chapter}{\numberline {5}User Manual}{476}{chapter.5}
 \ttl@starttoc {chapters@1}
-\contentsline {section}{\numberline {5.1}Introduction}{472}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Purpose of System}{472}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Intended Audience}{473}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Installation}{474}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Prerequisite Installation}{474}{subsection.5.2.1}
-\contentsline {subsubsection}{Software}{474}{section*.31}
-\contentsline {subsubsection}{Hardware}{474}{section*.32}
-\contentsline {subsubsection}{Operating System}{475}{section*.33}
-\contentsline {subsection}{\numberline {5.2.2}System Installation}{475}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Running the System}{481}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Tutorial}{487}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Introduction}{487}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Assumptions}{487}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Tutorial Questions}{487}{subsection.5.3.3}
-\contentsline {paragraph}{General Tutorial}{488}{section*.34}
-\contentsline {subsubsection}{How do I login to the system?}{488}{section*.35}
-\contentsline {subsubsection}{How do I change my password?}{489}{section*.36}
-\contentsline {subsubsection}{How do I close the system?}{491}{section*.37}
-\contentsline {paragraph}{Admin Interface Tutorial}{492}{section*.38}
-\contentsline {subsubsection}{How do I open the database?}{492}{section*.39}
-\contentsline {subsubsection}{How do I view the different tables in the database?}{495}{section*.40}
-\contentsline {subsubsection}{How do I add data to the database?}{496}{section*.41}
-\contentsline {subsubsection}{How do I edit data in the database?}{498}{section*.42}
-\contentsline {subsubsection}{How do I delete data from the database?}{500}{section*.43}
-\contentsline {subsubsection}{How do I quick search for data in the database?}{502}{section*.44}
-\contentsline {subsubsection}{How do I search for staff by department?}{503}{section*.45}
-\contentsline {subsubsection}{How do I generate a graph?}{506}{section*.46}
-\contentsline {subsubsection}{How do I add new accounts to the system?}{507}{section*.47}
-\contentsline {subsubsection}{What are primary and foreign keys and how do I use them?}{509}{section*.48}
-\contentsline {paragraph}{Manager and Staff Interface Tutorial}{510}{section*.49}
-\contentsline {subsubsection}{I forgot my password, how do I recover it?}{510}{section*.50}
-\contentsline {subsubsection}{How do I view staff in my department?}{511}{section*.51}
-\contentsline {subsubsection}{How do I quick search for data when viewing Department Information?}{512}{section*.52}
-\contentsline {subsubsection}{How do I view my own information?}{513}{section*.53}
-\contentsline {subsubsection}{How do I report a bug?}{515}{section*.54}
-\contentsline {subsubsection}{How do I report incorrect information?}{516}{section*.55}
-\contentsline {subsection}{\numberline {5.3.4}Saving}{518}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Limitations}{518}{subsection.5.3.5}
-\contentsline {section}{\numberline {5.4}Error Recovery}{519}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Problems Adding Accounts}{519}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Problems Adding Data}{519}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Problems Opening Database File}{520}{subsection.5.4.3}
-\contentsline {section}{\numberline {5.5}System Recovery}{523}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Backing-up Data}{523}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Restoring Data}{526}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.1}Introduction}{477}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Purpose of System}{477}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Intended Audience}{478}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Installation}{479}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Prerequisite Installation}{479}{subsection.5.2.1}
+\contentsline {subsubsection}{Software}{479}{section*.31}
+\contentsline {subsubsection}{Hardware}{479}{section*.32}
+\contentsline {subsubsection}{Operating System}{480}{section*.33}
+\contentsline {subsection}{\numberline {5.2.2}System Installation}{480}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Running the System}{486}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Tutorial}{492}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Introduction}{492}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Assumptions}{492}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Tutorial Questions}{492}{subsection.5.3.3}
+\contentsline {paragraph}{General Tutorial}{493}{section*.34}
+\contentsline {subsubsection}{How do I login to the system?}{493}{section*.35}
+\contentsline {subsubsection}{How do I change my password?}{494}{section*.36}
+\contentsline {subsubsection}{How do I close the system?}{496}{section*.37}
+\contentsline {paragraph}{Admin Interface Tutorial}{497}{section*.38}
+\contentsline {subsubsection}{How do I open the database?}{497}{section*.39}
+\contentsline {subsubsection}{How do I view the different tables in the database?}{500}{section*.40}
+\contentsline {subsubsection}{How do I add data to the database?}{501}{section*.41}
+\contentsline {subsubsection}{How do I edit data in the database?}{503}{section*.42}
+\contentsline {subsubsection}{How do I delete data from the database?}{505}{section*.43}
+\contentsline {subsubsection}{How do I quick search for data in the database?}{507}{section*.44}
+\contentsline {subsubsection}{How do I search for staff by department?}{508}{section*.45}
+\contentsline {subsubsection}{How do I generate a graph?}{511}{section*.46}
+\contentsline {subsubsection}{How do I add new accounts to the system?}{512}{section*.47}
+\contentsline {subsubsection}{What are primary and foreign keys and how do I use them?}{514}{section*.48}
+\contentsline {paragraph}{Manager and Staff Interface Tutorial}{515}{section*.49}
+\contentsline {subsubsection}{I forgot my password, how do I recover it?}{515}{section*.50}
+\contentsline {subsubsection}{How do I view staff in my department?}{516}{section*.51}
+\contentsline {subsubsection}{How do I quick search for data when viewing Department Information?}{517}{section*.52}
+\contentsline {subsubsection}{How do I view my own information?}{518}{section*.53}
+\contentsline {subsubsection}{How do I report a bug?}{520}{section*.54}
+\contentsline {subsubsection}{How do I report incorrect information?}{521}{section*.55}
+\contentsline {subsection}{\numberline {5.3.4}Saving}{523}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Limitations}{523}{subsection.5.3.5}
+\contentsline {section}{\numberline {5.4}Error Recovery}{524}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Problems Adding Accounts}{524}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Problems Adding Data}{524}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Problems Opening Database File}{525}{subsection.5.4.3}
+\contentsline {section}{\numberline {5.5}System Recovery}{528}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Backing-up Data}{528}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Restoring Data}{531}{subsection.5.5.2}
 \ttl@stoptoc {chapters@1}
-\contentsline {chapter}{\numberline {6}Evaluation}{532}{chapter.6}
-\contentsline {section}{\numberline {6.1}Customer Requirements}{532}{section.6.1}
-\contentsline {paragraph}{General Objectives}{532}{section*.56}
-\contentsline {subsection}{\numberline {6.1.1}Database Functionality}{532}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Clear Database Structure}{535}{subsection.6.1.2}
-\contentsline {subsection}{\numberline {6.1.3}Easy to use Data Input and Keyboard Shortcuts}{538}{subsection.6.1.3}
-\contentsline {subsection}{\numberline {6.1.4}Simple Interface Structure}{539}{subsection.6.1.4}
-\contentsline {subsection}{\numberline {6.1.5}Search Functionality}{541}{subsection.6.1.5}
-\contentsline {paragraph}{Specific Objectives}{546}{section*.57}
-\contentsline {subsection}{\numberline {6.1.6}Tables}{546}{subsection.6.1.6}
-\contentsline {subsection}{\numberline {6.1.7}How the System will Search for Data}{547}{subsection.6.1.7}
-\contentsline {subsection}{\numberline {6.1.8}Read-Only access for staff}{547}{subsection.6.1.8}
-\contentsline {subsection}{\numberline {6.1.9}Read-Only access for managers}{548}{subsection.6.1.9}
-\contentsline {subsection}{\numberline {6.1.10}Admin access for IT Staff}{549}{subsection.6.1.10}
-\contentsline {subsection}{\numberline {6.1.11}Querying Data}{551}{subsection.6.1.11}
-\contentsline {paragraph}{Core Objectives}{553}{section*.58}
-\contentsline {subsection}{\numberline {6.1.12}The Login System}{553}{subsection.6.1.12}
-\contentsline {subsection}{\numberline {6.1.13}Automatic Email}{557}{subsection.6.1.13}
-\contentsline {subsection}{\numberline {6.1.14}Search Function}{558}{subsection.6.1.14}
-\contentsline {subsection}{\numberline {6.1.15}Querying Data}{558}{subsection.6.1.15}
-\contentsline {paragraph}{Other Objectives}{558}{section*.59}
-\contentsline {subsection}{\numberline {6.1.16}Electronic Hardware Request Forms}{558}{subsection.6.1.16}
-\contentsline {subsection}{\numberline {6.1.17}Online Database}{559}{subsection.6.1.17}
-\contentsline {section}{\numberline {6.2}Effectiveness}{559}{section.6.2}
-\contentsline {paragraph}{General Objectives}{559}{section*.60}
-\contentsline {subsection}{\numberline {6.2.1}Database Functionality}{559}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Clear Database Structure}{562}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Easy to use Data Input and Keyboard Shortcuts}{563}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Simple Interface Structure}{565}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}Search Functionality}{566}{subsection.6.2.5}
-\contentsline {paragraph}{Specific Objectives}{569}{section*.61}
-\contentsline {subsection}{\numberline {6.2.6}Tables}{570}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}How the System will Search for Data}{571}{subsection.6.2.7}
-\contentsline {subsection}{\numberline {6.2.8}Read-Only access for staff}{573}{subsection.6.2.8}
-\contentsline {subsection}{\numberline {6.2.9}Read-Only access for managers}{573}{subsection.6.2.9}
-\contentsline {subsection}{\numberline {6.2.10}Admin access for IT Staff}{574}{subsection.6.2.10}
-\contentsline {subsection}{\numberline {6.2.11}Querying Data}{578}{subsection.6.2.11}
-\contentsline {paragraph}{Core Objectives}{579}{section*.62}
-\contentsline {subsection}{\numberline {6.2.12}The Login System}{579}{subsection.6.2.12}
-\contentsline {subsection}{\numberline {6.2.13}Automatic Email}{582}{subsection.6.2.13}
-\contentsline {section}{\numberline {6.3}Learnability}{584}{section.6.3}
-\contentsline {section}{\numberline {6.4}Usability}{584}{section.6.4}
-\contentsline {section}{\numberline {6.5}Maintainability}{584}{section.6.5}
-\contentsline {section}{\numberline {6.6}Suggestions for Improvement}{584}{section.6.6}
-\contentsline {section}{\numberline {6.7}End User Evidence}{584}{section.6.7}
-\contentsline {subsection}{\numberline {6.7.1}Questionnaires}{586}{subsection.6.7.1}
-\contentsline {subsection}{\numberline {6.7.2}Graphs}{591}{subsection.6.7.2}
-\contentsline {subsection}{\numberline {6.7.3}Written Statements}{591}{subsection.6.7.3}
+\contentsline {chapter}{\numberline {6}Evaluation}{537}{chapter.6}
+\contentsline {section}{\numberline {6.1}Customer Requirements}{537}{section.6.1}
+\contentsline {paragraph}{General Objectives}{537}{section*.56}
+\contentsline {subsection}{\numberline {6.1.1}Database Functionality}{537}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Clear Database Structure}{540}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Easy to use Data Input and Keyboard Shortcuts}{543}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Simple Interface Structure}{544}{subsection.6.1.4}
+\contentsline {subsection}{\numberline {6.1.5}Search Functionality}{546}{subsection.6.1.5}
+\contentsline {paragraph}{Specific Objectives}{551}{section*.57}
+\contentsline {subsection}{\numberline {6.1.6}Tables}{551}{subsection.6.1.6}
+\contentsline {subsection}{\numberline {6.1.7}How the System will Search for Data}{552}{subsection.6.1.7}
+\contentsline {subsection}{\numberline {6.1.8}Read-Only access for staff}{552}{subsection.6.1.8}
+\contentsline {subsection}{\numberline {6.1.9}Read-Only access for managers}{553}{subsection.6.1.9}
+\contentsline {subsection}{\numberline {6.1.10}Admin access for IT Staff}{554}{subsection.6.1.10}
+\contentsline {subsection}{\numberline {6.1.11}Querying Data}{556}{subsection.6.1.11}
+\contentsline {paragraph}{Core Objectives}{558}{section*.58}
+\contentsline {subsection}{\numberline {6.1.12}The Login System}{558}{subsection.6.1.12}
+\contentsline {subsection}{\numberline {6.1.13}Automatic Email}{562}{subsection.6.1.13}
+\contentsline {subsection}{\numberline {6.1.14}Search Function}{563}{subsection.6.1.14}
+\contentsline {subsection}{\numberline {6.1.15}Querying Data}{563}{subsection.6.1.15}
+\contentsline {paragraph}{Other Objectives}{563}{section*.59}
+\contentsline {subsection}{\numberline {6.1.16}Electronic Hardware Request Forms}{563}{subsection.6.1.16}
+\contentsline {subsection}{\numberline {6.1.17}Online Database}{564}{subsection.6.1.17}
+\contentsline {section}{\numberline {6.2}Effectiveness}{564}{section.6.2}
+\contentsline {paragraph}{General Objectives}{564}{section*.60}
+\contentsline {subsection}{\numberline {6.2.1}Database Functionality}{564}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Clear Database Structure}{567}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Easy to use Data Input and Keyboard Shortcuts}{568}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Simple Interface Structure}{570}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Search Functionality}{571}{subsection.6.2.5}
+\contentsline {paragraph}{Specific Objectives}{574}{section*.61}
+\contentsline {subsection}{\numberline {6.2.6}Tables}{575}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}How the System will Search for Data}{576}{subsection.6.2.7}
+\contentsline {subsection}{\numberline {6.2.8}Read-Only access for staff}{578}{subsection.6.2.8}
+\contentsline {subsection}{\numberline {6.2.9}Read-Only access for managers}{578}{subsection.6.2.9}
+\contentsline {subsection}{\numberline {6.2.10}Admin access for IT Staff}{579}{subsection.6.2.10}
+\contentsline {subsection}{\numberline {6.2.11}Querying Data}{583}{subsection.6.2.11}
+\contentsline {paragraph}{Core Objectives}{584}{section*.62}
+\contentsline {subsection}{\numberline {6.2.12}The Login System}{584}{subsection.6.2.12}
+\contentsline {subsection}{\numberline {6.2.13}Automatic Email}{587}{subsection.6.2.13}
+\contentsline {subsection}{\numberline {6.2.14}Search Function}{589}{subsection.6.2.14}
+\contentsline {subsection}{\numberline {6.2.15}Querying Data}{589}{subsection.6.2.15}
+\contentsline {paragraph}{Other Objectives}{589}{section*.63}
+\contentsline {subsection}{\numberline {6.2.16}Electronic Hardware Request Forms}{589}{subsection.6.2.16}
+\contentsline {subsection}{\numberline {6.2.17}Online Database}{589}{subsection.6.2.17}
+\contentsline {section}{\numberline {6.3}Learnability}{590}{section.6.3}
+\contentsline {section}{\numberline {6.4}Usability}{595}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Target acquisition time}{595}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Latency}{598}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Readability}{598}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Use of metaphors}{600}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.5}Navigability}{603}{subsection.6.4.5}
+\contentsline {section}{\numberline {6.5}Maintainability}{604}{section.6.5}
+\contentsline {section}{\numberline {6.6}Suggestions for Improvement}{604}{section.6.6}
+\contentsline {section}{\numberline {6.7}End User Evidence}{604}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Questionnaires}{606}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Graphs}{611}{subsection.6.7.2}
+\contentsline {subsection}{\numberline {6.7.3}Written Statements}{611}{subsection.6.7.3}
 \contentsfinish 
