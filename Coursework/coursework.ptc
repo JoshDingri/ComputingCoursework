@@ -251,39 +251,49 @@
 \contentsline {paragraph}{Other Objectives}{563}{section*.59}
 \contentsline {subsection}{\numberline {6.1.16}Electronic Hardware Request Forms}{563}{subsection.6.1.16}
 \contentsline {subsection}{\numberline {6.1.17}Online Database}{564}{subsection.6.1.17}
-\contentsline {section}{\numberline {6.2}Effectiveness}{564}{section.6.2}
-\contentsline {paragraph}{General Objectives}{564}{section*.60}
-\contentsline {subsection}{\numberline {6.2.1}Database Functionality}{564}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Clear Database Structure}{567}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Easy to use Data Input and Keyboard Shortcuts}{568}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Simple Interface Structure}{570}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}Search Functionality}{571}{subsection.6.2.5}
-\contentsline {paragraph}{Specific Objectives}{574}{section*.61}
-\contentsline {subsection}{\numberline {6.2.6}Tables}{575}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}How the System will Search for Data}{576}{subsection.6.2.7}
-\contentsline {subsection}{\numberline {6.2.8}Read-Only access for staff}{578}{subsection.6.2.8}
-\contentsline {subsection}{\numberline {6.2.9}Read-Only access for managers}{578}{subsection.6.2.9}
-\contentsline {subsection}{\numberline {6.2.10}Admin access for IT Staff}{579}{subsection.6.2.10}
-\contentsline {subsection}{\numberline {6.2.11}Querying Data}{583}{subsection.6.2.11}
-\contentsline {paragraph}{Core Objectives}{584}{section*.62}
-\contentsline {subsection}{\numberline {6.2.12}The Login System}{584}{subsection.6.2.12}
-\contentsline {subsection}{\numberline {6.2.13}Automatic Email}{587}{subsection.6.2.13}
-\contentsline {subsection}{\numberline {6.2.14}Search Function}{589}{subsection.6.2.14}
-\contentsline {subsection}{\numberline {6.2.15}Querying Data}{589}{subsection.6.2.15}
-\contentsline {paragraph}{Other Objectives}{589}{section*.63}
-\contentsline {subsection}{\numberline {6.2.16}Electronic Hardware Request Forms}{589}{subsection.6.2.16}
-\contentsline {subsection}{\numberline {6.2.17}Online Database}{589}{subsection.6.2.17}
-\contentsline {section}{\numberline {6.3}Learnability}{590}{section.6.3}
-\contentsline {section}{\numberline {6.4}Usability}{595}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Target acquisition time}{595}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}Latency}{598}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Readability}{598}{subsection.6.4.3}
-\contentsline {subsection}{\numberline {6.4.4}Use of metaphors}{600}{subsection.6.4.4}
-\contentsline {subsection}{\numberline {6.4.5}Navigability}{603}{subsection.6.4.5}
-\contentsline {section}{\numberline {6.5}Maintainability}{604}{section.6.5}
-\contentsline {section}{\numberline {6.6}Suggestions for Improvement}{604}{section.6.6}
-\contentsline {section}{\numberline {6.7}End User Evidence}{604}{section.6.7}
-\contentsline {subsection}{\numberline {6.7.1}Questionnaires}{606}{subsection.6.7.1}
-\contentsline {subsection}{\numberline {6.7.2}Graphs}{611}{subsection.6.7.2}
-\contentsline {subsection}{\numberline {6.7.3}Written Statements}{611}{subsection.6.7.3}
+\contentsline {paragraph}{Additional Objectives}{564}{section*.60}
+\contentsline {subsection}{\numberline {6.1.18}Summary}{569}{subsection.6.1.18}
+\contentsline {section}{\numberline {6.2}Effectiveness}{570}{section.6.2}
+\contentsline {paragraph}{General Objectives}{570}{section*.61}
+\contentsline {subsection}{\numberline {6.2.1}Database Functionality}{570}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Clear Database Structure}{573}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Easy to use Data Input and Keyboard Shortcuts}{574}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Simple Interface Structure}{576}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Search Functionality}{577}{subsection.6.2.5}
+\contentsline {paragraph}{Specific Objectives}{580}{section*.62}
+\contentsline {subsection}{\numberline {6.2.6}Tables}{581}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}How the System will Search for Data}{582}{subsection.6.2.7}
+\contentsline {subsection}{\numberline {6.2.8}Read-Only access for staff}{584}{subsection.6.2.8}
+\contentsline {subsection}{\numberline {6.2.9}Read-Only access for managers}{585}{subsection.6.2.9}
+\contentsline {subsection}{\numberline {6.2.10}Admin access for IT Staff}{586}{subsection.6.2.10}
+\contentsline {subsection}{\numberline {6.2.11}Querying Data}{589}{subsection.6.2.11}
+\contentsline {paragraph}{Core Objectives}{590}{section*.63}
+\contentsline {subsection}{\numberline {6.2.12}The Login System}{590}{subsection.6.2.12}
+\contentsline {subsection}{\numberline {6.2.13}Automatic Email}{593}{subsection.6.2.13}
+\contentsline {subsection}{\numberline {6.2.14}Search Function}{595}{subsection.6.2.14}
+\contentsline {subsection}{\numberline {6.2.15}Querying Data}{595}{subsection.6.2.15}
+\contentsline {paragraph}{Other Objectives}{595}{section*.64}
+\contentsline {subsection}{\numberline {6.2.16}Electronic Hardware Request Forms}{595}{subsection.6.2.16}
+\contentsline {subsection}{\numberline {6.2.17}Online Database}{595}{subsection.6.2.17}
+\contentsline {paragraph}{Additional Objectives}{596}{section*.65}
+\contentsline {section}{\numberline {6.3}Learnability}{603}{section.6.3}
+\contentsline {section}{\numberline {6.4}Usability}{607}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Target acquisition time}{607}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Latency}{610}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Readability}{610}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Use of metaphors}{612}{subsection.6.4.4}
+\contentsline {subsection}{\numberline {6.4.5}Navigability}{616}{subsection.6.4.5}
+\contentsline {subsection}{\numberline {6.4.6}Summary}{616}{subsection.6.4.6}
+\contentsline {section}{\numberline {6.5}Maintainability}{616}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Fixing Bugs}{617}{subsection.6.5.1}
+\contentsline {subsection}{\numberline {6.5.2}Changing Parameters}{617}{subsection.6.5.2}
+\contentsline {subsection}{\numberline {6.5.3}Responding to New Requirements}{617}{subsection.6.5.3}
+\contentsline {subsection}{\numberline {6.5.4}Summary}{618}{subsection.6.5.4}
+\contentsline {section}{\numberline {6.6}Suggestions for Improvement}{618}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Online functionality for the database}{619}{subsection.6.6.1}
+\contentsline {subsection}{\numberline {6.6.2}User-friendly foreign keys}{619}{subsection.6.6.2}
+\contentsline {subsection}{\numberline {6.6.3}Dialog Box Improvements}{619}{subsection.6.6.3}
+\contentsline {section}{\numberline {6.7}End User Evidence}{619}{section.6.7}
+\contentsline {subsection}{\numberline {6.7.1}Questionnaire}{620}{subsection.6.7.1}
+\contentsline {subsection}{\numberline {6.7.2}Graphs}{625}{subsection.6.7.2}
 \contentsfinish 
